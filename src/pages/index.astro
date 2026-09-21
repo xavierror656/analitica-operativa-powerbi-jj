@@ -1,12 +1,17 @@
 ---
-const base = import.meta.env.BASE_URL;
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const dias = [
-  { href: `${base}dia-01`, num: 1, titulo: 'Conexión y preparación de datos', evidencia: 'A1', estado: 'En construcción' },
-  { href: `${base}dia-02`, num: 2, titulo: 'Modelo de datos', evidencia: 'A2', estado: 'Pendiente' },
-  { href: `${base}dia-03`, num: 3, titulo: 'Indicadores en DAX', evidencia: 'A3', estado: 'Pendiente' },
-  { href: `${base}dia-04`, num: 4, titulo: 'Reporte operativo', evidencia: 'A4', estado: 'Pendiente' },
-  { href: `${base}dia-05`, num: 5, titulo: 'Análisis, publicación y proyecto', evidencia: 'A5', estado: 'Pendiente' },
-];
+  { href: `${base}/dia-01`, num: 1, titulo: 'Conexión y preparación de datos', evidencia: 'A1', estado: 'construccion' },
+  { href: `${base}/dia-02`, num: 2, titulo: 'Modelo de datos', evidencia: 'A2', estado: 'pendiente' },
+  { href: `${base}/dia-03`, num: 3, titulo: 'Indicadores en DAX', evidencia: 'A3', estado: 'pendiente' },
+  { href: `${base}/dia-04`, num: 4, titulo: 'Reporte operativo', evidencia: 'A4', estado: 'pendiente' },
+  { href: `${base}/dia-05`, num: 5, titulo: 'Análisis, publicación y proyecto', evidencia: 'A5', estado: 'pendiente' },
+] as const;
+
+const estadoTexto = { construccion: 'En construcción', pendiente: 'Pendiente' } as const;
 ---
 
 <html lang="es">
@@ -14,50 +19,89 @@ const dias = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Analítica Operativa con Power BI · Slides</title>
-    <style>
-      @import '../styles/global.css';
-      body {
-        font-family: var(--font-cuerpo);
-        background: var(--color-ink);
-        color: var(--color-text-on-ink);
-        padding: 64px;
-      }
-      h1 {
-        font-family: var(--font-titulo);
-      }
-      a.card {
-        display: block;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 12px;
-        padding: 24px 32px;
-        margin-bottom: 16px;
-        text-decoration: none;
-        color: inherit;
-      }
-      a.card:hover {
-        border-color: var(--color-accent);
-      }
-    </style>
+    <meta name="description" content="Slides del programa Analítica Operativa con Power BI, para Johnson & Johnson · Skilling Center Tecmilenio." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <p style="color: var(--color-accent-light); letter-spacing: 0.1em; text-transform: uppercase;">
-      Skilling Center Tecmilenio · Johnson &amp; Johnson · Ciudad Juárez
-    </p>
-    <h1 style="font-size: 48px;">Analítica Operativa con Power BI</h1>
-    <p style="max-width: 60ch; color: var(--color-text-on-ink-dim);">
-      Del dato de planta al reporte de decisión. Cinco días, cinco evidencias acumulativas.
-    </p>
-    <div style="margin-top: 32px;">
-      {
-        dias.map((d) => (
-          <a class="card" href={d.href}>
-            <strong>Día {d.num} · {d.titulo}</strong>
-            <span style="float: right; color: var(--color-text-on-ink-dim);">
-              Evidencia {d.evidencia} · {d.estado}
-            </span>
-          </a>
-        ))
-      }
+  <body class="min-h-screen bg-ink text-[#f4f7f6]">
+    <div class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
+      <p class="font-cuerpo text-sm font-semibold tracking-[0.18em] text-accent-light uppercase">
+        Skilling Center Tecmilenio · Johnson &amp; Johnson · Ciudad Juárez
+      </p>
+
+      <h1 class="mt-4 font-titulo text-4xl font-extrabold leading-tight sm:text-6xl">
+        Analítica Operativa <span class="text-accent-light">con Power BI</span>
+      </h1>
+
+      <p class="mt-5 max-w-[52ch] text-lg text-[#b7d6d1]">
+        Del dato de planta al reporte de decisión. Cinco días, cinco evidencias
+        acumulativas, un solo reporte operativo al cierre.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#b7d6d1]">
+        <span>📅 5 días · 37.5 h</span>
+        <span>🎯 Evidencias A1–A5</span>
+        <span>👤 Instructor: Javier A. Flores Flores</span>
+      </div>
+
+      <ol class="mt-12 flex flex-col gap-4">
+        {
+          dias.map((d) => (
+            <li>
+              <a
+                href={d.href}
+                class:list={[
+                  'group flex items-center gap-6 rounded-2xl border px-6 py-5 transition-colors',
+                  d.estado === 'construccion'
+                    ? 'border-accent/40 bg-accent/10 hover:border-accent'
+                    : 'border-white/10 bg-white/[0.03] hover:border-white/25',
+                ]}
+              >
+                <span
+                  class:list={[
+                    'flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-titulo text-xl font-bold',
+                    d.estado === 'construccion' ? 'bg-accent text-ink' : 'bg-white/10 text-[#b7d6d1]',
+                  ]}
+                >
+                  {d.num}
+                </span>
+
+                <span class="min-w-0 flex-1">
+                  <span class="block font-titulo text-lg font-semibold sm:text-xl">{d.titulo}</span>
+                  <span class="text-sm text-[#8fa8a4]">Evidencia {d.evidencia}</span>
+                </span>
+
+                <span
+                  class:list={[
+                    'shrink-0 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide',
+                    d.estado === 'construccion'
+                      ? 'bg-accent text-ink'
+                      : 'bg-white/10 text-[#8fa8a4]',
+                  ]}
+                >
+                  {estadoTexto[d.estado]}
+                </span>
+
+                <span class="shrink-0 text-[#8fa8a4] transition-transform group-hover:translate-x-1">→</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+
+      <p class="mt-16 border-t border-white/10 pt-6 text-sm text-[#8fa8a4]">
+        Programa diseñado para Johnson &amp; Johnson · Ciudad Juárez. Repositorio:{' '}
+        <a
+          class="text-accent-light underline decoration-white/20 underline-offset-4 hover:decoration-accent-light"
+          href="https://github.com/xavierror656/analitica-operativa-powerbi-jj"
+        >
+          xavierror656/analitica-operativa-powerbi-jj
+        </a>
+      </p>
     </div>
   </body>
 </html>

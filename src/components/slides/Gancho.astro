@@ -9,7 +9,7 @@ const { modulo, titulo, pregunta } = Astro.props;
 ---
 
 <section class="is-light">
-  <div class="flex flex-col gap-12">
+  <div class="slide-body gap-12">
     {modulo && <span class="font-codigo text-2xl text-accent">{modulo}</span>}
     <h1 class="text-8xl">{titulo}</h1>
     {pregunta && <p class="text-4xl text-dim">{pregunta}</p>}

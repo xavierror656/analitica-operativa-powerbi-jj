@@ -26,7 +26,7 @@ const { modulo, titulo, consigna, pregunta, minutos } = Astro.props;
       <slot />
     </div>
     {pregunta && (
-      <p class="text-3xl font-titulo font-bold text-accent-light">¿{pregunta}?</p>
+      <p class="text-3xl font-titulo font-bold text-accent-light">{pregunta}</p>
     )}
   </div>
   <slot name="notas" />

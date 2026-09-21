@@ -63,6 +63,13 @@ body {
   font-family: var(--font-cuerpo);
 }
 
+/*
+ * Reveal.js pone `style="display:block"` inline en la sección activa (para
+ * mostrarla/ocultarla), y eso gana sobre cualquier `display` que se declare
+ * aquí. Por eso el centrado vertical NO se hace flexeando `section`: se hace
+ * con un wrapper interno (`.slide-body` o el div raíz de cada componente de
+ * slide) que sí controla su propio `display`.
+ */
 .reveal .slides section {
   width: 1920px;
   height: 1080px;
@@ -71,6 +78,10 @@ body {
   text-align: left;
   color: var(--color-text-on-ink);
   background: var(--color-ink);
+}
+
+.reveal .slides section > .slide-body {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -7,7 +7,7 @@ const { modulo } = Astro.props;
 ---
 
 <section class="is-light">
-  <div class="flex flex-col items-start gap-8 max-w-[1400px]">
+  <div class="slide-body items-start gap-8 max-w-[1400px]">
     {modulo && <span class="font-codigo text-2xl text-accent">{modulo}</span>}
     <p class="text-7xl font-titulo font-bold leading-tight">
       <slot />
