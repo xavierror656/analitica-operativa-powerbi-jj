@@ -1,0 +1,23 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Quiz from '../ui/Quiz.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M10b" titulo="Chequeo rápido: manejo de errores">
+  <Quiz
+    pregunta="Tu consulta trae 40 filas con la hora en un formato que Power Query no reconoce, de 7,000 totales. ¿Qué haces?"
+    opciones={[
+      { texto: 'Borro las 40 filas y sigo, para no perder tiempo' },
+      { texto: 'Aíslo las 40 filas en una tabla de errores y documento cuántas y por qué', correcta: true },
+      { texto: 'Dejo que la consulta falle hasta corregir la fuente original' },
+    ]}
+    explicacion="Borrar sin registro es indistinguible de perder el dato. Dejar que falle bloquea a todo el equipo por 40 filas de 7,000. Aislar y documentar es lo único que deja el reporte funcionando y el problema visible."
+  />
+  <Notas
+    slot="notas"
+    minutos={4}
+    dice="Las tres opciones parecen razonables en el momento. Solo una deja rastro de que el problema existió."
+    nota="Conecta directo con la Nota crítica de la slide anterior: aislar no es lo mismo que ignorar."
+  />
+</EjemploReal>

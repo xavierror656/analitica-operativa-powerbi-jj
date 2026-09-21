@@ -1,0 +1,31 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+
+const areas = [
+  { nombre: 'Business Excellence', pregunta: '¿Cómo demuestro con datos que la mejora sostuvo el resultado?', se_lleva: 'Página ejecutiva con indicadores y comparativo entre líneas' },
+  { nombre: 'Operaciones', pregunta: '¿Qué pasó en mi turno y en qué lote se perdió el rendimiento?', se_lleva: 'Reporte de detalle por fecha, turno, línea y lote' },
+  { nombre: 'Ingeniería', pregunta: '¿Dónde se concentra el scrap y qué sustenta una acción correctiva?', se_lleva: 'Modelo que cruza calidad y mantenimiento con producción' },
+];
+---
+
+<Mecanismo modulo="D1-M1c" titulo="El mismo curso, tres preguntas distintas">
+  <div class="grid grid-cols-3 gap-6">
+    {
+      areas.map((a) => (
+        <div class="rounded-xl bg-ink-2/40 border border-white/10 p-6 flex flex-col gap-4">
+          <p class="font-titulo font-bold text-2xl text-accent">{a.nombre}</p>
+          <p class="text-xl italic text-dim">{a.pregunta}</p>
+          <p class="text-lg">{a.se_lleva}</p>
+        </div>
+      ))
+    }
+  </div>
+  <Notas
+    slot="notas"
+    minutos={5}
+    dice="No están todos aquí por la misma razón, y está bien. El reporte que construyen esta semana contesta las tres preguntas a la vez, porque las tres viven en el mismo modelo de datos."
+    pregunta="¿De cuál de las tres áreas es cada quien?"
+    nota="Vale la pena que se identifiquen en voz alta: el proyecto final del Día 5 pide equipos mixtos entre las tres áreas, y esto siembra esa formación desde el Día 1."
+  />
+</Mecanismo>

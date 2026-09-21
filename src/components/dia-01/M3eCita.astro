@@ -1,0 +1,13 @@
+---
+import Contexto from '../slides/Contexto.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Contexto modulo="D1-M3e">
+  Un reporte no es honesto, es reproducible.
+  <Notas
+    slot="notas"
+    minutos={1}
+    dice="Cierre del fundamento. No hace falta agregar nada más, dejar que se quede un segundo en silencio antes de pasar a la práctica."
+  />
+</Contexto>

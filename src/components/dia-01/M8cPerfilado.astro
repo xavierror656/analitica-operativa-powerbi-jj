@@ -1,0 +1,27 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Chips from '../ui/Chips.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M8c" titulo="Perfilado de columnas: tres vistas, un clic cada una">
+  <div class="flex flex-col gap-8">
+    <Chips
+      items={[
+        'Calidad de columna: % válido / error / vacío',
+        'Distribución de columna: valores más frecuentes',
+        'Perfil de columna: mín, máx, distintos, únicos',
+      ]}
+    />
+    <p class="text-3xl">
+      Están en Power Query, en la pestaña Vista. Con las tres activadas, antes de tocar
+      un solo paso de transformación, ya se nota qué columna tiene el problema.
+    </p>
+  </div>
+  <Notas
+    slot="notas"
+    minutos={6}
+    dice="Esto es lo primero que hacen al abrir cualquier archivo nuevo, antes de limpiar nada. Perfilar les dice dónde está el problema antes de que lo tengan que adivinar."
+    nota="Por defecto Power Query solo perfila las primeras 1,000 filas. Hay que cambiarlo a 'columna completa' abajo a la izquierda, o se van a perder anomalías que aparecen después de la fila 1,000."
+  />
+</EjemploReal>

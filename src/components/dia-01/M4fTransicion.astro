@@ -1,0 +1,13 @@
+---
+import Transicion from '../slides/Transicion.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Transicion>
+  Ya vieron los problemas. Ahora, a ponerles nombre uno por uno.
+  <Notas
+    slot="notas"
+    minutos={1}
+    dice="Puente hacia la actividad núcleo 2: turnos, líneas y lotes en orden."
+  />
+</Transicion>

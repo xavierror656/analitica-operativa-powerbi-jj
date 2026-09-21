@@ -1,0 +1,28 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Nota from '../ui/Nota.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M2c" titulo="Lo que pasa cuando te saltas el modelo">
+  <div class="flex flex-col gap-8">
+    <p class="text-3xl">
+      Dos personas de la misma línea sacan "el total de piezas producidas de agosto"
+      cada una desde su propio Excel. Los números no coinciden. Ninguna de las dos
+      está mintiendo, y ninguna sabe por qué difieren.
+    </p>
+    <Nota tono="alto">
+      Sin un modelo compartido, cada persona reconstruye sus propias reglas: qué cuenta
+      como "producido", qué turno incluye, qué lote quedó fuera. El reporte no es
+      confiable no porque el dato esté mal, sino porque nadie más puede verificar cómo
+      se calculó.
+    </Nota>
+  </div>
+  <Notas
+    slot="notas"
+    minutos={7}
+    dice="Esto no es hipotético, es el escenario más común en cualquier planta antes de tener un modelo compartido: dos reportes 'correctos' que no coinciden."
+    pregunta="¿A alguien le ha pasado exactamente esto, comparar cifras con un compañero y no cuadrar?"
+    nota="Es el momento de conectar con la Sección de entorno regulado: en dispositivos médicos, esta discrepancia no es solo incómoda, es un riesgo de trazabilidad."
+  />
+</EjemploReal>

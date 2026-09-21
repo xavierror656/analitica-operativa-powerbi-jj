@@ -1,0 +1,14 @@
+---
+import Cierre from '../slides/Cierre.astro';
+import Cita from '../ui/Cita.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Cierre titulo="Antes de irse">
+  <Cita>Anoten, en una línea: ¿qué van a hacer distinto la próxima vez que abran un archivo de planta?</Cita>
+  <Notas
+    slot="notas"
+    minutos={2}
+    dice="No se comparte en voz alta si nadie quiere, es para cada quien. Es la pregunta que convierte un día de curso en un hábito."
+  />
+</Cierre>

@@ -1,52 +1,130 @@
 ---
 import RevealDeck from '../components/RevealDeck.astro';
 import Acto from '../components/ui/Acto.astro';
+
+// 08:00 Fundamento
 import M1Gancho from '../components/dia-01/M1Gancho.astro';
+import M1bQueNoEs from '../components/dia-01/M1bQueNoEs.astro';
+import M1cTresAreas from '../components/dia-01/M1cTresAreas.astro';
+import M2aQueEsModelo from '../components/dia-01/M2aQueEsModelo.astro';
 import M2Arquitectura from '../components/dia-01/M2Arquitectura.astro';
+import M2cSinModelo from '../components/dia-01/M2cSinModelo.astro';
 import M3FuenteConfiable from '../components/dia-01/M3FuenteConfiable.astro';
 import M3bLocalVsRemoto from '../components/dia-01/M3bLocalVsRemoto.astro';
+import M3cCriterios from '../components/dia-01/M3cCriterios.astro';
+import M3dQuizFuente from '../components/dia-01/M3dQuizFuente.astro';
+import M3eCita from '../components/dia-01/M3eCita.astro';
+import M3fTransicion from '../components/dia-01/M3fTransicion.astro';
+
+// 09:00 Núcleo 1
+import M4aContexto from '../components/dia-01/M4aContexto.astro';
+import M4bArchivos from '../components/dia-01/M4bArchivos.astro';
+import M4cFilaAntesDespues from '../components/dia-01/M4cFilaAntesDespues.astro';
+import M4dChecklist from '../components/dia-01/M4dChecklist.astro';
 import M4ConectarFuentes from '../components/dia-01/M4ConectarFuentes.astro';
+import M4TuTurno2Documenta from '../components/dia-01/M4TuTurno2Documenta.astro';
+import M4eResultadoEsperado from '../components/dia-01/M4eResultadoEsperado.astro';
+import M4fTransicion from '../components/dia-01/M4fTransicion.astro';
+
+// 10:45 Núcleo 2
+import M5aContexto from '../components/dia-01/M5aContexto.astro';
+import M5bLineaInconsistente from '../components/dia-01/M5bLineaInconsistente.astro';
+import M5cTurnoSupervisor from '../components/dia-01/M5cTurnoSupervisor.astro';
+import M5dLoteCeros from '../components/dia-01/M5dLoteCeros.astro';
+import M5eDuplicados from '../components/dia-01/M5eDuplicados.astro';
 import M5TurnosLineas from '../components/dia-01/M5TurnosLineas.astro';
+import M5fChecklistCierre from '../components/dia-01/M5fChecklistCierre.astro';
 import M6Transicion from '../components/dia-01/M6Transicion.astro';
+
+// 13:15 Laboratorio: Power Query a fondo
 import M7CadaPasoQueda from '../components/dia-01/M7CadaPasoQueda.astro';
 import M8PowerQueryAFondo from '../components/dia-01/M8PowerQueryAFondo.astro';
+import M8cPerfilado from '../components/dia-01/M8cPerfilado.astro';
+import M8dConexionCarpeta from '../components/dia-01/M8dConexionCarpeta.astro';
+import M8eParametros from '../components/dia-01/M8eParametros.astro';
 import M8bChequeo from '../components/dia-01/M8bChequeo.astro';
 import M9ColumnasCondicionales from '../components/dia-01/M9ColumnasCondicionales.astro';
 import M10ManejoErrores from '../components/dia-01/M10ManejoErrores.astro';
+import M10bQuizErrores from '../components/dia-01/M10bQuizErrores.astro';
 import M11LaboratorioAplicado from '../components/dia-01/M11LaboratorioAplicado.astro';
 import M12Transicion from '../components/dia-01/M12Transicion.astro';
+
+// 15:00 Taller de evidencia
+import M13aContexto from '../components/dia-01/M13aContexto.astro';
+import M13bRubrica from '../components/dia-01/M13bRubrica.astro';
+import M13cDocumentacion from '../components/dia-01/M13cDocumentacion.astro';
 import M13TallerEvidencia from '../components/dia-01/M13TallerEvidencia.astro';
+import M13dAuditoria from '../components/dia-01/M13dAuditoria.astro';
+import M13eChecklistFinal from '../components/dia-01/M13eChecklistFinal.astro';
+
+// 16:30 Validación y cierre
 import M14Cierre from '../components/dia-01/M14Cierre.astro';
+import M14bRecap from '../components/dia-01/M14bRecap.astro';
+import M14cPreview from '../components/dia-01/M14cPreview.astro';
+import M14dCompromiso from '../components/dia-01/M14dCompromiso.astro';
 ---
 
 <RevealDeck titulo="Día 1 · Conexión y preparación de datos">
   <Acto numero={1} palabra="Conectar" />
 
-  <!-- 08:00 Fundamento -->
+  <!-- 08:00 Fundamento (60 min) -->
   <M1Gancho />
+  <M1bQueNoEs />
+  <M1cTresAreas />
+  <M2aQueEsModelo />
   <M2Arquitectura />
+  <M2cSinModelo />
   <M3FuenteConfiable />
   <M3bLocalVsRemoto />
+  <M3cCriterios />
+  <M3dQuizFuente />
+  <M3eCita />
+  <M3fTransicion />
 
-  <!-- 09:00 Núcleo 1 -->
+  <!-- 09:00 Núcleo 1: Conectar las fuentes de piso (90 min) -->
+  <M4aContexto />
+  <M4bArchivos />
+  <M4cFilaAntesDespues />
+  <M4dChecklist />
   <M4ConectarFuentes />
+  <M4TuTurno2Documenta />
+  <M4eResultadoEsperado />
+  <M4fTransicion />
 
-  <!-- 10:45 Núcleo 2 -->
+  <!-- 10:45 Núcleo 2: Turnos, líneas y lotes en orden (90 min) -->
+  <M5aContexto />
+  <M5bLineaInconsistente />
+  <M5cTurnoSupervisor />
+  <M5dLoteCeros />
+  <M5eDuplicados />
   <M5TurnosLineas />
+  <M5fChecklistCierre />
   <M6Transicion />
 
-  <!-- 13:15 Laboratorio: Power Query a fondo -->
+  <!-- 13:15 Laboratorio: Power Query a fondo (90 min) -->
   <M7CadaPasoQueda />
   <M8PowerQueryAFondo />
+  <M8cPerfilado />
+  <M8dConexionCarpeta />
+  <M8eParametros />
   <M8bChequeo />
   <M9ColumnasCondicionales />
   <M10ManejoErrores />
+  <M10bQuizErrores />
   <M11LaboratorioAplicado />
   <M12Transicion />
 
-  <!-- 15:00 Taller de evidencia -->
+  <!-- 15:00 Taller de evidencia: A1 (90 min) -->
+  <M13aContexto />
+  <M13bRubrica />
+  <M13cDocumentacion />
   <M13TallerEvidencia />
+  <M13dAuditoria />
+  <M13eChecklistFinal />
 
-  <!-- 16:30 Validación y cierre -->
+  <!-- 16:30 Validación y cierre (30 min) -->
   <M14Cierre />
+  <M14bRecap />
+  <M14cPreview />
+  <M14dCompromiso />
 </RevealDeck>

@@ -1,0 +1,19 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Comparacion from '../ui/Comparacion.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M5d" titulo="El lote perdió sus ceros a la izquierda">
+  <Comparacion tituloA="Como llegó" tituloB="Como debe quedar">
+    <p slot="a" class="font-codigo text-3xl">lote: "2609-7"</p>
+    <p slot="b" class="font-codigo text-3xl">lote: "2609-0007"</p>
+  </Comparacion>
+  <Notas
+    slot="notas"
+    minutos={7}
+    dice="Este es el clásico de Excel: si alguien abrió el CSV en Excel y lo volvió a guardar, Excel interpretó el lote como número y se comió los ceros. El dato no se ve mal a simple vista, y por eso es el más peligroso de los nueve."
+    pregunta="¿Por qué importa que el lote tenga los ceros exactos, en un contexto de dispositivos médicos?"
+    nota="Trazabilidad: el número de lote tiene que coincidir carácter por carácter con el que está en el registro físico. Un lote sin ceros no es 'casi el mismo', es un lote que no existe en el sistema de origen."
+  />
+</EjemploReal>

@@ -1,0 +1,23 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Chips from '../ui/Chips.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Mecanismo modulo="D1-M3c" titulo="Cuatro preguntas antes de confiar en una fuente">
+  <Chips
+    poco
+    items={[
+      '¿Quién es el dueño?',
+      '¿Cuándo se actualizó por última vez?',
+      '¿La estructura de columnas cambia entre archivos?',
+      '¿Alguien más puede llegar al mismo número que yo?',
+    ]}
+  />
+  <Notas
+    slot="notas"
+    minutos={5}
+    dice="No hace falta memorizar una definición de 'fuente confiable', hace falta hacerse estas cuatro preguntas cada vez. Si no pueden contestar las cuatro, no es que la fuente esté mal, es que todavía no saben si está bien."
+    nota="Estos cuatro criterios son los mismos que se aplican en el Día 1 al conectar las fuentes de piso: van a volver a aparecer en el laboratorio de la tarde."
+  />
+</Mecanismo>

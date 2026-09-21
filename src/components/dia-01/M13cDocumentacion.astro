@@ -1,0 +1,26 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Comparacion from '../ui/Comparacion.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M13c" titulo="Nombrar un paso: la diferencia real">
+  <Comparacion tituloA="No sirve" tituloB="Sí sirve">
+    <ul slot="a" class="flex flex-col gap-3 list-disc pl-6 font-codigo text-2xl">
+      <li>"Cambié tipo"</li>
+      <li>"Personalizado1"</li>
+      <li>"Filtré filas"</li>
+    </ul>
+    <ul slot="b" class="flex flex-col gap-3 list-disc pl-6 font-codigo text-2xl">
+      <li>"Lote a texto (evita perder ceros)"</li>
+      <li>"Categoría de scrap desde disposición"</li>
+      <li>"Quitar filas de subtotal embebidas"</li>
+    </ul>
+  </Comparacion>
+  <Notas
+    slot="notas"
+    minutos={8}
+    dice="Power Query nombra los pasos automáticamente con genéricos como 'Personalizado1'. Renombrarlos no es opcional, es lo que hace que alguien más entienda su archivo sin preguntarles."
+    nota="Renombrar un paso: doble clic sobre su nombre en el panel de pasos aplicados, a la derecha."
+  />
+</EjemploReal>

@@ -1,0 +1,13 @@
+---
+import Transicion from '../slides/Transicion.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Transicion>
+  Suficiente teoría. Vamos a conectar las fuentes de piso de verdad.
+  <Notas
+    slot="notas"
+    minutos={1}
+    dice="Puente hacia la actividad núcleo 1: de aquí en adelante todo se hace en Power BI, con el dataset del programa."
+  />
+</Transicion>

@@ -1,0 +1,13 @@
+---
+import Contexto from '../slides/Contexto.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Contexto modulo="D1-M13a">
+  Esta es la primera de cinco evidencias. Se acumulan, no se reemplazan.
+  <Notas
+    slot="notas"
+    minutos={2}
+    dice="Lo que dejen listo en los próximos 90 minutos es el archivo con el que abren el Día 2 mañana. No hay una versión 'para el curso' y otra 'de verdad': es la misma."
+  />
+</Contexto>

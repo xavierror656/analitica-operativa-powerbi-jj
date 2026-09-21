@@ -13,10 +13,12 @@ documentados.
 | 15:00 | Taller (1.5h) | Cada participante depura su propio archivo y documenta los pasos |
 | 16:30 | Cierre (0.5h) | Validación de cifras, revisión cruzada, registro de evidencia |
 
-Slides de este día: `src/pages/dia-01.astro`, módulos en `src/components/dia-01/`
-(M1 a M14, uno por bloque del horario de arriba). Los seis bloques del horario están
-cubiertos; falta portar el cronómetro visual de actividad (ver `README.md` raíz →
-Estado) y validar el timing real en una impartición piloto, ya que los minutos por
-módulo son estimados a partir del horario de la propuesta, no medidos en vivo.
+Slides de este día: `src/pages/dia-01.astro`, 50 módulos en `src/components/dia-01/`,
+uno por beat de contenido (no uno por bloque: cada bloque de 90 min se desglosa en
+varias slides con ejemplos concretos, no una sola slide con un `TuTurno` en blanco).
+La suma de `minutos` por bloque (Fundamento, Núcleo 1, Núcleo 2, Laboratorio, Taller,
+Cierre) se verificó a mano contra el horario de la propuesta y cuadra dentro de
+±5 minutos por bloque. Sigue pendiente: validar el timing real en una impartición
+piloto, porque los minutos son estimados, no medidos en vivo.
 
 Dataset de práctica: `../datos/`.

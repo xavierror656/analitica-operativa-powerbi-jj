@@ -212,6 +212,7 @@ def generar_produccion_y_calidad(rng: random.Random, salida: Path):
                     filas_prod.append({
                         "fecha": fecha_str,
                         "turno": turno_str,
+                        "hora_inicio": hora_str,
                         "linea_id": linea_str,
                         "parte_id": parte["parte_id"],
                         "lote": lote,
@@ -265,10 +266,11 @@ def generar_produccion_y_calidad(rng: random.Random, salida: Path):
                 "piezas_buenas": "",
                 "horas_operacion": "",
                 "horas_paro": "",
+                "hora_inicio": "",
             })
 
     _escribir_csv(salida / "fact_produccion.csv", filas_prod,
-                  ["fecha", "turno", "linea_id", "parte_id", "lote", "piezas_plan",
+                  ["fecha", "turno", "hora_inicio", "linea_id", "parte_id", "lote", "piezas_plan",
                    "piezas_producidas", "piezas_buenas", "horas_operacion", "horas_paro"])
     _escribir_csv(salida / "fact_calidad.csv", filas_calidad,
                   ["fecha", "linea_id", "parte_id", "lote", "tipo_defecto", "etapa_deteccion",

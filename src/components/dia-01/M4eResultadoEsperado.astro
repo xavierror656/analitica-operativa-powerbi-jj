@@ -1,0 +1,19 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Nota from '../ui/Nota.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M4f" titulo="Así se ve 'listo' al cerrar este bloque">
+  <Nota>
+    Las ocho tablas conectadas desde la misma carpeta, y una lista escrita (a mano o en
+    un documento) de qué anomalías encontraste, en qué tabla y en qué columna. No hace
+    falta que esté corregido todavía, hace falta que esté nombrado.
+  </Nota>
+  <Notas
+    slot="notas"
+    minutos={5}
+    dice="Antes del receso, cada quien revisa contra esta slide: si les falta la lista escrita, esos son los últimos cinco minutos, no el receso."
+    nota="Este criterio se repite tal cual al cierre del día, en la validación de evidencia: nombrar el problema es la mitad del trabajo del Día 1."
+  />
+</EjemploReal>

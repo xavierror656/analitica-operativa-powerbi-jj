@@ -1,0 +1,26 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Nota from '../ui/Nota.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M5e" titulo="Filas duplicadas por doble captura de fin de turno">
+  <div class="flex flex-col gap-8">
+    <p class="text-3xl">
+      La misma línea, el mismo turno, el mismo lote, las mismas piezas: aparece dos
+      veces. Alguien capturó el cierre de turno y, por error o por no saber que ya
+      estaba capturado, alguien más lo volvió a capturar.
+    </p>
+    <Nota tono="alto">
+      No se detecta mirando una fila: se detecta comparando filas completas entre sí.
+      Eliminar duplicados sin revisar primero borra piezas de producción reales si dos
+      lotes distintos coinciden por casualidad en todos los demás campos.
+    </Nota>
+  </div>
+  <Notas
+    slot="notas"
+    minutos={7}
+    dice="El riesgo aquí no es no encontrarlos, es encontrarlos y borrar de más. Antes de quitar duplicados, hay que decidir qué columnas definen 'la misma fila'."
+    nota="Power Query tiene 'Quitar duplicados', pero solo compara las columnas que estén seleccionadas en ese momento. Si seleccionan de más o de menos, el resultado cambia."
+  />
+</EjemploReal>

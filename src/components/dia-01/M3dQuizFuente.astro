@@ -1,0 +1,23 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Quiz from '../ui/Quiz.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M3d" titulo="Chequeo rápido: ¿confiable o no?">
+  <Quiz
+    pregunta='Un compañero te pasa "produccion_final_v2.xlsx". Lo edita él a mano cada mañana, copiando y pegando desde otro archivo. Nadie más sabe cuándo lo actualizó por última vez. ¿Es una fuente confiable?'
+    opciones={[
+      { texto: 'Sí, mientras el número final sea correcto no importa cómo se armó' },
+      { texto: 'No: no tiene dueño verificable ni hora de actualización conocida', correcta: true },
+      { texto: 'Sí, porque está en Excel y Excel es la herramienta estándar de la planta' },
+    ]}
+    explicacion='No es un juicio sobre la persona ni sobre Excel: es que nadie más puede verificar cuándo se actualizó ni reproducir cómo se armó. Eso es justo lo que separa "archivo suelto" de "fuente confiable" en la slide anterior.'
+  />
+  <Notas
+    slot="notas"
+    minutos={5}
+    dice="Esto no es un caso hipotético, descríbanlo con detalle porque es casi seguro que a alguien en el salón le está pasando ahora mismo con algún archivo."
+    nota="Si alguien contesta que sí es confiable porque 'el número está bien', esa es la discusión que vale la pena abrir: un número correcto hoy no dice nada sobre si seguirá siendo correcto ni verificable la próxima vez."
+  />
+</EjemploReal>

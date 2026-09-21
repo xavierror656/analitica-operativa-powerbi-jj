@@ -1,0 +1,22 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Pasos from '../ui/Pasos.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<TuTurno modulo="D1-M4e" titulo="Documenta lo que encontraste" minutos={18}>
+  <Pasos
+    poco
+    items={[
+      { t: 'Anota cada anomalía', d: 'Cuáles de los nueve problemas encontraste, en qué columna, en qué tabla.' },
+      { t: 'No corrijas todavía', d: 'Eso es el laboratorio de la tarde. Ahora solo documenta.' },
+      { t: 'Compara con tu mesa', d: '¿Encontraron los mismos nueve, o alguien vio algo distinto?' },
+    ]}
+  />
+  <Notas
+    slot="notas"
+    minutos={18}
+    dice="La documentación de hoy es la que van a usar esta tarde cuando corrijan de verdad. Si no anotan ahora dónde estaba el problema, lo van a volver a buscar desde cero."
+    nota="Este es el hábito que sostiene la evidencia A1: nombrar el problema antes de resolverlo, no resolverlo a ciegas."
+  />
+</TuTurno>

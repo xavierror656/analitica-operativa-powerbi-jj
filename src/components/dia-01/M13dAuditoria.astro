@@ -1,0 +1,19 @@
+---
+import Practica from '../slides/Practica.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Practica
+  modulo="D1-M13d"
+  titulo="Audita el archivo de un compañero de otra área"
+  consigna="Intercambien archivos. Sin que te expliquen nada: ¿entiendes qué le hicieron a cada tabla, con solo leer los nombres de los pasos?"
+  pregunta="¿Qué paso tuviste que preguntar porque el nombre no te decía nada?"
+  minutos={12}
+>
+  <Notas
+    slot="notas"
+    minutos={12}
+    dice="Esta es la prueba real del criterio de aceptación: no lo que ustedes entienden de su propio archivo, sino lo que entiende alguien que nunca lo vio."
+    nota="Si una pareja termina rápido sin encontrar nada que preguntar, pídanles que intercambien con otra pareja: dos auditorías valen más que una superficial."
+  />
+</Practica>

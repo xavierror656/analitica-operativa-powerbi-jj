@@ -1,0 +1,23 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Chips from '../ui/Chips.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M5f" titulo="Antes del receso, revisa contra esto">
+  <Chips
+    items={[
+      'linea_id: un solo formato',
+      'turno: siempre número',
+      'lote: ceros completos',
+      'Sin filas duplicadas de fin de turno',
+      'Pasos nombrados, no "Cambié tipo"',
+    ]}
+  />
+  <Notas
+    slot="notas"
+    minutos={6}
+    dice="Cinco cosas, nada más. Si les falta una, es más rápido resolverla ahora que después de comer con el archivo ya avanzado."
+    nota="Este checklist se repite, ampliado, en el taller de evidencia de la tarde. Aquí es la primera pasada."
+  />
+</EjemploReal>

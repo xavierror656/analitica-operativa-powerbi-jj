@@ -179,7 +179,7 @@ tocan módulos distintos del mismo día, no hay conflicto de merge; si hay que t
 
 | Día | Slides | Estado |
 |---|---|---|
-| **Día 1: Conexión y preparación de datos** | 16 módulos, 17 slides · cubre las 7.5 h completas, con cronómetro real y un quiz interactivo | ✅ Listo |
+| **Día 1: Conexión y preparación de datos** | 50 slides, ritmo verificado contra las 7.5 h reales (suma de `minutos` por bloque), cronómetro real y tres quiz interactivos | ✅ Listo |
 | Día 2: Modelo de datos | — | ⬜ Pendiente |
 | Día 3: Indicadores en DAX | — | ⬜ Pendiente |
 | Día 4: Reporte operativo | — | ⬜ Pendiente |
