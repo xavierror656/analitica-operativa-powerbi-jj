@@ -1,0 +1,18 @@
+---
+import Gancho from '../slides/Gancho.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Gancho
+  modulo="D1-M15 · Extra"
+  titulo="Un archivo distinto, la misma técnica"
+  pregunta="¿Cambia algo si en vez de una carpeta de CSV, conectas un solo Excel de otra área?"
+>
+  <Notas
+    slot="notas"
+    minutos={3}
+    dice="Esto es opcional, para quien termine antes o quiera practicar una vez más antes de cerrar el día: mismo Obtener datos, otro archivo, otro contexto (mantenimiento en vez de producción)."
+    pregunta="¿Cambia algo si en vez de una carpeta de CSV, conectas un solo Excel de otra área?"
+    nota="La respuesta corta es no: Obtener datos, perfilar, cargar. El objetivo de este extra es que lo comprueben ellos mismos con un archivo que no es el del curso."
+  />
+</Gancho>

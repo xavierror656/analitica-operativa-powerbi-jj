@@ -4,7 +4,7 @@ import Chips from '../ui/Chips.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
-<Mecanismo titulo="Ocho columnas, una hoja: MaintenanceData">
+<Mecanismo modulo="D1-M17 · Extra" titulo="Ocho columnas, una hoja: MaintenanceData">
   <Chips
     items={[
       'Fecha',
@@ -20,7 +20,7 @@ import Notas from '../ui/Notas.astro';
   <Notas
     slot="notas"
     minutos={5}
-    dice="Una fila es un evento de falla: qué equipo, cuánto tardó en repararse, cuántas horas operó antes de fallar. Con estas ocho columnas se construye todo el dashboard de hoy."
-    nota="Disponibilidad_Porc ya viene calculada en el archivo. En la Instrucción 2 la van a recalcular con una medida propia, para entender de dónde sale."
+    dice="Una fila es un evento de falla: qué equipo, cuánto tardó en repararse, cuántas horas operó antes de fallar."
+    nota="Disponibilidad_Porc ya viene calculada en el archivo, columna por columna. Más adelante en el programa, cuando ya se haya visto DAX, van a recalcularla con una medida propia y notar la diferencia."
   />
 </Mecanismo>

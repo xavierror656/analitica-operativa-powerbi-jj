@@ -179,7 +179,7 @@ tocan módulos distintos del mismo día, no hay conflicto de merge; si hay que t
 
 | Día | Slides | Estado |
 |---|---|---|
-| **Día 1: Conexión y preparación de datos** | 50 slides, ritmo verificado contra las 7.5 h reales (suma de `minutos` por bloque), cronómetro real y tres quiz interactivos | ✅ Listo |
+| **Día 1: Conexión y preparación de datos** | 50 slides oficiales (ritmo verificado contra las 7.5 h reales) + 5 de extra opcional, cronómetro real y tres quiz interactivos | ✅ Listo |
 | Día 2: Modelo de datos | — | ⬜ Pendiente |
 | Día 3: Indicadores en DAX | — | ⬜ Pendiente |
 | Día 4: Reporte operativo | — | ⬜ Pendiente |
@@ -196,19 +196,27 @@ slides.
   si aplica, el de J&J, en formato recortado al contenido (ver advertencia de otros
   talleres: no fijar alto en px sin antes recortar el margen transparente).
 
-## Talleres extra (fuera del programa de 5 días)
+## Práctica extra con un segundo dataset (mantenimiento)
 
-| Taller | Slides | Dataset | Estado |
-|---|---|---|---|
-| **Taller 1: Dashboard de mantenimiento** (`/taller-1`) | 15, dos instrucciones (general y enfocada en KPI: MTTR, MTBF, disponibilidad) | `Data_Mantenimiento_2025.xlsx` (`public/descargas/`) | ✅ Listo |
+Además del dataset sintético de planta, el Día 1 incluye un **extra opcional** al
+final (`D1-M15` a `D1-M19`, fuera de las 7.5 h oficiales y de la evidencia A1): conectar
+y visualizar `Data_Mantenimiento_2025.xlsx` (`public/descargas/`), un archivo Excel
+real de mantenimiento (fecha, equipo, tipo de falla, tiempos de reparación y
+operación), para practicar la misma técnica de conexión con un archivo que no es el
+del curso.
 
-⚠️ **Origen del dataset de Taller 1:** el Excel viene de una masterclass gratuita de
-un tercero (no de Skilling Center Tecmilenio ni de este equipo). Se incluye en el repo
-porque el instructor confirmó tener permiso de reuso para este programa; si eso
-cambia, hay que sacar `public/descargas/Data_Mantenimiento_2025.xlsx` y el módulo
-`T2Descarga.astro` antes de publicar de nuevo. Las slides de instrucción (MTTR, MTBF,
-medidas DAX) son contenido original de este repo, no una copia del material del
-tercero.
+La parte de indicadores (MTTR, MTBF, medidas DAX, dashboard) sobre ese mismo archivo
+**no está enlazada a ningún día todavía**: vive en `src/components/extra-mantenimiento/`
+(E1 a E8), pendiente de dónde entra en la secuencia del programa, porque requiere DAX
+(Día 3) y no encaja en el Día 1. Queda ahí como material listo para cuando se decida.
+
+⚠️ **Origen del dataset:** el Excel viene de una masterclass gratuita de un tercero
+(no de Skilling Center Tecmilenio ni de este equipo). Se incluye en el repo porque el
+instructor confirmó tener permiso de reuso para este programa; si eso cambia, hay que
+sacar `public/descargas/Data_Mantenimiento_2025.xlsx` y los módulos que lo referencian
+(`D1-M16` en adelante, y todo `extra-mantenimiento/`) antes de publicar de nuevo. Las
+slides de instrucción son contenido original de este repo, no una copia del material
+del tercero.
 
 ## Versiones fijas
 
