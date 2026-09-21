@@ -1,0 +1,14 @@
+---
+import Contexto from '../slides/Contexto.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Contexto modulo="D1-M7">
+  Cada paso que aplicas en Power Query queda grabado, en orden, y se puede leer.
+  <Notas
+    slot="notas"
+    minutos={3}
+    dice="Esto es lo que separa 'lo limpié en Excel' de 'lo limpié en Power Query': en Excel el paso desaparece en cuanto lo aplicas, aquí queda escrito. Vamos a fondo con eso."
+    nota="Puente corto hacia el laboratorio. No alargar, es una frase que se queda resonando mientras abren el archivo."
+  />
+</Contexto>

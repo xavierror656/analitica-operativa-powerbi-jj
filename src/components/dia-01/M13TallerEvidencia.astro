@@ -1,0 +1,27 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Nota from '../ui/Nota.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<TuTurno modulo="D1-M13" titulo="Evidencia A1: depura tu archivo y documéntalo" minutos={90}>
+  <div class="flex flex-col gap-10">
+    <p class="text-3xl">
+      Deja fact_produccion, fact_calidad y fact_mantenimiento limpios y consolidados,
+      con cada paso de Power Query nombrado de forma que se entienda sin abrir la
+      fórmula.
+    </p>
+    <Nota tono="alto">
+      Criterio de aceptación: si le pasas tu archivo a un compañero de otra área, sin
+      explicación previa, tiene que poder leer tus pasos y saber qué le hiciste a los
+      datos. Eso es lo que hace a un archivo auditable, y es lo que evalúa la
+      competencia C1.
+    </Nota>
+  </div>
+  <Notas
+    slot="notas"
+    minutos={90}
+    dice="Este es su archivo, el mismo que van a reutilizar los próximos cuatro días. Lo que dejen mal documentado hoy, lo van a pagar el jueves."
+    nota="Circular por mesa. Si alguien termina temprano, pedirle que audite el archivo de un compañero de otra área: es la mejor prueba de que la documentación sirve."
+  />
+</TuTurno>

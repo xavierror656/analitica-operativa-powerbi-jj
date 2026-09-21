@@ -1,0 +1,24 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Pasos from '../ui/Pasos.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<TuTurno modulo="D1-M11" titulo="Aplica las cinco técnicas a tu archivo" minutos={90}>
+  <Pasos
+    poco
+    items={[
+      { t: 'Perfila', d: 'Revisa distribución de columnas en las tres fact_ y marca cuáles tienen valores atípicos.' },
+      { t: 'Reconecta por carpeta', d: 'Si aún apuntas a un archivo suelto, cámbialo a la carpeta completa.' },
+      { t: 'Agrega un parámetro', d: 'Al menos uno: ruta de carpeta o fecha de corte, para no editar la consulta a mano cada vez.' },
+      { t: 'Escribe una condicional anidada', d: 'Igual que en el ejemplo: una columna nueva, todas las condiciones que apliquen.' },
+      { t: 'Aísla al menos un tipo de error', d: 'Deja pasar la carga completa y documenta cuántas filas quedaron fuera.' },
+    ]}
+  />
+  <Notas
+    slot="notas"
+    minutos={90}
+    dice="No es obligatorio aplicar las cinco en el mismo orden que las vimos. Apliquen las que su archivo necesite, en el orden que tenga sentido para su archivo."
+    nota="Este es el laboratorio con menos guía del día. Circular, pero dejar que se traben antes de intervenir: es donde de verdad se aprende Power Query."
+  />
+</TuTurno>

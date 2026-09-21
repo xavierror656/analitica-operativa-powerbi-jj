@@ -1,0 +1,33 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Comparacion from '../ui/Comparacion.astro';
+import Cita from '../ui/Cita.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M9" titulo="Columnas condicionales anidadas: de disposición a categoría">
+  <div class="flex flex-col gap-10">
+    <Comparacion tituloA="Columna cruda (disposicion)" tituloB="Columna nueva (categoria_scrap)">
+      <ul slot="a" class="flex flex-col gap-3 list-disc pl-6 font-codigo text-2xl">
+        <li>"Retrabajo"</li>
+        <li>"Desecho"</li>
+        <li>"Concesión"</li>
+      </ul>
+      <ul slot="b" class="flex flex-col gap-3 list-disc pl-6">
+        <li>Recuperable</li>
+        <li>Pérdida total</li>
+        <li>Aceptado con desviación</li>
+      </ul>
+    </Comparacion>
+    <Cita mono>{`if [disposicion] = "Retrabajo" then "Recuperable"
+else if [disposicion] = "Desecho" then "Pérdida total"
+else "Aceptado con desviación"`}</Cita>
+  </div>
+  <Notas
+    slot="notas"
+    minutos={15}
+    dice="Una condicional sola resuelve dos casos. En planta casi siempre hay tres o más, y ahí es donde la gente anida mal o hace cinco columnas sueltas. La regla: una columna, todas las condiciones, en el orden en que de verdad ocurren."
+    pregunta="¿Qué pasa si la fila dice 'RETRABAJO' en mayúsculas? ¿Esta fórmula la agarra?"
+    nota="No la agarra: es sensible a mayúsculas. Es la entrada perfecta a Text.Proper o Text.Lower antes de la condicional, si alguien no lo menciona, señalarlo."
+  />
+</EjemploReal>

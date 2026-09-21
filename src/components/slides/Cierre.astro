@@ -1,0 +1,23 @@
+---
+// Cierre del día: validación de cifras, revisión cruzada, registro de evidencia. Fondo oscuro.
+interface Props {
+  titulo: string;
+  evidencia?: string;
+}
+const { titulo, evidencia } = Astro.props;
+---
+
+<section>
+  <div class="slide-body gap-10">
+    <div class="flex items-center justify-between">
+      <h2>{titulo}</h2>
+      {evidencia && (
+        <span class="rounded-full bg-accent px-6 py-2 font-titulo text-2xl font-bold text-ink">
+          Evidencia {evidencia}
+        </span>
+      )}
+    </div>
+    <slot />
+  </div>
+  <slot name="notas" />
+</section>

@@ -1,0 +1,27 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import DiagramaFlujo from '../ui/DiagramaFlujo.astro';
+import Chips from '../ui/Chips.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Mecanismo modulo="D1-M8" titulo="Power Query a fondo: cinco técnicas que hoy no vimos">
+  <div class="flex flex-col gap-14">
+    <DiagramaFlujo pasos={['Perfilar', 'Conectar a carpeta', 'Parametrizar', 'Condicionar', 'Manejar errores']} />
+    <Chips
+      items={[
+        'Perfilado de columnas',
+        'Conexión a carpeta',
+        'Parámetros',
+        'Columnas condicionales anidadas',
+        'Manejo de errores en la carga',
+      ]}
+    />
+  </div>
+  <Notas
+    slot="notas"
+    minutos={10}
+    dice="Esta mañana conectaron y ordenaron. Esta tarde es la misma herramienta, pero a fondo: cinco técnicas que van a necesitar todos los días del programa, no solo hoy."
+    nota="No demostrar las cinco de corrido. Cada una se explica en la slide siguiente con un ejemplo del propio dataset, justo antes de que la apliquen."
+  />
+</Mecanismo>

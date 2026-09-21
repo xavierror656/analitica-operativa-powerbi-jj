@@ -5,11 +5,12 @@ interface Props {
 const { mono = false } = Astro.props;
 ---
 
-<blockquote
-  class:list={[
-    'text-5xl leading-snug font-titulo font-bold text-center px-16',
-    { 'font-codigo text-4xl': mono },
-  ]}
->
-  <slot />
-</blockquote>
+{
+  mono ? (
+    <pre class="bg-ink rounded-2xl px-10 py-8 font-codigo text-3xl leading-relaxed whitespace-pre-wrap"><code><slot /></code></pre>
+  ) : (
+    <blockquote class="font-titulo font-bold text-5xl leading-snug text-center px-16">
+      <slot />
+    </blockquote>
+  )
+}

@@ -7,20 +7,42 @@ import M3FuenteConfiable from '../components/dia-01/M3FuenteConfiable.astro';
 import M4ConectarFuentes from '../components/dia-01/M4ConectarFuentes.astro';
 import M5TurnosLineas from '../components/dia-01/M5TurnosLineas.astro';
 import M6Transicion from '../components/dia-01/M6Transicion.astro';
+import M7CadaPasoQueda from '../components/dia-01/M7CadaPasoQueda.astro';
+import M8PowerQueryAFondo from '../components/dia-01/M8PowerQueryAFondo.astro';
+import M9ColumnasCondicionales from '../components/dia-01/M9ColumnasCondicionales.astro';
+import M10ManejoErrores from '../components/dia-01/M10ManejoErrores.astro';
+import M11LaboratorioAplicado from '../components/dia-01/M11LaboratorioAplicado.astro';
+import M12Transicion from '../components/dia-01/M12Transicion.astro';
+import M13TallerEvidencia from '../components/dia-01/M13TallerEvidencia.astro';
+import M14Cierre from '../components/dia-01/M14Cierre.astro';
 ---
 
 <RevealDeck titulo="Día 1 · Conexión y preparación de datos">
   <Acto numero={1} palabra="Conectar" />
+
+  <!-- 08:00 Fundamento -->
   <M1Gancho />
   <M2Arquitectura />
   <M3FuenteConfiable />
+
+  <!-- 09:00 Núcleo 1 -->
   <M4ConectarFuentes />
+
+  <!-- 10:45 Núcleo 2 -->
   <M5TurnosLineas />
   <M6Transicion />
 
-  <!--
-    Pendiente de armar como slides: Laboratorio (Power Query a fondo, 13:15),
-    Taller de evidencia A1 (15:00) y Validación y cierre (16:30). Ver el
-    contenido completo en dia-01-conexion-preparacion/README.md.
-  -->
+  <!-- 13:15 Laboratorio: Power Query a fondo -->
+  <M7CadaPasoQueda />
+  <M8PowerQueryAFondo />
+  <M9ColumnasCondicionales />
+  <M10ManejoErrores />
+  <M11LaboratorioAplicado />
+  <M12Transicion />
+
+  <!-- 15:00 Taller de evidencia -->
+  <M13TallerEvidencia />
+
+  <!-- 16:30 Validación y cierre -->
+  <M14Cierre />
 </RevealDeck>

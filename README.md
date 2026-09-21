@@ -95,6 +95,7 @@ más chico.
 | `TuTurno` | Actividad individual/guiada en Power BI. Lleva `minutos` | Oscuro |
 | `Practica` | Trabajo en pareja o equipo. Lleva `consigna` y `pregunta` | Oscuro |
 | `Transicion` | Puente entre bloques. Solo una frase, centrada | Oscuro |
+| `Cierre` | Cierre del día: validación de cifras, revisión cruzada, registro de evidencia | Oscuro |
 
 El fondo le dice al participante si está escuchando o trabajando, sin que nadie se lo
 diga: mismo principio que otros talleres del equipo, aunque aquí no viene verificado
@@ -111,6 +112,7 @@ contra 147 slides, es una convención que se adopta de entrada.
 | `Nota` | Aviso operativo. `tono="alto"` para lo crítico |
 | `Notas` | **Notas del facilitador**, van en todas las slides |
 | `Acto` | Divisor de día: número + palabra + línea |
+| `DiagramaFlujo` | Diagrama propio en SVG: cajas conectadas por flechas, para procesos donde el orden importa. No es una foto (no hay licencia de dónde sacarlas): se dibuja con los tokens de marca |
 
 ### Plantilla de un módulo
 
@@ -149,7 +151,7 @@ tocan módulos distintos del mismo día, no hay conflicto de merge; si hay que t
 
 | Día | Slides | Estado |
 |---|---|---|
-| **Día 1: Conexión y preparación de datos** | 6 módulos de ejemplo (Gancho, Mecanismo, EjemploReal, TuTurno, Practica, Transición) | 🟡 Arrancado, falta laboratorio/taller/cierre |
+| **Día 1: Conexión y preparación de datos** | 14 módulos, 15 slides · cubre las 7.5 h completas | ✅ Listo |
 | Día 2: Modelo de datos | — | ⬜ Pendiente |
 | Día 3: Indicadores en DAX | — | ⬜ Pendiente |
 | Día 4: Reporte operativo | — | ⬜ Pendiente |

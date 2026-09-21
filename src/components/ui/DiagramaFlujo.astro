@@ -1,0 +1,65 @@
+---
+// Diagrama propio (SVG), no una foto: una fila de pasos conectados por flechas.
+// Útil para procesos donde el orden importa (arquitectura, pipeline de Power Query).
+interface Props {
+  pasos: string[];
+  destacar?: number; // índice del paso a resaltar en acento cálido, opcional
+}
+const { pasos, destacar } = Astro.props;
+
+const boxWidth = 260;
+const boxHeight = 120;
+const gap = 70;
+const totalWidth = pasos.length * boxWidth + (pasos.length - 1) * gap;
+const svgHeight = boxHeight + 40;
+---
+
+<svg
+  viewBox={`0 0 ${totalWidth} ${svgHeight}`}
+  width="100%"
+  role="img"
+  aria-label={`Diagrama de flujo: ${pasos.join(' → ')}`}
+>
+  {
+    pasos.map((paso, i) => {
+      const x = i * (boxWidth + gap);
+      const y = 20;
+      const isLast = i === pasos.length - 1;
+      const esDestacado = destacar === i;
+      return (
+        <g>
+          <rect
+            x={x}
+            y={y}
+            width={boxWidth}
+            height={boxHeight}
+            rx="16"
+            fill={esDestacado ? 'var(--color-warn)' : 'var(--color-accent)'}
+            opacity={esDestacado ? 1 : 0.9}
+          />
+          <foreignObject x={x + 12} y={y} width={boxWidth - 24} height={boxHeight}>
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              style={`display:flex;align-items:center;justify-content:center;height:100%;text-align:center;font-family:var(--font-titulo);font-weight:700;font-size:28px;line-height:1.15;color:${esDestacado ? 'var(--color-ink)' : 'var(--color-ink)'};`}
+            >
+              {paso}
+            </div>
+          </foreignObject>
+          {!isLast && (
+            <path
+              d={`M ${x + boxWidth + 8} ${y + boxHeight / 2} L ${x + boxWidth + gap - 8} ${y + boxHeight / 2}`}
+              stroke="var(--color-accent-dim)"
+              stroke-width="6"
+              marker-end="url(#flecha)"
+            />
+          )}
+        </g>
+      );
+    })
+  }
+  <defs>
+    <marker id="flecha" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="var(--color-accent-dim)" />
+    </marker>
+  </defs>
+</svg>

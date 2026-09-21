@@ -1,0 +1,13 @@
+---
+import Transicion from '../slides/Transicion.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Transicion>
+  Ya profundizaron en la herramienta. Ahora, su propio archivo, de principio a fin.
+  <Notas
+    slot="notas"
+    minutos={1}
+    dice="Puente hacia el taller de evidencia: el resto de la tarde es su archivo, documentado de forma que otra persona pueda auditarlo."
+  />
+</Transicion>
