@@ -1,0 +1,37 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Comparacion from '../ui/Comparacion.astro';
+import Nota from '../ui/Nota.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M3b" titulo="Local o remoto: cambia el conector, no la lógica">
+  <div class="flex flex-col gap-10">
+    <Comparacion tituloA="Origen local" tituloB="Origen remoto">
+      <ul slot="a" class="flex flex-col gap-3 list-disc pl-6">
+        <li>CSV, Excel, una carpeta compartida en la red</li>
+        <li>Power BI: <em>Obtener datos → Carpeta / Excel</em>, directo</li>
+        <li>No requiere permisos especiales de IT</li>
+        <li>Es lo que usa el dataset de este curso</li>
+      </ul>
+      <ul slot="b" class="flex flex-col gap-3 list-disc pl-6">
+        <li>SQL Server, SAP HANA / BW, el MES (también es una base de datos)</li>
+        <li>Power BI: <em>Obtener datos → SQL Server / SAP HANA / SAP BW</em></li>
+        <li>Requiere credenciales y autorización de IT</li>
+        <li>Para actualizarse solo en el servicio, necesita gateway (Día 5)</li>
+      </ul>
+    </Comparacion>
+    <Nota>
+      El dataset del curso es CSV a propósito: nadie necesita permiso de IT para
+      practicar el Día 1. Conectar contra SAP o el MES real de planta es el mismo
+      concepto, con otro conector y otra fila de credenciales, no otra lógica.
+    </Nota>
+  </div>
+  <Notas
+    slot="notas"
+    minutos={8}
+    dice="Todo lo que hacemos hoy con carpeta y CSV se traduce directo: mismo Power Query, mismos pasos, solo cambia de dónde jala el dato."
+    pregunta="¿Alguien ya sabe si su área tiene acceso directo a SAP o al MES, o todo pasa primero por un archivo exportado?"
+    nota="Si alguien contesta que todo pasa por un archivo exportado a mano, es la entrada perfecta para explicar por qué ese archivo exportado sigue siendo un 'origen local' aunque el dato original viva en SAP: el salto de confiabilidad ocurre en la exportación, no en el sistema de origen."
+  />
+</EjemploReal>
