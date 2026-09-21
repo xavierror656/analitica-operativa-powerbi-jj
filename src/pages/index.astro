@@ -1,10 +1,11 @@
 ---
+const base = import.meta.env.BASE_URL;
 const dias = [
-  { href: '/dia-01', num: 1, titulo: 'Conexión y preparación de datos', evidencia: 'A1', estado: 'En construcción' },
-  { href: '/dia-02', num: 2, titulo: 'Modelo de datos', evidencia: 'A2', estado: 'Pendiente' },
-  { href: '/dia-03', num: 3, titulo: 'Indicadores en DAX', evidencia: 'A3', estado: 'Pendiente' },
-  { href: '/dia-04', num: 4, titulo: 'Reporte operativo', evidencia: 'A4', estado: 'Pendiente' },
-  { href: '/dia-05', num: 5, titulo: 'Análisis, publicación y proyecto', evidencia: 'A5', estado: 'Pendiente' },
+  { href: `${base}dia-01`, num: 1, titulo: 'Conexión y preparación de datos', evidencia: 'A1', estado: 'En construcción' },
+  { href: `${base}dia-02`, num: 2, titulo: 'Modelo de datos', evidencia: 'A2', estado: 'Pendiente' },
+  { href: `${base}dia-03`, num: 3, titulo: 'Indicadores en DAX', evidencia: 'A3', estado: 'Pendiente' },
+  { href: `${base}dia-04`, num: 4, titulo: 'Reporte operativo', evidencia: 'A4', estado: 'Pendiente' },
+  { href: `${base}dia-05`, num: 5, titulo: 'Análisis, publicación y proyecto', evidencia: 'A5', estado: 'Pendiente' },
 ];
 ---
 
