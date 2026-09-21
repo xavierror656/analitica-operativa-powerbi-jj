@@ -142,3 +142,111 @@ body {
 .reveal .slides section .texto-chico {
   font-size: 24px;
 }
+
+/*
+ * Cronómetro de actividad. No arranca solo (el facilitador suele explicar un
+ * minuto antes de decir "va"). Toca/clic para empezar o pausar, doble clic
+ * para reiniciar; T y R hacen lo mismo desde el teclado (ver Cronometro.astro).
+ */
+.cronometro {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  padding: 16px 32px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+}
+.reveal .slides section.is-light .cronometro {
+  background: rgba(14, 39, 35, 0.06);
+  border-color: rgba(14, 39, 35, 0.12);
+}
+
+.cronometro-numero {
+  all: unset;
+  cursor: pointer;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--color-text-on-ink-dim);
+}
+.reveal .slides section.is-light .cronometro-numero {
+  color: var(--color-text-on-paper-dim);
+}
+
+.cronometro-hint {
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cronometro-corriendo .cronometro-numero {
+  color: var(--color-accent-light);
+}
+.cronometro-corriendo {
+  border-color: var(--color-accent);
+}
+
+.cronometro-ultimo .cronometro-numero,
+.cronometro-ultimo.cronometro-corriendo .cronometro-numero {
+  color: var(--color-warn);
+}
+.cronometro-ultimo {
+  border-color: var(--color-warn);
+}
+
+.cronometro-cero .cronometro-numero {
+  color: var(--color-warn);
+  animation: cronometro-parpadeo 1s step-start infinite;
+}
+.cronometro-cero {
+  border-color: var(--color-warn);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cronometro-cero .cronometro-numero {
+    animation: none;
+  }
+}
+@keyframes cronometro-parpadeo {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/*
+ * Quiz de chequeo rápido. Una pregunta, opciones, feedback inmediato al
+ * hacer clic (ver Quiz.astro). No es examen: no guarda resultado en ningún
+ * lado, se reinicia al recargar la slide.
+ */
+.quiz-opcion {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px 32px;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  font-family: var(--font-cuerpo);
+  font-size: 28px;
+  transition: border-color 0.15s ease;
+}
+.reveal .slides section.is-light .quiz-opcion {
+  border-color: rgba(14, 39, 35, 0.15);
+}
+.quiz-opcion:hover {
+  border-color: var(--color-accent-light);
+}
+.quiz-opcion:disabled {
+  cursor: default;
+}
+.quiz-opcion.quiz-correcta {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+.quiz-opcion.quiz-incorrecta {
+  border-color: var(--color-warn);
+  background: color-mix(in srgb, var(--color-warn) 15%, transparent);
+}

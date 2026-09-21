@@ -1,5 +1,7 @@
 ---
-// Tarea individual en la herramienta. Lleva minutos. Fondo oscuro.
+// Tarea individual en la herramienta. Lleva minutos (cronómetro real). Fondo oscuro.
+import Cronometro from '../ui/Cronometro.astro';
+
 interface Props {
   modulo?: string;
   titulo: string;
@@ -15,9 +17,7 @@ const { modulo, titulo, minutos } = Astro.props;
         {modulo && <span class="font-codigo text-2xl text-accent-light">{modulo}</span>}
         <h2>Tu turno: {titulo}</h2>
       </div>
-      {minutos !== undefined && (
-        <span class="font-titulo font-bold text-6xl text-accent-light">{minutos} min</span>
-      )}
+      {minutos !== undefined && <Cronometro minutos={minutos} />}
     </div>
     <div class="flex-1 flex flex-col justify-center">
       <slot />

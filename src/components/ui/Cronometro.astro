@@ -1,0 +1,135 @@
+---
+interface Props {
+  minutos: number;
+}
+const { minutos } = Astro.props;
+---
+
+<div class="cronometro" data-minutos={minutos} role="timer" aria-live="off">
+  <button type="button" class="cronometro-numero font-titulo font-bold">{minutos}:00</button>
+  <span class="cronometro-hint text-dim">toca para empezar</span>
+</div>
+
+<script>
+  type Estado = {
+    total: number;
+    restante: number;
+    corriendo: boolean;
+    intervalId: number | null;
+    numeroEl: HTMLElement;
+    hintEl: HTMLElement;
+  };
+
+  const estados = new WeakMap<HTMLElement, Estado>();
+
+  function formatear(seg: number) {
+    const m = Math.floor(seg / 60);
+    const s = seg % 60;
+    return `${m}:${String(s).padStart(2, '0')}`;
+  }
+
+  function actualizar(el: HTMLElement) {
+    const e = estados.get(el);
+    if (!e) return;
+    e.numeroEl.textContent = formatear(Math.max(0, e.restante));
+    el.classList.toggle('cronometro-ultimo', e.restante <= 60 && e.restante > 0);
+    el.classList.toggle('cronometro-cero', e.restante <= 0);
+    el.classList.toggle('cronometro-corriendo', e.corriendo);
+    e.hintEl.textContent =
+      e.restante <= 0
+        ? 'tiempo cumplido'
+        : e.corriendo
+          ? 'toca para pausar'
+          : e.restante === e.total
+            ? 'toca para empezar'
+            : 'toca para continuar';
+  }
+
+  function iniciar(el: HTMLElement) {
+    const e = estados.get(el);
+    if (!e || e.corriendo || e.restante <= 0) return;
+    e.corriendo = true;
+    e.intervalId = window.setInterval(() => {
+      e.restante -= 1;
+      if (e.restante <= 0) {
+        e.restante = 0;
+        pausar(el);
+      }
+      actualizar(el);
+    }, 1000);
+    actualizar(el);
+  }
+
+  function pausar(el: HTMLElement) {
+    const e = estados.get(el);
+    if (!e) return;
+    e.corriendo = false;
+    if (e.intervalId !== null) window.clearInterval(e.intervalId);
+    e.intervalId = null;
+    actualizar(el);
+  }
+
+  function alternar(el: HTMLElement) {
+    const e = estados.get(el);
+    if (!e) return;
+    (e.corriendo ? pausar : iniciar)(el);
+  }
+
+  function reiniciar(el: HTMLElement) {
+    const e = estados.get(el);
+    if (!e) return;
+    pausar(el);
+    e.restante = e.total;
+    actualizar(el);
+  }
+
+  function init() {
+    document.querySelectorAll<HTMLElement>('.cronometro').forEach((el) => {
+      if (estados.has(el)) return;
+      const minutos = parseInt(el.dataset.minutos || '0', 10);
+      const total = minutos * 60;
+      const numeroEl = el.querySelector<HTMLElement>('.cronometro-numero');
+      const hintEl = el.querySelector<HTMLElement>('.cronometro-hint');
+      if (!numeroEl || !hintEl) return;
+      estados.set(el, { total, restante: total, corriendo: false, intervalId: null, numeroEl, hintEl });
+      actualizar(el);
+
+      el.addEventListener('click', () => alternar(el));
+      el.addEventListener('dblclick', (ev) => {
+        ev.stopPropagation();
+        reiniciar(el);
+      });
+    });
+  }
+
+  init();
+
+  // T alterna, R reinicia. Solo el cronómetro de la slide activa; nunca si hay
+  // foco en un campo de texto (para no robarle "r" o "t" a un formulario).
+  document.addEventListener('keydown', (ev) => {
+    const target = ev.target as HTMLElement | null;
+    const tag = target?.tagName?.toLowerCase();
+    const editable = tag === 'input' || tag === 'textarea' || target?.isContentEditable;
+    if (editable) return;
+
+    const activo = document.querySelector<HTMLElement>('.reveal .slides section.present .cronometro');
+    if (!activo) return;
+
+    if (ev.key === 't' || ev.key === 'T') {
+      alternar(activo);
+    } else if (ev.key === 'r' || ev.key === 'R') {
+      reiniciar(activo);
+    }
+  });
+
+  // Al cambiar de slide se reinicia el que se queda atrás, para que nunca
+  // corra uno en silencio varios módulos después.
+  document.addEventListener('slidechanged', ((ev: CustomEvent) => {
+    document.querySelectorAll<HTMLElement>('.cronometro').forEach((el) => {
+      const section = el.closest('section');
+      if (section && section !== ev.detail?.currentSlide) {
+        reiniciar(el);
+      }
+    });
+  }) as EventListener);
+</script>

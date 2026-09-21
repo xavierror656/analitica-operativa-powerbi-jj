@@ -1,0 +1,75 @@
+---
+// Chequeo rápido de comprensión: pregunta, opciones, feedback al hacer clic.
+// No es examen ni queda registrado en ningún lado; existe porque no hay
+// Power BI ni Excel real dentro de la slide, y esto sí se puede resolver aquí.
+interface Opcion {
+  texto: string;
+  correcta?: boolean;
+}
+interface Props {
+  pregunta: string;
+  opciones: Opcion[];
+  explicacion?: string;
+}
+const { pregunta, opciones, explicacion } = Astro.props;
+---
+
+<div class="quiz">
+  <p class="mb-10 text-3xl font-titulo font-bold">{pregunta}</p>
+  <div class="flex flex-col gap-4">
+    {
+      opciones.map((o) => (
+        <button type="button" class="quiz-opcion" data-correcta={o.correcta ? 'true' : 'false'}>
+          {o.texto}
+        </button>
+      ))
+    }
+  </div>
+  {explicacion && <p class="quiz-explicacion mt-8 hidden text-2xl text-dim">{explicacion}</p>}
+</div>
+
+<script>
+  function init() {
+    document.querySelectorAll<HTMLElement>('.quiz').forEach((quiz) => {
+      if (quiz.dataset.wired) return;
+      quiz.dataset.wired = 'true';
+
+      const botones = Array.from(quiz.querySelectorAll<HTMLButtonElement>('.quiz-opcion'));
+      const explicacionEl = quiz.querySelector<HTMLElement>('.quiz-explicacion');
+      let respondido = false;
+
+      botones.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          if (respondido) return;
+          respondido = true;
+
+          const esCorrecta = btn.dataset.correcta === 'true';
+          botones.forEach((b) => {
+            b.disabled = true;
+            if (b.dataset.correcta === 'true') b.classList.add('quiz-correcta');
+          });
+          if (!esCorrecta) btn.classList.add('quiz-incorrecta');
+          explicacionEl?.classList.remove('hidden');
+        });
+      });
+    });
+  }
+  init();
+
+  // Reiniciar el quiz de una slide cuando se deja de ver, para que la
+  // próxima vez que alguien pase por ahí (o repita la sesión) esté en blanco.
+  document.addEventListener('slidechanged', ((ev: CustomEvent) => {
+    document.querySelectorAll<HTMLElement>('.quiz').forEach((quiz) => {
+      const section = quiz.closest('section');
+      if (!section || section === ev.detail?.currentSlide) return;
+      quiz.dataset.wired = '';
+      const botones = Array.from(quiz.querySelectorAll<HTMLButtonElement>('.quiz-opcion'));
+      botones.forEach((b) => {
+        b.disabled = false;
+        b.classList.remove('quiz-correcta', 'quiz-incorrecta');
+      });
+      quiz.querySelector('.quiz-explicacion')?.classList.add('hidden');
+      init();
+    });
+  }) as EventListener);
+</script>

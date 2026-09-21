@@ -113,6 +113,34 @@ contra 147 slides, es una convención que se adopta de entrada.
 | `Notas` | **Notas del facilitador**, van en todas las slides |
 | `Acto` | Divisor de día: número + palabra + línea |
 | `DiagramaFlujo` | Diagrama propio en SVG: cajas conectadas por flechas, para procesos donde el orden importa. No es una foto (no hay licencia de dónde sacarlas): se dibuja con los tokens de marca |
+| `Cronometro` | Cronómetro real, no decorativo. Lo usan `TuTurno` y `Practica` automáticamente vía su prop `minutos` |
+| `Quiz` | Chequeo rápido de comprensión: pregunta + opciones, feedback inmediato al hacer clic. No es examen ni queda registrado en ningún lado |
+
+### Cronómetro de actividad
+
+Cualquier `TuTurno` o `Practica` con `minutos` trae un cronómetro real arriba a la
+derecha, no decorativo:
+
+| | |
+|---|---|
+| **Empezar / pausar** | clic en el número, o tecla `T` |
+| **Reiniciar** | doble clic, o tecla `R` |
+
+**No arranca solo, a propósito**: el facilitador casi siempre explica un minuto antes de
+decir "va". Cambia de color según el estado (gris listo, acento corriendo, cálido en el
+último minuto, cálido parpadeando al llegar a cero; el parpadeo respeta
+`prefers-reduced-motion`), y **se reinicia al cambiar de slide**, para que nunca quede
+uno corriendo en silencio módulos después. `T`/`R` solo afectan al cronómetro de la
+slide activa, y se ignoran si el foco está en un campo de texto.
+
+### Quiz de chequeo rápido
+
+`Quiz` existe porque la slide no tiene Power BI ni Excel real adentro: en vez de solo
+describir un concepto, algunas slides lo verifican en el momento. Un clic en una opción
+la marca correcta o incorrecta, muestra la explicación, y ya: sin backend, sin
+resultado que se guarde en ningún lado, se reinicia solo si se vuelve a esa slide.
+Ejemplo en uso: `src/components/dia-01/M8bChequeo.astro`, tomado del mismo criterio que
+el reactivo 03 de la evaluación diagnóstica.
 
 ### Plantilla de un módulo
 
@@ -151,7 +179,7 @@ tocan módulos distintos del mismo día, no hay conflicto de merge; si hay que t
 
 | Día | Slides | Estado |
 |---|---|---|
-| **Día 1: Conexión y preparación de datos** | 14 módulos, 15 slides · cubre las 7.5 h completas | ✅ Listo |
+| **Día 1: Conexión y preparación de datos** | 15 módulos, 16 slides · cubre las 7.5 h completas, con cronómetro real y un quiz interactivo | ✅ Listo |
 | Día 2: Modelo de datos | — | ⬜ Pendiente |
 | Día 3: Indicadores en DAX | — | ⬜ Pendiente |
 | Día 4: Reporte operativo | — | ⬜ Pendiente |
@@ -164,8 +192,6 @@ slides.
 
 ### Lo que falta portar de otros talleres, a propósito no incluido todavía
 
-- **Cronómetro de actividad** (`TuTurno`/`Practica` con `minutos` hoy solo lo muestran
-  como texto, no corren un reloj en pantalla).
 - **Descargas para participantes** (`public/descargas/` + componente `Descarga`): tiene
   sentido en cuanto el dataset sintético esté empaquetado para que cada quien lo baje.
 - **Marca** (`public/img/marca/`): vacío. Falta el logo de Skilling Center Tecmilenio y,
