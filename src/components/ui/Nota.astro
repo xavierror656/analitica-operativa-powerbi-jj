@@ -1,0 +1,17 @@
+---
+interface Props {
+  tono?: 'normal' | 'alto';
+}
+const { tono = 'normal' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'rounded-xl border-l-8 px-8 py-6 text-2xl',
+    tono === 'alto'
+      ? 'border-warn bg-warn/10'
+      : 'border-accent bg-accent/10',
+  ]}
+>
+  <slot />
+</div>

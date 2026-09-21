@@ -1,0 +1,23 @@
+# Datos generados: se reproducen con datos/scripts/generar_dataset_sintetico.py
+datos/salida/*.csv
+
+# Power BI / Excel temporales
+~$*.pbix
+~$*.xlsx
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Astro / Node
+node_modules/
+dist/
+.astro/
+

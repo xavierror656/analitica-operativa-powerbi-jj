@@ -1,0 +1,23 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Pasos from '../ui/Pasos.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Mecanismo modulo="D1-M2" titulo="De la fuente al reporte: la arquitectura de Power BI">
+  <Pasos
+    items={[
+      { t: 'Conectar', d: 'Power BI lee las fuentes de piso: carpetas, Excel, bases de datos. No copia y pega.' },
+      { t: 'Transformar', d: 'Power Query limpia y deja pasos documentados, reproducibles cada vez que llega un archivo nuevo.' },
+      { t: 'Modelar', d: 'Las tablas se relacionan: hechos de producción contra dimensiones de línea, turno y calendario.' },
+      { t: 'Medir', d: 'DAX calcula los indicadores sobre el modelo, no sobre celdas sueltas.' },
+      { t: 'Publicar', d: 'El reporte vive en el servicio, se actualiza solo y lo ve quien tiene permiso.' },
+    ]}
+  />
+  <Notas
+    slot="notas"
+    minutos={15}
+    dice="Este es el mapa completo del programa. Cada día del curso vive en uno de estos cinco pasos: hoy Conectar, mañana Modelar, el jueves Medir, el viernes... perdón, en cinco días llegamos a Publicar."
+    nota="No profundizar en DAX ni en modelado todavía, es solo el mapa. Volver a esta slide mentalmente cada vez que abran el Día correspondiente."
+  />
+</Mecanismo>

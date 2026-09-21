@@ -1,0 +1,62 @@
+---
+const dias = [
+  { href: '/dia-01', num: 1, titulo: 'Conexión y preparación de datos', evidencia: 'A1', estado: 'En construcción' },
+  { href: '/dia-02', num: 2, titulo: 'Modelo de datos', evidencia: 'A2', estado: 'Pendiente' },
+  { href: '/dia-03', num: 3, titulo: 'Indicadores en DAX', evidencia: 'A3', estado: 'Pendiente' },
+  { href: '/dia-04', num: 4, titulo: 'Reporte operativo', evidencia: 'A4', estado: 'Pendiente' },
+  { href: '/dia-05', num: 5, titulo: 'Análisis, publicación y proyecto', evidencia: 'A5', estado: 'Pendiente' },
+];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analítica Operativa con Power BI · Slides</title>
+    <style>
+      @import '../styles/global.css';
+      body {
+        font-family: var(--font-cuerpo);
+        background: var(--color-ink);
+        color: var(--color-text-on-ink);
+        padding: 64px;
+      }
+      h1 {
+        font-family: var(--font-titulo);
+      }
+      a.card {
+        display: block;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        padding: 24px 32px;
+        margin-bottom: 16px;
+        text-decoration: none;
+        color: inherit;
+      }
+      a.card:hover {
+        border-color: var(--color-accent);
+      }
+    </style>
+  </head>
+  <body>
+    <p style="color: var(--color-accent-light); letter-spacing: 0.1em; text-transform: uppercase;">
+      Skilling Center Tecmilenio · Johnson &amp; Johnson · Ciudad Juárez
+    </p>
+    <h1 style="font-size: 48px;">Analítica Operativa con Power BI</h1>
+    <p style="max-width: 60ch; color: var(--color-text-on-ink-dim);">
+      Del dato de planta al reporte de decisión. Cinco días, cinco evidencias acumulativas.
+    </p>
+    <div style="margin-top: 32px;">
+      {
+        dias.map((d) => (
+          <a class="card" href={d.href}>
+            <strong>Día {d.num} · {d.titulo}</strong>
+            <span style="float: right; color: var(--color-text-on-ink-dim);">
+              Evidencia {d.evidencia} · {d.estado}
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </body>
+</html>

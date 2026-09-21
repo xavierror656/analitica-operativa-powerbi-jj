@@ -1,0 +1,12 @@
+---
+// Puente entre bloques. Solo una frase, centrada. Fondo oscuro.
+---
+
+<section>
+  <div class="w-full flex justify-center">
+    <p class="text-6xl font-titulo font-bold text-center max-w-[1500px]">
+      <slot />
+    </p>
+  </div>
+  <slot name="notas" />
+</section>

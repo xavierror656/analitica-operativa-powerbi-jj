@@ -1,0 +1,26 @@
+---
+import RevealDeck from '../components/RevealDeck.astro';
+import Acto from '../components/ui/Acto.astro';
+import M1Gancho from '../components/dia-01/M1Gancho.astro';
+import M2Arquitectura from '../components/dia-01/M2Arquitectura.astro';
+import M3FuenteConfiable from '../components/dia-01/M3FuenteConfiable.astro';
+import M4ConectarFuentes from '../components/dia-01/M4ConectarFuentes.astro';
+import M5TurnosLineas from '../components/dia-01/M5TurnosLineas.astro';
+import M6Transicion from '../components/dia-01/M6Transicion.astro';
+---
+
+<RevealDeck titulo="Día 1 · Conexión y preparación de datos">
+  <Acto numero={1} palabra="Conectar" />
+  <M1Gancho />
+  <M2Arquitectura />
+  <M3FuenteConfiable />
+  <M4ConectarFuentes />
+  <M5TurnosLineas />
+  <M6Transicion />
+
+  <!--
+    Pendiente de armar como slides: Laboratorio (Power Query a fondo, 13:15),
+    Taller de evidencia A1 (15:00) y Validación y cierre (16:30). Ver el
+    contenido completo en dia-01-conexion-preparacion/README.md.
+  -->
+</RevealDeck>

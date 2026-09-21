@@ -1,0 +1,133 @@
+@import "tailwindcss";
+@import "reveal.js/reveal.css";
+
+/*
+ * Paleta provisional. A diferencia del taller de electromovilidad, este curso
+ * no tiene todavía un PPTX del que muestrear colores: son 147 slides las que
+ * NO existen aquí. Estos tokens se inspiran en el documento de propuesta
+ * (Skilling Center Tecmilenio: verde-teal oscuro de portada, acento turquesa,
+ * tablas en gris claro). Ajustar contra la guía de marca oficial en cuanto
+ * Tecmilenio la comparta.
+ */
+:root {
+  /* Fondo oscuro (Tu turno · Práctica · Transición · Acto · Cierre) */
+  --color-ink: #0e3b36;
+  --color-ink-2: #14504a;
+  --color-ink-3: #1c645c;
+
+  /* Fondo claro (Gancho · Contexto · Mecanismo · Ejemplo real) */
+  --color-paper: #f4f7f6;
+  --color-paper-2: #e7efed;
+  --color-paper-3: #dce8e5;
+
+  /* Acento de marca */
+  --color-accent: #14b8a6;
+  --color-accent-light: #4fd1c5;
+  --color-accent-dim: #9fe0d6;
+
+  /* Cálido: uso único, para lo crítico (Nota tono="alto") */
+  --color-warn: #f5a623;
+
+  --color-text-on-ink: #f4f7f6;
+  --color-text-on-ink-dim: #b7d6d1;
+  --color-text-on-paper: #0e2723;
+  --color-text-on-paper-dim: #4a615d;
+
+  --font-titulo: "Poppins", "Segoe UI", sans-serif;
+  --font-cuerpo: "Inter", "Segoe UI", sans-serif;
+  --font-codigo: "Consolas", "Courier New", monospace;
+}
+
+@theme {
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-2);
+  --color-ink-3: var(--color-ink-3);
+  --color-paper: var(--color-paper);
+  --color-paper-2: var(--color-paper-2);
+  --color-paper-3: var(--color-paper-3);
+  --color-accent: var(--color-accent);
+  --color-accent-light: var(--color-accent-light);
+  --color-accent-dim: var(--color-accent-dim);
+  --color-warn: var(--color-warn);
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--color-ink);
+  font-family: var(--font-cuerpo);
+}
+
+/* Lienzo 1920x1080, como en el taller de electromovilidad */
+.reveal {
+  font-family: var(--font-cuerpo);
+}
+
+.reveal .slides section {
+  width: 1920px;
+  height: 1080px;
+  padding: 96px 120px;
+  box-sizing: border-box;
+  text-align: left;
+  color: var(--color-text-on-ink);
+  background: var(--color-ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.reveal .slides section h1,
+.reveal .slides section h2,
+.reveal .slides section h3 {
+  font-family: var(--font-titulo);
+  font-weight: 700;
+  margin: 0 0 24px 0;
+}
+
+.reveal .slides section h1 {
+  font-size: 70px;
+}
+.reveal .slides section h2 {
+  font-size: 60px;
+}
+.reveal .slides section h3 {
+  font-size: 52px;
+}
+
+.reveal .slides section p,
+.reveal .slides section li {
+  font-size: 32px;
+  line-height: 1.4;
+}
+
+.reveal .slides section code,
+.reveal .slides section pre {
+  font-family: var(--font-codigo);
+}
+
+/* Fondo claro: se invierten los tokens, todo lo de adentro hereda solo */
+.reveal .slides section.is-light {
+  background: var(--color-paper);
+  color: var(--color-text-on-paper);
+}
+
+.reveal .slides section.is-light .text-dim {
+  color: var(--color-text-on-paper-dim);
+}
+.reveal .slides section:not(.is-light) .text-dim {
+  color: var(--color-text-on-ink-dim);
+}
+
+/* Excepción: un bloque de código conserva tokens oscuros aunque la slide sea clara */
+.reveal .slides section.is-light .bg-ink {
+  background: var(--color-ink);
+  color: var(--color-text-on-ink);
+}
+.reveal .slides section.is-light .bg-ink .text-dim {
+  color: var(--color-text-on-ink-dim);
+}
+
+/* Piso tipográfico: nada por debajo de 24px */
+.reveal .slides section .texto-chico {
+  font-size: 24px;
+}

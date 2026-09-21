@@ -1,0 +1,16 @@
+---
+interface Props {
+  dice?: string;
+  pregunta?: string;
+  nota?: string;
+  minutos?: number;
+}
+const { dice, pregunta, nota, minutos } = Astro.props;
+---
+
+<aside class="notes">
+  {minutos !== undefined && <p><strong>TIEMPO ESTIMADO:</strong> {minutos} min</p>}
+  {dice && <p><strong>QUÉ SE DICE:</strong> {dice}</p>}
+  {pregunta && <p><strong>PREGUNTA AL GRUPO:</strong> {pregunta}</p>}
+  {nota && <p><strong>NOTA PARA EL FACILITADOR:</strong> {nota}</p>}
+</aside>

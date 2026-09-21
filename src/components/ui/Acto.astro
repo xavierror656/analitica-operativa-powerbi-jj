@@ -1,0 +1,16 @@
+---
+interface Props {
+  numero: number;
+  palabra: string;
+}
+const { numero, palabra } = Astro.props;
+---
+
+<section>
+  <div class="flex flex-col items-start gap-8">
+    <span class="font-titulo font-bold text-[260px] leading-none text-accent">{numero}</span>
+    <span class="font-titulo font-bold text-7xl">{palabra}</span>
+    <div class="w-64 h-2 bg-accent"></div>
+  </div>
+  <slot name="notas" />
+</section>

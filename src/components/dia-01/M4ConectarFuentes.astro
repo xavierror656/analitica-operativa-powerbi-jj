@@ -1,0 +1,23 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Pasos from '../ui/Pasos.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<TuTurno modulo="D1-M4" titulo="Conectar las fuentes de piso" minutos={90}>
+  <Pasos
+    poco
+    items={[
+      { t: 'Abre el dataset sintético', d: 'fact_produccion, fact_calidad, fact_mantenimiento y sus dimensiones.' },
+      { t: 'Conéctate por carpeta', d: 'No archivo por archivo: apunta Power BI a la carpeta completa.' },
+      { t: 'Perfila cada tabla', d: 'Revisa calidad de columna: nulos, tipos de dato, valores distintos.' },
+      { t: 'Documenta lo que encuentres', d: 'Anota cada anomalía antes de corregirla. Mañana la vas a necesitar.' },
+    ]}
+  />
+  <Notas
+    slot="notas"
+    minutos={90}
+    dice="Van a abrir el dataset del programa. No lo limpien todavía, primero perfílenlo: quiero que vean los problemas antes de resolverlos."
+    nota="Circular por mesa. El dataset sintético trae defectos sembrados a propósito (nombres de línea inconsistentes, fechas en dos formatos, ceros perdidos en lote). Si nadie los encuentra en los primeros 20 min, dar una pista dirigida, no la respuesta."
+  />
+</TuTurno>

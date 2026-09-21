@@ -1,0 +1,19 @@
+---
+// Cómo funciona. Suele llevar Pasos o Chips. Fondo claro.
+interface Props {
+  modulo?: string;
+  titulo: string;
+}
+const { modulo, titulo } = Astro.props;
+---
+
+<section class="is-light">
+  <div class="flex flex-col gap-10 h-full">
+    {modulo && <span class="font-codigo text-2xl text-accent">{modulo}</span>}
+    <h2>{titulo}</h2>
+    <div class="flex-1 flex flex-col justify-center">
+      <slot />
+    </div>
+  </div>
+  <slot name="notas" />
+</section>
