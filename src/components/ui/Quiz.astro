@@ -2,6 +2,8 @@
 // Chequeo rápido de comprensión: pregunta, opciones, feedback al hacer clic.
 // No es examen ni queda registrado en ningún lado; existe porque no hay
 // Power BI ni Excel real dentro de la slide, y esto sí se puede resolver aquí.
+import Icono from './Icono.astro';
+
 interface Opcion {
   texto: string;
   correcta?: boolean;
@@ -20,7 +22,13 @@ const { pregunta, opciones, explicacion } = Astro.props;
     {
       opciones.map((o) => (
         <button type="button" class="quiz-opcion" data-correcta={o.correcta ? 'true' : 'false'}>
-          {o.texto}
+          <span class="quiz-opcion-icono quiz-icono-correcta hidden">
+            <Icono nombre="circle-check-big" class="w-7 h-7 text-accent" />
+          </span>
+          <span class="quiz-opcion-icono quiz-icono-incorrecta hidden">
+            <Icono nombre="circle-x" class="w-7 h-7 text-warn" />
+          </span>
+          <span class="quiz-opcion-texto">{o.texto}</span>
         </button>
       ))
     }
@@ -46,9 +54,15 @@ const { pregunta, opciones, explicacion } = Astro.props;
           const esCorrecta = btn.dataset.correcta === 'true';
           botones.forEach((b) => {
             b.disabled = true;
-            if (b.dataset.correcta === 'true') b.classList.add('quiz-correcta');
+            if (b.dataset.correcta === 'true') {
+              b.classList.add('quiz-correcta');
+              b.querySelector('.quiz-icono-correcta')?.classList.remove('hidden');
+            }
           });
-          if (!esCorrecta) btn.classList.add('quiz-incorrecta');
+          if (!esCorrecta) {
+            btn.classList.add('quiz-incorrecta');
+            btn.querySelector('.quiz-icono-incorrecta')?.classList.remove('hidden');
+          }
           explicacionEl?.classList.remove('hidden');
         });
       });
@@ -67,6 +81,7 @@ const { pregunta, opciones, explicacion } = Astro.props;
       botones.forEach((b) => {
         b.disabled = false;
         b.classList.remove('quiz-correcta', 'quiz-incorrecta');
+        b.querySelectorAll('.quiz-opcion-icono').forEach((el) => el.classList.add('hidden'));
       });
       quiz.querySelector('.quiz-explicacion')?.classList.add('hidden');
       init();

@@ -1,16 +1,22 @@
 ---
 // Cómo funciona. Suele llevar Pasos o Chips. Fondo claro.
+import Icono from '../ui/Icono.astro';
+
 interface Props {
   modulo?: string;
   titulo: string;
+  icono?: string;
 }
-const { modulo, titulo } = Astro.props;
+const { modulo, titulo, icono } = Astro.props;
 ---
 
 <section class="is-light">
   <div class="flex flex-col gap-10 h-full">
     {modulo && <span class="font-codigo text-2xl text-accent">{modulo}</span>}
-    <h2>{titulo}</h2>
+    <h2 class="flex items-center gap-4">
+      {icono && <Icono nombre={icono} class="w-10 h-10 text-accent shrink-0" />}
+      {titulo}
+    </h2>
     <div class="flex-1 flex flex-col justify-center">
       <slot />
     </div>

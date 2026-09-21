@@ -115,6 +115,8 @@ contra 147 slides, es una convención que se adopta de entrada.
 | `DiagramaFlujo` | Diagrama propio en SVG: cajas conectadas por flechas, para procesos donde el orden importa. No es una foto (no hay licencia de dónde sacarlas): se dibuja con los tokens de marca |
 | `Cronometro` | Cronómetro real, no decorativo. Lo usan `TuTurno` y `Practica` automáticamente vía su prop `minutos` |
 | `Quiz` | Chequeo rápido de comprensión: pregunta + opciones, feedback inmediato al hacer clic. No es examen ni queda registrado en ningún lado |
+| `Descarga` | Liga de descarga de un archivo (no una página): usada para el dataset sintético y el Excel de mantenimiento |
+| `Icono` | Envoltorio sobre `astro-icon` + Lucide (MIT). Un nombre corto (`<Icono nombre="download" />`) en vez de repetir `lucide:` en cada slide |
 
 ### Cronómetro de actividad
 
@@ -132,6 +134,25 @@ decir "va". Cambia de color según el estado (gris listo, acento corriendo, cál
 `prefers-reduced-motion`), y **se reinicia al cambiar de slide**, para que nunca quede
 uno corriendo en silencio módulos después. `T`/`R` solo afectan al cronómetro de la
 slide activa, y se ignoran si el foco está en un campo de texto.
+
+### Íconos
+
+`astro-icon` + `@iconify-json/lucide` (MIT, más de 1,500 íconos SVG, no fotos de
+stock): `Icono.astro` es el envoltorio, `<Icono nombre="download" class="w-8 h-8" />`.
+Antes de usar un nombre nuevo, verificar que existe en
+[lucide.dev/icons](https://lucide.dev/icons) o correr
+
+```bash
+node -e "console.log(Object.keys(require('@iconify-json/lucide/icons.json').icons).includes('nombre-del-icono'))"
+```
+
+porque un nombre que no exista en el set no truena el build, simplemente no renderiza
+nada, y eso no se nota hasta que alguien mira la slide.
+
+`Nota`, `Quiz`, `Comparacion` (`iconoA`/`iconoB`, opcional), `Mecanismo`, `EjemploReal`,
+`Cierre`, `TuTurno` y `Practica` (`icono`, opcional en los tres primeros; `TuTurno` y
+`Practica` siempre llevan uno fijo) ya traen soporte de ícono integrado: no hace falta
+tocar el componente, solo pasar el nombre.
 
 ### Quiz de chequeo rápido
 
@@ -179,7 +200,7 @@ tocan módulos distintos del mismo día, no hay conflicto de merge; si hay que t
 
 | Día | Slides | Estado |
 |---|---|---|
-| **Día 1: Conexión y preparación de datos** | 50 slides oficiales (ritmo verificado contra las 7.5 h reales) + 5 de extra opcional, cronómetro real y tres quiz interactivos | ✅ Listo |
+| **Día 1: Conexión y preparación de datos** | 51 slides oficiales (ritmo verificado contra las 7.5 h reales) + 5 de extra opcional, cronómetro real, tres quiz interactivos, descarga real del dataset | ✅ Listo |
 | Día 2: Modelo de datos | — | ⬜ Pendiente |
 | Día 3: Indicadores en DAX | — | ⬜ Pendiente |
 | Día 4: Reporte operativo | — | ⬜ Pendiente |
@@ -220,5 +241,6 @@ del tercero.
 
 ## Versiones fijas
 
-`astro 7.3.3` · `reveal.js 6.0.2` · `tailwindcss 4.3.3` · `@tailwindcss/vite 4.3.3`.
-Verificado con `npm run build` al momento de armar el repo.
+`astro 7.3.3` · `reveal.js 6.0.2` · `tailwindcss 4.3.3` · `@tailwindcss/vite 4.3.3` ·
+`astro-icon 1.2.0` · `@iconify-json/lucide 1.2.135`. Verificado con `npm run build` al
+momento de armar el repo.

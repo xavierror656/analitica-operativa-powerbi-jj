@@ -1,12 +1,13 @@
 ---
 import Mecanismo from '../slides/Mecanismo.astro';
 import Chips from '../ui/Chips.astro';
+import Icono from '../ui/Icono.astro';
 import Notas from '../ui/Notas.astro';
 
 const hechos = [
-  { nombre: 'fact_produccion', cols: 'fecha, turno, hora_inicio, linea_id, parte_id, lote, piezas_plan, piezas_producidas, piezas_buenas, horas_operacion, horas_paro' },
-  { nombre: 'fact_calidad', cols: 'fecha, linea_id, parte_id, lote, tipo_defecto, etapa_deteccion, piezas_rechazadas, disposicion, inspector_id' },
-  { nombre: 'fact_mantenimiento', cols: 'fecha_evento, equipo_id, linea_id, tipo, duracion_min, causa, afecta_produccion' },
+  { nombre: 'fact_produccion', icono: 'factory', cols: 'fecha, turno, hora_inicio, linea_id, parte_id, lote, piezas_plan, piezas_producidas, piezas_buenas, horas_operacion, horas_paro' },
+  { nombre: 'fact_calidad', icono: 'shield-check', cols: 'fecha, linea_id, parte_id, lote, tipo_defecto, etapa_deteccion, piezas_rechazadas, disposicion, inspector_id' },
+  { nombre: 'fact_mantenimiento', icono: 'wrench', cols: 'fecha_evento, equipo_id, linea_id, tipo, duracion_min, causa, afecta_produccion' },
 ];
 ---
 
@@ -16,6 +17,7 @@ const hechos = [
       {
         hechos.map((h) => (
           <div class="rounded-xl bg-ink-2/40 border border-white/10 p-6">
+            <Icono nombre={h.icono} class="w-7 h-7 text-accent mb-3" />
             <p class="font-codigo text-xl font-bold text-accent mb-3">{h.nombre}</p>
             <p class="text-base text-dim leading-snug">{h.cols}</p>
           </div>
@@ -23,7 +25,10 @@ const hechos = [
       }
     </div>
     <div>
-      <p class="text-2xl font-titulo font-bold mb-4">Dimensiones (catálogos)</p>
+      <p class="flex items-center gap-3 text-2xl font-titulo font-bold mb-4">
+        <Icono nombre="folder" class="w-6 h-6 text-dim" />
+        Dimensiones (catálogos)
+      </p>
       <Chips items={['dim_linea', 'dim_parte', 'dim_turno', 'dim_defecto', 'dim_calendario']} />
     </div>
   </div>

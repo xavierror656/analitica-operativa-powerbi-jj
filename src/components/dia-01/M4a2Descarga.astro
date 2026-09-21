@@ -1,0 +1,26 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Descarga from '../ui/Descarga.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal modulo="D1-M4a2" titulo="Descarga el dataset del programa" icono="download">
+  <div class="flex flex-col gap-8">
+    <p class="text-3xl">
+      18 meses de historia, 4 líneas, 3 turnos: las 8 tablas que vas a conectar hoy y
+      vas a reutilizar los cuatro días que siguen. Cada anomalía que vamos a cazar en
+      este bloque ya está sembrada adentro.
+    </p>
+    <Descarga
+      href="/descargas/dataset-planta-sintetico.zip"
+      nombre="dataset-planta-sintetico.zip"
+      peso="280 KB"
+    />
+  </div>
+  <Notas
+    slot="notas"
+    minutos={3}
+    dice="Descárguenlo ahora y descomprímanlo en una carpeta que vayan a reconocer: van a apuntar Power BI directo a esa carpeta en un momento."
+    nota="El zip trae las 8 tablas ya generadas, no hace falta correr ningún script. Si alguien quiere regenerarlo con otra semilla o otro reparto de líneas, el generador está en datos/scripts/ del repositorio."
+  />
+</EjemploReal>

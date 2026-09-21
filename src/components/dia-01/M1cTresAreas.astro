@@ -1,11 +1,12 @@
 ---
 import Mecanismo from '../slides/Mecanismo.astro';
+import Icono from '../ui/Icono.astro';
 import Notas from '../ui/Notas.astro';
 
 const areas = [
-  { nombre: 'Business Excellence', pregunta: '¿Cómo demuestro con datos que la mejora sostuvo el resultado?', se_lleva: 'Página ejecutiva con indicadores y comparativo entre líneas' },
-  { nombre: 'Operaciones', pregunta: '¿Qué pasó en mi turno y en qué lote se perdió el rendimiento?', se_lleva: 'Reporte de detalle por fecha, turno, línea y lote' },
-  { nombre: 'Ingeniería', pregunta: '¿Dónde se concentra el scrap y qué sustenta una acción correctiva?', se_lleva: 'Modelo que cruza calidad y mantenimiento con producción' },
+  { nombre: 'Business Excellence', icono: 'trending-up', pregunta: '¿Cómo demuestro con datos que la mejora sostuvo el resultado?', se_lleva: 'Página ejecutiva con indicadores y comparativo entre líneas' },
+  { nombre: 'Operaciones', icono: 'factory', pregunta: '¿Qué pasó en mi turno y en qué lote se perdió el rendimiento?', se_lleva: 'Reporte de detalle por fecha, turno, línea y lote' },
+  { nombre: 'Ingeniería', icono: 'wrench', pregunta: '¿Dónde se concentra el scrap y qué sustenta una acción correctiva?', se_lleva: 'Modelo que cruza calidad y mantenimiento con producción' },
 ];
 ---
 
@@ -14,6 +15,7 @@ const areas = [
     {
       areas.map((a) => (
         <div class="rounded-xl bg-ink-2/40 border border-white/10 p-6 flex flex-col gap-4">
+          <Icono nombre={a.icono} class="w-9 h-9 text-accent" />
           <p class="font-titulo font-bold text-2xl text-accent">{a.nombre}</p>
           <p class="text-xl italic text-dim">{a.pregunta}</p>
           <p class="text-lg">{a.se_lleva}</p>

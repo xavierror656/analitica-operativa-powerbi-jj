@@ -1,4 +1,6 @@
 ---
+import Icono from './Icono.astro';
+
 interface Props {
   tono?: 'normal' | 'alto';
 }
@@ -7,11 +9,13 @@ const { tono = 'normal' } = Astro.props;
 
 <div
   class:list={[
-    'rounded-xl border-l-8 px-8 py-6 text-2xl',
-    tono === 'alto'
-      ? 'border-warn bg-warn/10'
-      : 'border-accent bg-accent/10',
+    'flex items-start gap-5 rounded-xl border-l-8 px-8 py-6 text-2xl',
+    tono === 'alto' ? 'border-warn bg-warn/10' : 'border-accent bg-accent/10',
   ]}
 >
-  <slot />
+  <Icono
+    nombre={tono === 'alto' ? 'triangle-alert' : 'info'}
+    class:list={['w-8 h-8 shrink-0 mt-1', tono === 'alto' ? 'text-warn' : 'text-accent']}
+  />
+  <div class="flex-1"><slot /></div>
 </div>

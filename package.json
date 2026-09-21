@@ -9,9 +9,11 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@iconify-json/lucide": "1.2.135",
+    "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.3",
+    "astro-icon": "1.2.0",
     "reveal.js": "6.0.2",
-    "tailwindcss": "4.3.3",
-    "@tailwindcss/vite": "4.3.3"
+    "tailwindcss": "4.3.3"
   }
 }

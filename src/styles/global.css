@@ -223,7 +223,9 @@ body {
 .quiz-opcion {
   all: unset;
   cursor: pointer;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 16px;
   width: 100%;
   box-sizing: border-box;
   padding: 24px 32px;
@@ -232,6 +234,13 @@ body {
   font-family: var(--font-cuerpo);
   font-size: 28px;
   transition: border-color 0.15s ease;
+}
+.quiz-opcion-icono {
+  display: flex;
+  flex-shrink: 0;
+}
+.quiz-opcion-icono.hidden {
+  display: none;
 }
 .reveal .slides section.is-light .quiz-opcion {
   border-color: rgba(14, 39, 35, 0.15);

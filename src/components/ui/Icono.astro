@@ -1,0 +1,14 @@
+---
+// Envoltorio delgado sobre astro-icon + Lucide (MIT, iconos propios via SVG,
+// no una foto de stock): un nombre corto en vez de repetir "lucide:" en cada
+// slide. Catálogo completo en https://lucide.dev/icons
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  nombre: string;
+  class?: string;
+}
+const { nombre, class: clase = 'w-8 h-8' } = Astro.props;
+---
+
+<Icon name={`lucide:${nombre}`} class={clase} aria-hidden="true" />

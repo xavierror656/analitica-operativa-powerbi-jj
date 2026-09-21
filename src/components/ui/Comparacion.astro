@@ -1,20 +1,30 @@
 ---
+import Icono from './Icono.astro';
+
 interface Props {
   tituloA: string;
   tituloB: string;
+  iconoA?: string;
+  iconoB?: string;
 }
-const { tituloA, tituloB } = Astro.props;
+const { tituloA, tituloB, iconoA, iconoB } = Astro.props;
 ---
 
 <div class="grid grid-cols-2 gap-12 w-full">
   <div class="rounded-xl bg-ink-2/40 border border-white/10 p-8">
-    <h4 class="font-titulo font-bold text-3xl mb-4">{tituloA}</h4>
+    <h4 class="flex items-center gap-3 font-titulo font-bold text-3xl mb-4">
+      {iconoA && <Icono nombre={iconoA} class="w-7 h-7 shrink-0 text-dim" />}
+      {tituloA}
+    </h4>
     <div class="text-2xl">
       <slot name="a" />
     </div>
   </div>
   <div class="rounded-xl bg-accent/10 border border-accent p-8">
-    <h4 class="font-titulo font-bold text-3xl mb-4">{tituloB}</h4>
+    <h4 class="flex items-center gap-3 font-titulo font-bold text-3xl mb-4">
+      {iconoB && <Icono nombre={iconoB} class="w-7 h-7 shrink-0 text-accent" />}
+      {tituloB}
+    </h4>
     <div class="text-2xl">
       <slot name="b" />
     </div>

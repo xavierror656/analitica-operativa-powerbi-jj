@@ -1,6 +1,7 @@
 ---
 // Trabajo en equipo. Lleva consigna y pregunta. Fondo oscuro.
 import Cronometro from '../ui/Cronometro.astro';
+import Icono from '../ui/Icono.astro';
 
 interface Props {
   modulo?: string;
@@ -17,7 +18,10 @@ const { modulo, titulo, consigna, pregunta, minutos } = Astro.props;
     <div class="flex items-center justify-between">
       <div class="flex flex-col gap-4">
         {modulo && <span class="font-codigo text-2xl text-accent-light">{modulo}</span>}
-        <h2>Práctica: {titulo}</h2>
+        <h2 class="flex items-center gap-4">
+          <Icono nombre="users-round" class="w-10 h-10 text-accent-light shrink-0" />
+          Práctica: {titulo}
+        </h2>
       </div>
       {minutos !== undefined && <Cronometro minutos={minutos} />}
     </div>

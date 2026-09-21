@@ -21,6 +21,24 @@ Salida en `salida/` (no se versiona, se regenera):
 | `fact_mantenimiento` | Orden de trabajo |
 | `dim_linea`, `dim_parte`, `dim_turno`, `dim_defecto`, `dim_calendario` | Catálogos |
 
+## Descarga para participantes
+
+Las slides no piden a nadie correr Python: el dataset ya generado se descarga desde la
+presentación misma (slide `D1-M4a2`), como `public/descargas/dataset-planta-sintetico.zip`
+(las 8 tablas juntas, ~280 KB). Ese zip **sí se versiona** en el repo, a diferencia de
+`salida/`, porque tiene que existir en `dist/` cuando GitHub Pages sirve el sitio.
+
+Para regenerarlo después de tocar el script (nueva semilla, otro reparto de líneas):
+
+```bash
+cd scripts
+python generar_dataset_sintetico.py --zip ../../public/descargas/dataset-planta-sintetico.zip
+```
+
+El flag `--zip` genera `salida/` y empaqueta las 8 tablas en un solo paso. Después de
+correrlo, `git add public/descargas/dataset-planta-sintetico.zip` y commit, o el sitio
+publicado se queda sirviendo la versión vieja.
+
 ## Qué reemplaza cada tabla en una planta real
 
 El dataset genera **archivos CSV** (origen local) a propósito, para que el Día 1 no

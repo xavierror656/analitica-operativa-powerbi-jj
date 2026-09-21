@@ -16,6 +16,7 @@ defectos), edita las constantes en la sección CONFIGURACIÓN.
 import argparse
 import csv
 import random
+import zipfile
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -318,10 +319,28 @@ def _escribir_csv(ruta: Path, filas: list, columnas: list):
         w.writerows(filas)
 
 
+def empaquetar_zip(salida: Path, destino_zip: Path):
+    """Empaqueta las 8 tablas en un solo .zip para que los participantes lo
+    descarguen desde la presentación, en vez de regenerar el dataset ellos
+    mismos (necesitarían Python instalado, y no es el punto del Día 1)."""
+    destino_zip.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(destino_zip, "w", zipfile.ZIP_DEFLATED) as zf:
+        for csv_file in sorted(salida.glob("*.csv")):
+            zf.write(csv_file, arcname=csv_file.name)
+    return destino_zip
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--salida", default="../salida", help="Carpeta de salida para los CSV")
     parser.add_argument("--semilla", type=int, default=42, help="Semilla aleatoria, para reproducibilidad")
+    parser.add_argument(
+        "--zip",
+        dest="zip_destino",
+        default=None,
+        help="Si se da, además empaqueta las tablas en este .zip "
+             "(ej. --zip ../../public/descargas/dataset-planta-sintetico.zip)",
+    )
     args = parser.parse_args()
 
     salida = (Path(__file__).parent / args.salida).resolve()
@@ -338,6 +357,11 @@ def main():
         with open(csv_file, encoding="utf-8") as f:
             n = sum(1 for _ in f) - 1
         print(f"  {csv_file.name}: {n} filas")
+
+    if args.zip_destino:
+        destino_zip = (Path(__file__).parent / args.zip_destino).resolve()
+        empaquetar_zip(salida, destino_zip)
+        print(f"Empaquetado en: {destino_zip}")
 
 
 if __name__ == "__main__":
