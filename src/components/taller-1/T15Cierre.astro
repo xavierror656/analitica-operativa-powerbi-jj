@@ -1,0 +1,21 @@
+---
+import Cierre from '../slides/Cierre.astro';
+import Chips from '../ui/Chips.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Cierre titulo="Lo que se llevan de este taller">
+  <Chips
+    poco
+    items={[
+      'Un archivo Excel conectado a Power BI',
+      'Tres medidas DAX propias: MTTR, MTBF, Disponibilidad',
+      'Un dashboard segmentable por equipo y tipo de falla',
+    ]}
+  />
+  <Notas
+    slot="notas"
+    minutos={3}
+    dice="Este taller es independiente del programa de 5 días, pero las técnicas son las mismas: conectar, perfilar, medir. Quien tome ambos va a reconocer el patrón."
+  />
+</Cierre>

@@ -1,0 +1,32 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Cita from '../ui/Cita.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Mecanismo titulo="Las mismas dos fórmulas, en DAX">
+  <div class="flex flex-col gap-8">
+    <div>
+      <p class="text-2xl font-titulo font-bold mb-3">MTTR (horas)</p>
+      <Cita mono>{`MTTR =
+DIVIDE(
+    SUM(MaintenanceData[Tiempo_Reparacion_Horas]),
+    COUNTROWS(MaintenanceData)
+)`}</Cita>
+    </div>
+    <div>
+      <p class="text-2xl font-titulo font-bold mb-3">MTBF (horas)</p>
+      <Cita mono>{`MTBF =
+DIVIDE(
+    SUM(MaintenanceData[Horas_Operativas]),
+    COUNTROWS(MaintenanceData)
+)`}</Cita>
+    </div>
+  </div>
+  <Notas
+    slot="notas"
+    minutos={10}
+    dice="DIVIDE en vez de la barra normal, por la misma razón que en el Día 1 del programa completo: si algún día no hay fallas registradas, la barra normal truena, DIVIDE devuelve blanco."
+    nota="COUNTROWS(MaintenanceData) cuenta cada fila como una falla. Si más adelante quieren MTTR por equipo, esta misma medida ya funciona sola dentro de una tabla o gráfico segmentado por Equipo, por el contexto de filtro."
+  />
+</Mecanismo>

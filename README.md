@@ -192,11 +192,23 @@ slides.
 
 ### Lo que falta portar de otros talleres, a propósito no incluido todavía
 
-- **Descargas para participantes** (`public/descargas/` + componente `Descarga`): tiene
-  sentido en cuanto el dataset sintético esté empaquetado para que cada quien lo baje.
 - **Marca** (`public/img/marca/`): vacío. Falta el logo de Skilling Center Tecmilenio y,
   si aplica, el de J&J, en formato recortado al contenido (ver advertencia de otros
   talleres: no fijar alto en px sin antes recortar el margen transparente).
+
+## Talleres extra (fuera del programa de 5 días)
+
+| Taller | Slides | Dataset | Estado |
+|---|---|---|---|
+| **Taller 1: Dashboard de mantenimiento** (`/taller-1`) | 15, dos instrucciones (general y enfocada en KPI: MTTR, MTBF, disponibilidad) | `Data_Mantenimiento_2025.xlsx` (`public/descargas/`) | ✅ Listo |
+
+⚠️ **Origen del dataset de Taller 1:** el Excel viene de una masterclass gratuita de
+un tercero (no de Skilling Center Tecmilenio ni de este equipo). Se incluye en el repo
+porque el instructor confirmó tener permiso de reuso para este programa; si eso
+cambia, hay que sacar `public/descargas/Data_Mantenimiento_2025.xlsx` y el módulo
+`T2Descarga.astro` antes de publicar de nuevo. Las slides de instrucción (MTTR, MTBF,
+medidas DAX) son contenido original de este repo, no una copia del material del
+tercero.
 
 ## Versiones fijas
 

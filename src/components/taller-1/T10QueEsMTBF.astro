@@ -1,0 +1,22 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Cita from '../ui/Cita.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal titulo="MTBF: tiempo medio entre fallas">
+  <div class="flex flex-col gap-8">
+    <p class="text-3xl">
+      De cada falla registrada, ¿cuántas horas operó el equipo antes de volver a
+      fallar, en promedio?
+    </p>
+    <Cita mono>{`MTBF = suma de horas operativas / número de fallas`}</Cita>
+  </div>
+  <Notas
+    slot="notas"
+    minutos={5}
+    dice="MTBF alto es bueno: significa que el equipo aguanta más tiempo entre una falla y la siguiente. MTTR y MTBF juntos cuentan la historia completa: qué tan seguido falla, y qué tan rápido se resuelve cuando falla."
+    pregunta="Entre dos equipos con el mismo MTTR, ¿cuál preferirían tener: el de MTBF más alto o más bajo?"
+    nota="El de MTBF más alto: falla con menos frecuencia, aunque tarde lo mismo en repararse cuando falla."
+  />
+</EjemploReal>

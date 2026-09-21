@@ -1,0 +1,17 @@
+---
+import Gancho from '../slides/Gancho.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Gancho
+  titulo="De un archivo de mantenimiento a un dashboard que se explica solo"
+  pregunta="¿Cómo sabes hoy si un equipo está fallando más que el mes pasado?"
+>
+  <Notas
+    slot="notas"
+    minutos={3}
+    dice="Este taller es aparte del programa de 5 días: es una práctica corta, enfocada solo en mantenimiento, para quien quiera profundizar en esos indicadores."
+    pregunta="¿Cómo sabes hoy si un equipo está fallando más que el mes pasado?"
+    nota="Casi siempre la respuesta es 'preguntándole a alguien' o 'revisando una bitácora en papel'. Ese es el problema que este taller resuelve."
+  />
+</Gancho>

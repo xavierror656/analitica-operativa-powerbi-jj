@@ -1,0 +1,23 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Pasos from '../ui/Pasos.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<TuTurno titulo="Termina el dashboard de mantenimiento" minutos={25}>
+  <Pasos
+    poco
+    items={[
+      { t: 'Escribe las tres medidas', d: 'MTTR, MTBF y Disponibilidad %, tal como en las slides anteriores.' },
+      { t: 'Dos tarjetas nuevas', d: 'MTTR y MTBF, junto a la de Órdenes_Pendientes que ya tenías.' },
+      { t: 'Segmenta por Tipo_Falla', d: '¿El MTTR cambia mucho entre mecánica e instrumentación?' },
+      { t: 'Da formato', d: 'Redondea a un decimal, agrega unidad "h" al título de cada tarjeta.' },
+    ]}
+  />
+  <Notas
+    slot="notas"
+    minutos={25}
+    dice="Al terminar, deberían poder responder en un vistazo: ¿qué tan seguido falla la planta, y qué tan rápido se recupera cuando falla?"
+    nota="Si alguien termina antes, que pruebe la segmentación por Equipo en vez de por Tipo_Falla, y compare cuál cuenta una historia más clara para su caso."
+  />
+</TuTurno>

@@ -1,0 +1,30 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Comparacion from '../ui/Comparacion.astro';
+import Cita from '../ui/Cita.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal titulo="Disponibilidad: la que ya viene, y la que calculas tú">
+  <Comparacion tituloA="Columna del archivo" tituloB="Medida propia">
+    <p slot="a" class="text-2xl">
+      Disponibilidad_Porc: un número por fila, calculado por quien armó el archivo.
+      Si segmentas por equipo o por mes, no se recalcula solo.
+    </p>
+    <div slot="b">
+      <Cita mono>{`Disponibilidad % =
+DIVIDE(
+    SUM(MaintenanceData[Horas_Operativas]),
+    SUM(MaintenanceData[Horas_Operativas])
+        + SUM(MaintenanceData[Tiempo_Averia_Horas])
+)`}</Cita>
+    </div>
+  </Comparacion>
+  <Notas
+    slot="notas"
+    minutos={7}
+    dice="Esta es la diferencia entre columna y medida que se ve en el Día 3 del programa completo, aquí con un ejemplo de mantenimiento: la columna es un número fijo por fila, la medida se recalcula según lo que estés viendo."
+    pregunta="Si filtran solo la Extrusora 2, ¿la columna del archivo cambia? ¿Y la medida?"
+    nota="La columna no cambia, sigue mostrando el promedio de todas las filas visibles fila por fila. La medida sí se recalcula, porque SUM respeta el filtro activo."
+  />
+</EjemploReal>

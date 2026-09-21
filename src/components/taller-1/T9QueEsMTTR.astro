@@ -1,0 +1,22 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Cita from '../ui/Cita.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal titulo="MTTR: tiempo medio de reparación">
+  <div class="flex flex-col gap-8">
+    <p class="text-3xl">
+      De cada falla registrada, ¿cuánto tiempo en promedio tardó el equipo en volver a
+      operar desde que se reportó hasta que se reparó?
+    </p>
+    <Cita mono>{`MTTR = suma de horas de reparación / número de fallas`}</Cita>
+  </div>
+  <Notas
+    slot="notas"
+    minutos={5}
+    dice="MTTR bajo es bueno: significa que cuando algo falla, se resuelve rápido. No dice nada sobre qué tan seguido falla, eso es MTBF, la siguiente slide."
+    pregunta="Si el MTTR de la Extrusora 2 es de 3 horas, ¿eso es bueno o malo?"
+    nota="Depende del equipo y de la planta: no hay un número universal 'bueno'. Lo que sí se puede comparar es el MTTR del mismo equipo mes contra mes, o contra otros equipos similares."
+  />
+</EjemploReal>

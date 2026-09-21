@@ -1,0 +1,23 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Pasos from '../ui/Pasos.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<TuTurno titulo="Conecta el archivo" minutos={15}>
+  <Pasos
+    poco
+    items={[
+      { t: 'Obtener datos', d: 'Power BI Desktop → Obtener datos → Excel → selecciona el archivo descargado.' },
+      { t: 'Carga la hoja MaintenanceData', d: 'Es la única hoja del archivo.' },
+      { t: 'Revisa los tipos de dato', d: 'Fecha debe quedar como fecha, las columnas de horas como decimal, no como texto.' },
+      { t: 'Carga el modelo', d: 'Cerrar y aplicar.' },
+    ]}
+  />
+  <Notas
+    slot="notas"
+    minutos={15}
+    dice="Esto es exactamente lo mismo que Obtener datos → Carpeta del Día 1, solo que aquí el origen es un solo archivo Excel: Obtener datos → Excel en vez de Carpeta."
+    nota="Si alguien ya vio el Día 1 del programa completo, va a reconocer el patrón. Si no, esta es su primera conexión de Power BI."
+  />
+</TuTurno>

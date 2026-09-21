@@ -1,0 +1,22 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Quiz from '../ui/Quiz.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal titulo="Chequeo rápido: MTTR o MTBF">
+  <Quiz
+    pregunta="Un equipo empezó a fallar con más frecuencia este mes, pero cada falla se resuelve igual de rápido que antes. ¿Qué indicador se movió?"
+    opciones={[
+      { texto: 'MTTR bajó' },
+      { texto: 'MTBF bajó', correcta: true },
+      { texto: 'Ambos subieron' },
+    ]}
+    explicacion="Si falla más seguido pero se repara igual de rápido, el tiempo entre fallas (MTBF) se redujo. El tiempo de reparación (MTTR) no cambió, porque cada reparación sigue tardando lo mismo."
+  />
+  <Notas
+    slot="notas"
+    minutos={5}
+    dice="Es la confusión más común entre los dos indicadores: uno mide qué tan seguido falla, el otro qué tan rápido se resuelve. Son independientes."
+  />
+</EjemploReal>

@@ -1,0 +1,22 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Descarga from '../ui/Descarga.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<EjemploReal titulo="Descarga el archivo antes de seguir">
+  <div class="flex flex-col gap-8">
+    <p class="text-3xl">
+      150 registros de mantenimiento de una planta con extrusoras, cortadoras y
+      selladoras: una fila por evento de falla, con fecha, equipo, tipo de falla y los
+      tiempos que necesitas para calcular MTTR, MTBF y disponibilidad.
+    </p>
+    <Descarga href="/descargas/Data_Mantenimiento_2025.xlsx" nombre="Data_Mantenimiento_2025.xlsx" peso="16 KB" />
+  </div>
+  <Notas
+    slot="notas"
+    minutos={3}
+    dice="Descárguenlo ahora, no después: las dos instrucciones que siguen trabajan directo sobre este archivo."
+    nota="El archivo se teclea en clase, no se le da clic desde un enlace largo: por eso el nombre corto y visible."
+  />
+</EjemploReal>

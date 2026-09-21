@@ -1,0 +1,12 @@
+---
+import Acto from '../ui/Acto.astro';
+import Notas from '../ui/Notas.astro';
+---
+
+<Acto numero={2} palabra="KPI">
+  <Notas
+    slot="notas"
+    minutos={1}
+    dice="Instrucción 2: los indicadores que hacen que este dashboard sea de mantenimiento y no un reporte genérico."
+  />
+</Acto>
