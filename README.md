@@ -252,6 +252,11 @@ diagnóstica con clave de respuestas) está en la propuesta didáctica original;
 carpeta `dia-0X-.../README.md` resume su bloque como referencia rápida al escribir
 slides.
 
+La barra de recursos de las presentaciones se oculta tras 2.5 segundos sin uso.
+Se recupera al acercar el puntero al borde superior o al llegar a sus enlaces con
+Tab. Permanece visible mientras se usa con mouse o teclado y también funciona
+en pantalla completa. Su aparición no redimensiona la diapositiva.
+
 ### Animaciones didácticas
 
 Siete diapositivas usan el reproductor oficial de LottieFiles: D1-M3f y D1-M7,

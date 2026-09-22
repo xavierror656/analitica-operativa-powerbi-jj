@@ -4,6 +4,8 @@ import { readFileSync } from 'node:fs';
 import { stripTypeScriptTypes } from 'node:module';
 import { runInNewContext } from 'node:vm';
 import { conectarAvance } from '../src/lib/avance-presentacion.mjs';
+import { conectarBarraAutooculta } from '../src/lib/barra-autooculta.mjs';
+import { JSDOM } from 'jsdom';
 
 class Elemento extends EventTarget {
   dataset = {}; textContent = ''; disabled = false; attrs = {}; children = {}; classes = new Set();
@@ -27,6 +29,55 @@ function cambiar(document, slide) {
   event.currentSlide = slide; // Reveal no utiliza CustomEvent.detail.
   document.dispatchEvent(event);
 }
+test('barra: se oculta a los 2.5 s, reaparece arriba y permanece al usar el mouse', () => {
+  const dom = new JSDOM('<nav class="deck-toolbar"><a href="/">Curso</a><button>Guía</button></nav><button id="fuera">Fuera</button>');
+  const doc = dom.window.document, barra = doc.querySelector('nav'), root = doc.documentElement;
+  let reloj = 0, id = 0;
+  const timers = new Map();
+  const window = {
+    setTimeout(fn, ms) { timers.set(++id, {fn, at: reloj + ms}); return id; },
+    clearTimeout(key) { timers.delete(key); },
+  };
+  const avanzar = ms => { reloj += ms; for (const [key,t] of timers) if(t.at <= reloj) { timers.delete(key); t.fn(); } };
+  const limpiar = conectarBarraAutooculta({document:doc,window});
+  assert.ok(root.classList.contains('toolbar-auto'));
+  avanzar(2499); assert.equal(root.classList.contains('toolbar-hidden'),false);
+  avanzar(1); assert.equal(root.classList.contains('toolbar-hidden'),true);
+  doc.dispatchEvent(new dom.window.MouseEvent('pointermove',{clientY:12}));
+  assert.equal(root.classList.contains('toolbar-hidden'),false);
+  barra.dispatchEvent(new dom.window.Event('pointerenter'));
+  avanzar(5000); assert.equal(root.classList.contains('toolbar-hidden'),false);
+  barra.dispatchEvent(new dom.window.Event('pointerleave'));
+  avanzar(2500); assert.equal(root.classList.contains('toolbar-hidden'),true);
+  doc.dispatchEvent(new dom.window.Event('fullscreenchange'));
+  assert.equal(root.classList.contains('toolbar-hidden'),false);
+  limpiar(); assert.equal(timers.size,0); assert.equal(root.classList.contains('toolbar-auto'),false);
+  dom.window.close();
+});
+
+test('barra: el teclado conserva los recursos y el foco de un clic no impide ocultar', () => {
+  const dom = new JSDOM('<nav class="deck-toolbar"><button>Guía</button></nav><button id="fuera">Fuera</button>');
+  const doc = dom.window.document, boton = doc.querySelector('nav button'), root = doc.documentElement;
+  let callback;
+  const window = {setTimeout(fn){callback=fn;return 1;},clearTimeout(){callback=null;}};
+  const limpiar = conectarBarraAutooculta({document:doc,window});
+  callback(); assert.ok(root.classList.contains('toolbar-hidden'));
+  doc.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key:'Tab'}));
+  boton.focus();
+  assert.equal(root.classList.contains('toolbar-hidden'),false);
+  callback(); assert.equal(root.classList.contains('toolbar-hidden'),false);
+  doc.querySelector('#fuera').focus(); callback();
+  assert.equal(root.classList.contains('toolbar-hidden'),true);
+  boton.dispatchEvent(new dom.window.Event('pointerdown',{bubbles:true}));
+  boton.focus(); callback();
+  assert.equal(root.classList.contains('toolbar-hidden'),true);
+  limpiar();
+  conectarBarraAutooculta({document:doc,window,pdf:true});
+  assert.equal(callback,null);
+  assert.equal(root.classList.contains('toolbar-auto'),false);
+  dom.window.close();
+});
+
 test('quiz: volver ocho veces no acumula manejadores ni conserva la respuesta anterior', () => {
   const quiz = new Elemento(); quiz.section = {};
   const opciones = [new Elemento(), new Elemento()];
@@ -95,7 +146,7 @@ test('presentación: conserva teclado de recursos y se recupera si pantalla comp
     layout() { layouts++; }
   }
   const window = { location: {pathname:'/dia-01/', search:'', hash:''}, localStorage: {getItem:()=>null,setItem:()=>{}} };
-  runInNewContext(stripTypeScriptTypes(script), { document, window, Reveal, Notes: {}, Element: Elemento, URLSearchParams, conectarAvance });
+  runInNewContext(stripTypeScriptTypes(script), { document, window, Reveal, Notes: {}, Element: Elemento, URLSearchParams, conectarAvance, conectarBarraAutooculta });
   handlers.ready.forEach(fn=>fn()); assert.equal(posicion.textContent, '1 / 8');
   slide = 7; handlers.slidechanged.forEach(fn=>fn()); assert.equal(posicion.textContent, '8 / 8');
   const recurso = new Elemento(); recurso.section = {};
@@ -181,7 +232,7 @@ test('PDF: espera fuentes y pdf-ready; imprime sin notas ni duplicados por fragm
   }
   const window={location:{pathname:'/dia-02/',search:'?print-pdf',hash:''},print:()=>printed++};
   Object.defineProperty(window,'localStorage',{get(){throw new Error('PDF no debe tocar almacenamiento');}});
-  runInNewContext(stripTypeScriptTypes(script),{document,window,Reveal,Notes:{},Element:Elemento,URLSearchParams,conectarAvance});
+  runInNewContext(stripTypeScriptTypes(script),{document,window,Reveal,Notes:{},Element:Elemento,URLSearchParams,conectarAvance,conectarBarraAutooculta});
   assert.equal(initialized,0);
   assert.ok(document.documentElement.classes.has('pdf-export'));
   fontsReady();await new Promise(resolve=>setImmediate(resolve));

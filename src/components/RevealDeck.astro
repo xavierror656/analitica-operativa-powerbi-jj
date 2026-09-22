@@ -59,11 +59,13 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
       import Reveal from 'reveal.js';
       import Notes from 'reveal.js/plugin/notes';
       import { conectarAvance } from '../lib/avance-presentacion.mjs';
+      import { conectarBarraAutooculta } from '../lib/barra-autooculta.mjs';
 
       const params = new URLSearchParams(window.location.search);
       const pdf = params.has('print-pdf') || params.get('view') === 'print';
       const hashInicial = window.location.hash;
       if (pdf) document.documentElement.classList.add('pdf-export');
+      conectarBarraAutooculta({ document, window, pdf });
 
       const deck = new Reveal({
         width: 1920,
@@ -143,7 +145,9 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
   .deck-toolbar :focus-visible { outline:3px solid #f5a623; outline-offset:4px; }
   body:has(.deck-toolbar) { height:100dvh; overflow:hidden; }
   body:has(.deck-toolbar) .reveal { height:calc(100dvh - 96px); }
-  :fullscreen .deck-toolbar { display:none; }
+  html.toolbar-auto .deck-toolbar { position:fixed; inset:0 0 auto; z-index:40; box-sizing:border-box; transition:transform 180ms ease; box-shadow:0 6px 24px #0002; }
+  html.toolbar-hidden .deck-toolbar { transform:translateY(calc(-100% - 2px)); pointer-events:none; }
+  html.toolbar-auto body:has(.deck-toolbar) .reveal { height:100dvh; }
   body:has(.deck-toolbar):fullscreen .reveal, :fullscreen body:has(.deck-toolbar) .reveal, .reveal:fullscreen { height:100dvh; }
   .pdf-tools { display:none; }
   html.pdf-export .deck-toolbar { display:none; }
@@ -154,5 +158,6 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
   /* Reveal elimina el padding al imprimir; este curso lo necesita en el lienzo. */
   html.pdf-export.reveal-print .reveal .slides section { padding:96px 120px !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
   html.reveal-print .reveal .slides aside.notes { display:none !important; }
-  @media print { .deck-toolbar,.pdf-tools,html.pdf-export .pdf-tools { display:none !important; }body:has(.deck-toolbar),body:has(.deck-toolbar) .reveal { height:auto; overflow:visible; } }
+  @media (prefers-reduced-motion:reduce) { html.toolbar-auto .deck-toolbar { transition:none; } }
+  @media print { .deck-toolbar,.pdf-tools,html.pdf-export .pdf-tools { display:none !important; }body:has(.deck-toolbar),body:has(.deck-toolbar) .reveal,html.toolbar-auto body:has(.deck-toolbar) .reveal { height:auto; overflow:visible; } }
 </style>
