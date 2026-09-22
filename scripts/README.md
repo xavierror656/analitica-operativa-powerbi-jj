@@ -11,6 +11,7 @@ python scripts/controles_dia3.py
 python tests/verificador_dia5_test.py
 node --test tests/interacciones.test.mjs
 npm run build
+node scripts/verificar_sitio.mjs
 node scripts/verificar_curso.mjs
 python scripts/verificar_practicas.py
 ```
@@ -32,6 +33,12 @@ Después de compilar, `verificar_curso.mjs` comprueba las 102 diapositivas de lo
 3–5, sus notas y cronómetros, 450 minutos por día, rutas y descargas, dependencias
 de medidas y que la enseñanza de Python aparezca únicamente en Día 5. Son controles
 de estructura y contenido, no una prueba visual ni una ejecución del motor DAX/M.
+
+`verificar_sitio.mjs` revisa las 28 páginas compiladas, sus estilos, enlaces y
+descargas locales, las clases de tipografía y el dominio de `CNAME`. Rechaza el
+antiguo prefijo `/analitica-operativa-powerbi-jj/`: producción sirve desde la raíz
+de `https://powerbi.floresjavier.com/`. Corre también antes de subir el artefacto
+a GitHub Pages para impedir un despliegue con recursos inexistentes.
 
 ## Plan desglosado de prácticas
 

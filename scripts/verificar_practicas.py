@@ -133,8 +133,8 @@ def main():
         if ident[0]!='5':assert not re.search(r'\bpython\b',html,re.I)
         for href in re.findall(r'(?:href|src)="([^"]+)"',html):
             if href.startswith(('http:','https:','data:','#')):continue
-            resolved=urlparse(urljoin('https://curso.test/analitica-operativa-powerbi-jj/practicas/'+ident+'/',href))
-            path=unquote(resolved.path.removeprefix('/analitica-operativa-powerbi-jj/'))
+            resolved=urlparse(urljoin('https://powerbi.floresjavier.com/practicas/'+ident+'/',href))
+            path=unquote(resolved.path.lstrip('/'))
             assert (ROOT/'dist'/path).exists() or (ROOT/'dist'/path/'index.html').exists(),href
     spec=importlib.util.spec_from_file_location('verificador_alumno',ROOT/'src/content/practicas/5-3/verificar_practicas.py')
     mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod)

@@ -3,10 +3,9 @@ import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 
 export default defineConfig({
-  // GitHub Pages sirve el sitio en /analitica-operativa-powerbi-jj/, no en la raíz.
-  // Si algún día se conecta un dominio propio (o se pasa a Netlify), quitar site/base.
-  site: 'https://xavierror656.github.io',
-  base: '/analitica-operativa-powerbi-jj',
+  // El dominio de producción sirve páginas y assets desde la raíz.
+  site: 'https://powerbi.floresjavier.com',
+  base: '/',
   integrations: [icon()],
   vite: {
     plugins: [tailwindcss()],

@@ -25,6 +25,9 @@ jobs:
       - name: Build (Astro)
         run: npm run build
 
+      - name: Verify production domain and assets
+        run: node scripts/verificar_sitio.mjs
+
       - name: Verify classroom interactions
         run: node --test tests/interacciones.test.mjs
 

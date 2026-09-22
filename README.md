@@ -28,6 +28,13 @@ npm run dev      # http://localhost:4321
 
 `npm run build` genera `dist/` estático.
 
+Producción: **https://powerbi.floresjavier.com/** (GitHub Pages con dominio propio).
+`astro.config.mjs` usa `base: '/'`; no anteponer el nombre del repositorio a las
+rutas. `public/CNAME` conserva el dominio en la salida. Después del build, ejecutar
+`node scripts/verificar_sitio.mjs` para comprobar los enlaces y recursos de todas
+las páginas. Esta comprobación también bloquea la publicación si reaparecen rutas
+del antiguo subdirectorio de GitHub Pages.
+
 **En clase:** `→` avanza · `S` abre las notas del facilitador en otra ventana ·
 `F` pantalla completa · `Esc` vista general de todas las slides.
 

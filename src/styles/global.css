@@ -39,6 +39,9 @@
 }
 
 @theme {
+  --font-titulo: "Poppins", "Segoe UI", sans-serif;
+  --font-cuerpo: "Inter", "Segoe UI", sans-serif;
+  --font-codigo: "Consolas", "Courier New", monospace;
   --color-ink: var(--color-ink);
   --color-ink-2: var(--color-ink-2);
   --color-ink-3: var(--color-ink-3);

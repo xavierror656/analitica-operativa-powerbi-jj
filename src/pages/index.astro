@@ -19,11 +19,12 @@ const estadoTexto = { listo: 'Disponible', pendiente: 'Pendiente' } as const;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Analítica Operativa con Power BI · Slides</title>
+    <link rel="canonical" href={Astro.site} />
     <meta name="description" content="Slides del programa Analítica Operativa con Power BI, para Johnson & Johnson · Skilling Center Tecmilenio." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -60,7 +61,7 @@ const estadoTexto = { listo: 'Disponible', pendiente: 'Pendiente' } as const;
               <a
                 href={d.href}
                 class:list={[
-                  'group flex items-center gap-6 rounded-2xl border px-6 py-5 transition-colors',
+                  'group flex items-center gap-3 rounded-2xl border px-4 py-5 transition-colors sm:gap-6 sm:px-6',
                   d.estado === 'listo'
                     ? 'border-accent/40 bg-accent/10 hover:border-accent'
                     : 'border-white/10 bg-white/[0.03] hover:border-white/25',
@@ -77,12 +78,12 @@ const estadoTexto = { listo: 'Disponible', pendiente: 'Pendiente' } as const;
 
                 <span class="min-w-0 flex-1">
                   <span class="block font-titulo text-lg font-semibold sm:text-xl">{d.titulo}</span>
-                  <span class="text-sm text-[#8fa8a4]">Evidencia {d.evidencia}</span>
+                  <span class="text-sm text-[#b7d6d1]">Evidencia {d.evidencia}</span>
                 </span>
 
                 <span
                   class:list={[
-                    'shrink-0 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide',
+                    'hidden shrink-0 rounded-full px-3 py-1 text-sm font-semibold sm:inline-block',
                     d.estado === 'listo'
                       ? 'bg-accent text-ink'
                       : 'bg-white/10 text-[#8fa8a4]',
@@ -120,3 +121,7 @@ const estadoTexto = { listo: 'Disponible', pendiente: 'Pendiente' } as const;
     </div>
   </body>
 </html>
+
+<style>
+  a:focus-visible { outline: 3px solid var(--color-accent-light); outline-offset: 5px; }
+</style>

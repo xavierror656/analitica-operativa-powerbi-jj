@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 const exists = p => fs.existsSync(path.join(root, p));
-const base = '/analitica-operativa-powerbi-jj';
+const base = '';
 const expectedTimes = [60, 90, 90, 90, 90, 30];
 
 for (const day of [3, 4, 5]) {
