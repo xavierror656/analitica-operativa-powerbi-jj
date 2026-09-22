@@ -9,7 +9,7 @@ const dist = path.join(root, 'dist');
 const origin = 'https://powerbi.floresjavier.com';
 const files = fs.readdirSync(dist, { recursive: true }).filter(name => fs.statSync(path.join(dist, name)).isFile());
 const pages = files.filter(name => name.endsWith('.html'));
-assert.ok(pages.length >= 28, 'Faltan páginas del curso');
+assert.equal(pages.length, 44, 'Se esperan 28 páginas originales y 16 guías de actividad');
 assert.equal(fs.readFileSync(path.join(dist, 'CNAME'), 'utf8').trim(), new URL(origin).hostname);
 let references = 0;
 
@@ -34,6 +34,29 @@ for (const file of pages) {
   assert.match(html, /name="viewport"/);
   for (const [, href] of html.matchAll(/(?:href|src)="([^"]+)"/g)) checkReference(href, route);
   assert.ok(/<style(?:\s|>)|<link[^>]+rel="stylesheet"/.test(html), `Sin estilos: ${route}`);
+  if (html.includes('class="reveal"')) {
+    assert.ok(html.includes('class="deck-toolbar"'), `Falta navegación: ${route}`);
+    assert.ok(html.includes('id="proyectar"'), `Falta proyección: ${route}`);
+    assert.ok(html.includes(`href="${route}?print-pdf"`), `Falta exportación PDF: ${route}`);
+    assert.ok(html.includes('id="deck-saved"') && html.includes('id="reiniciar-presentacion"'), `Falta control del avance: ${route}`);
+    assert.ok(html.includes('target="_blank"'), `La guía debe conservar la presentación abierta: ${route}`);
+  }
+}
+
+const fichas = JSON.parse(fs.readFileSync(path.join(root, 'src/data/practicas-aula.json'), 'utf8'));
+assert.equal(Object.keys(fichas).length, 16);
+for (const [id, ficha] of Object.entries(fichas)) {
+  const guide = fs.readFileSync(path.join(dist, `practicas/${id}/guia/index.html`), 'utf8');
+  const deck = fs.readFileSync(path.join(dist, `practicas/${id}/index.html`), 'utf8');
+  assert.ok(guide.includes(`data-ficha="${id}"`) && guide.includes('data-caso="practicas"'));
+  for (const key of ['objetivo', 'abre', 'construye', 'comprueba', 'entrega']) {
+    assert.ok(ficha[key]?.length > 20, `${id}: falta ${key}`);
+    const escaped = ficha[key].replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+    assert.ok(guide.includes(escaped), `${id}: guía no muestra ${key}`);
+    assert.ok(deck.includes(escaped), `${id}: diapositivas no muestran ${key}`);
+  }
+  if (!id.startsWith('5')) assert.doesNotMatch(guide + deck, /\bpython\b/i);
+  assert.ok(!guide.includes('id="tu-entrega-paso-a-paso"'), `${id}: ficha duplicada`);
 }
 
 const cssFiles = files.filter(name => name.endsWith('.css'));

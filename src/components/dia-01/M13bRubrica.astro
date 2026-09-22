@@ -8,15 +8,16 @@ import Notas from '../ui/Notas.astro';
   <Pasos
     items={[
       { t: '1 · Inicial', d: 'Completaste la limpieza con apoyo directo del instructor en pasos críticos.' },
-      { t: '2 · En desarrollo', d: 'Completas el dataset sin apoyo directo; actualiza y puedes mostrar tus controles de filas y piezas.' },
+      { t: '2 · En desarrollo', d: 'Sigues la guía, completas el dataset y demuestras la actualización y los controles de filas y piezas.' },
       { t: '3 · Competente', d: 'Explicas las reglas, justificas las diferencias y documentas las excepciones sin inventar datos.' },
       { t: '4 · Avanzado', d: 'Auditas otro archivo y pruebas con evidencia una corrección o un caso límite.' },
     ]}
   />
+  <p class="text-3xl mt-6">Puedes consultar instrucciones y fórmulas en todos los niveles. Evaluamos cómo aplicas y compruebas los pasos.</p>
   <Notas
     slot="notas"
     minutos={8}
-    dice="Esta es la misma escala de dominio de toda la propuesta del programa, aplicada por primera vez hoy. No es una calificación numérica, es qué tan lejos de 'apoyado' están."
+    dice="Consultar la guía está permitido en todos los niveles. La evidencia es que puedes aplicar el procedimiento, comprobarlo y explicar el resultado; no memorizar los pasos."
     nota="Nivel 2 es la meta de acreditación mínima por competencia, según la propuesta. Nivel 4 no es obligatorio hoy, pero quien termine rápido puede llegar ahí auditando a un compañero."
   />
 </Mecanismo>

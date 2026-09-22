@@ -34,11 +34,17 @@ Después de compilar, `verificar_curso.mjs` comprueba las 102 diapositivas de lo
 de medidas y que la enseñanza de Python aparezca únicamente en Día 5. Son controles
 de estructura y contenido, no una prueba visual ni una ejecución del motor DAX/M.
 
-`verificar_sitio.mjs` revisa las 28 páginas compiladas, sus estilos, enlaces y
+`verificar_sitio.mjs` revisa las 44 páginas compiladas, sus estilos, enlaces y
 descargas locales, las clases de tipografía y el dominio de `CNAME`. Rechaza el
 antiguo prefijo `/analitica-operativa-powerbi-jj/`: producción sirve desde la raíz
 de `https://powerbi.floresjavier.com/`. Corre también antes de subir el artefacto
 a GitHub Pages para impedir un despliegue con recursos inexistentes.
+
+También comprueba las 16 fichas de actividad en guías y diapositivas, los enlaces
+de la barra de presentación y la reserva de Python para el Día 5. La prueba de
+interacciones cubre el contador de diapositivas, teclado en recursos y recuperación
+si el navegador deniega pantalla completa. Son pruebas automáticas de estructura
+y comportamiento; la revisión visual de laptop/proyector requiere navegador.
 
 ## Plan desglosado de prácticas
 

@@ -1,11 +1,14 @@
 ---
 import Mecanismo from '../slides/Mecanismo.astro';
 import Notas from '../ui/Notas.astro';
+import ConceptoAnimado from '../ui/ConceptoAnimado.astro';
 import Pasos from '../ui/Pasos.astro';
 ---
 <Mecanismo modulo="D5-M04" titulo={"Una actualización necesita prueba y responsable"}>
+  <ConceptoAnimado animacion="actualizacion">
   <div class="flex flex-col gap-8">
     <Pasos items={[{"t":"Configura el acceso al origen","d":"Gateway o credenciales según el conector."},{"t":"Programa con condiciones conocidas","d":"Zona horaria, frecuencia admitida, disponibilidad del archivo y responsable."},{"t":"Verifica una ejecución","d":"Estado e historial, hora de actualización y fecha máxima del dato; no son lo mismo."}]} />
   </div>
+  </ConceptoAnimado>
   <Notas slot="notas" minutos={10} dice={"Mostrar qué evidencia quedaría de una ejecución correcta y cómo se detecta un fallo. Usar la alternativa local si el servicio está bloqueado."} nota={"Sincronizar el PBIX por OneDrive no demuestra que sus fuentes se actualizaron. Los límites de programación dependen de licencia y configuración; consultar al administrador."} />
 </Mecanismo>

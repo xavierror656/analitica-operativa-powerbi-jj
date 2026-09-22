@@ -10,10 +10,15 @@
   },
   "dependencies": {
     "@iconify-json/lucide": "1.2.135",
+    "@lottiefiles/dotlottie-web": "0.80.0",
     "@tailwindcss/vite": "4.3.3",
     "astro": "7.3.3",
     "astro-icon": "1.2.0",
     "reveal.js": "6.0.2",
     "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0",
+    "lottie-web": "5.13.0"
   }
 }

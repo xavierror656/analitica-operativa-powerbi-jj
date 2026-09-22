@@ -1,0 +1,45 @@
+{
+  "capas": {
+    "titulo": "Fuentes de datos",
+    "descripcion": "Capas que representan las fuentes que vas a conectar.",
+    "leyenda": "Cada archivo conserva su propia consulta.",
+    "origen": "https://github.com/LottieFiles/dotlottie-web/blob/main/fixtures/lottie/down.json",
+    "credito": "Recurso público · LottieFiles",
+    "posterFrame": 30
+  },
+  "flujo": {
+    "titulo": "Preparación de datos",
+    "descripcion": "Un dato recorre origen, transformación y salida.",
+    "leyenda": "Origen → Power Query → Tabla preparada",
+    "credito": "Diagrama del curso · LottieFiles",
+    "posterFrame": 90
+  },
+  "indicadores": {
+    "titulo": "Indicadores",
+    "descripcion": "Cuatro barras aparecen para ilustrar la comparación de indicadores.",
+    "leyenda": "Ilustración conceptual · no representa cifras del dataset",
+    "credito": "Diagrama del curso · LottieFiles",
+    "posterFrame": 100
+  },
+  "reporte": {
+    "titulo": "Lectura del reporte",
+    "descripcion": "Una señal recorre las cifras y los gráficos de un reporte.",
+    "leyenda": "Primero las cifras; después, su explicación visual.",
+    "credito": "Diagrama del curso · LottieFiles",
+    "posterFrame": 90
+  },
+  "actualizacion": {
+    "titulo": "Actualización repetible",
+    "descripcion": "Un recorrido une el origen y el resultado y vuelve a empezar.",
+    "leyenda": "Mismo origen + mismas reglas → resultado comprobable",
+    "credito": "Diagrama del curso · LottieFiles",
+    "posterFrame": 50
+  },
+  "validacion": {
+    "titulo": "Evidencia comprobada",
+    "descripcion": "Una marca de verificación se dibuja dentro de un círculo.",
+    "leyenda": "Comprueba cifras, documenta y entrega.",
+    "credito": "Diagrama del curso · LottieFiles",
+    "posterFrame": 95
+  }
+}

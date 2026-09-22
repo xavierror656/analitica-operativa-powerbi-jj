@@ -1,22 +1,11 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
-import Nota from '../ui/Nota.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
-<EjemploReal modulo="D1-M5e" titulo="Filas duplicadas por doble captura de fin de turno">
-  <div class="flex flex-col gap-8">
-    <p class="text-3xl">
-      La misma línea, el mismo turno, el mismo lote, las mismas piezas: aparece dos
-      veces. Alguien capturó el cierre de turno y, por error o por no saber que ya
-      estaba capturado, alguien más lo volvió a capturar.
-    </p>
-    <Nota tono="alto">
-      No se detecta mirando una fila: se detecta comparando filas completas entre sí.
-      Eliminar duplicados sin revisar primero borra piezas de producción reales si dos
-      lotes distintos coinciden por casualidad en todos los demás campos.
-    </Nota>
-  </div>
+<EjemploReal modulo="D1-M5e" titulo="Retira subtotales y duplicados exactos">
+  <RecetaGuiada id="duplicados" />
   <Notas
     slot="notas"
     minutos={7}

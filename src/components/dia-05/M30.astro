@@ -1,11 +1,14 @@
 ---
 import Cierre from '../slides/Cierre.astro';
 import Notas from '../ui/Notas.astro';
+import ConceptoAnimado from '../ui/ConceptoAnimado.astro';
 import Pasos from '../ui/Pasos.astro';
 ---
 <Cierre evidencia="A5" titulo={"Entrega un proyecto que alguien pueda retomar"}>
+  <ConceptoAnimado animacion="validacion">
   <div class="flex flex-col gap-8">
     <Pasos items={[{"t":"5 min · Cifras y versión","d":"Revisar el hallazgo final y el PBIX entregado."},{"t":"5 min · Acceso o alternativa local","d":"Registrar publicación demostrada o entrega local, responsable y pendientes."},{"t":"5 min · Evidencias","d":"A1–A5, revisión cruzada y niveles observados."}]} />
   </div>
+  </ConceptoAnimado>
   <Notas slot="notas" minutos={15} dice={"Confirmar la evidencia de cada competencia. El criterio sugerido pide nivel 2 o superior en las cinco y al menos dos en nivel 3."} nota={"La entrega es de capacitación; no convierte el reporte en registro controlado. No reportar como publicada una versión que solo se guardó localmente."} />
 </Cierre>

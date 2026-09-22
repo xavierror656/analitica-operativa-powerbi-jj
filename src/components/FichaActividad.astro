@@ -1,0 +1,11 @@
+---
+import fichas from '../data/practicas-aula.json';
+interface Props { id: keyof typeof fichas; }
+const f = fichas[Astro.props.id];
+---
+<dl class="deliverable" data-ficha={Astro.props.id}>
+  <div><dt>01 · Abre</dt><dd>{f.abre}</dd></div>
+  <div><dt>02 · Construye</dt><dd>{f.construye}</dd></div>
+  <div><dt>03 · Comprueba</dt><dd>{f.comprueba}</dd></div>
+  <div><dt>04 · Entrega</dt><dd>{f.entrega}</dd></div>
+</dl>

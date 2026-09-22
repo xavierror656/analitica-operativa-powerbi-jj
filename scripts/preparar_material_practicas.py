@@ -6,6 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'src/content/practicas'
 plan=json.loads((ROOT/'src/data/practicas-plan.json').read_text(encoding='utf8'))
 development=json.loads((ROOT/'src/data/practicas-desarrollo.json').read_text(encoding='utf8'))
+classroom=json.loads((ROOT/'src/data/practicas-aula.json').read_text(encoding='utf8'))
 
 
 def write_csv(ident,name,cols,rows):
@@ -22,7 +23,10 @@ def write_text(ident,name,text):
 def main():
     for a in plan:
         d=development[a['id']]
-        text=f"# {a['numero']} · {a['titulo']}\n\n{a['proposito']}\n\n90 minutos. Caso Prácticas 2025–2026; conservar un único PBIX acumulativo.\n\n## Materiales\n\n"+'\n'.join('- '+r for r in d['recursos'])+'\n\n'
+        f=classroom[a['id']]
+        text=f"# {a['numero']} · {a['titulo']}\n\n{f['objetivo']}\n\n90 minutos. Caso Prácticas 2025–2026; conservar un único PBIX acumulativo.\n\n"
+        text+='## Tu entrega, paso a paso\n\n'+'\n'.join(f"- **{label}:** {f[key]}" for key,label in [('abre','Abre'),('construye','Construye'),('comprueba','Comprueba'),('entrega','Entrega')])+'\n\n'
+        text+='## Materiales\n\n'+'\n'.join('- '+r for r in d['recursos'])+'\n\n'
         if d.get('nota'):text+='## Decisión de implementación\n\n'+d['nota']+'\n\n'
         for minutes,title,actions,*formula in d['pasos']:
             text+=f'## {title} · {minutes} minutos\n\n'+'\n'.join(f'{i+1}. {s}' for i,s in enumerate(actions))+'\n\n'

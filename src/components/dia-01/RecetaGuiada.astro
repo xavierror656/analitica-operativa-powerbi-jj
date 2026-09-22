@@ -1,0 +1,37 @@
+---
+import recetas from '../../data/dia-01-pasos.json';
+interface Props { id: string }
+const { id } = Astro.props;
+const receta = recetas.find((item) => item.id === id);
+if (!receta) throw new Error(`Receta del día 1 desconocida: ${id}`);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const guia = `${base}/dia-01/guia/#paso-${id}`;
+---
+<div class="receta-slide" data-receta={id}>
+  <p class="receta-ubicacion">{receta.ubicacion}</p>
+  <div class="receta-columnas">
+    <ol class="receta-pasos">
+      {receta.pasos.map((paso) => <li><strong>{paso.accion}</strong><p>{paso.detalle}</p></li>)}
+    </ol>
+    <aside class="receta-control">
+      {receta.formula && <><strong>Fórmula M · puedes copiarla de la guía</strong><pre><code>{receta.formula}</code></pre></>}
+      <div><strong>Comprueba</strong><p>{receta.comprueba}</p></div>
+      <div><strong>Al terminar</strong><p>{receta.entrega}</p></div>
+    </aside>
+  </div>
+  <a class="receta-enlace" href={guia} target="_blank" rel="noopener">Abrir estos pasos en la guía ↗ · Puedes consultarla durante la actividad</a>
+</div>
+<style>
+  .receta-slide { display:flex; flex-direction:column; gap:22px; }
+  :global(.reveal .slides section) .receta-ubicacion { margin:0; font-size:26px; font-weight:600; }
+  .receta-columnas { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:48px; align-items:start; }
+  :global(.reveal .slides section) .receta-pasos { margin:0; padding-left:42px; display:grid; gap:20px; }
+  :global(.reveal .slides section) .receta-pasos li { padding-left:8px; font-size:29px; line-height:1.3; }
+  .receta-pasos li::marker { font-weight:700; }
+  :global(.reveal .slides section) .receta-pasos p { margin:6px 0 0; font-size:28px; line-height:1.32; }
+  .receta-control { display:flex; flex-direction:column; gap:20px; border-left:3px solid currentColor; padding-left:30px; }
+  .receta-control strong { font-size:26px; }
+  :global(.reveal .slides section) .receta-control p { margin:6px 0 0; font-size:28px; line-height:1.32; }
+  :global(.reveal .slides section) .receta-control pre { background:var(--color-ink); color:var(--color-text-on-ink); padding:18px; box-sizing:border-box; font-size:24px; line-height:1.35; white-space:pre-wrap; overflow-wrap:anywhere; border-radius:12px; }
+  .receta-enlace { font-size:26px; font-weight:600; text-decoration:underline; text-underline-offset:5px; }
+</style>

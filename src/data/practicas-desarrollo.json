@@ -195,7 +195,7 @@
           "3 min: crea la medida y compara con tu predicción.",
           "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
         ],
-        "Piezas ud = SUM(fact_produccion[piezas_producidas])"
+        "Piezas ud =\nSUM(fact_produccion[piezas_producidas])"
       ],
       [
         7,
@@ -205,7 +205,7 @@
           "3 min: crea la medida y compara con tu predicción.",
           "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
         ],
-        "Turno 3 ud = CALCULATE([Piezas ud], dim_turno[turno] = \"3\")"
+        "Turno 3 ud =\nCALCULATE([Piezas ud], dim_turno[turno] = \"3\")"
       ],
       [
         7,
@@ -215,7 +215,7 @@
           "3 min: crea la medida y compara con tu predicción.",
           "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
         ],
-        "Todas las líneas ud = CALCULATE([Piezas ud], ALL(dim_linea))"
+        "Todas las líneas ud =\nCALCULATE([Piezas ud], ALL(dim_linea))"
       ],
       [
         7,
@@ -225,7 +225,7 @@
           "3 min: crea la medida y compara con tu predicción.",
           "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
         ],
-        "Intersección ud = CALCULATE([Piezas ud], KEEPFILTERS(dim_turno[turno] = \"3\"))"
+        "Intersección ud =\nCALCULATE([Piezas ud], KEEPFILTERS(dim_turno[turno] = \"3\"))"
       ],
       [
         7,
@@ -235,7 +235,7 @@
           "3 min: crea la medida y compara con tu predicción.",
           "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
         ],
-        "Registros grandes ud = CALCULATE([Piezas ud], FILTER(fact_produccion, fact_produccion[piezas_producidas] >= 600))"
+        "Registros grandes ud =\nCALCULATE(\n    [Piezas ud],\n    FILTER(fact_produccion, fact_produccion[piezas_producidas] >= 600)\n)"
       ],
       [
         7,
@@ -245,7 +245,7 @@
           "3 min: crea la medida y compara con tu predicción.",
           "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
         ],
-        "Rechazo producción % = DIVIDE(SUM(fact_produccion[piezas_producidas])-SUM(fact_produccion[piezas_buenas]), [Piezas ud])"
+        "Rechazo producción % =\nDIVIDE(\n    SUM(fact_produccion[piezas_producidas])\n        - SUM(fact_produccion[piezas_buenas]),\n    [Piezas ud]\n)"
       ],
       [
         7,
@@ -255,7 +255,7 @@
           "3 min: crea la medida y compara con tu predicción.",
           "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
         ],
-        "No buenas ud = VAR Total = [Piezas ud] VAR Buenas = SUM(fact_produccion[piezas_buenas]) RETURN Total-Buenas"
+        "No buenas ud =\nVAR Total = [Piezas ud]\nVAR Buenas = SUM(fact_produccion[piezas_buenas])\nRETURN Total - Buenas"
       ],
       [
         7,
@@ -265,7 +265,7 @@
           "3 min: crea la medida y compara con tu predicción.",
           "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
         ],
-        "MTTR min = DIVIDE(CALCULATE(SUM(fact_mantenimiento[duracion_min]), fact_mantenimiento[tipo]=\"correctivo\", fact_mantenimiento[afecta_produccion]=1), CALCULATE(COUNTROWS(fact_mantenimiento), fact_mantenimiento[tipo]=\"correctivo\", fact_mantenimiento[afecta_produccion]=1))"
+        "MTTR min = DIVIDE(\n    CALCULATE(SUM(fact_mantenimiento[duracion_min]),\n        fact_mantenimiento[tipo] = \"correctivo\",\n        fact_mantenimiento[afecta_produccion] = 1),\n    CALCULATE(COUNTROWS(fact_mantenimiento),\n        fact_mantenimiento[tipo] = \"correctivo\",\n        fact_mantenimiento[afecta_produccion] = 1)\n)"
       ],
       [
         10,

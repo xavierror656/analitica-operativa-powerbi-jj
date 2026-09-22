@@ -1,11 +1,14 @@
 ---
 import Mecanismo from '../slides/Mecanismo.astro';
 import Notas from '../ui/Notas.astro';
+import ConceptoAnimado from '../ui/ConceptoAnimado.astro';
 import Pasos from '../ui/Pasos.astro';
 ---
 <Mecanismo modulo="D3-M02" titulo={"El filtro decide qué registros participan"}>
+  <ConceptoAnimado animacion="indicadores">
   <div class="flex flex-col gap-8">
     <Pasos items={[{"t":"Fecha, línea y turno","d":"Determinan el conjunto visible de producción desde las dimensiones."},{"t":"Una tarjeta y una matriz","d":"La misma medida se evalúa en contextos diferentes para cada celda y total."},{"t":"Modelo A2","d":"El filtro llega por las relaciones activas; una medida no crea las claves que faltan."}]} />
   </div>
+  </ConceptoAnimado>
   <Notas slot="notas" minutos={10} dice={"Simular con los dos lotes: seleccionar uno, ambos y ninguno. Pedir que predigan la suma."} nota={"La tarjeta sin filtros y cada fila de matriz son evaluaciones distintas. En mantenimiento, el turno no aplica al modelo base."} />
 </Mecanismo>

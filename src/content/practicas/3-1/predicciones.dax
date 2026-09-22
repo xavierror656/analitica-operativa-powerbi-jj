@@ -1,17 +1,40 @@
 // Crear cada medida por separado. No ejecutar el archivo completo.
 
-Piezas ud = SUM(fact_produccion[piezas_producidas])
+Piezas ud =
+SUM(fact_produccion[piezas_producidas])
 
-Turno 3 ud = CALCULATE([Piezas ud], dim_turno[turno] = "3")
+Turno 3 ud =
+CALCULATE([Piezas ud], dim_turno[turno] = "3")
 
-Todas las líneas ud = CALCULATE([Piezas ud], ALL(dim_linea))
+Todas las líneas ud =
+CALCULATE([Piezas ud], ALL(dim_linea))
 
-Intersección ud = CALCULATE([Piezas ud], KEEPFILTERS(dim_turno[turno] = "3"))
+Intersección ud =
+CALCULATE([Piezas ud], KEEPFILTERS(dim_turno[turno] = "3"))
 
-Registros grandes ud = CALCULATE([Piezas ud], FILTER(fact_produccion, fact_produccion[piezas_producidas] >= 600))
+Registros grandes ud =
+CALCULATE(
+    [Piezas ud],
+    FILTER(fact_produccion, fact_produccion[piezas_producidas] >= 600)
+)
 
-Rechazo producción % = DIVIDE(SUM(fact_produccion[piezas_producidas])-SUM(fact_produccion[piezas_buenas]), [Piezas ud])
+Rechazo producción % =
+DIVIDE(
+    SUM(fact_produccion[piezas_producidas])
+        - SUM(fact_produccion[piezas_buenas]),
+    [Piezas ud]
+)
 
-No buenas ud = VAR Total = [Piezas ud] VAR Buenas = SUM(fact_produccion[piezas_buenas]) RETURN Total-Buenas
+No buenas ud =
+VAR Total = [Piezas ud]
+VAR Buenas = SUM(fact_produccion[piezas_buenas])
+RETURN Total - Buenas
 
-MTTR min = DIVIDE(CALCULATE(SUM(fact_mantenimiento[duracion_min]), fact_mantenimiento[tipo]="correctivo", fact_mantenimiento[afecta_produccion]=1), CALCULATE(COUNTROWS(fact_mantenimiento), fact_mantenimiento[tipo]="correctivo", fact_mantenimiento[afecta_produccion]=1))
+MTTR min = DIVIDE(
+    CALCULATE(SUM(fact_mantenimiento[duracion_min]),
+        fact_mantenimiento[tipo] = "correctivo",
+        fact_mantenimiento[afecta_produccion] = 1),
+    CALCULATE(COUNTROWS(fact_mantenimiento),
+        fact_mantenimiento[tipo] = "correctivo",
+        fact_mantenimiento[afecta_produccion] = 1)
+)

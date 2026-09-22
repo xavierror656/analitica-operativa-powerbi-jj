@@ -1,20 +1,11 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
-import Comparacion from '../ui/Comparacion.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
 <EjemploReal modulo="D1-M8d" titulo="Combina archivos solo si representan la misma tabla">
-  <Comparacion tituloA="Conectar a un archivo" tituloB="Conectar a una carpeta" iconoA="file" iconoB="folder">
-    <ul slot="a" class="flex flex-col gap-3 list-disc pl-6">
-      <li>Hoy: un CSV por tabla, ocho consultas separadas</li>
-      <li>Actualizar relee ese archivo y repite sus transformaciones</li>
-    </ul>
-    <ul slot="b" class="flex flex-col gap-3 list-disc pl-6">
-      <li>Varios CSV mensuales de producción con las mismas columnas</li>
-      <li>Transformar datos → filtrar archivos → combinar; no incluir calidad ni catálogos</li>
-    </ul>
-  </Comparacion>
+  <RecetaGuiada id="carpeta" />
   <Notas
     slot="notas"
     minutos={6}

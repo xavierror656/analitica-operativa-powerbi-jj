@@ -1,0 +1,114 @@
+{
+  "2-1": {
+    "objetivo": "Construye una estrella y distingue la propagación de filtros de la duplicación de filas al combinar y expandir tablas.",
+    "abre": "Una copia del PBIX del Día 1, montaje.md y la carpeta crudos/ del paquete 2.1.",
+    "construye": "Modelo A2 con 16 relaciones y comparación del microcaso antes y después de expandir.",
+    "comprueba": "Sin filtros: 3,761,757 piezas y 117,998 rechazadas. Explica el microcaso de 600 a 1,200 piezas.",
+    "entrega": "Practicas_A2_Apellido.pbix y capturas del modelo, las tarjetas y el microcaso."
+  },
+  "2-2": {
+    "objetivo": "Responde preguntas con tablas y matrices e identifica qué preguntas todavía no permite contestar el modelo.",
+    "abre": "Tu modelo A2 del nuevo caso y actividad/preguntas.csv.",
+    "construye": "Diez respuestas usando campos y agregaciones, sin crear medidas DAX.",
+    "comprueba": "Sustenta siete respuestas con cifra, unidad y filtros; justifica las tres limitaciones.",
+    "entrega": "actividad/respuestas.csv completo y capturas de los visuales usados."
+  },
+  "2-3": {
+    "objetivo": "Diagnostica cuatro fallos de relaciones y demuestra que cada reparación conserva las cifras correctas.",
+    "abre": "Las cuatro copias aisladas preparadas por el instructor y actividad/sintomas.csv.",
+    "construye": "Cuatro reparaciones documentadas y un modelo con jerarquías, formatos y claves ocultas.",
+    "comprueba": "Repite filtros, totales y unicidad antes y después; no mezcles las variantes del laboratorio.",
+    "entrega": "Las copias reparadas y actividad/diagnostico.csv con cuatro pruebas antes/después."
+  },
+  "2-4": {
+    "objetivo": "Audita el modelo de otra área, corrige los hallazgos y registra una revisión reproducible.",
+    "abre": "El modelo A2 de otra área y actividad/checklist.csv.",
+    "construye": "Una auditoría de ocho criterios y una versión corregida del modelo.",
+    "comprueba": "El revisor repite los filtros afectados y confirma la cifra total sin filtros.",
+    "entrega": "Practicas_A2_Apellido.pbix y checklist.csv con evidencia, revisor, fecha y pendientes."
+  },
+  "3-1": {
+    "objetivo": "Predice ocho resultados DAX y explica qué cambió en el contexto de filtro.",
+    "abre": "A2, actividad/predicciones.csv y actividad/predicciones.dax; crea cada medida por separado.",
+    "construye": "Matriz de abril de 2026 por línea y turno, con L3 / turno 1 como celda de referencia.",
+    "comprueba": "Contrasta predicción y resultado en ocho rondas. MTTR todavía recibe fecha y línea, sin turno.",
+    "entrega": "predicciones.csv con ocho explicaciones y captura del contraste de MTTR con Power Query."
+  },
+  "3-2": {
+    "objetivo": "Construye indicadores por área y verifica el estándar de producción antes de aceptar el OEE.",
+    "abre": "El PBIX de 3.1, actividad/medidas.dax y recursos/estandares_ingenieria.csv.",
+    "construye": "Medidas por área y turno derivado en mantenimiento según montaje.md; ahora son 17 relaciones.",
+    "comprueba": "Valida 06/04/2026, L3, turno 1. Si OEE supera 100 %, revisa unidades y estándar; conserva el antes.",
+    "entrega": "Practicas_A3_Apellido.pbix y registro del cálculo manual y de la corrección del estándar."
+  },
+  "3-3": {
+    "objetivo": "Distingue una mejora sostenida de un mes atípico con comparaciones temporales consistentes.",
+    "abre": "El PBIX de 3.2 y actividad/tiempo.dax.",
+    "construye": "Serie mensual de Scrap % y promedio móvil para L2 y L4; completa cinco comparaciones temporales.",
+    "comprueba": "Compara meses completos y ventanas disponibles; distingue promedio de tasas de tasa conjunta.",
+    "entrega": "El gráfico guardado en A3 y actividad/conclusion.csv con tres líneas: cifra, periodo y límite."
+  },
+  "3-4": {
+    "objetivo": "Documenta seis indicadores y permite que otra persona reproduzca sus comprobaciones.",
+    "abre": "A3, actividad/fichas.csv y actividad/validaciones.csv.",
+    "construye": "Seis fichas: cumplimiento, yield, scrap, disponibilidad, OEE y MTTR.",
+    "comprueba": "Tres cortes por indicador con iguales filtros, unidades y estándar; explica cualquier diferencia.",
+    "entrega": "Practicas_A3_Apellido.pbix, seis fichas y la matriz de validaciones con revisión de otra persona."
+  },
+  "4-1": {
+    "objetivo": "Diseña una página ejecutiva cuya situación principal pueda reconocerse en cinco segundos.",
+    "abre": "Una copia de A3, recursos/metas.csv y el ejemplo de reporte deficiente de esta presentación.",
+    "construye": "Resumen con cinco indicadores, tendencia de OEE y comparación entre líneas.",
+    "comprueba": "Otra persona observa cinco segundos y explica qué requiere atención sin ayuda del autor.",
+    "entrega": "Practicas_A4_Apellido.pbix con Resumen y actividad/prueba_cinco_segundos.csv."
+  },
+  "4-2": {
+    "objetivo": "Recorre el reporte desde un indicador hasta los eventos que permiten investigarlo.",
+    "abre": "A4 con Resumen y actividad/recorrido.csv.",
+    "construye": "Páginas Detalle y Eventos, drillthrough, filtros sincronizados y regreso.",
+    "comprueba": "Recorre L3 en el segundo trimestre de 2026; valida filtros transferidos, dos equipos y retorno.",
+    "entrega": "A4 con navegación funcionando y recorrido.csv con identificadores, filtros y marcas horarias."
+  },
+  "4-3": {
+    "objetivo": "Aplica interacciones, metas, tooltips, marcadores y navegación al reporte propio.",
+    "abre": "A4, actividad/estaciones.csv y recursos/metas.csv.",
+    "construye": "Trabaja las cinco estaciones e integra al menos tres funciones en tu reporte.",
+    "comprueba": "Prueba filtros antes y después; los marcadores de vista no deben restaurar filtros por accidente.",
+    "entrega": "A4 y estaciones.csv con al menos tres funciones, sus pruebas y capturas."
+  },
+  "4-4": {
+    "objetivo": "Observa a un lector de otra área y corrige los obstáculos que le impiden usar el reporte.",
+    "abre": "A4 y actividad/lector.csv.",
+    "construye": "Tres preguntas: resumen, detalle y trazabilidad; deja el reporte listo para resolverlas.",
+    "comprueba": "El lector responde sin ayuda. Registra tiempo, cifra, contexto y bloqueo; repite la tarea corregida.",
+    "entrega": "Practicas_A4_Apellido.pbix y lector.csv con resultados y cambios aplicados."
+  },
+  "5-1": {
+    "objetivo": "Investiga la caída del OEE de L3 y distingue los hallazgos de las hipótesis causales.",
+    "abre": "A4, registros crudos y actividad/hipotesis.csv.",
+    "construye": "Comparación enero–marzo frente a abril–junio de 2026, con evidencia a favor y en contra.",
+    "comprueba": "Reconstruye una cifra desde los eventos y contrasta otras líneas y turnos.",
+    "entrega": "hipotesis.csv con veredicto, hipótesis descartadas y qué faltaría verificar en una planta real."
+  },
+  "5-2": {
+    "objetivo": "Presenta un hallazgo defendible y responde preguntas de una junta operativa.",
+    "abre": "El reporte, actividad/pagina_junta.csv y actividad/tarjetas_gerente.csv.",
+    "construye": "Una página con hallazgo, cifra, periodo, fuente, recomendación y lo que aún no sabemos.",
+    "comprueba": "Ensaya tres minutos de exposición y dos de preguntas; revisa las afirmaciones que no pudiste sostener.",
+    "entrega": "Página de junta, pagina_junta.csv y actividad/preguntas_recibidas.csv con las correcciones."
+  },
+  "5-3": {
+    "objetivo": "Clasifica afirmaciones y reescribe las que exceden la evidencia del modelo.",
+    "abre": "actividad/afirmaciones.csv, actividad/reescrituras.csv y la demostración de verificación del Día 5.",
+    "construye": "Clasificación de ocho afirmaciones y tres versiones con dato, periodo, fuente y límite.",
+    "comprueba": "Justifica cada categoría. Contrasta piezas y rechazos con Python durante la demostración de 12 minutos.",
+    "entrega": "afirmaciones.csv con clasificación final y reescrituras.csv con tres afirmaciones defendibles."
+  },
+  "5-4": {
+    "objetivo": "Integra las evidencias de la semana y defiende el reporte final en siete minutos.",
+    "abre": "Tu reporte acumulativo, actividad/rubrica.csv y actividad/entrega.csv.",
+    "construye": "A5 con indicadores documentados, navegación, hallazgo, limitaciones y responsable de actualización.",
+    "comprueba": "43 min de integración, 42 min para hasta seis equipos y 5 min de registro; preguntas dentro de cada turno.",
+    "entrega": "Practicas_A5_Apellido.pbix, exportación, rubrica.csv y entrega.csv. Publica únicamente con los permisos previstos."
+  }
+}

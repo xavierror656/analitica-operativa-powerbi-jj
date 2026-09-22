@@ -1,0 +1,18 @@
+---
+interface Props { caso: 'base' | 'practicas'; descarga?: string; }
+const { caso, descarga } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<aside class="case-note" data-caso={caso} aria-label={caso === 'base' ? 'Dataset del caso base' : 'Dataset de las prácticas'}>
+  <p class="case-label">{caso === 'base' ? 'CASO BASE · PRESENTACIONES Y GUÍAS DE LOS CINCO DÍAS' : 'PRÁCTICAS 2025–2026 · ACTIVIDADES 2.1 A 5.4'}</p>
+  {caso === 'base' ? <>
+    <h2>Dataset de planta original</h2>
+    <p>8 tablas. Tras la limpieza: <strong>7,067 filas de producción y 5,822,881 piezas</strong>. Usa estas cifras únicamente con el caso base.</p>
+    <small>Para las actividades desglosadas, crea una copia del PBIX y sigue montaje.md del nuevo paquete. Sus cifras y relaciones son diferentes.</small>
+  </> : <>
+    <h2>Un mismo caso durante las 16 actividades</h2>
+    <p>10 tablas. Tras la limpieza: <strong>5,544 filas de producción y 3,761,757 piezas</strong>. Modelo A2: 16 relaciones; desde 3.2: 17.</p>
+    <small>Extrae el ZIP y lee montaje.md. Cada paquete repite los mismos datos para recuperación: continúa tu PBIX, no anexes paquetes entre sí ni compares sus cifras con el caso base.</small>
+  </>}
+  {descarga && <a class="button" href={base + descarga} download>{caso === 'base' ? 'Descargar caso base' : 'Descargar datos y consigna'}</a>}
+</aside>

@@ -1,17 +1,20 @@
 ---
 // Una frase clave, grande, sin nada más. Fondo claro.
+import ConceptoAnimado from '../ui/ConceptoAnimado.astro';
+import type catalogo from '../../data/animaciones.json';
 interface Props {
   modulo?: string;
+  animacion?: keyof typeof catalogo;
 }
-const { modulo } = Astro.props;
+const { modulo, animacion } = Astro.props;
 ---
 
 <section class="is-light">
-  <div class="slide-body items-start gap-8 max-w-[1400px]">
+  <div class:list={['slide-body items-start gap-8', !animacion && 'max-w-[1400px]']}>
     {modulo && <span class="font-codigo text-2xl text-accent">{modulo}</span>}
-    <p class="text-7xl font-titulo font-bold leading-tight">
+    {animacion ? <ConceptoAnimado animacion={animacion}><p class="text-7xl font-titulo font-bold leading-tight"><slot /></p></ConceptoAnimado> : <p class="text-7xl font-titulo font-bold leading-tight">
       <slot />
-    </p>
+    </p>}
   </div>
   <slot name="notas" />
 </section>

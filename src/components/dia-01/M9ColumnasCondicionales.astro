@@ -1,31 +1,11 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
-import Comparacion from '../ui/Comparacion.astro';
-import Cita from '../ui/Cita.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
-<EjemploReal modulo="D1-M9" titulo="Columnas condicionales anidadas: de disposición a categoría">
-  <div class="flex flex-col gap-10">
-    <Comparacion tituloA="Columna cruda (disposicion)" tituloB="Columna nueva (categoria_scrap)" iconoA="circle-x" iconoB="circle-check-big">
-      <ul slot="a" class="flex flex-col gap-3 list-disc pl-6 font-codigo text-2xl">
-        <li>"Retrabajo"</li>
-        <li>"Desecho"</li>
-        <li>"Concesión"</li>
-      </ul>
-      <ul slot="b" class="flex flex-col gap-3 list-disc pl-6">
-        <li>Recuperable</li>
-        <li>Pérdida total</li>
-        <li>Aceptado con desviación</li>
-      </ul>
-    </Comparacion>
-    <Cita mono>{`let d = if [disposicion] = null then ""
-        else Text.Lower(Text.Trim([disposicion]))
-in if d = "retrabajo" then "Recuperable"
-else if d = "desecho" then "Pérdida total"
-else if d = "concesión" then "Aceptado con desviación"
-else "Revisar"`}</Cita>
-  </div>
+<EjemploReal modulo="D1-M9" titulo="Clasifica las disposiciones de calidad">
+  <RecetaGuiada id="condicional" />
   <Notas
     slot="notas"
     minutos={8}

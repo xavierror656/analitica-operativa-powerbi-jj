@@ -10,7 +10,7 @@ interface Props {
 const { items, poco = false } = Astro.props;
 ---
 
-<ol class="flex flex-col gap-6 list-none p-0 m-0">
+<ol class:list={['pasos-lista gap-6 list-none p-0 m-0', items.length >= 5 ? 'pasos-columnas' : 'flex flex-col']}>
   {
     items.map((item, i) => (
       <li class:list={['flex items-start gap-6', { 'fragment fade-up': poco }]}>
@@ -25,3 +25,8 @@ const { items, poco = false } = Astro.props;
     ))
   }
 </ol>
+
+<style>
+  .pasos-columnas { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:32px 48px; }
+  .pasos-lista li > span:last-child { min-width:0; }
+</style>

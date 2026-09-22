@@ -1,22 +1,11 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
-import Cita from '../ui/Cita.astro';
-import Nota from '../ui/Nota.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
-<EjemploReal modulo="D1-M8e" titulo="Un parámetro, no una ruta escrita a mano" icono="sliders-horizontal">
-  <div class="flex flex-col gap-8">
-    <Cita mono>{`// RutaDatos: parámetro Texto, sin barra final
-File.Contents(RutaDatos & "\\fact_produccion.csv")
-
-// Para listar una carpeta (otra operación):
-Folder.Contents(RutaDatos)`}</Cita>
-    <Nota>
-      Si la ruta está escrita directo en cada consulta, cambiar de computadora rompe
-      las ocho consultas a la vez. Con un parámetro, se cambia en un solo lugar.
-    </Nota>
-  </div>
+<EjemploReal modulo="D1-M8e" titulo="Configura una ruta con un parámetro" icono="sliders-horizontal">
+  <RecetaGuiada id="parametro" />
   <Notas
     slot="notas"
     minutos={6}

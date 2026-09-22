@@ -38,6 +38,31 @@ del antiguo subdirectorio de GitHub Pages.
 **En clase:** `→` avanza · `S` abre las notas del facilitador en otra ventana ·
 `F` pantalla completa · `Esc` vista general de todas las slides.
 
+La portada agrupa presentación, guía y prácticas por día. Portada, catálogo y las
+21 guías usan `CursoLayout.astro` y `src/styles/curso.css`. Las diapositivas tienen
+una barra de recursos que mantiene la guía en otra pestaña y permite proyectar
+sin navegación superpuesta. Se conserva el lienzo 1920 × 1080 para laptop y proyector.
+
+**PDF:** abre «Exportar PDF» en la barra de una presentación y, al terminar la
+preparación, pulsa «Guardar como PDF». En el diálogo del navegador selecciona
+Guardar como PDF, horizontal, márgenes ninguno y gráficos de fondo. La vista usa
+la [exportación nativa de Reveal](https://revealjs.com/pdf-export/), espera las fuentes,
+incluye los fragmentos juntos y excluye notas del instructor y barras de navegación.
+La pestaña de presentación queda abierta y su avance no cambia al exportar.
+
+**Continuar la clase:** cada presentación guarda su última diapositiva en
+`localStorage` de este navegador. Al abrirla sin un hash explícito retoma esa
+posición; un enlace `#/…` tiene prioridad. «Volver al inicio» guarda la portada
+como nueva posición. No se sincroniza entre equipos ni guarda respuestas o
+cronómetros. Si el almacenamiento está bloqueado, la presentación sigue funcionando
+y avisa en la barra.
+
+Las fichas `src/data/practicas-aula.json` definen qué abrir, construir, comprobar y
+entregar en cada actividad; alimentan catálogo, diapositivas, guía y consignas del
+ZIP. Tras cambiarlas, ejecutar `scripts/preparar_material_practicas.py` y después
+`datos/scripts/generar_practicas.py`. No modificar `practicas-plan.json` para resumir
+la interfaz: conserva la transcripción del plan de origen.
+
 ## Generar el dataset sintético
 
 ```bash
@@ -227,12 +252,32 @@ diagnóstica con clave de respuestas) está en la propuesta didáctica original;
 carpeta `dia-0X-.../README.md` resume su bloque como referencia rápida al escribir
 slides.
 
+### Animaciones didácticas
+
+Siete diapositivas usan el reproductor oficial de LottieFiles: D1-M3f y D1-M7,
+D2-M37, D3-M02, D4-M32, D5-M04 y D5-M30. Los diagramas ocupan una columna lateral;
+los pasos de las prácticas permanecen visibles. Cada animación se reproduce una
+vez al entrar y tiene pausa/repetición. Fuera de la diapositiva activa se detiene.
+PDF, impresión y movimiento reducido muestran un SVG del mismo recurso.
+
+Los JSON, pósteres y créditos están en `public/animaciones/`; el motor y WASM
+se compilan como recursos locales y solo se cargan cuando se necesita animación.
+Procedencia y licencia: [animaciones](public/animaciones/README.md).
+Regeneración: `node scripts/generar_animaciones.mjs` y después
+`node scripts/renderizar_animaciones.mjs`. Verificación:
+`node --test tests/lottie.test.mjs tests/interacciones.test.mjs`.
+
 ### Material y controles del Día 1
 
 La presentación y la portada del sitio enlazan la guía `/dia-01/guia/`. Se puede
 imprimir o descargar como Markdown; incluye conexión paso a paso, reglas de limpieza,
 ejemplos M, solución de problemas y bitácora. Se mantiene en
-`src/content/guia-dia-01.md`. Los controles del instructor están en
+`src/content/guia-dia-01.md`. Los 17 procedimientos de `src/data/dia-01-pasos.json`
+alimentan la guía, la descarga Markdown y 15 diapositivas con pasos siempre visibles.
+Cada diapositiva enlaza directamente a su procedimiento; las recetas de horas y
+fechas amplían la guía. Consultar instrucciones y copiar fórmulas está permitido
+también en la evaluación: se comprueba aplicación, resultado y explicación.
+Los controles del instructor están en
 `dia-01-conexion-preparacion/evidencia-A1/README.md`.
 
 `python scripts/verificar_dia1.py` verifica el ZIP distribuido, la conciliación de

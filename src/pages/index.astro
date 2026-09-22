@@ -1,127 +1,26 @@
 ---
-import '../styles/global.css';
-
+import CursoLayout from '../components/CursoLayout.astro';
+import CasoDatos from '../components/CasoDatos.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
-const dias = [
-  { href: `${base}/dia-01`, num: 1, titulo: 'Conexión y preparación de datos', evidencia: 'A1', estado: 'listo' },
-  { href: `${base}/dia-02`, num: 2, titulo: 'Modelo de datos', evidencia: 'A2', estado: 'listo' },
-  { href: `${base}/dia-03`, num: 3, titulo: 'Indicadores en DAX', evidencia: 'A3', estado: 'listo' },
-  { href: `${base}/dia-04`, num: 4, titulo: 'Reporte operativo', evidencia: 'A4', estado: 'listo' },
-  { href: `${base}/dia-05`, num: 5, titulo: 'Análisis, publicación y proyecto', evidencia: 'A5', estado: 'listo' },
-] as const;
-
-const estadoTexto = { listo: 'Disponible', pendiente: 'Pendiente' } as const;
+const dias = ['Conexión y preparación de datos','Modelo de datos','Indicadores en DAX','Reporte operativo','Análisis, publicación y proyecto'];
 ---
-
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Analítica Operativa con Power BI · Slides</title>
-    <link rel="canonical" href={Astro.site} />
-    <meta name="description" content="Slides del programa Analítica Operativa con Power BI, para Johnson & Johnson · Skilling Center Tecmilenio." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="min-h-screen bg-ink text-[#f4f7f6]">
-    <div class="mx-auto max-w-4xl px-6 py-16 sm:py-24">
-      <p class="font-cuerpo text-sm font-semibold tracking-[0.18em] text-accent-light uppercase">
-        Skilling Center Tecmilenio · Johnson &amp; Johnson · Ciudad Juárez
-      </p>
-
-      <h1 class="mt-4 font-titulo text-4xl font-extrabold leading-tight sm:text-6xl">
-        Analítica Operativa <span class="text-accent-light">con Power BI</span>
-      </h1>
-
-      <p class="mt-5 max-w-[52ch] text-lg text-[#b7d6d1]">
-        Del dato de planta al reporte de decisión. Cinco días, cinco evidencias
-        acumulativas, un solo reporte operativo al cierre.
-      </p>
-
-      <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#b7d6d1]">
-        <span>📅 5 días · 37.5 h</span>
-        <span>🎯 Evidencias A1–A5</span>
-        <span>👤 Instructor: Javier A. Flores Flores</span>
-      </div>
-
-      <div class="mt-10 rounded-2xl border border-accent/50 bg-accent/10 p-6">
-        <h2 class="font-titulo text-2xl font-semibold">Prácticas desglosadas · Días 2–5</h2>
-        <p class="mt-2 text-[#b7d6d1]">Las 16 actividades del nuevo plan, cada una con diapositivas, datos crudos y formatos de evidencia.</p>
-        <a class="mt-4 inline-block text-accent-light underline underline-offset-4" href={`${base}/practicas/`}>Abrir actividades y descargas →</a>
-      </div>
-      <ol class="mt-12 flex flex-col gap-4">
-        {
-          dias.map((d) => (
-            <li>
-              <a
-                href={d.href}
-                class:list={[
-                  'group flex items-center gap-3 rounded-2xl border px-4 py-5 transition-colors sm:gap-6 sm:px-6',
-                  d.estado === 'listo'
-                    ? 'border-accent/40 bg-accent/10 hover:border-accent'
-                    : 'border-white/10 bg-white/[0.03] hover:border-white/25',
-                ]}
-              >
-                <span
-                  class:list={[
-                    'flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-titulo text-xl font-bold',
-                    d.estado === 'listo' ? 'bg-accent text-ink' : 'bg-white/10 text-[#b7d6d1]',
-                  ]}
-                >
-                  {d.num}
-                </span>
-
-                <span class="min-w-0 flex-1">
-                  <span class="block font-titulo text-lg font-semibold sm:text-xl">{d.titulo}</span>
-                  <span class="text-sm text-[#b7d6d1]">Evidencia {d.evidencia}</span>
-                </span>
-
-                <span
-                  class:list={[
-                    'hidden shrink-0 rounded-full px-3 py-1 text-sm font-semibold sm:inline-block',
-                    d.estado === 'listo'
-                      ? 'bg-accent text-ink'
-                      : 'bg-white/10 text-[#8fa8a4]',
-                  ]}
-                >
-                  {estadoTexto[d.estado]}
-                </span>
-
-                <span class="shrink-0 text-[#8fa8a4] transition-transform group-hover:translate-x-1">→</span>
-              </a>
-            </li>
-          ))
-        }
-      </ol>
-      <a class="mt-6 inline-block text-accent-light underline underline-offset-4" href={`${base}/dia-01/guia/`}>Día 1 · Guía de trabajo y bitácora A1 →</a>
-      <br />
-      <a class="mt-4 inline-block text-accent-light underline underline-offset-4" href={`${base}/dia-02/guia/`}>Día 2 · Guía del modelo y bitácora A2 →</a>
-
-      <br />
-      <a class="mt-4 inline-block text-accent-light underline underline-offset-4" href={`${base}/dia-03/guia/`}>Día 3 · Guía de trabajo y evidencia A3 →</a>
-      <br />
-      <a class="mt-4 inline-block text-accent-light underline underline-offset-4" href={`${base}/dia-04/guia/`}>Día 4 · Guía de trabajo y evidencia A4 →</a>
-      <br />
-      <a class="mt-4 inline-block text-accent-light underline underline-offset-4" href={`${base}/dia-05/guia/`}>Día 5 · Guía de trabajo y evidencia A5 →</a>
-
-      <p class="mt-16 border-t border-white/10 pt-6 text-sm text-[#8fa8a4]">
-        Programa diseñado para Johnson &amp; Johnson · Ciudad Juárez. Repositorio:{' '}
-        <a
-          class="text-accent-light underline decoration-white/20 underline-offset-4 hover:decoration-accent-light"
-          href="https://github.com/xavierror656/analitica-operativa-powerbi-jj"
-        >
-          xavierror656/analitica-operativa-powerbi-jj
-        </a>
-      </p>
-    </div>
-  </body>
-</html>
-
-<style>
-  a:focus-visible { outline: 3px solid var(--color-accent-light); outline-offset: 5px; }
-</style>
+<CursoLayout titulo="Analítica Operativa con Power BI" descripcion="Del dato de planta al reporte de decisión. Elige el día y abre el material que usarás en clase." etiqueta="SKILLING CENTER TECMILENIO · CIUDAD JUÁREZ" inicio>
+  <div slot="cabecera" class="course-meta"><span>5 días · 37.5 horas</span><span>Evidencias acumulativas A1–A5</span><span>Instructor: Javier A. Flores Flores</span></div>
+  <section class="course-section" id="programa" aria-labelledby="programa-titulo">
+    <div class="section-heading"><h2 id="programa-titulo">Tu material, día por día</h2><p>Presentaciones, guías y trabajo práctico</p></div>
+    <ol class="day-list">{dias.map((titulo,i)=><li class="day-row">
+      <span class="day-number">{String(i+1).padStart(2,'0')}</span>
+      <div><h3>{titulo}</h3><p>Evidencia A{i+1} · 7.5 horas{i > 0 ? ' · 4 prácticas de 90 min' : ' · Conexión y limpieza'}</p></div>
+      <nav class="course-actions" aria-label={'Material del día '+(i+1)}>
+        <a class="button button-primary" href={base+'/dia-0'+(i+1)+'/'}>Presentación</a>
+        <a class="button" href={base+'/dia-0'+(i+1)+'/guia/'}>Guía del día</a>
+        {i > 0 ? <a class="button" href={base+'/practicas/#dia-'+(i+1)}>Prácticas y datos</a> : <a class="button" href={base+'/descargas/dataset-planta-sintetico.zip'} download>Datos del día 1</a>}
+      </nav>
+    </li>)}</ol>
+  </section>
+  <section class="course-section" aria-labelledby="casos-titulo">
+    <div class="section-heading"><h2 id="casos-titulo">Elige el caso indicado en clase</h2></div>
+    <div class="case-grid"><CasoDatos caso="base" descarga="/descargas/dataset-planta-sintetico.zip"/><CasoDatos caso="practicas" descarga="/descargas/practicas/todas-las-actividades.zip"/></div>
+    <p style="margin-top:20px">Las prácticas desglosadas sustituyen los cuatro bloques prácticos del día correspondiente. Conserva los fundamentos, las pausas y el cierre; no sumes otra jornada de actividades.</p>
+  </section>
+</CursoLayout>

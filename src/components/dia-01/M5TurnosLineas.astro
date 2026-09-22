@@ -1,19 +1,19 @@
 ---
 import Practica from '../slides/Practica.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
 <Practica
   modulo="D1-M5"
   titulo="Turnos, líneas y lotes en orden"
-  consigna="En pareja: normalicen línea, recuperen turno desde hora_inicio y completen lote en producción y calidad. Conserven los valores originales y registren las filas afectadas. Cambien quién controla el equipo a mitad de la práctica."
-  pregunta="Si mañana llega un archivo nuevo del mismo formato, ¿tus pasos lo limpian solos?"
   minutos={53}
 >
+  <RecetaGuiada id="limpieza" />
   <Notas
     slot="notas"
     minutos={53}
     dice="La prueba de que su limpieza sirve no es que el archivo de hoy quede bonito. Es que el archivo de mañana, con el mismo problema, se arregle solo."
-    nota="10 min: líneas; 15 min: horas y turnos; 15 min: lotes y duplicados; 13 min: verificación. Comparar L1–L4 con dim_linea. Retirar solo duplicados exactos en producción, sobre columnas originales y antes de agregar un índice. No deduplicar eventos de calidad por parecido."
+    nota="8 min: subtotales y duplicados; 12 min: líneas y fechas; 20 min: horas, turnos y lotes; 13 min: verificación. Comparar L1–L4 con dim_linea. Retirar solo duplicados exactos en producción, sobre columnas originales y antes de agregar un índice. No deduplicar eventos de calidad por parecido."
   />
 </Practica>

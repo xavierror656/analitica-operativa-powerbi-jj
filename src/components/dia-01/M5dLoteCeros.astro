@@ -1,14 +1,11 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
-import Comparacion from '../ui/Comparacion.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
 <EjemploReal modulo="D1-M5d" titulo="El lote perdió sus ceros a la izquierda">
-  <Comparacion tituloA="Como llegó" tituloB="Como debe quedar" iconoA="circle-x" iconoB="circle-check-big">
-    <p slot="a" class="font-codigo text-3xl">lote: "2609-7"</p>
-    <p slot="b" class="font-codigo text-3xl">lote: "2609-0007"</p>
-  </Comparacion>
+  <RecetaGuiada id="lotes" />
   <Notas
     slot="notas"
     minutos={7}

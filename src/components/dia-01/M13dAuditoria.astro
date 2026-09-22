@@ -1,15 +1,15 @@
 ---
 import Practica from '../slides/Practica.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
 <Practica
   modulo="D1-M13d"
-  titulo="Audita el archivo de un compañero de otra área"
-  consigna="Intercambien PBIX y bitácora. Cambia RutaDatos a tu carpeta, actualiza y revisa una corrección desde su valor original. Comprueba filas y piezas contra la conciliación. Registra un hallazgo y su evidencia."
-  pregunta="¿Puedes reproducir el resultado y explicar cualquier diferencia sin que el autor te guíe?"
+  titulo="Revisa el archivo de tu compañero"
   minutos={12}
 >
+  <RecetaGuiada id="auditoria" />
   <Notas
     slot="notas"
     minutos={12}

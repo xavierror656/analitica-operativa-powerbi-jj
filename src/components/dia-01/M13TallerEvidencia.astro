@@ -1,20 +1,11 @@
 ---
 import TuTurno from '../slides/TuTurno.astro';
-import Nota from '../ui/Nota.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
-<TuTurno modulo="D1-M13" titulo="Evidencia A1: depura tu archivo y documéntalo" minutos={55}>
-  <div class="flex flex-col gap-10">
-    <p class="text-3xl">
-      Entrega Apellido_Nombre_A1.pbix y tu bitácora: ocho tablas, reglas documentadas,
-      excepciones visibles y conciliación de filas y piezas. Guarda una copia antes de actualizar.
-    </p>
-    <Nota tono="alto">
-      Prueba de aceptación: otra persona cambia RutaDatos, actualiza dos veces y obtiene
-      los mismos conteos y totales. Toda fila retirada tiene un motivo; todo dato pendiente queda declarado.
-    </Nota>
-  </div>
+<TuTurno modulo="D1-M13" titulo="Comprueba y entrega la evidencia A1" minutos={55}>
+  <RecetaGuiada id="evidencia" />
   <Notas
     slot="notas"
     minutos={55}

@@ -39,7 +39,7 @@ for (const day of [3, 4, 5]) {
   assert.equal([...html.matchAll(/class="quiz"/g)].length, day === 4 ? 3 : 2, `${slug}: quizzes`);
   const guide = read(`dist/${slug}/guia/index.html`);
   const download = read(`dist/descargas/guia-${slug}.md`);
-  assert.ok(guide.includes(`evidencia A${day}`));
+  assert.match(guide, new RegExp(`evidencia A${day}`, 'i'));
   assert.ok(download.includes('08:00–09:00') && download.includes('16:30–17:00'));
   if (day < 5) assert.doesNotMatch(html + guide + download, /\bpython\b/i);
   else assert.match(guide, /Python solo en el Día 5/);

@@ -200,7 +200,7 @@ Revisor: __________ · Hallazgo y evidencia: __________ · Acción o pendiente: 
 - [ ] Dos actualizaciones conservan los resultados.
 - [ ] Entrego `Apellido_Nombre_A1.pbix` y `Apellido_Nombre_A1_bitacora` en el medio que indique el instructor.
 
-La escala de dominio se aplica junto con estos controles: 1, con apoyo directo; 2, ejecución autónoma en el dataset; 3, justificación de reglas y resultados; 4, auditoría y prueba sustentada de un caso límite. Declarar un pendiente con evidencia es mejor que fabricar una corrección.
+La escala de dominio se aplica junto con estos controles: 1, con apoyo directo; 2, ejecución en el dataset consultando la guía; 3, justificación de reglas y resultados; 4, auditoría y prueba sustentada de un caso límite. Puedes consultar instrucciones y copiar fórmulas en todos los niveles: evaluamos aplicación, comprobación y explicación, no memoria. Declarar un pendiente con evidencia es mejor que fabricar una corrección.
 
 ## Si te atoras
 
@@ -224,5 +224,9 @@ Si terminas antes, intercambia archivo y bitácora, documenta un hallazgo reprod
 - [Microsoft Learn: Text.PadStart](https://learn.microsoft.com/en-us/powerquery-m/text-padstart).
 - [Microsoft Learn: Folder.Contents](https://learn.microsoft.com/en-us/powerquery-m/folder-contents).
 - [Microsoft Learn: tratamiento de errores](https://learn.microsoft.com/en-us/power-query/dealing-with-errors).
+- [Microsoft Learn: agregar una columna personalizada](https://learn.microsoft.com/en-us/power-query/add-custom-column).
+- [Microsoft Learn: selección de columnas y duplicados](https://learn.microsoft.com/en-us/power-query/working-with-duplicates).
+- [Microsoft Learn: Time.FromText y cultura de horas](https://learn.microsoft.com/en-us/powerquery-m/time-fromtext).
+- [Microsoft Learn: duplicar consultas y crear referencias](https://learn.microsoft.com/en-us/power-query/queries-pane).
 
 Las reglas de negocio y los controles del ejercicio se derivan del generador sintético del curso. Las referencias explican el comportamiento de Power Query.

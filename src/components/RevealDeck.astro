@@ -5,6 +5,11 @@ interface Props {
   titulo: string;
 }
 const { titulo } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const actividad = Astro.url.pathname.match(/\/practicas\/(\d-\d)\/?$/)?.[1];
+const dia = actividad?.[0] || Astro.url.pathname.match(/\/dia-0(\d)\/?$/)?.[1];
+const guia = actividad ? `/practicas/${actividad}/guia/` : `/dia-0${dia}/guia/`;
+const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/descargas/dataset-planta-sintetico.zip';
 ---
 
 <html lang="es">
@@ -19,7 +24,29 @@ const { titulo } = Astro.props;
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="font-cuerpo">
+    <nav class="deck-toolbar" aria-label="Recursos de la presentación">
+      <div class="deck-context">
+      <a class="deck-home" href={base+'/'}>← Curso</a>
+      <span class="deck-case">{actividad ? `Práctica ${actividad.replace('-', '.')} · Caso 2025–2026` : `Día ${dia} · Caso base`}</span>
+      <span class="deck-position" id="deck-position" aria-label="Diapositiva actual"></span>
+      <span id="deck-saved" class="deck-saved" role="status" aria-live="polite"></span>
+      </div>
+      <div class="deck-actions">
+      <a href={base+guia} target="_blank" rel="noopener">Guía ↗</a>
+      <a href={base+datos} download>Datos {actividad ? 'de la actividad' : 'del caso base'}</a>
+      {dia !== '1' && <a href={base+'/practicas/#dia-'+dia}>Prácticas del día</a>}
+      <a id="exportar-pdf" href={Astro.url.pathname+'?print-pdf'} target="_blank" rel="noopener">Exportar PDF ↗</a>
+      <button id="reiniciar-presentacion" type="button">Volver al inicio</button>
+      <button id="proyectar" type="button" title="Pantalla completa; Esc para volver">Proyectar</button>
+      </div>
+    </nav>
+    <div class="pdf-tools" role="region" aria-label="Exportar presentación a PDF">
+      <div><strong>Exportar presentación</strong><p id="pdf-status" role="status">Preparando las diapositivas…</p>
+      <p>Destino: Guardar como PDF · Horizontal · Sin márgenes · Gráficos de fondo activados.</p></div>
+      <button id="guardar-pdf" type="button" disabled>Guardar como PDF</button>
+      <a href={Astro.url.pathname}>Volver a la presentación</a>
+    </div>
     <div class="reveal">
       <div class="slides">
         <slot />
@@ -29,6 +56,12 @@ const { titulo } = Astro.props;
     <script>
       import Reveal from 'reveal.js';
       import Notes from 'reveal.js/plugin/notes';
+      import { conectarAvance } from '../lib/avance-presentacion.mjs';
+
+      const params = new URLSearchParams(window.location.search);
+      const pdf = params.has('print-pdf') || params.get('view') === 'print';
+      const hashInicial = window.location.hash;
+      if (pdf) document.documentElement.classList.add('pdf-export');
 
       const deck = new Reveal({
         width: 1920,
@@ -39,14 +72,85 @@ const { titulo } = Astro.props;
         controls: true,
         progress: true,
         hash: true,
+        view: pdf ? 'print' : 'slide',
+        pdfSeparateFragments: false,
+        pdfPageHeightOffset: 0,
+        showNotes: false,
         center: false,
         transition: 'slide',
-        plugins: [Notes],
+        keyboardCondition: (event: KeyboardEvent) => !(event.target instanceof Element && event.target.closest('.deck-toolbar')),
+        plugins: pdf ? [] : [Notes],
       });
-      deck.initialize();
+
+      conectarAvance(deck, {
+        pathname: window.location.pathname,
+        hash: hashInicial,
+        pdf,
+        storage: () => window.localStorage,
+        informar: (texto: string) => {
+          const estado = document.querySelector('#deck-saved');
+          if (estado) estado.textContent = texto;
+        },
+      });
+
+      const posicion = document.querySelector('#deck-position');
+      const actualizarPosicion = () => {
+        if (posicion) posicion.textContent = `${deck.getIndices().h + 1} / ${deck.getTotalSlides()}`;
+      };
+      deck.on('ready', actualizarPosicion);
+      deck.on('slidechanged', actualizarPosicion);
+      document.querySelector('#reiniciar-presentacion')?.addEventListener('click', () => deck.slide(0, 0, -1));
+      deck.on('pdf-ready', () => {
+        const boton = document.querySelector<HTMLButtonElement>('#guardar-pdf');
+        if (boton) boton.disabled = false;
+        const estado = document.querySelector('#pdf-status');
+        if (estado) estado.textContent = `${deck.getTotalSlides()} diapositivas listas. Guarda el archivo desde el diálogo de impresión.`;
+      });
+      document.querySelector('#guardar-pdf')?.addEventListener('click', () => window.print());
+      document.querySelector('#proyectar')?.addEventListener('click', async () => {
+        if (!document.fullscreenEnabled) {
+          const boton = document.querySelector('#proyectar');
+          if (boton) boton.textContent = 'Usa F11 para proyectar';
+          return;
+        }
+        try { await document.documentElement.requestFullscreen(); }
+        catch { document.querySelector('#proyectar')!.textContent = 'Usa F11 para proyectar'; }
+      });
+      document.addEventListener('fullscreenchange', () => deck.layout());
+
+      async function iniciar() {
+        // La geometría del PDF se mide después de cargar las tipografías.
+        if (pdf && document.fonts) await document.fonts.ready;
+        await deck.initialize();
+      }
+      iniciar();
 
       // S: notas del facilitador en otra ventana (plugin Notes)
       // F: pantalla completa · Esc: vista general — atajos nativos de Reveal.
     </script>
   </body>
 </html>
+
+<style is:global>
+  .deck-toolbar { height:96px; display:flex; flex-direction:column; justify-content:center; gap:10px; padding:10px 24px; background:#0a2c28; color:#f4f7f6; font:14px var(--font-cuerpo); border-bottom:1px solid #37665d; }
+  .deck-context,.deck-actions { display:flex; align-items:center; gap:20px; }.deck-saved { color:#b7d6d1; font-size:14px; }
+  .deck-toolbar a { color:#bdf3e8; text-decoration:none; white-space:nowrap; }
+  .deck-toolbar a:hover { text-decoration:underline; text-underline-offset:4px; }
+  .deck-home { font-weight:700; }.deck-case { color:#d1e5df; }.deck-position { margin-left:auto; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .deck-toolbar button { border:1px solid #74aea1; background:transparent; color:#f4f7f6; border-radius:6px; padding:8px 12px; font:inherit; cursor:pointer; }
+  .deck-toolbar :focus-visible { outline:3px solid #f5a623; outline-offset:4px; }
+  body:has(.deck-toolbar) { height:100dvh; overflow:hidden; }
+  body:has(.deck-toolbar) .reveal { height:calc(100dvh - 96px); }
+  :fullscreen .deck-toolbar { display:none; }
+  body:has(.deck-toolbar):fullscreen .reveal, :fullscreen body:has(.deck-toolbar) .reveal, .reveal:fullscreen { height:100dvh; }
+  .pdf-tools { display:none; }
+  html.pdf-export .deck-toolbar { display:none; }
+  html.pdf-export body { height:auto; overflow:visible; }
+  html.pdf-export .pdf-tools { position:fixed; inset:0 0 auto; z-index:100; display:flex; gap:24px; align-items:center; padding:16px 24px; background:#0a2c28; color:#f4f7f6; font:14px/1.5 var(--font-cuerpo); }
+  .pdf-tools p { margin:4px 0 0; }.pdf-tools a { color:#bdf3e8; }.pdf-tools button { font:inherit; background:#f4f7f6; color:#0a2c28; border:0; border-radius:6px; padding:12px 16px; cursor:pointer; }.pdf-tools button:disabled { opacity:.6; cursor:wait; }
+  .pdf-tools :focus-visible { outline:3px solid #f5a623; outline-offset:4px; }
+  /* Reveal elimina el padding al imprimir; este curso lo necesita en el lienzo. */
+  html.pdf-export.reveal-print .reveal .slides section { padding:96px 120px !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+  html.reveal-print .reveal .slides aside.notes { display:none !important; }
+  @media print { .deck-toolbar,.pdf-tools,html.pdf-export .pdf-tools { display:none !important; }body:has(.deck-toolbar),body:has(.deck-toolbar) .reveal { height:auto; overflow:visible; } }
+</style>

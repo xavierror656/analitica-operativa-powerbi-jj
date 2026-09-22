@@ -272,13 +272,23 @@ body {
   outline-offset: 6px;
 }
 .reveal .slides section h2 { line-height: 1.16; text-wrap: balance; }
-.reveal .slides section pre { overflow-wrap: anywhere; }
+.reveal .slides section pre { font-size:30px; line-height:1.45; width:100%; margin:0; overflow-wrap:anywhere; }
+.reveal .slides section pre code { max-height:none; padding:0; font-size:inherit; line-height:inherit; }
 .day-roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .day-roadmap-item { border-top: 4px solid #08796b; padding: 20px 24px; background: var(--color-paper-2); }
 .day-roadmap-item strong { display: block; font-size: 36px; margin: 10px 0; }
 .day-roadmap-item p { margin: 0; }
 .day-time { font: 26px var(--font-codigo); color: #08796b; }
 .day-guide-link { display: inline-block; margin-top: 24px; font-size: 28px; font-weight: 600; text-decoration: underline; text-underline-offset: 6px; }
+.activity-slide-heading { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:40px; align-items:start; }
+.activity-slide-heading .cronometro { min-width:240px; }
+.reveal .slides section .activity-slide-heading h2 { margin-bottom:0; }
+.reveal .controls { color:#14b8a6; }
+.reveal .progress { color:#14b8a6; background:#dce8e5; }
+.reveal .slides section .practice-contract { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+.practice-contract > div { border-top:3px solid #08796b; padding:22px; background:#e7efed; }
+.reveal .slides section .practice-contract h3 { font-size:30px; color:#08796b; margin-bottom:12px; }
+.reveal .slides section .practice-contract p { font-size:30px; margin:0; }
 @media (prefers-reduced-motion: reduce) {
   .reveal *, .reveal *::before, .reveal *::after { animation: none !important; transition: none !important; }
 }

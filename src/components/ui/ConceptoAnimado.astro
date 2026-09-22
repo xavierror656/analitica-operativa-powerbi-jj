@@ -1,0 +1,11 @@
+---
+import AnimacionLottie from './AnimacionLottie.astro';
+import type catalogo from '../../data/animaciones.json';
+interface Props { animacion: keyof typeof catalogo }
+const { animacion } = Astro.props;
+---
+<div class="concepto-animado"><div class="concepto-texto"><slot /></div><AnimacionLottie animacion={animacion} /></div>
+<style>
+  .concepto-animado { display:grid; grid-template-columns:minmax(0,1fr) 480px; gap:70px; align-items:center; width:100%; }
+  .concepto-texto { min-width:0; }
+</style>

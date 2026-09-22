@@ -1,0 +1,463 @@
+[
+  {
+    "id": "conectar",
+    "titulo": "Conecta las ocho tablas",
+    "ubicacion": "Power BI Desktop → Inicio → Obtener datos",
+    "pasos": [
+      {
+        "accion": "Extrae y abre",
+        "detalle": "Extrae el ZIP. Elige Texto/CSV → fact_produccion.csv; coma y UTF-8 → Transformar datos."
+      },
+      {
+        "accion": "Conserva el texto original",
+        "detalle": "En Pasos aplicados, revisa Tipo cambiado. Elimínalo si convirtió fechas, horas o códigos antes de limpiarlos."
+      },
+      {
+        "accion": "Importa las otras siete",
+        "detalle": "En el editor: Inicio → Nuevo origen → Texto/CSV. Repite una vez por archivo; conserva su nombre."
+      },
+      {
+        "accion": "Activa el perfilado",
+        "detalle": "Vista → Calidad, Distribución y Perfil de columna. Abajo, cambia 1,000 filas por conjunto completo."
+      }
+    ],
+    "comprueba": "Deben aparecer ocho consultas separadas. No combines producción, calidad y catálogos.",
+    "entrega": "Guarda como Apellido_Nombre_A1.pbix. Registra tres anomalías antes de corregir.",
+    "ayuda": "Si Tipo cambiado produjo errores, elimina ese paso y vuelve al texto de origen; convertir Error a texto no recupera el valor. En las ocho consultas revisa códigos y lote como Texto. Para guardar desde el editor usa Inicio → Cerrar y aplicar, y en Desktop Archivo → Guardar como; vuelve con Inicio → Transformar datos."
+  },
+  {
+    "id": "documentar",
+    "titulo": "Documenta antes de corregir",
+    "ubicacion": "Power Query + tu bitácora",
+    "pasos": [
+      {
+        "accion": "Copia la plantilla de la guía",
+        "detalle": "Crea tu bitácora con tabla/columna, valor original, regla, filas afectadas, validación y pendiente."
+      },
+      {
+        "accion": "Localiza una anomalía",
+        "detalle": "Selecciona una columna y mira su perfil completo. Filtra un valor extraño para inspeccionar ejemplos."
+      },
+      {
+        "accion": "Registra la evidencia",
+        "detalle": "Anota tabla, columna, ejemplo literal e impacto. Si no conoces la regla, escribe «Pendiente»."
+      },
+      {
+        "accion": "Quita los filtros de exploración",
+        "detalle": "Elimina sus pasos en Pasos aplicados. Compara tus hallazgos con tu pareja y guarda la bitácora."
+      }
+    ],
+    "comprueba": "La exploración no debe dejar filas ocultas por filtros accidentales. Todavía no corrijas el origen.",
+    "entrega": "Inventario de anomalías con evidencia; consulta la lista de nueve problemas en la guía."
+  },
+  {
+    "id": "duplicados",
+    "titulo": "Separa subtotales y copias exactas",
+    "ubicacion": "fact_produccion · antes de normalizar o añadir columnas",
+    "pasos": [
+      {
+        "accion": "Registra el punto de partida",
+        "detalle": "Con las columnas originales: 7,187 filas y 6,046,188 piezas. Guarda esos controles en la bitácora."
+      },
+      {
+        "accion": "Separa Total día",
+        "detalle": "En el filtro de turno, excluye «Total día». Registra 12 filas y 134,753 piezas retiradas."
+      },
+      {
+        "accion": "Selecciona todas las columnas",
+        "detalle": "Clic en el primer encabezado y Mayús + clic en el último. Inicio → Quitar filas → Quitar duplicados."
+      },
+      {
+        "accion": "Anota la diferencia",
+        "detalle": "Deben salir 108 copias y 88,554 piezas. Ahora sí puedes duplicar columnas para conservar originales."
+      }
+    ],
+    "comprueba": "Salida: 7,067 filas y 5,822,881 piezas. Quitar duplicados compara las columnas seleccionadas.",
+    "entrega": "No dedupliques calidad por parecido. No normalices ni agregues índices antes de este paso.",
+    "ayuda": "Para obtener un control sin alterar la consulta: clic derecho en la consulta → Duplicar, selecciona el paso que quieres medir y elimina solamente los pasos posteriores de esa copia. Para filas usa Transformar → Contar filas; para piezas, selecciona piezas_producidas (Número entero) → Transformar → Estadísticas → Suma. Anota el resultado y elimina la copia temporal. Repite antes y después de cada exclusión; las diferencias son lo retirado."
+  },
+  {
+    "id": "lineas",
+    "titulo": "Normaliza las líneas",
+    "ubicacion": "Tras retirar subtotales y duplicados · linea_id como Texto",
+    "pasos": [
+      {
+        "accion": "Abre producción",
+        "detalle": "Agregar columna → Columna personalizada. Nombre: linea_limpia. Pega la fórmula de la derecha."
+      },
+      {
+        "accion": "Revisa ambos valores",
+        "detalle": "Compara linea_id con linea_limpia. Filtra «Revisar»; resuelve o documenta antes de continuar."
+      },
+      {
+        "accion": "Conserva y renombra",
+        "detalle": "Renombra linea_id a linea_original y linea_limpia a linea_id. Asigna tipo Texto."
+      },
+      {
+        "accion": "Comprueba el catálogo",
+        "detalle": "Compara con dim_linea: L1, L2, L3 y L4. Aplica la misma regla donde exista linea_id."
+      }
+    ],
+    "formula": "let\n t = Text.Upper(Text.Trim([linea_id])),\n s = Text.Replace(t, \"Í\", \"I\"),\n u = Text.Replace(Text.Replace(s,\n     \"_\", \"\"), \" \", \"\"),\n c = Text.Replace(u, \"LINEA\", \"L\")\nin if List.Contains({\"L1\",\"L2\",\"L3\",\"L4\"}, c)\n   then c else \"Revisar\"",
+    "comprueba": "L1, Línea 1, LINEA_1 y linea1 → L1. El total de piezas y filas no cambia.",
+    "entrega": "Guarda un ejemplo original → limpio en la bitácora."
+  },
+  {
+    "id": "horas",
+    "titulo": "Convierte horas de 12 y 24 horas",
+    "ubicacion": "fact_produccion · hora_inicio todavía como Texto",
+    "pasos": [
+      {
+        "accion": "Crea una columna",
+        "detalle": "Agregar columna → Columna personalizada. Llámala hora_limpia y pega la fórmula."
+      },
+      {
+        "accion": "Asigna tipo Hora",
+        "detalle": "En el encabezado de hora_limpia, pulsa el icono de tipo y elige Hora."
+      },
+      {
+        "accion": "Comprueba tres ejemplos",
+        "detalle": "6:00 a.m. → 06:00; 2:00 p.m. → 14:00; 10:00 p.m. → 22:00. Revisa si hay Error."
+      },
+      {
+        "accion": "Conserva el original",
+        "detalle": "Renombra hora_inicio a hora_inicio_original y hora_limpia a hora_inicio. Repite en hora_fin si hace falta."
+      }
+    ],
+    "formula": "let\n t = Text.Trim([hora_inicio]),\n h = Text.Replace(Text.Replace(t,\n     \"a.m.\", \"AM\"), \"p.m.\", \"PM\")\nin Time.FromText(h, [Culture=\"en-US\"])",
+    "comprueba": "No retires a.m. / p.m. sin interpretarlo: 2:00 p.m. corresponde a las 14:00.",
+    "entrega": "Hora válida y texto original conservado. Para hora_fin sustituye la referencia de la fórmula."
+  },
+  {
+    "id": "turnos",
+    "titulo": "Recupera el turno desde la hora",
+    "ubicacion": "fact_produccion · primero sigue la receta «Horas» de la guía",
+    "pasos": [
+      {
+        "accion": "Normaliza hora_inicio",
+        "detalle": "Usa la receta Horas de la guía hasta obtener tipo Hora. Conserva su texto original."
+      },
+      {
+        "accion": "Agrega turno_limpio",
+        "detalle": "Agregar columna → Columna personalizada. Pega la fórmula; después asigna tipo Texto."
+      },
+      {
+        "accion": "Contrasta con dim_turno",
+        "detalle": "06:00 → «1», 14:00 → «2», 22:00 → «3». Compara con nombre; turno_id contiene T1, T2 y T3."
+      },
+      {
+        "accion": "Conserva y sustituye",
+        "detalle": "Renombra turno a turno_original y turno_limpio a turno. Documenta cualquier «Revisar»."
+      }
+    ],
+    "formula": "if [hora_inicio] = #time(6,0,0) then \"1\"\nelse if [hora_inicio] = #time(14,0,0)\nthen \"2\"\nelse if [hora_inicio] = #time(22,0,0)\nthen \"3\"\nelse \"Revisar\"",
+    "comprueba": "En este dataset se recuperan 308 registros con supervisor en turno después de depurar producción.",
+    "entrega": "El nombre del supervisor no determina el turno; usa la hora y la regla del ejercicio.",
+    "enlaces": [
+      "horas"
+    ]
+  },
+  {
+    "id": "fechas",
+    "titulo": "Convierte fechas sin invertir día y mes",
+    "ubicacion": "fact_produccion · fecha todavía como Texto",
+    "pasos": [
+      {
+        "accion": "Agrega fecha_limpia",
+        "detalle": "Agregar columna → Columna personalizada. Pega la fórmula de formatos explícitos."
+      },
+      {
+        "accion": "Selecciona tipo Fecha",
+        "detalle": "Pulsa el icono de tipo del encabezado de fecha_limpia → Fecha. Revisa el perfil completo."
+      },
+      {
+        "accion": "Comprueba la interpretación",
+        "detalle": "03/04/2025 → 3 de abril; 03-04-2025 → 4 de marzo. Compara el intervalo con dim_calendario."
+      },
+      {
+        "accion": "Conserva el original",
+        "detalle": "Renombra fecha a fecha_original y fecha_limpia a fecha. Documenta formatos desconocidos."
+      }
+    ],
+    "formula": "let\n t = Text.Trim([fecha]),\n formato = if Text.Contains(t, \"/\")\n then \"dd/MM/yyyy\"\n else if Text.Length(Text.BeforeDelimiter(t, \"-\")) = 4\n then \"yyyy-MM-dd\" else \"MM-dd-yyyy\"\nin Date.FromText(t,\n   [Format=formato, Culture=\"en-US\"])",
+    "comprueba": "El calendario va del 1 de marzo de 2025 al 31 de agosto de 2026. No debe haber fechas fuera de ese intervalo.",
+    "entrega": "Una fecha verificada por cada formato. Revisa tipo Fecha en las otras tablas."
+  },
+  {
+    "id": "lotes",
+    "titulo": "Completa el sufijo de los lotes",
+    "ubicacion": "fact_produccion y fact_calidad · lote como Texto",
+    "pasos": [
+      {
+        "accion": "Abre producción depurada",
+        "detalle": "Confirma que ya retiraste Total día y duplicados. Agregar columna → Columna personalizada."
+      },
+      {
+        "accion": "Crea lote_limpio",
+        "detalle": "Pega la fórmula. Al aceptar, asigna tipo Texto al nuevo encabezado."
+      },
+      {
+        "accion": "Comprueba el formato",
+        "detalle": "2503-001 → 2503-0001. Debe haber cuatro dígitos antes y cuatro después del guion."
+      },
+      {
+        "accion": "Conserva y repite en calidad",
+        "detalle": "Renombra lote a lote_original y lote_limpio a lote. Repite la receta en fact_calidad."
+      }
+    ],
+    "formula": "Text.BeforeDelimiter([lote], \"-\") & \"-\" &\nText.PadStart(\n  Text.AfterDelimiter([lote], \"-\"), 4, \"0\")",
+    "comprueba": "Las mismas piezas conservan el mismo identificador de lote en producción y calidad.",
+    "entrega": "No cambies piezas ni retires eventos. Registra los lotes que no cumplan el formato."
+  },
+  {
+    "id": "limpieza",
+    "titulo": "Resuelve la limpieza en este orden",
+    "ubicacion": "En pareja · Power Query y guía abiertos",
+    "pasos": [
+      {
+        "accion": "0–8 min · Retira filas justificadas",
+        "detalle": "Sigue «Duplicados»: primero Total día, luego copias exactas sobre columnas originales."
+      },
+      {
+        "accion": "8–20 min · Limpia líneas y fechas",
+        "detalle": "Sigue las recetas «Líneas» y «Fechas». Crea columnas limpias y conserva las originales."
+      },
+      {
+        "accion": "20–40 min · Horas, turnos y lotes",
+        "detalle": "Aplica «Horas» antes de «Turnos»; después «Lotes» en producción y calidad. Cambien de operador."
+      },
+      {
+        "accion": "40–53 min · Revisa y documenta",
+        "detalle": "Calidad: selecciona tipo_defecto → Transformar → Formato → Recortar. Mantén null en horas_paro."
+      }
+    ],
+    "comprueba": "Producción: 7,067 filas; 5,822,881 piezas; 208 horas_paro faltantes. Justifica cualquier diferencia.",
+    "entrega": "Registra regla, original, resultado y filas afectadas. Comprueba tipos y catálogos antes de guardar.",
+    "enlaces": [
+      "duplicados",
+      "lineas",
+      "fechas",
+      "horas",
+      "turnos",
+      "lotes"
+    ],
+    "ayuda": "Primero completa la receta Duplicados; normalizar antes puede convertir registros diferentes en filas iguales. Las recetas detalladas están enlazadas debajo. Usa Número entero para piezas y Texto para códigos y lotes. Para decimales con punto: clic derecho en encabezado → Cambiar tipo → Usar configuración regional → Número decimal → Inglés (Estados Unidos). Conserva los nulos de horas_paro."
+  },
+  {
+    "id": "perfilado",
+    "titulo": "Perfila el conjunto completo",
+    "ubicacion": "Editor de Power Query → Vista",
+    "pasos": [
+      {
+        "accion": "Activa las tres vistas",
+        "detalle": "Marca Calidad de columna, Distribución de columna y Perfil de columna."
+      },
+      {
+        "accion": "Incluye todas las filas",
+        "detalle": "En la parte inferior izquierda, pulsa «primeras 1,000 filas» y elige el conjunto completo."
+      },
+      {
+        "accion": "Selecciona una columna",
+        "detalle": "Revisa linea_id, turno y horas_paro: valores frecuentes, vacíos, errores y valores distintos."
+      },
+      {
+        "accion": "Registra y limpia la exploración",
+        "detalle": "Anota una anomalía con su conteo. Si aplicaste filtros, elimina esos pasos al terminar."
+      }
+    ],
+    "comprueba": "«Válido» indica que coincide con el tipo; un supervisor puede ser texto válido y turno incorrecto.",
+    "entrega": "Tabla, columna, valor observado, conteo e impacto en tu bitácora."
+  },
+  {
+    "id": "carpeta",
+    "titulo": "Combina dos periodos de producción",
+    "ubicacion": "Demostración · carpeta aparte preparada por el instructor",
+    "pasos": [
+      {
+        "accion": "Revisa los dos CSV de la demo",
+        "detalle": "Mismas columnas y periodos sin traslape. Anota sus filas. No uses juntos los ocho CSV de A1."
+      },
+      {
+        "accion": "Conecta la carpeta",
+        "detalle": "Inicio → Nuevo origen → Más → Carpeta → Conectar. Selecciona la carpeta → Transformar datos."
+      },
+      {
+        "accion": "Filtra y combina",
+        "detalle": "Filtra Extension = .csv y Name para dejar solo los dos archivos. En Content, pulsa Combinar archivos."
+      },
+      {
+        "accion": "Confirma el ejemplo y cuenta",
+        "detalle": "Selecciona coma y UTF-8 en el archivo de ejemplo. Acepta y comprueba la suma de filas."
+      }
+    ],
+    "comprueba": "Filas combinadas = filas del archivo 1 + filas del archivo 2. No debe repetirse un periodo.",
+    "entrega": "Conserva esta demostración aparte de las ocho tablas de A1.",
+    "ayuda": "Esta carpeta no viene en el ZIP base: el instructor debe proporcionar dos CSV homogéneos de periodos disjuntos. No dupliques el mismo archivo para simular dos meses. Si aún no está disponible, continúa con RutaDatos y vuelve a esta demostración cuando la entregue."
+  },
+  {
+    "id": "parametro",
+    "titulo": "Configura una ruta que puedas cambiar",
+    "ubicacion": "Editor de Power Query → Inicio → Administrar parámetros",
+    "pasos": [
+      {
+        "accion": "Crea RutaDatos",
+        "detalle": "Nuevo parámetro → nombre RutaDatos → tipo Texto. Valor actual: carpeta de los CSV, sin barra final."
+      },
+      {
+        "accion": "Abre el paso Origen",
+        "detalle": "Selecciona fact_produccion → Origen. Activa Vista → Barra de fórmulas si no aparece."
+      },
+      {
+        "accion": "Sustituye solo la ruta",
+        "detalle": "Dentro de File.Contents usa el ejemplo. Conserva Csv.Document y sus opciones alrededor."
+      },
+      {
+        "accion": "Repite y actualiza",
+        "detalle": "Hazlo en las otras siete consultas, con su nombre de CSV. Inicio → Actualizar vista previa."
+      }
+    ],
+    "formula": "File.Contents(\n  RutaDatos & \"\\fact_produccion.csv\"\n)",
+    "comprueba": "Las ocho consultas leen desde RutaDatos. Si falla, revisa carpeta, archivo y extracción del ZIP.",
+    "entrega": "Guarda el PBIX; otra persona podrá apuntarlo a su carpeta sin editar ocho rutas."
+  },
+  {
+    "id": "condicional",
+    "titulo": "Crea y prueba categoria_scrap",
+    "ubicacion": "fact_calidad → Agregar columna → Columna personalizada",
+    "pasos": [
+      {
+        "accion": "Nombra la columna",
+        "detalle": "Escribe categoria_scrap. Pega la fórmula de la derecha sin añadir un signo = al inicio."
+      },
+      {
+        "accion": "Acepta y asigna tipo",
+        "detalle": "Pulsa Aceptar. En el nuevo encabezado selecciona el tipo Texto."
+      },
+      {
+        "accion": "Inspecciona las categorías",
+        "detalle": "Compara disposicion con categoria_scrap. Lo desconocido y null deben quedar como «Revisar»."
+      },
+      {
+        "accion": "Prueba seis entradas",
+        "detalle": "Inicio → Introducir datos: columna disposicion con Retrabajo, RETRABAJO, Desecho, Concesión, vacío y Otro."
+      }
+    ],
+    "formula": "let d = if [disposicion] = null then \"\"\n else Text.Lower(Text.Trim([disposicion]))\nin if d = \"retrabajo\" then \"Recuperable\"\nelse if d = \"desecho\" then \"Pérdida total\"\nelse if d = \"concesión\"\nthen \"Aceptado con desviación\"\nelse \"Revisar\"",
+    "comprueba": "En la consulta de prueba aplica la misma fórmula. Vacío y Otro → Revisar; RETRABAJO → Recuperable.",
+    "entrega": "Registra los seis resultados. La prueba va en una consulta aparte, sin modificar el CSV.",
+    "ayuda": "Nombra la consulta pequeña prueba_disposicion. Desactiva Habilitar carga desde su menú contextual para mantener ocho tablas de A1. Esta clasificación es didáctica y no autoriza liberación de producto."
+  },
+  {
+    "id": "errores",
+    "titulo": "Registra errores sin perder su rastro",
+    "ubicacion": "Consulta de diagnóstico · misma base para errores y válidos",
+    "pasos": [
+      {
+        "accion": "Localiza el paso con Error",
+        "detalle": "Clic en una celda Error para leer su detalle. Duplica la consulta y deja ese paso como último."
+      },
+      {
+        "accion": "Crea dos referencias",
+        "detalle": "Clic derecho sobre esa copia → Referencia. Repite: llama una excepciones y otra validos."
+      },
+      {
+        "accion": "Separa usando las mismas columnas",
+        "detalle": "En excepciones: Inicio → Conservar filas → Conservar errores. En validos: Quitar filas → Quitar errores."
+      },
+      {
+        "accion": "Documenta y evita cargar Error",
+        "detalle": "Anota conteos y motivo. Desmarca Habilitar carga en las consultas de diagnóstico con errores."
+      }
+    ],
+    "comprueba": "Filas de la base = válidos + excepciones. Un null y un valor fuera de catálogo requieren revisión aparte.",
+    "entrega": "Si no hay Error, registra cero. Prueba un caso límite aparte; no alteres el origen para provocar errores.",
+    "ayuda": "Esta separación se hace en copias de diagnóstico y no sustituye automáticamente las tablas de A1. Desactiva Habilitar carga en las tres consultas auxiliares: base, excepciones y validos. Corrige la regla en la consulta principal y vuelve a validar. Para excluir un caso sin solución, conserva su evidencia y concilia filas y piezas. Elige en las dos referencias exactamente las mismas columnas que estás evaluando."
+  },
+  {
+    "id": "laboratorio",
+    "titulo": "Aplica las técnicas con la guía abierta",
+    "ubicacion": "Power Query · sigue los enlaces de cada receta",
+    "pasos": [
+      {
+        "accion": "0–8 min · Perfilado y carpeta",
+        "detalle": "Revisa las tres fact_. Con la carpeta de demostración comprueba que las filas combinadas sean la suma."
+      },
+      {
+        "accion": "8–16 min · Parametriza",
+        "detalle": "Sigue «Parámetro»: crea RutaDatos y úsalo en el paso Origen de las ocho consultas."
+      },
+      {
+        "accion": "16–26 min · Clasifica y prueba",
+        "detalle": "Sigue «Condicional»: crea categoria_scrap y prueba las seis entradas en una consulta aparte."
+      },
+      {
+        "accion": "26–38 min · Revisa y actualiza",
+        "detalle": "Sigue «Errores». Registra errores y nulos; Cerrar y aplicar → Actualizar dos veces y compara controles."
+      }
+    ],
+    "comprueba": "Mismo origen → mismos conteos y piezas en ambas actualizaciones. Documenta lo que quede pendiente.",
+    "entrega": "Puedes consultar pasos y copiar fórmulas. Lo que debes demostrar es cómo validaste el resultado.",
+    "enlaces": [
+      "perfilado",
+      "carpeta",
+      "parametro",
+      "condicional",
+      "errores"
+    ]
+  },
+  {
+    "id": "evidencia",
+    "titulo": "Prepara y comprueba la evidencia A1",
+    "ubicacion": "Tu PBIX + la plantilla de bitácora de esta guía",
+    "pasos": [
+      {
+        "accion": "0–25 min · Completa las reglas",
+        "detalle": "Abre Transformar datos. Revisa los nueve problemas, valores originales, tipos y RutaDatos."
+      },
+      {
+        "accion": "25–40 min · Concilia",
+        "detalle": "Anota filas y piezas de origen, subtotales, copias, exclusiones y salida. La diferencia debe ser cero."
+      },
+      {
+        "accion": "40–50 min · Documenta",
+        "detalle": "Completa regla, motivo, filas afectadas, comprobación y pendientes. Incluye un antes/después por regla."
+      },
+      {
+        "accion": "50–55 min · Guarda y repite",
+        "detalle": "Cerrar y aplicar → Guardar como Apellido_Nombre_A1.pbix. Actualiza dos veces y registra resultados."
+      }
+    ],
+    "comprueba": "7,187 − 12 − 108 = 7,067 filas. 6,046,188 − 134,753 − 88,554 = 5,822,881 piezas, sin otras exclusiones.",
+    "entrega": "Entrega PBIX + bitácora. Las consultas auxiliares quedan sin carga; las ocho tablas base permanecen separadas.",
+    "ayuda": "Para medir filas y sumas sin alterar tus tablas, consulta la ayuda de «Duplicados». Si excluiste excepciones adicionales, réstalas también y documenta sus piezas. Los 208 nulos de horas_paro conservados no se restan como filas excluidas.",
+    "enlaces": [
+      "duplicados",
+      "limpieza"
+    ]
+  },
+  {
+    "id": "auditoria",
+    "titulo": "Reproduce el archivo de tu compañero",
+    "ubicacion": "Abre una copia del PBIX recibido + su bitácora + esta guía",
+    "pasos": [
+      {
+        "accion": "0–3 min · Ajusta la carpeta",
+        "detalle": "Transformar datos → Administrar parámetros → RutaDatos. Pon la carpeta de tus ocho CSV."
+      },
+      {
+        "accion": "3–6 min · Repite la carga",
+        "detalle": "Cerrar y aplicar → Inicio → Actualizar. Compara los controles de filas y piezas con la bitácora."
+      },
+      {
+        "accion": "6–9 min · Revisa una corrección",
+        "detalle": "En Power Query, compara una columna original y su versión limpia; identifica el paso que la transforma."
+      },
+      {
+        "accion": "9–12 min · Deja evidencia",
+        "detalle": "Registra tabla, paso, resultado esperado, observado y acción. Si todo coincide, documenta la prueba."
+      }
+    ],
+    "comprueba": "Puedes consultar instrucciones y fórmulas. El archivo debe permitir repetir y explicar sus resultados.",
+    "entrega": "Devuelve un hallazgo reproducible o una comprobación documentada; conserva intacto el archivo recibido."
+  }
+]

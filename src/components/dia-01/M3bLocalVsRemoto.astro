@@ -9,22 +9,19 @@ import Notas from '../ui/Notas.astro';
   <div class="flex flex-col gap-10">
     <Comparacion tituloA="Origen local" tituloB="Origen remoto" iconoA="hard-drive" iconoB="server">
       <ul slot="a" class="flex flex-col gap-3 list-disc pl-6">
-        <li>CSV, Excel, una carpeta compartida en la red</li>
-        <li>Power BI: <em>Obtener datos → Carpeta / Excel</em>, directo</li>
-        <li>Necesitas acceso de lectura a la ubicación del archivo</li>
-        <li>Es lo que usa el dataset de este curso</li>
+        <li>CSV, Excel o carpeta compartida</li>
+        <li><em>Obtener datos → Carpeta / Excel</em></li>
+        <li>Acceso de lectura a los archivos; es el caso del curso</li>
       </ul>
       <ul slot="b" class="flex flex-col gap-3 list-disc pl-6">
-        <li>SQL Server, SAP HANA / BW o una fuente autorizada del MES</li>
-        <li>Power BI: <em>Obtener datos → SQL Server / SAP HANA / SAP BW</em></li>
-        <li>Requiere credenciales y autorización de IT</li>
-        <li>El acceso y la actualización dependen del origen y la red (Día 5)</li>
+        <li>SQL Server, SAP HANA / BW o fuente autorizada del MES</li>
+        <li>Elige el conector del sistema en <em>Obtener datos</em></li>
+        <li>Credenciales y autorización de IT; actualización según origen y red (Día 5)</li>
       </ul>
     </Comparacion>
     <Nota>
-      El dataset del curso es CSV a propósito: nadie necesita permiso de IT para
-      practicar el Día 1. Conectar contra SAP o el MES real de planta es el mismo
-      concepto, con otro conector y otra fila de credenciales, no otra lógica.
+      Practicamos con CSV sintéticos. El proceso de preparación se conserva;
+      el conector, los permisos y las reglas de actualización dependen del origen.
     </Nota>
   </div>
   <Notas

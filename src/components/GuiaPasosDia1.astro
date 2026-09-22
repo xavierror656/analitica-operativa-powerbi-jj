@@ -1,0 +1,29 @@
+---
+import recetas from '../data/dia-01-pasos.json';
+---
+<div class="guia-pasos reading" aria-labelledby="instrucciones-dia-1">
+  <h2 id="instrucciones-dia-1">Resuelve paso a paso</h2>
+  <p><strong>Puedes consultar esta guía, copiar las fórmulas y pedir apoyo durante todas las actividades.</strong> Evaluamos que puedas aplicar los pasos, comprobar el resultado y explicar tus decisiones. No necesitas memorizar menús ni fórmulas.</p>
+  <p>Abre Power BI y esta guía lado a lado en tu laptop. En cada receta verás dónde empezar, qué hacer y cómo saber si quedó bien. Las fórmulas son de Power Query (lenguaje M); Python se verá el día 5.</p>
+  <nav class="indice-pasos" aria-label="Pasos del día 1">
+    {recetas.map((receta) => <a href={`#paso-${receta.id}`}>{receta.titulo}</a>)}
+  </nav>
+  {recetas.map((receta) => <section id={`paso-${receta.id}`} class="receta-guia">
+    <h3>{receta.titulo}</h3>
+    <p><strong>Dónde:</strong> {receta.ubicacion}</p>
+    <ol>{receta.pasos.map((paso) => <li><strong>{paso.accion}.</strong> {paso.detalle}</li>)}</ol>
+    {receta.formula && <><p><strong>Fórmula M para copiar:</strong></p><pre><code>{receta.formula}</code></pre></>}
+    <p><strong>Comprueba:</strong> {receta.comprueba}</p>
+    <p><strong>Al terminar:</strong> {receta.entrega}</p>
+    {receta.ayuda && <p class="ayuda-receta"><strong>Si necesitas más detalle:</strong> {receta.ayuda}</p>}
+    {receta.enlaces && <p>Recetas de apoyo: {receta.enlaces.map((id, i) => <>{i > 0 && ' · '}<a href={`#paso-${id}`}>{recetas.find((item) => item.id === id)?.titulo}</a></>)}</p>}
+    <a href="#instrucciones-dia-1">Volver al índice de pasos ↑</a>
+  </section>)}
+</div>
+<style>
+  .indice-pasos { display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; margin:24px 0 40px; }
+  .receta-guia { padding:24px 0; border-top:1px solid #bad1cb; scroll-margin-top:24px; }
+  .receta-guia h3 { margin-top:0; }
+  .ayuda-receta { padding:18px; background:#e7efed; border-left:4px solid #08796b; }
+  @media print { .indice-pasos { display:none; } .receta-guia > a { display:none; } .receta-guia pre { white-space:pre-wrap; overflow-wrap:anywhere; } }
+</style>

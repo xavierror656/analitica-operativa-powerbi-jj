@@ -1,14 +1,11 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
-import Comparacion from '../ui/Comparacion.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
-<EjemploReal modulo="D1-M5c" titulo="Turno capturado con el nombre del supervisor">
-  <Comparacion tituloA="Dato recibido" tituloB="Regla verificable del ejercicio" iconoA="circle-x" iconoB="circle-check-big">
-    <p slot="a" class="font-codigo text-3xl">turno: "R. Domínguez"</p>
-    <p slot="b" class="text-3xl">hora_inicio 06:00 → turno "1"<br />14:00 → "2" · 22:00 → "3"</p>
-  </Comparacion>
+<EjemploReal modulo="D1-M5c" titulo="Recupera el turno desde la hora">
+  <RecetaGuiada id="turnos" />
   <Notas
     slot="notas"
     minutos={7}

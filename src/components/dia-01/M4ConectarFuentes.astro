@@ -1,22 +1,15 @@
 ---
 import TuTurno from '../slides/TuTurno.astro';
-import Pasos from '../ui/Pasos.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
 <TuTurno modulo="D1-M4" titulo="Conecta y perfila" minutos={40}>
-  <Pasos
-    poco
-    items={[
-      { t: '0–10 min · Sigue la demostración', d: 'Obtener datos → Texto/CSV → fact_produccion.csv → Transformar datos. Delimitador coma y codificación UTF-8.' },
-      { t: '10–25 min · Conecta las otras siete tablas', d: 'Una consulta por CSV. Conserva lote y códigos como texto; revisa el paso Tipo cambiado antes de aceptar conversiones.' },
-      { t: '25–40 min · Perfila y registra', d: 'Vista → Calidad, Distribución y Perfil de columna. Cambia de primeras 1,000 filas a conjunto completo y anota tres anomalías.' },
-    ]}
-  />
+  <RecetaGuiada id="conectar" />
   <Notas
     slot="notas"
     minutos={40}
     dice="Van a abrir el dataset del programa. No lo limpien todavía, primero perfílenlo: quiero que vean los problemas antes de resolverlos."
-    nota="Mostrar una conexión completa, luego retirar la guía. No combinar los ocho CSV: tienen esquemas diferentes. Checkpoint al minuto 25: ocho consultas con los nombres de archivo. Si alguien se atrasa, acompañar primero producción y después completar las siete restantes."
+    nota="Mostrar una conexión completa y mantener los pasos y la guía visibles durante toda la actividad. No combinar los ocho CSV: tienen esquemas diferentes. Checkpoint al minuto 25: ocho consultas con los nombres de archivo. Si alguien se atrasa, acompañar primero producción y después completar las siete restantes."
   />
 </TuTurno>

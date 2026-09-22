@@ -1,28 +1,11 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
-import Comparacion from '../ui/Comparacion.astro';
-import Nota from '../ui/Nota.astro';
 import Notas from '../ui/Notas.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
 <EjemploReal modulo="D1-M10" titulo="Manejo de errores en la carga">
-  <div class="flex flex-col gap-10">
-    <Comparacion tituloA="Sin manejo de errores" tituloB="Con manejo de errores" iconoA="circle-x" iconoB="circle-check-big">
-      <p slot="a">
-        Una conversión de hora puede generar Error en una celda. Si no se revisa,
-        puede impedir cargar esa tabla al modelo o dejar un resultado incompleto.
-      </p>
-      <p slot="b">
-        Tú creas una consulta de excepciones con Conservar errores y otra de datos
-        válidos con Quitar errores, desde el mismo paso. Power Query no las separa automáticamente.
-      </p>
-    </Comparacion>
-    <Nota tono="alto">
-      Aislar un error no es lo mismo que ignorarlo. Toda fila que quede fuera se
-      documenta: cuántas fueron y por qué, en el mismo lugar donde documentan los
-      demás pasos.
-    </Nota>
-  </div>
+  <RecetaGuiada id="errores" />
   <Notas
     slot="notas"
     minutos={7}
