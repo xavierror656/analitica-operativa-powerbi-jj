@@ -1,5 +1,6 @@
 ---
 import '../styles/curso.css';
+import Favicon from './Favicon.astro';
 interface Props { titulo: string; descripcion: string; etiqueta?: string; inicio?: boolean; }
 const { titulo, descripcion, etiqueta = 'ANALÍTICA OPERATIVA CON POWER BI', inicio = false } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -10,6 +11,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{titulo} · Power BI</title>
+    <Favicon />
     <meta name="description" content={descripcion} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
