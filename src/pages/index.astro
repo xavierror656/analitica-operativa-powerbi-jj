@@ -5,13 +5,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const dias = [
   { href: `${base}/dia-01`, num: 1, titulo: 'Conexión y preparación de datos', evidencia: 'A1', estado: 'listo' },
-  { href: `${base}/dia-02`, num: 2, titulo: 'Modelo de datos', evidencia: 'A2', estado: 'pendiente' },
-  { href: `${base}/dia-03`, num: 3, titulo: 'Indicadores en DAX', evidencia: 'A3', estado: 'pendiente' },
-  { href: `${base}/dia-04`, num: 4, titulo: 'Reporte operativo', evidencia: 'A4', estado: 'pendiente' },
-  { href: `${base}/dia-05`, num: 5, titulo: 'Análisis, publicación y proyecto', evidencia: 'A5', estado: 'pendiente' },
+  { href: `${base}/dia-02`, num: 2, titulo: 'Modelo de datos', evidencia: 'A2', estado: 'listo' },
+  { href: `${base}/dia-03`, num: 3, titulo: 'Indicadores en DAX', evidencia: 'A3', estado: 'listo' },
+  { href: `${base}/dia-04`, num: 4, titulo: 'Reporte operativo', evidencia: 'A4', estado: 'listo' },
+  { href: `${base}/dia-05`, num: 5, titulo: 'Análisis, publicación y proyecto', evidencia: 'A5', estado: 'listo' },
 ] as const;
 
-const estadoTexto = { listo: '15 slides listas', pendiente: 'Pendiente' } as const;
+const estadoTexto = { listo: 'Disponible', pendiente: 'Pendiente' } as const;
 ---
 
 <html lang="es">
@@ -92,6 +92,16 @@ const estadoTexto = { listo: '15 slides listas', pendiente: 'Pendiente' } as con
           ))
         }
       </ol>
+      <a class="mt-6 inline-block text-accent-light underline underline-offset-4" href={`${base}/dia-01/guia/`}>Día 1 · Guía de trabajo y bitácora A1 →</a>
+      <br />
+      <a class="mt-4 inline-block text-accent-light underline underline-offset-4" href={`${base}/dia-02/guia/`}>Día 2 · Guía del modelo y bitácora A2 →</a>
+
+      <br />
+      <a class="mt-4 inline-block text-accent-light underline underline-offset-4" href={`${base}/dia-03/guia/`}>Día 3 · Guía de trabajo y evidencia A3 →</a>
+      <br />
+      <a class="mt-4 inline-block text-accent-light underline underline-offset-4" href={`${base}/dia-04/guia/`}>Día 4 · Guía de trabajo y evidencia A4 →</a>
+      <br />
+      <a class="mt-4 inline-block text-accent-light underline underline-offset-4" href={`${base}/dia-05/guia/`}>Día 5 · Guía de trabajo y evidencia A5 →</a>
 
       <p class="mt-16 border-t border-white/10 pt-6 text-sm text-[#8fa8a4]">
         Programa diseñado para Johnson &amp; Johnson · Ciudad Juárez. Repositorio:{' '}

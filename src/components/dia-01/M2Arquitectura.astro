@@ -11,13 +11,13 @@ import Notas from '../ui/Notas.astro';
       { t: 'Transformar', d: 'Power Query limpia y deja pasos documentados, reproducibles cada vez que llega un archivo nuevo.' },
       { t: 'Modelar', d: 'Las tablas se relacionan: hechos de producción contra dimensiones de línea, turno y calendario.' },
       { t: 'Medir', d: 'DAX calcula los indicadores sobre el modelo, no sobre celdas sueltas.' },
-      { t: 'Publicar', d: 'El reporte vive en el servicio, se actualiza solo y lo ve quien tiene permiso.' },
+      { t: 'Publicar', d: 'Se configura el acceso y la actualización en el servicio; publicar por sí solo no los resuelve.' },
     ]}
   />
   <Notas
     slot="notas"
-    minutos={12}
-    dice="Este es el mapa completo del programa. Cada día del curso vive en uno de estos cinco pasos: hoy Conectar, mañana Modelar, el jueves Medir, el viernes... perdón, en cinco días llegamos a Publicar."
+    minutos={8}
+    dice="Este es el mapa del programa: día 1 preparar, día 2 modelar, día 3 medir, día 4 diseñar el reporte y día 5 analizar y publicar. Hoy nos concentramos en los dos primeros pasos de esta lista."
     nota="No profundizar en DAX ni en modelado todavía, es solo el mapa. Volver a esta slide mentalmente cada vez que abran el Día correspondiente."
   />
 </Mecanismo>

@@ -1,6 +1,8 @@
 ---
 import RevealDeck from '../components/RevealDeck.astro';
 import Acto from '../components/ui/Acto.astro';
+import Notas from '../components/ui/Notas.astro';
+import M0Ruta from '../components/dia-01/M0Ruta.astro';
 
 // 08:00 Fundamento
 import M1Gancho from '../components/dia-01/M1Gancho.astro';
@@ -74,9 +76,12 @@ import M19PrimerasVisualizaciones from '../components/dia-01/M19PrimerasVisualiz
 ---
 
 <RevealDeck titulo="Día 1 · Conexión y preparación de datos">
-  <Acto numero={1} palabra="Conectar" />
+  <Acto numero={1} palabra="Conectar">
+    <Notas slot="notas" minutos={0} dice="Portada de espera. Iniciar la jornada en la siguiente diapositiva." />
+  </Acto>
 
   <!-- 08:00 Fundamento (60 min) -->
+  <M0Ruta />
   <M1Gancho />
   <M1bQueNoEs />
   <M1cTresAreas />

@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<EjemploReal modulo="D4-M21" titulo={"El marcador guarda un estado: decide cuál"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Uso","Opción relevante","Riesgo que probar"]} filas={[["Restablecer filtros","Guardar Datos intencionalmente","Reaplica una selección vieja"],["Mostrar u ocultar una zona","Mostrar y visuales seleccionados","Cambia filtros sin querer"],["Cambiar de página","Página actual o navegación explícita","Lleva al destino equivocado"]]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Crear un marcador Reset con un estado limpio y otro solo de visibilidad. Probar desde una selección distinta."} nota={"Al actualizar un marcador, verificar Datos, Mostrar y Página actual. No confiar en el estado que casualmente estaba activo al crearlo."} />
+</EjemploReal>

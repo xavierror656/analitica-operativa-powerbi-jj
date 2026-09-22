@@ -1,0 +1,11 @@
+---
+import Cierre from '../slides/Cierre.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+---
+<Cierre evidencia="A3" titulo={"Mañana las medidas se convierten en un reporte legible"}>
+  <div class="flex flex-col gap-8">
+    <p>Conserva A3 y sus seis fichas. El día 4 organiza un resumen y un detalle que otra área pueda usar sin explicación previa.</p><Nota>Escribe qué filtro podría hacer que un lector interprete mal uno de tus indicadores.</Nota>
+  </div>
+  <Notas slot="notas" minutos={5} dice={"Conectar con el desafío visual de mañana."} nota={"No pedir publicación ni scripts externos en esta jornada."} />
+</Cierre>

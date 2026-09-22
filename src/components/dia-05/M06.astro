@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Quiz from '../ui/Quiz.astro';
+---
+<EjemploReal modulo="D5-M06" titulo={"Chequeo: una vía bloqueada no justifica una pública"}>
+  <div class="flex flex-col gap-8">
+    <Quiz pregunta={"La empresa no autoriza publicar en el servicio durante el curso. ¿Cómo entregas el proyecto?"} opciones={[{"texto":"Con Publicar en web porque no pide acceso al lector.","correcta":false},{"texto":"Con PBIX local y exportación; el instructor demuestra publicación y gateway.","correcta":true},{"texto":"Subiendo el archivo a una cuenta personal sin avisar.","correcta":false}]} explicacion={"La propuesta incluye una alternativa local cuando la política impide publicar. El proyecto sigue evaluando cifras, interpretación y comunicación."} />
+  </div>
+  <Notas slot="notas" minutos={7} dice={"Pedir que identifiquen la política que deben confirmar antes de publicar."} nota={"El curso no solicita credenciales de otras personas ni usa fuentes reales sin autorización formal."} />
+</EjemploReal>

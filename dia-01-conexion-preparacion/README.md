@@ -13,12 +13,32 @@ documentados.
 | 15:00 | Taller (1.5h) | Cada participante depura su propio archivo y documenta los pasos |
 | 16:30 | Cierre (0.5h) | Validación de cifras, revisión cruzada, registro de evidencia |
 
-Slides de este día: `src/pages/dia-01.astro`, 50 módulos en `src/components/dia-01/`,
-uno por beat de contenido (no uno por bloque: cada bloque de 90 min se desglosa en
-varias slides con ejemplos concretos, no una sola slide con un `TuTurno` en blanco).
-La suma de `minutos` por bloque (Fundamento, Núcleo 1, Núcleo 2, Laboratorio, Taller,
-Cierre) se verificó a mano contra el horario de la propuesta y cuadra dentro de
-±5 minutos por bloque. Sigue pendiente: validar el timing real en una impartición
-piloto, porque los minutos son estimados, no medidos en vivo.
+Slides: `src/pages/dia-01.astro`. Son 51 módulos de contenido + portada y 5 módulos
+extra opcionales. Los bloques suman 60, 90, 90, 90, 90 y 30 minutos: 450 minutos de
+instrucción. Recesos: 10:30–10:45 y 14:45–15:00; comida: 12:15–13:15. Fin: 17:00.
+El extra dura 46 minutos fuera de la jornada. Los tiempos se verifican con
+`python scripts/verificar_dia1.py`; siguen siendo estimaciones hasta una impartición piloto.
+
+## Material y preparación del facilitador
+
+- [Guía del participante](../src/content/guia-dia-01.md): instrucciones, reglas,
+  ejemplos M, solución de problemas y bitácora. Página `/dia-01/guia/`, con impresión
+  y descarga. Abrir al inicio junto a Power BI.
+- [Criterios y controles de A1](evidencia-A1/README.md): cifras verificadas y escala
+  de dominio con evidencias observables.
+- Antes de impartir, probar las consultas M en la versión de Desktop del aula y
+  confirmar acceso a una carpeta local. No se requiere conexión a sistemas reales.
+- Para la demo de carpeta, preparar dos CSV de producción con los mismos encabezados
+  y periodos disjuntos. Usar marzo y abril de 2025 del dataset, interpretando las
+  fechas por su formato; conservar valores originales. Guardar en una carpeta
+  aparte y anotar sus conteos. No usar copias idénticas ni incluir catálogos.
+- Demostrar una importación durante 10 minutos; después los participantes repiten
+  con las siete restantes. Cambiar de operador a mitad de la limpieza en parejas.
+- Si hay rezago, priorizar conexión, integridad y bitácora. Si hay avance, pedir
+  auditoría y casos límite. No adelantar DAX durante A1.
+
+Las ocho tablas se conectan por separado; la combinación de carpeta se practica
+con archivos homogéneos. La conciliación explica las diferencias: no exige que el
+total limpio iguale al crudo. Los faltantes no se rellenan por conveniencia.
 
 Dataset de práctica: `../datos/`.

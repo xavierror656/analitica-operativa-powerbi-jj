@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+---
+<EjemploReal modulo="D5-M13" titulo={"Checkpoint: muestra la cifra y su rastro"}>
+  <div class="flex flex-col gap-8">
+    <Nota>Dos hallazgos con pregunta, valor, periodo, filtros, fuente y límite. Deben poder reconstruirse desde el reporte y la bitácora.</Nota>
+  </div>
+  <Notas slot="notas" minutos={7} dice={"Cada mesa explica un hallazgo en un minuto. El instructor pregunta por el denominador o la fuente."} nota={"Receso 10:30–10:45. No adelantar la presentación final sin verificar los números."} />
+</EjemploReal>

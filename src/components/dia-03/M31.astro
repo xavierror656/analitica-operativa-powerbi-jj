@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Quiz from '../ui/Quiz.astro';
+---
+<EjemploReal modulo="D3-M31" titulo={"Ticket de salida: el blanco tiene significado"}>
+  <div class="flex flex-col gap-8">
+    <Quiz pregunta={"No hay producción ni plan en el periodo. ¿Cómo presentas % Cumplimiento?"} opciones={[{"texto":"100 %, porque no se incumplió ningún plan.","correcta":false},{"texto":"0 %, porque no se produjeron piezas.","correcta":false},{"texto":"Sin dato calculable; se conserva blanco y se explica el denominador.","correcta":true}]} explicacion={"La ausencia de denominador no demuestra un desempeño de cero ni de cien. La ficha define cómo comunicar el blanco."} />
+  </div>
+  <Notas slot="notas" minutos={7} dice={"Un minuto individual, discusión y respuesta razonada."} nota={"Comprobar que el participante puede explicar sin recitar DIVIDE."} />
+</EjemploReal>

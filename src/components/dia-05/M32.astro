@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Quiz from '../ui/Quiz.astro';
+---
+<EjemploReal modulo="D5-M32" titulo={"Ticket de salida: una conclusión defendible"}>
+  <div class="flex flex-col gap-8">
+    <Quiz pregunta={"Tu reporte muestra una asociación, pero no demuestra su causa. ¿Cómo cierras la junta?"} opciones={[{"texto":"Afirmas la causa para que la recomendación suene contundente.","correcta":false},{"texto":"Presentas el hallazgo, declaras el límite y propones cómo verificar la hipótesis.","correcta":true},{"texto":"Eliminas toda recomendación aunque exista una acción de investigación útil.","correcta":false}]} explicacion={"Una recomendación defendible puede ser investigar o medir mejor. Su alcance debe ser proporcional a la evidencia disponible."} />
+  </div>
+  <Notas slot="notas" minutos={5} dice={"Solicitar una frase final de cada equipo y registrar el cierre de C5."} nota={"Terminar con el siguiente paso acordado y las limitaciones, no con promesas de causalidad o uso formal no validado."} />
+</EjemploReal>

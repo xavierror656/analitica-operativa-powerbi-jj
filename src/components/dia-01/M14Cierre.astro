@@ -9,9 +9,9 @@ import Notas from '../ui/Notas.astro';
   <div class="flex flex-col gap-14">
     <Pasos
       items={[
-        { t: 'Contrastar cifras contra la fuente', d: 'Una suma de piezas_producidas del archivo limpio contra el archivo original: deben coincidir.' },
+        { t: 'Conciliar filas y piezas', d: 'Origen = salida + subtotales retirados + duplicados retirados + excepciones excluidas. Las categorías no se traslapan.' },
         { t: 'Revisión cruzada', d: 'Intercambien archivos con un compañero de otra área. Si no le entienden sus pasos, no está listo.' },
-        { t: 'Registrar la evidencia', d: 'El archivo depurado y documentado queda como A1: es la base de los cuatro días que siguen.' },
+        { t: 'Registrar la evidencia', d: 'Guardar PBIX, bitácora, conteos, totales y pendientes. Actualizar dos veces sin que cambien las cifras.' },
       ]}
     />
     <Cita>Mañana no empiezan de cero. Empiezan del archivo que dejaron hoy.</Cita>

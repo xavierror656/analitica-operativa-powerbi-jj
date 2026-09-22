@@ -1,0 +1,12 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+import MedidaDax from '../dia-03/MedidaDax.astro';
+---
+<TuTurno modulo="D3-M07" titulo={"Crea las medidas base conmigo"} minutos={12}>
+  <div class="flex flex-col gap-8">
+    <MedidaDax id="piezas" /><Nota>Después crea Plan y Buenas con SUM sobre piezas_plan y piezas_buenas. Arrastra las medidas a tarjetas de control.</Nota>
+  </div>
+  <Notas slot="notas" minutos={12} dice={"Modelado → Nueva medida. Elegir tabla de inicio, escribir, aceptar y verificar formato entero. Repetir con el grupo."} nota={"Sin filtros: Piezas 5,822,881; Plan 6,528,606; Buenas 5,677,999. Si cambia, revisar A1 y filtros antes de editar la fórmula."} />
+</TuTurno>

@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import MapaModelo from './MapaModelo.astro';
+---
+<Mecanismo modulo="D2-M05" titulo={"Comparte dimensiones; conserva cada hecho"}>
+  <div class="flex flex-col gap-8">
+    <MapaModelo />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Recorrer con el dedo un filtro de fecha hacia las tres tablas. Repetir con parte y señalar por qué no llega a mantenimiento."} nota={"Es un conjunto de estrellas con dimensiones compartidas. No exigir un dibujo particular: la cardinalidad, las claves y las rutas de filtro son lo que importa."} />
+</Mecanismo>

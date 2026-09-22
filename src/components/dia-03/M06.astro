@@ -1,0 +1,12 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+import Descarga from '../ui/Descarga.astro';
+---
+<TuTurno modulo="D3-M06" titulo={"Guarda A3 y prepara tu página de control"} minutos={8}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Conserva A2","d":"Guardar como Apellido_Nombre_A3.pbix y actualizar."},{"t":"Abre Control_A3","d":"Reutiliza los segmentadores de dimensión y limpia selecciones."},{"t":"Ten el recetario a mano","d":"Cada definición se crea por separado con Nueva medida."}]} /><Descarga href="/descargas/medidas-dia-03.dax" nombre="Recetario de medidas DAX" />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Instructor y participantes hacen la preparación en paralelo."} nota={"No pegar el archivo completo en una sola Nueva medida. Las comas son separadores estándar; revisar configuración regional si el editor requiere otro separador."} />
+</TuTurno>

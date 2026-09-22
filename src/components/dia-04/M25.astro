@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Mecanismo modulo="D4-M25" titulo={"A4 se prueba con un lector, no con una explicación"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"1 · Inicial","d":"Completa con apoyo en pasos críticos."},{"t":"2 · En desarrollo","d":"Diseña autónomamente el resumen y detalle practicados."},{"t":"3 · Competente","d":"Adapta el reporte a una tarea nueva y justifica decisiones."},{"t":"4 · Avanzado","d":"Detecta, corrige y explica un problema en el reporte de otra persona."}]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Aplicar la escala del PDF y la competencia C4: legible y navegable por otra área sin explicación previa."} nota={"A4 tiene peso doble respecto a evidencias intermedias en el criterio sugerido del programa. No inventar un umbral numérico adicional."} />
+</Mecanismo>

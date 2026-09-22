@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+---
+<EjemploReal modulo="D4-M29" titulo={"Entrega A4 con la evidencia de lectura"}>
+  <div class="flex flex-col gap-8">
+    <Nota>PBIX A4 + capturas de resumen y detalle + matriz de controles + registro del lector, correcciones y repetición.</Nota>
+  </div>
+  <Notas slot="notas" minutos={5} dice={"Confirmar que el archivo abre con un estado inicial coherente."} nota={"Las capturas no prueban interacciones; el PBIX y el registro documentan su comportamiento. Conservar A3 como respaldo."} />
+</EjemploReal>

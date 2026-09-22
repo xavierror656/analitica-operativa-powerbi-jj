@@ -1,0 +1,141 @@
+{
+  "casos": [
+    {
+      "caso": "Sin filtros",
+      "filtros": {},
+      "valores": {
+        "filas_produccion": 7067,
+        "Piezas": 5822881,
+        "Plan": 6528606,
+        "Buenas": 5677999,
+        "% Cumplimiento": 0.8919026511938383,
+        "% Buenas": 0.9751185023358712,
+        "% Rechazo producción": 0.024881497664128806,
+        "Eventos correctivos": 560,
+        "Minutos correctivos": 71248
+      }
+    },
+    {
+      "caso": "L1",
+      "filtros": {
+        "linea": "L1"
+      },
+      "valores": {
+        "filas_produccion": 1760,
+        "Piezas": 1340826,
+        "Plan": 1502114,
+        "Buenas": 1307656,
+        "% Cumplimiento": 0.8926259924346621,
+        "% Buenas": 0.97526151790016,
+        "% Rechazo producción": 0.024738482099839948,
+        "Eventos correctivos": 150,
+        "Minutos correctivos": 18241
+      }
+    },
+    {
+      "caso": "01/03/2025 · L1",
+      "filtros": {
+        "desde": "2025-03-01",
+        "hasta": "2025-03-01",
+        "linea": "L1"
+      },
+      "valores": {
+        "filas_produccion": 3,
+        "Piezas": 2301,
+        "Plan": 2715,
+        "Buenas": 2224,
+        "% Cumplimiento": 0.8475138121546961,
+        "% Buenas": 0.9665362885701869,
+        "% Rechazo producción": 0.03346371142981312,
+        "Eventos correctivos": null,
+        "Minutos correctivos": null
+      }
+    },
+    {
+      "caso": "Turno 1",
+      "filtros": {
+        "turno": "1"
+      },
+      "valores": {
+        "filas_produccion": 2374,
+        "Piezas": 1954605,
+        "Plan": 2191659,
+        "Buenas": 1905991,
+        "% Cumplimiento": 0.891838100726436,
+        "% Buenas": 0.9751284786440227,
+        "% Rechazo producción": 0.024871521355977293,
+        "Eventos correctivos": 560,
+        "Minutos correctivos": 71248
+      }
+    },
+    {
+      "caso": "Ensamble",
+      "filtros": {
+        "area": "Ensamble"
+      },
+      "valores": {
+        "filas_produccion": 3552,
+        "Piezas": 2591842,
+        "Plan": 2903496,
+        "Buenas": 2527530,
+        "% Cumplimiento": 0.8926625006543836,
+        "% Buenas": 0.9751867590694185,
+        "% Rechazo producción": 0.024813240930581418,
+        "Eventos correctivos": 276,
+        "Minutos correctivos": 35261
+      }
+    },
+    {
+      "caso": "Mayo 2025",
+      "filtros": {
+        "desde": "2025-05-01",
+        "hasta": "2025-05-31"
+      },
+      "valores": {
+        "filas_produccion": 393,
+        "Piezas": 337491,
+        "Plan": 377764,
+        "Buenas": 328912,
+        "% Cumplimiento": 0.8933911119111403,
+        "% Buenas": 0.9745800628757507,
+        "% Rechazo producción": 0.02541993712424924,
+        "Eventos correctivos": 28,
+        "Minutos correctivos": 3298
+      }
+    },
+    {
+      "caso": "Abril 2025",
+      "filtros": {
+        "desde": "2025-04-01",
+        "hasta": "2025-04-30"
+      },
+      "valores": {
+        "filas_produccion": 401,
+        "Piezas": 343875,
+        "Plan": 383895,
+        "Buenas": 335156,
+        "% Cumplimiento": 0.8957527448911812,
+        "% Buenas": 0.9746448564158487,
+        "% Rechazo producción": 0.025355143584151217,
+        "Eventos correctivos": 28,
+        "Minutos correctivos": 3930
+      }
+    }
+  ],
+  "tiempo": {
+    "mayo_2025": 337491,
+    "abril_2025": 343875,
+    "variacion_mayo": -0.018564885496183205,
+    "mtd_2025_05_07": 77234,
+    "promedio_7d_2025_05_07": 11033.42857142857,
+    "piezas_diarias_01_a_07_mayo": [
+      12020,
+      11269,
+      12321,
+      0,
+      13168,
+      14324,
+      14132
+    ]
+  }
+}

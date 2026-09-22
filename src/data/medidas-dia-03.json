@@ -1,0 +1,130 @@
+[
+  {
+    "id": "piezas",
+    "nombre": "Piezas",
+    "expresion": "SUM(fact_produccion[piezas_producidas])",
+    "formato": "Entero",
+    "unidad": "piezas",
+    "principal": true
+  },
+  {
+    "id": "plan",
+    "nombre": "Plan",
+    "expresion": "SUM(fact_produccion[piezas_plan])",
+    "formato": "Entero",
+    "unidad": "piezas",
+    "principal": false
+  },
+  {
+    "id": "buenas",
+    "nombre": "Buenas",
+    "expresion": "SUM(fact_produccion[piezas_buenas])",
+    "formato": "Entero",
+    "unidad": "piezas",
+    "principal": false
+  },
+  {
+    "id": "no-conformes",
+    "nombre": "No conformes producción",
+    "expresion": "[Piezas] - [Buenas]",
+    "formato": "Entero",
+    "unidad": "piezas",
+    "principal": false
+  },
+  {
+    "id": "cumplimiento",
+    "nombre": "% Cumplimiento",
+    "expresion": "DIVIDE([Piezas], [Plan])",
+    "formato": "Porcentaje · 2 decimales",
+    "unidad": "%",
+    "principal": true
+  },
+  {
+    "id": "calidad",
+    "nombre": "% Buenas",
+    "expresion": "DIVIDE([Buenas], [Piezas])",
+    "formato": "Porcentaje · 2 decimales",
+    "unidad": "%",
+    "principal": true
+  },
+  {
+    "id": "rechazo",
+    "nombre": "% Rechazo producción",
+    "expresion": "DIVIDE([No conformes producción], [Piezas])",
+    "formato": "Porcentaje · 2 decimales",
+    "unidad": "%",
+    "principal": true
+  },
+  {
+    "id": "eventos",
+    "nombre": "Eventos correctivos",
+    "expresion": "CALCULATE(\n    COUNTROWS(fact_mantenimiento),\n    fact_mantenimiento[tipo] = \"correctivo\"\n)",
+    "formato": "Entero",
+    "unidad": "eventos",
+    "principal": true
+  },
+  {
+    "id": "minutos",
+    "nombre": "Minutos correctivos",
+    "expresion": "CALCULATE(\n    SUM(fact_mantenimiento[duracion_min]),\n    fact_mantenimiento[tipo] = \"correctivo\"\n)",
+    "formato": "Entero",
+    "unidad": "min",
+    "principal": true
+  },
+  {
+    "id": "rechazadas-calidad",
+    "nombre": "Rechazadas calidad",
+    "expresion": "SUM(fact_calidad[piezas_rechazadas])",
+    "formato": "Entero",
+    "unidad": "piezas",
+    "principal": false
+  },
+  {
+    "id": "turno3",
+    "nombre": "Piezas turno 3",
+    "expresion": "CALCULATE([Piezas], dim_turno[nombre] = \"3\")",
+    "formato": "Entero",
+    "unidad": "piezas",
+    "principal": false
+  },
+  {
+    "id": "participacion",
+    "nombre": "% Participación planta",
+    "expresion": "DIVIDE(\n    [Piezas],\n    CALCULATE([Piezas], REMOVEFILTERS(dim_linea))\n)",
+    "formato": "Porcentaje · 2 decimales",
+    "unidad": "%",
+    "principal": false
+  },
+  {
+    "id": "mtd",
+    "nombre": "Piezas MTD",
+    "expresion": "TOTALMTD([Piezas], dim_calendario[fecha])",
+    "formato": "Entero",
+    "unidad": "piezas",
+    "principal": false
+  },
+  {
+    "id": "anterior",
+    "nombre": "Piezas mes anterior",
+    "expresion": "CALCULATE(\n    [Piezas],\n    DATEADD(dim_calendario[fecha], -1, MONTH)\n)",
+    "formato": "Entero",
+    "unidad": "piezas",
+    "principal": false
+  },
+  {
+    "id": "variacion",
+    "nombre": "% Variación mensual",
+    "expresion": "VAR Actual = [Piezas]\nVAR Anterior = [Piezas mes anterior]\nRETURN\n    IF(\n        ISBLANK(Actual) || ISBLANK(Anterior),\n        BLANK(),\n        DIVIDE(Actual - Anterior, Anterior)\n    )",
+    "formato": "Porcentaje · 2 decimales",
+    "unidad": "%",
+    "principal": false
+  },
+  {
+    "id": "movil",
+    "nombre": "Promedio móvil 7d",
+    "expresion": "VAR Corte = MAX(dim_calendario[fecha])\nVAR Ventana =\n    CALCULATETABLE(\n        DATESINPERIOD(dim_calendario[fecha], Corte, -7, DAY),\n        REMOVEFILTERS(dim_calendario)\n    )\nRETURN\n    CALCULATE(\n        AVERAGEX(\n            VALUES(dim_calendario[fecha]),\n            COALESCE([Piezas], 0)\n        ),\n        REMOVEFILTERS(dim_calendario),\n        Ventana\n    )",
+    "formato": "Decimal · 2 decimales",
+    "unidad": "piezas/día calendario",
+    "principal": false
+  }
+]

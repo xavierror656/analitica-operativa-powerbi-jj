@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import ControlesModelo from './ControlesModelo.astro';
+---
+<EjemploReal modulo="D2-M17" titulo={"Estos son los controles del caso del curso"}>
+  <div class="flex flex-col gap-8">
+    <ControlesModelo />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Construir tres tarjetas con suma de piezas_producidas, suma de piezas_rechazadas y suma de duracion_min. Desactivar abreviación automática para leer el entero."} nota={"Valores derivados del ZIP después de A1; los minutos son suma de duracion_min, no horas_paro ni disponibilidad. Si hay exclusiones adicionales documentadas, conciliar la diferencia."} />
+</EjemploReal>

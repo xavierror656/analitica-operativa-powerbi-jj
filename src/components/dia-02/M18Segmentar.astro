@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D2-M18" titulo={"Predice, filtra y contrasta"} minutos={8}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Limpia filtros anteriores","d":"Sin selección ni filtros de página o informe activos."},{"t":"Selecciona L1 desde dim_linea","d":"Las tres tarjetas deben responder a esa dimensión compartida."},{"t":"Agrega 01/03/2025 desde dim_calendario","d":"Predice qué filas quedan; contrasta con 2,301 piezas, 77 rechazos y 21 minutos."}]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Participantes ejecutan y justifican qué condición deja fuera cada fila. Comparar con filtro directo en la consulta A1."} nota={"Usar tipo Fecha, no texto ambiguo. Separar filtro de segmentador de selección accidental de un gráfico. Guardar evidencias de los filtros aplicados."} />
+</TuTurno>

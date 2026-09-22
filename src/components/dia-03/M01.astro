@@ -1,0 +1,12 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<EjemploReal modulo="D3-M01" titulo={"La fila describe un registro"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Registro ilustrativo","Producidas","Buenas","Diferencia"]} filas={[["Lote A","100","95","5"],["Lote B","900","891","9"],["Total","1,000","986","14"]]} /><Nota>Contexto de fila: estás evaluando un registro. No equivale al conjunto de filas seleccionado por un visual.</Nota>
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Pedir que calculen la diferencia de cada lote en papel antes de mostrar una fórmula."} nota={"Los valores son didácticos. Una columna calculada se evalúa por fila durante el procesamiento; una medida se evalúa según el contexto de consulta."} />
+</EjemploReal>

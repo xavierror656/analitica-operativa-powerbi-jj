@@ -1,0 +1,13 @@
+---
+import referencia from '../../data/controles-dia-02.json';
+import TablaCurso from '../ui/TablaCurso.astro';
+interface Props { casos?: number[]; }
+const { casos = [0, 1, 2] } = Astro.props;
+const formato = (n: number) => n.toLocaleString('es-MX');
+---
+<TablaCurso columnas={['Filtro desde dimensiones', 'Producidas · pzas', 'Rechazadas · pzas', 'Mantenimiento · min']}
+  filas={casos.map(i => {
+    const c = referencia.casos[i];
+    return [c.caso, formato(c.valores.fact_produccion.total), formato(c.valores.fact_calidad.total), formato(c.valores.fact_mantenimiento.total)];
+  })} />
+<p class="texto-chico text-dim mt-8">Referencia del ZIP del curso después de las reglas de A1. Cada fila es una prueba independiente; limpia los filtros antes de empezar.</p>

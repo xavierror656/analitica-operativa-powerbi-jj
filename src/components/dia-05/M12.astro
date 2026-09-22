@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<EjemploReal modulo="D5-M12" titulo={"Busca el dato que podría contradecirte"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Plan y volumen","d":"¿Se comparan cargas similares?"},{"t":"Periodo y cobertura","d":"¿Son meses completos con el mismo criterio?"},{"t":"Composición","d":"¿Cambió la mezcla de líneas, partes o turnos?"}]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Solicitar una comprobación que podría debilitar cada hallazgo. Valorar la rectificación respaldada."} nota={"No presentar una limitación como excusa para no validar; registrar qué se verificó y qué dato falta."} />
+</EjemploReal>

@@ -1,0 +1,12 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+import Nota from '../ui/Nota.astro';
+---
+<EjemploReal modulo="D4-M14" titulo={"Lote es trazabilidad, no una invitación a mezclar hechos"}>
+  <div class="flex flex-col gap-8">
+    <Nota>La tabla de producción muestra su lote y su turno. La tabla de calidad muestra sus propios eventos y lote. La misma etiqueta no crea una ruta automática entre ambas.</Nota><Pasos items={[{"t":"Filtro visible por zona","d":"Si buscas un lote en calidad, registra también ese filtro sobre calidad."},{"t":"No atribuyas de más","d":"Un rechazo por defecto no explica por sí mismo todo el resultado de producción."}]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Elegir un lote de producción y buscarlo explícitamente en calidad. Comparar sus registros sin unir hechos a ciegas."} nota={"No prometer que un segmentador basado en fact_produccion[lote] filtra calidad. Una dimensión compartida de lote sería una extensión de modelo a diseñar y validar, fuera del modelo base."} />
+</EjemploReal>

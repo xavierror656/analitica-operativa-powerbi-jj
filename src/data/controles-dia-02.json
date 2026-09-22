@@ -1,0 +1,147 @@
+{
+  "zip_sha256": "9948728716b3fc15bfc6d4d89b5ec347eb2d8c601da68afb8bca943f18bc2ce8",
+  "calendario": {
+    "filas": 549,
+    "desde": "2025-03-01",
+    "hasta": "2026-08-31"
+  },
+  "casos": [
+    {
+      "caso": "Sin filtros",
+      "filtros": {},
+      "valores": {
+        "fact_produccion": {
+          "filas": 7067,
+          "total": 5822881,
+          "unidad": "piezas"
+        },
+        "fact_calidad": {
+          "filas": 26825,
+          "total": 144882,
+          "unidad": "piezas"
+        },
+        "fact_mantenimiento": {
+          "filas": 1303,
+          "total": 93298,
+          "unidad": "min"
+        }
+      }
+    },
+    {
+      "caso": "Línea L1",
+      "filtros": {
+        "dim_linea.linea_id": "L1"
+      },
+      "valores": {
+        "fact_produccion": {
+          "filas": 1760,
+          "total": 1340826,
+          "unidad": "piezas"
+        },
+        "fact_calidad": {
+          "filas": 6642,
+          "total": 33170,
+          "unidad": "piezas"
+        },
+        "fact_mantenimiento": {
+          "filas": 324,
+          "total": 23409,
+          "unidad": "min"
+        }
+      }
+    },
+    {
+      "caso": "2025-03-01 · L1",
+      "filtros": {
+        "dim_calendario.fecha": "2025-03-01",
+        "dim_linea.linea_id": "L1"
+      },
+      "valores": {
+        "fact_produccion": {
+          "filas": 3,
+          "total": 2301,
+          "unidad": "piezas"
+        },
+        "fact_calidad": {
+          "filas": 13,
+          "total": 77,
+          "unidad": "piezas"
+        },
+        "fact_mantenimiento": {
+          "filas": 1,
+          "total": 21,
+          "unidad": "min"
+        }
+      }
+    },
+    {
+      "caso": "Turno 1",
+      "filtros": {
+        "dim_turno.nombre": "1"
+      },
+      "valores": {
+        "fact_produccion": {
+          "filas": 2374,
+          "total": 1954605,
+          "unidad": "piezas"
+        },
+        "fact_calidad": {
+          "filas": 26825,
+          "total": 144882,
+          "unidad": "piezas"
+        },
+        "fact_mantenimiento": {
+          "filas": 1303,
+          "total": 93298,
+          "unidad": "min"
+        }
+      }
+    },
+    {
+      "caso": "Parte P-1001",
+      "filtros": {
+        "dim_parte.parte_id": "P-1001"
+      },
+      "valores": {
+        "fact_produccion": {
+          "filas": 1439,
+          "total": 1189291,
+          "unidad": "piezas"
+        },
+        "fact_calidad": {
+          "filas": 5457,
+          "total": 29629,
+          "unidad": "piezas"
+        },
+        "fact_mantenimiento": {
+          "filas": 1303,
+          "total": 93298,
+          "unidad": "min"
+        }
+      }
+    },
+    {
+      "caso": "Defecto D01",
+      "filtros": {
+        "dim_defecto.defecto_id": "D01"
+      },
+      "valores": {
+        "fact_produccion": {
+          "filas": 7067,
+          "total": 5822881,
+          "unidad": "piezas"
+        },
+        "fact_calidad": {
+          "filas": 4440,
+          "total": 24235,
+          "unidad": "piezas"
+        },
+        "fact_mantenimiento": {
+          "filas": 1303,
+          "total": 93298,
+          "unidad": "min"
+        }
+      }
+    }
+  ]
+}

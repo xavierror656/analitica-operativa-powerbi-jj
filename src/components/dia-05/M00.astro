@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+
+---
+<Mecanismo modulo="D5-M00" titulo={"Del reporte a una decisión que puedas defender"}>
+  <div class="flex flex-col gap-8">
+    <div class="day-roadmap"><div class="day-roadmap-item"><span class="day-time">08:00</span><strong>Gobernar</strong><p>Acceso, actualización y límites</p></div><div class="day-roadmap-item"><span class="day-time">09:00</span><strong>Interpretar</strong><p>Hallazgo con cifra, periodo y fuente</p></div><div class="day-roadmap-item"><span class="day-time">10:45</span><strong>Presentar</strong><p>Una junta en siete minutos</p></div><div class="day-roadmap-item"><span class="day-time">13:15</span><strong>Sustentar</strong><p>Causa, recomendación y verificación</p></div><div class="day-roadmap-item"><span class="day-time">15:00</span><strong>Integrar</strong><p>Proyecto final y exposición</p></div><div class="day-roadmap-item"><span class="day-time">16:30</span><strong>Cerrar</strong><p>Evidencia, entrega y seguimiento</p></div></div><a class="day-guide-link" href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/dia-05/guia/`} target="_blank" rel="noopener">Guía de trabajo y evidencia A5 ↗</a>
+  </div>
+  <Notas slot="notas" minutos={5} dice={"Retomamos A4. Hoy el producto final incluye reporte, hallazgos, recomendación y exposición."} nota={"PDF Día 5 y C5. La demostración breve con Python se agrega por indicación del instructor dentro del laboratorio; no sustituye los contenidos de la propuesta."} />
+</Mecanismo>

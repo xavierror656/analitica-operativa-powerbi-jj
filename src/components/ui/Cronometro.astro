@@ -6,7 +6,7 @@ const { minutos } = Astro.props;
 ---
 
 <div class="cronometro" data-minutos={minutos} role="timer" aria-live="off">
-  <button type="button" class="cronometro-numero font-titulo font-bold">{minutos}:00</button>
+  <button type="button" class="cronometro-numero font-titulo font-bold" aria-label="Iniciar cronómetro" aria-pressed="false">{minutos}:00</button>
   <span class="cronometro-hint text-dim">toca para empezar</span>
 </div>
 
@@ -16,6 +16,7 @@ const { minutos } = Astro.props;
     restante: number;
     corriendo: boolean;
     intervalId: number | null;
+    fin: number | null;
     numeroEl: HTMLElement;
     hintEl: HTMLElement;
   };
@@ -35,6 +36,8 @@ const { minutos } = Astro.props;
     el.classList.toggle('cronometro-ultimo', e.restante <= 60 && e.restante > 0);
     el.classList.toggle('cronometro-cero', e.restante <= 0);
     el.classList.toggle('cronometro-corriendo', e.corriendo);
+    e.numeroEl.setAttribute('aria-pressed', String(e.corriendo));
+    e.numeroEl.setAttribute('aria-label', `${e.corriendo ? 'Pausar' : 'Iniciar o continuar'} cronómetro: ${formatear(e.restante)} restantes`);
     e.hintEl.textContent =
       e.restante <= 0
         ? 'tiempo cumplido'
@@ -49,8 +52,9 @@ const { minutos } = Astro.props;
     const e = estados.get(el);
     if (!e || e.corriendo || e.restante <= 0) return;
     e.corriendo = true;
+    e.fin = Date.now() + e.restante * 1000;
     e.intervalId = window.setInterval(() => {
-      e.restante -= 1;
+      e.restante = Math.max(0, Math.ceil(((e.fin ?? Date.now()) - Date.now()) / 1000));
       if (e.restante <= 0) {
         e.restante = 0;
         pausar(el);
@@ -63,7 +67,9 @@ const { minutos } = Astro.props;
   function pausar(el: HTMLElement) {
     const e = estados.get(el);
     if (!e) return;
+    if (e.corriendo && e.fin !== null) e.restante = Math.max(0, Math.ceil((e.fin - Date.now()) / 1000));
     e.corriendo = false;
+    e.fin = null;
     if (e.intervalId !== null) window.clearInterval(e.intervalId);
     e.intervalId = null;
     actualizar(el);
@@ -91,7 +97,7 @@ const { minutos } = Astro.props;
       const numeroEl = el.querySelector<HTMLElement>('.cronometro-numero');
       const hintEl = el.querySelector<HTMLElement>('.cronometro-hint');
       if (!numeroEl || !hintEl) return;
-      estados.set(el, { total, restante: total, corriendo: false, intervalId: null, numeroEl, hintEl });
+      estados.set(el, { total, restante: total, corriendo: false, intervalId: null, fin: null, numeroEl, hintEl });
       actualizar(el);
 
       el.addEventListener('click', () => alternar(el));
@@ -109,8 +115,8 @@ const { minutos } = Astro.props;
   document.addEventListener('keydown', (ev) => {
     const target = ev.target as HTMLElement | null;
     const tag = target?.tagName?.toLowerCase();
-    const editable = tag === 'input' || tag === 'textarea' || target?.isContentEditable;
-    if (editable) return;
+    const editable = tag === 'input' || tag === 'textarea' || tag === 'select' || target?.isContentEditable;
+    if (editable || ev.repeat || ev.ctrlKey || ev.metaKey || ev.altKey) return;
 
     const activo = document.querySelector<HTMLElement>('.reveal .slides section.present .cronometro');
     if (!activo) return;
@@ -124,12 +130,13 @@ const { minutos } = Astro.props;
 
   // Al cambiar de slide se reinicia el que se queda atrás, para que nunca
   // corra uno en silencio varios módulos después.
-  document.addEventListener('slidechanged', ((ev: CustomEvent) => {
+  document.addEventListener('slidechanged', (ev) => {
+    const currentSlide = (ev as Event & { currentSlide?: HTMLElement }).currentSlide;
     document.querySelectorAll<HTMLElement>('.cronometro').forEach((el) => {
       const section = el.closest('section');
-      if (section && section !== ev.detail?.currentSlide) {
+      if (section && section !== currentSlide) {
         reiniciar(el);
       }
     });
-  }) as EventListener);
+  });
 </script>

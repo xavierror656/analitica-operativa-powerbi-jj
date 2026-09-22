@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Quiz from '../ui/Quiz.astro';
+---
+<EjemploReal modulo="D2-M07" titulo={"Chequeo: ¿desde dónde segmentar?"}>
+  <div class="flex flex-col gap-8">
+    <Quiz pregunta={"Quieres comparar producción, rechazo y mantenimiento por línea. ¿Qué campo usas en el segmentador?"} opciones={[{"texto":"fact_produccion[linea_id]","correcta":false},{"texto":"dim_linea[nombre_linea]","correcta":true},{"texto":"fact_mantenimiento[equipo_id]","correcta":false}]} explicacion={"dim_linea tiene una ruta activa hacia los tres hechos. Un filtro en producción no sube a la dimensión con dirección única."} />
+  </div>
+  <Notas slot="notas" minutos={6} dice={"Dar un minuto individual, otro para discutir y luego revelar la respuesta. Pedir que señalen las tres rutas en el mapa."} nota={"Retoma la intención del reactivo 01 del diagnóstico del PDF. Si no pueden explicar la ruta, volver al mapa antes del bloque guiado."} />
+</EjemploReal>

@@ -1,0 +1,11 @@
+---
+import Practica from '../slides/Practica.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Practica modulo="D2-M33" titulo={"Audita, corrige y vuelve a probar"} minutos={20}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"0–6 min · Revisor de otra área","d":"Abrir una copia del PBIX, ajustar RutaDatos y reproducir dos pruebas."},{"t":"6–13 min · Hallazgo sustentado","d":"Describir síntoma, relación o propiedad y cifra que demuestra el problema."},{"t":"13–20 min · Corrección y nueva prueba","d":"El autor corrige; el revisor repite el filtro y registra el resultado."}]} />
+  </div>
+  <Notas slot="notas" minutos={20} dice={"Intercambiar con otra área cuando la conformación lo permita. Pedir que el revisor razone sin que el autor narre los pasos."} nota={"Si no hay fallas reales, usar una copia con un error sembrado por el instructor para observar nivel 4. No inventar hallazgos ni dañar el entregable."} />
+</Practica>

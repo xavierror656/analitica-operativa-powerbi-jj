@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<EjemploReal modulo="D4-M03" titulo={"El color debe tener un significado estable"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Uso","Regla","Comprobación"]} filas={[["Categorías","El mismo color significa lo mismo en ambas páginas","L1 no cambia de color al navegar"],["Estado","Añade texto, icono o etiqueta al color","Se entiende sin distinguir rojo y verde"],["Meta","Solo si existe definición y valor acordados","No inventar un umbral de calidad"]]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Comparar un semáforo sin leyenda con otro que explique meta y unidad. Quitar color que no ayuda a decidir."} nota={"Accesibilidad: contraste, etiquetas, tamaño legible y orden de tabulación. No presentar un porcentaje del caso como límite aprobado de planta."} />
+</EjemploReal>

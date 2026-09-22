@@ -1,0 +1,11 @@
+---
+import Cierre from '../slides/Cierre.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+---
+<Cierre evidencia="A2" titulo={"Mañana: indicadores sobre un modelo comprobado"}>
+  <div class="flex flex-col gap-8">
+    <p>Conserva tu PBIX A2, su bitácora y una copia de respaldo. El día 3 empieza con este modelo.</p><Nota>Anota una relación que puedas justificar y una pregunta que el modelo todavía no puede responder.</Nota>
+  </div>
+  <Notas slot="notas" minutos={5} dice={"Cerrar con una decisión concreta de modelado que la persona aplicará en su área."} nota={"Antes de inteligencia de tiempo clásica del día 3, completar años del calendario según el periodo de análisis y volver a validar. No ampliar hoy el alcance a medidas, seguridad o publicación."} />
+</Cierre>

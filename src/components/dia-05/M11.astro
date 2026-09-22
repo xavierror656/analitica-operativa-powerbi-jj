@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D5-M11" titulo={"Encuentra y comprueba dos hallazgos"} minutos={40}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"0–12 min · Pregunta","d":"Elige periodo y área; registra la selección."},{"t":"12–28 min · Contraste","d":"Una tendencia y una comparación por línea o defecto, con fuente."},{"t":"28–40 min · Límites","d":"Busca una explicación alternativa y una afirmación que debes descartar."}]} />
+  </div>
+  <Notas slot="notas" minutos={40} dice={"Actividad guiada: primero demostrar, después acompañar por mesa."} nota={"Para defecto usar cantidades de calidad; no construir una tasa por turno con un numerador que ignora turno."} />
+</TuTurno>

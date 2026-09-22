@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<Mecanismo modulo="D4-M04" titulo={"Elige el gráfico por la pregunta"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Pregunta","Visual inicial","Qué cuidar"]} filas={[["¿Cuánto?","Tarjeta","Unidad, periodo y alcance"],["¿Dónde hay más?","Barras ordenadas","Eje común y categorías legibles"],["¿Cómo cambia?","Línea temporal","Fechas ordenadas y periodos comparables"],["¿Qué registro lo explica?","Tabla de detalle","Grano, lote y campos de contexto"]]} />
+  </div>
+  <Notas slot="notas" minutos={15} dice={"Dar tres preguntas reales del grupo y pedir una elección con razón. Construir solo lo que ayude a responderlas."} nota={"Barras comparativas parten de cero para no exagerar magnitudes. Evitar 3D y gráficos de pastel con muchos segmentos; no confundir tamaño de muestra con tasa."} />
+</Mecanismo>

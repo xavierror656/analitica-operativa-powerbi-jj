@@ -7,9 +7,11 @@ import Notas from '../ui/Notas.astro';
 
 <EjemploReal modulo="D1-M8e" titulo="Un parámetro, no una ruta escrita a mano" icono="sliders-horizontal">
   <div class="flex flex-col gap-8">
-    <Cita mono>{`Parámetro: RutaDatos = "C:\\Usuarios\\...\\datos\\salida"
+    <Cita mono>{`// RutaDatos: parámetro Texto, sin barra final
+File.Contents(RutaDatos & "\\fact_produccion.csv")
 
-En cada consulta: Carpeta.Contenidos(RutaDatos)`}</Cita>
+// Para listar una carpeta (otra operación):
+Folder.Contents(RutaDatos)`}</Cita>
     <Nota>
       Si la ruta está escrita directo en cada consulta, cambiar de computadora rompe
       las ocho consultas a la vez. Con un parámetro, se cambia en un solo lugar.
@@ -19,6 +21,6 @@ En cada consulta: Carpeta.Contenidos(RutaDatos)`}</Cita>
     slot="notas"
     minutos={6}
     dice="Un parámetro es una casilla que Power Query trata como constante en todas las consultas que lo usan. Hoy les ahorra reescribir la ruta ocho veces; en planta les va a ahorrar reescribirla cada vez que IT mueva la carpeta de servidor."
-    nota="No es solo para rutas: fecha de corte, nombre de planta, cualquier valor que se repita en varias consultas es candidato a parámetro."
+    nota="Inicio → Administrar parámetros → Nuevo: RutaDatos, tipo Texto. En cada consulta sustituir únicamente la ruta dentro de File.Contents, conservando Csv.Document y sus opciones. Las funciones M se escriben en inglés incluso con la interfaz en español."
   />
 </EjemploReal>

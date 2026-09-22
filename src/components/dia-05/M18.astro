@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<EjemploReal modulo="D5-M18" titulo={"Evalúa lo que la audiencia puede reconstruir"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Cifra y contexto","d":"¿Pudo repetir el hallazgo con su periodo y unidad?"},{"t":"Límite","d":"¿Distingue lo observado de la causa hipotética?"},{"t":"Decisión","d":"¿Sabe qué acción o dato se está solicitando?"}]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"El autor escucha la interpretación de la audiencia antes de defender su intención."} nota={"Registrar una corrección de contenido y una de comunicación; no limitar feedback a hablar más fuerte."} />
+</EjemploReal>

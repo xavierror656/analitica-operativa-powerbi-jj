@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+---
+<EjemploReal modulo="D3-M29" titulo={"Entrega A3 con sus pruebas"}>
+  <div class="flex flex-col gap-8">
+    <Nota>PBIX A3 + seis fichas + matriz de validación por fecha, turno y área + prueba temporal + revisión cruzada.</Nota>
+  </div>
+  <Notas slot="notas" minutos={5} dice={"Revisar archivos y nombres antes del cierre."} nota={"El PBIX continúa a A4. Registrar cualquier exclusión adicional del dataset o pendiente que impida validar."} />
+</EjemploReal>

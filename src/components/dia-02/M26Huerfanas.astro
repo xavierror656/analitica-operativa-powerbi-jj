@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<EjemploReal modulo="D2-M26" titulo={"Una categoría en blanco merece investigación"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Ubica la clave","d":"Identifica el hecho y la dimensión que alimentan el visual."},{"t":"Compara contra el catálogo","d":"Una anti unión izquierda en Power Query muestra claves sin correspondencia."},{"t":"Corrige la causa y repite","d":"Tipo, espacios, código desconocido o catálogo incompleto; registra la decisión."}]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Usar el ejemplo L9 ausente del catálogo en una copia pequeña de prueba. Mostrar cómo aparece un registro sin correspondencia."} nota={"No agregar automáticamente L9 ni borrar el registro para quitar el blanco. Distinguir dato nuevo válido, error de captura y registro pendiente."} />
+</EjemploReal>

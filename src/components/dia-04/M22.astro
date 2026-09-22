@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D4-M22" titulo={"Haz visibles las acciones del reporte"} minutos={8}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Botones con verbos","d":"Ver detalle, Volver al resumen y Restablecer."},{"t":"Acción explícita","d":"Navegación, drillthrough o marcador según propósito."},{"t":"Teclado y lectura","d":"Orden de tabulación, texto alternativo y etiqueta comprensible."}]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Probar las tres acciones. Confirmar que el botón de drillthrough esté habilitado con una selección válida."} nota={"Un botón decorativo sin acción no cuenta como navegación; un icono sin etiqueta puede ser ambiguo para otra área."} />
+</TuTurno>

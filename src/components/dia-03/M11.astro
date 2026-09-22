@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<EjemploReal modulo="D3-M11" titulo={"Una medida es válida cuando puedes repetir su prueba"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Mismo filtro","d":"Anota tabla, columna y selección exacta."},{"t":"Misma fuente","d":"Compara la suma con producción depurada."},{"t":"Misma definición","d":"Revisa unidad, denominador y cualquier filtro que CALCULATE reemplace."}]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Revisar una prueba por mesa antes del receso."} nota={"Guardar A3. Receso 10:30–10:45. Los ejemplos de contexto se conservan como auxiliares, no como nuevos indicadores obligatorios."} />
+</EjemploReal>

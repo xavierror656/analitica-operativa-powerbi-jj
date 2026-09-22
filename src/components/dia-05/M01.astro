@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Mecanismo modulo="D5-M01" titulo={"Define para qué se puede usar este reporte"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Herramienta de monitoreo","d":"Apoya preguntas y decisiones con datos sintéticos de capacitación."},{"t":"Uso formal en el área","d":"Requiere dueño, definiciones, controles, acceso y revisión del proceso correspondiente."},{"t":"Límite explícito","d":"No sustituye sistemas validados ni registros controlados de calidad."}]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Reforzar la distinción del PDF sobre manufactura de dispositivos médicos. Pedir un ejemplo de uso adecuado y uno que exceda el reporte."} nota={"No formular requisitos legales nuevos. La aceptación formal corresponde a los responsables de la empresa, no a terminar un taller."} />
+</Mecanismo>

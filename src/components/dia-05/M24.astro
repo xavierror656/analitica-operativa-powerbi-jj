@@ -1,0 +1,11 @@
+---
+import Practica from '../slides/Practica.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Practica modulo="D5-M24" titulo={"Deja solo afirmaciones que puedas sostener"} minutos={35}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"0–12 min · Cifras","d":"Reproduce dos hallazgos desde fuente y filtros; usa la comprobación externa si está disponible."},{"t":"12–25 min · Argumento","d":"Clasifica datos, interpretaciones e hipótesis; elimina o corrige lo no sustentado."},{"t":"25–35 min · Recomendación","d":"Define acción, responsable propuesto, criterio y limitación."}]} />
+  </div>
+  <Notas slot="notas" minutos={35} dice={"Mantener el foco en redacción y recomendación, como pide el laboratorio del PDF."} nota={"No evaluar habilidad de programación como nueva competencia obligatoria. Registrar cualquier discrepancia como pregunta por resolver antes de exponer."} />
+</Practica>

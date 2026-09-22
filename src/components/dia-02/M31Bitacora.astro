@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<EjemploReal modulo="D2-M31" titulo={"Deja evidencia de la decisión, no solo del dibujo"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Registro","Incluye"]} filas={[["Modelo","Captura y diccionario de granularidad"],["Relaciones","Columnas, cardinalidad, dirección, estado y motivo"],["Pruebas","Filtro, cifra esperada, observada y fuente"],["Auditoría","Hallazgo, corrección, nueva prueba y responsable"]]} />
+  </div>
+  <Notas slot="notas" minutos={7} dice={"Abrir la plantilla de la guía. Mostrar una prueba bien documentada y otra que solo dice funciona."} nota={"Las capturas ayudan; la prueba debe poder repetirse sobre el PBIX. Registrar también exclusiones de A1 y límites de alcance."} />
+</EjemploReal>

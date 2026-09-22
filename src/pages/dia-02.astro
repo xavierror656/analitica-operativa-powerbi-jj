@@ -1,0 +1,95 @@
+---
+import RevealDeck from '../components/RevealDeck.astro';
+import Acto from '../components/ui/Acto.astro';
+import Notas from '../components/ui/Notas.astro';
+import M00Ruta from '../components/dia-02/M00Ruta.astro';
+import M01Pregunta from '../components/dia-02/M01Pregunta.astro';
+import M02Hechos from '../components/dia-02/M02Hechos.astro';
+import M03Granularidad from '../components/dia-02/M03Granularidad.astro';
+import M04Cruce from '../components/dia-02/M04Cruce.astro';
+import M05Estrella from '../components/dia-02/M05Estrella.astro';
+import M06Filtros from '../components/dia-02/M06Filtros.astro';
+import M07Quiz from '../components/dia-02/M07Quiz.astro';
+import M08Retomar from '../components/dia-02/M08Retomar.astro';
+import M09Claves from '../components/dia-02/M09Claves.astro';
+import M10Calendario from '../components/dia-02/M10Calendario.astro';
+import M11Relaciones from '../components/dia-02/M11Relaciones.astro';
+import M12Turno from '../components/dia-02/M12Turno.astro';
+import M13Demo from '../components/dia-02/M13Demo.astro';
+import M14Construir from '../components/dia-02/M14Construir.astro';
+import M15Control from '../components/dia-02/M15Control.astro';
+import M16Preguntas from '../components/dia-02/M16Preguntas.astro';
+import M17Cifras from '../components/dia-02/M17Cifras.astro';
+import M18Segmentar from '../components/dia-02/M18Segmentar.astro';
+import M19Diagnostico from '../components/dia-02/M19Diagnostico.astro';
+import M20Quiz from '../components/dia-02/M20Quiz.astro';
+import M21Preguntale from '../components/dia-02/M21Preguntale.astro';
+import M22Alcance from '../components/dia-02/M22Alcance.astro';
+import M23Jerarquias from '../components/dia-02/M23Jerarquias.astro';
+import M24Ocultar from '../components/dia-02/M24Ocultar.astro';
+import M25Formato from '../components/dia-02/M25Formato.astro';
+import M26Huerfanas from '../components/dia-02/M26Huerfanas.astro';
+import M27Quiz from '../components/dia-02/M27Quiz.astro';
+import M28Laboratorio from '../components/dia-02/M28Laboratorio.astro';
+import M29SalidaLab from '../components/dia-02/M29SalidaLab.astro';
+import M30Rubrica from '../components/dia-02/M30Rubrica.astro';
+import M31Bitacora from '../components/dia-02/M31Bitacora.astro';
+import M32Taller from '../components/dia-02/M32Taller.astro';
+import M33Auditoria from '../components/dia-02/M33Auditoria.astro';
+import M34Entrega from '../components/dia-02/M34Entrega.astro';
+import M35Validacion from '../components/dia-02/M35Validacion.astro';
+import M36Salida from '../components/dia-02/M36Salida.astro';
+import M37Puente from '../components/dia-02/M37Puente.astro';
+---
+<RevealDeck titulo="Día 2 · Modelo de datos">
+  <Acto numero={2} palabra="Modelar"><Notas slot="notas" minutos={0} dice="Portada de espera. Iniciar a las 08:00 en la ruta del día." /></Acto>
+  <!-- 08:00 Fundamento (60 min) -->
+  <M00Ruta />
+  <M01Pregunta />
+  <M02Hechos />
+  <M03Granularidad />
+  <M04Cruce />
+  <M05Estrella />
+  <M06Filtros />
+  <M07Quiz />
+
+  <!-- 09:00 Núcleo 1: Armar el modelo (90 min) -->
+  <M08Retomar />
+  <M09Claves />
+  <M10Calendario />
+  <M11Relaciones />
+  <M12Turno />
+  <M13Demo />
+  <M14Construir />
+  <M15Control />
+
+  <!-- 10:45 Núcleo 2: Pregúntale al modelo (90 min) -->
+  <M16Preguntas />
+  <M17Cifras />
+  <M18Segmentar />
+  <M19Diagnostico />
+  <M20Quiz />
+  <M21Preguntale />
+  <M22Alcance />
+
+  <!-- 13:15 Laboratorio aplicado (90 min) -->
+  <M23Jerarquias />
+  <M24Ocultar />
+  <M25Formato />
+  <M26Huerfanas />
+  <M27Quiz />
+  <M28Laboratorio />
+  <M29SalidaLab />
+
+  <!-- 15:00 Taller de evidencia A2 (90 min) -->
+  <M30Rubrica />
+  <M31Bitacora />
+  <M32Taller />
+  <M33Auditoria />
+  <M34Entrega />
+
+  <!-- 16:30 Validación y cierre (30 min) -->
+  <M35Validacion />
+  <M36Salida />
+  <M37Puente />
+</RevealDeck>

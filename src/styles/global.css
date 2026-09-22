@@ -259,3 +259,23 @@ body {
   border-color: var(--color-warn);
   background: color-mix(in srgb, var(--color-warn) 15%, transparent);
 }
+
+/* Contraste de proyección y foco visible para actividades con teclado. */
+.reveal .slides section.is-light .text-accent {
+  color: #08796b;
+}
+.reveal :is(a, button):focus-visible {
+  outline: 4px solid currentColor;
+  outline-offset: 6px;
+}
+.reveal .slides section h2 { line-height: 1.16; text-wrap: balance; }
+.reveal .slides section pre { overflow-wrap: anywhere; }
+.day-roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.day-roadmap-item { border-top: 4px solid #08796b; padding: 20px 24px; background: var(--color-paper-2); }
+.day-roadmap-item strong { display: block; font-size: 36px; margin: 10px 0; }
+.day-roadmap-item p { margin: 0; }
+.day-time { font: 26px var(--font-codigo); color: #08796b; }
+.day-guide-link { display: inline-block; margin-top: 24px; font-size: 28px; font-weight: 600; text-decoration: underline; text-underline-offset: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal *, .reveal *::before, .reveal *::after { animation: none !important; transition: none !important; }
+}

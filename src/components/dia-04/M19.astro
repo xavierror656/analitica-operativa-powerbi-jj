@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<EjemploReal modulo="D4-M19" titulo={"Formato condicional con reglas que puedas explicar"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Elige una tabla o matriz","d":"Usa una medida existente y una escala descrita."},{"t":"Agrega la regla","d":"Barras de datos o iconos con leyenda y unidad."},{"t":"Prueba extremos y blancos","d":"Ningún dato ausente debe aparentar cumplimiento."}]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Para práctica, usar barras de magnitud o reglas didácticas etiquetadas. No inventar límites de aceptación de producto."} nota={"Si se usa meta ilustrativa, nombrarla como tal y conservar su fuente. El color complementa el texto, no lo sustituye."} />
+</EjemploReal>

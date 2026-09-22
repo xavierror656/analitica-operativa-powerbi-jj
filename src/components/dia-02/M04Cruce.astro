@@ -1,0 +1,12 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<EjemploReal modulo="D2-M04" titulo={"Un cruce por fecha puede repetir el detalle"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Producción · mismo día","Mantenimiento · mismo día","Al combinar y expandir por fecha"]} filas={[["Lote A: 100 piezas","Evento X: 10 min","A–X: 100 · A–Y: 100"],["Lote B: 200 piezas","Evento Y: 20 min","B–X: 200 · B–Y: 200"],["Total: 300 piezas","Total: 30 min","Suma repetida: 600 piezas y 60 min"]]} /><Nota>Relacionar en el modelo propaga filtros; combinar y expandir en Power Query materializa filas. Son operaciones distintas.</Nota>
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Simular el cruce 2 por 2 en papel. Pedir al grupo que explique de dónde salen cuatro filas."} nota={"No atribuir la duplicación física a crear una relación. En un modelo mal relacionado también puede haber totales repetidos por categoría o filtros incorrectos; hay que identificar el mecanismo."} />
+</EjemploReal>

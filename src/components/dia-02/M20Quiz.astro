@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Quiz from '../ui/Quiz.astro';
+---
+<EjemploReal modulo="D2-M20" titulo={"Que una tarjeta no cambie puede ser correcto"}>
+  <div class="flex flex-col gap-8">
+    <Quiz pregunta={"Filtras dim_turno[nombre] = 1. La producción cambia, pero mantenimiento no. ¿Qué concluyes?"} opciones={[{"texto":"Hay que activar Ambos en todas las relaciones.","correcta":false},{"texto":"El modelo falla porque todas las tarjetas deben cambiar.","correcta":false},{"texto":"Mantenimiento no contiene turno ni tiene esa ruta de filtro.","correcta":true}]} explicacion={"En el modelo base, turno solo filtra producción. No se puede atribuir mantenimiento a un turno sin una regla y datos que lo sustenten."} />
+  </div>
+  <Notas slot="notas" minutos={6} dice={"Pedir que expliquen qué información adicional necesitarían para un análisis de mantenimiento por turno."} nota={"Evitar mostrar mantenimiento como si fuera del turno seleccionado. Rotular alcance o separarlo; un valor estable no necesariamente indica error."} />
+</EjemploReal>

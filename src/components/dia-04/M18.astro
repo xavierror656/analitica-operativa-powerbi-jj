@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D4-M18" titulo={"Configura las interacciones de forma intencional"} minutos={12}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Selecciona un visual","d":"Usa Editar interacciones en la cinta."},{"t":"Define el efecto en cada destino","d":"Filtrar, resaltar o no interactuar, según permita el visual."},{"t":"Prueba y limpia la selección","d":"Observa las cifras antes y después; registra por qué elegiste esa interacción."}]} />
+  </div>
+  <Notas slot="notas" minutos={12} dice={"Demostrar con barras por línea y una tarjeta. El lector debe distinguir filtro de resaltado."} nota={"No anular una interacción para esconder un error de modelo. Revisar las relaciones antes de atribuir todo al visual."} />
+</TuTurno>

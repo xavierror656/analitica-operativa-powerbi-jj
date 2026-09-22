@@ -1,0 +1,11 @@
+---
+import Practica from '../slides/Practica.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Practica modulo="D3-M28" titulo={"Audita una fórmula con su contexto"} minutos={20}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"0–6 min · Reproduce","d":"El revisor abre una copia, ajusta ruta y repite un filtro."},{"t":"6–13 min · Comprueba","d":"Examina denominador, fuente, formato y tratamiento del blanco."},{"t":"13–20 min · Corrige y repite","d":"Guarda la evidencia antes/después y la explicación."}]} />
+  </div>
+  <Notas slot="notas" minutos={20} dice={"Intercambiar con otra área. Reservar una variante nueva para nivel 3, descrita en la guía del instructor."} nota={"Si no hay errores reales, el instructor usa una copia con promedio de porcentajes o numerador de calidad filtrado incorrectamente. No dañar la entrega."} />
+</Practica>

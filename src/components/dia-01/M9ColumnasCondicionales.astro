@@ -19,15 +19,18 @@ import Notas from '../ui/Notas.astro';
         <li>Aceptado con desviación</li>
       </ul>
     </Comparacion>
-    <Cita mono>{`if [disposicion] = "Retrabajo" then "Recuperable"
-else if [disposicion] = "Desecho" then "Pérdida total"
-else "Aceptado con desviación"`}</Cita>
+    <Cita mono>{`let d = if [disposicion] = null then ""
+        else Text.Lower(Text.Trim([disposicion]))
+in if d = "retrabajo" then "Recuperable"
+else if d = "desecho" then "Pérdida total"
+else if d = "concesión" then "Aceptado con desviación"
+else "Revisar"`}</Cita>
   </div>
   <Notas
     slot="notas"
     minutos={8}
     dice="Una condicional sola resuelve dos casos. En planta casi siempre hay tres o más, y ahí es donde la gente anida mal o hace cinco columnas sueltas. La regla: una columna, todas las condiciones, en el orden en que de verdad ocurren."
-    pregunta="¿Qué pasa si la fila dice 'RETRABAJO' en mayúsculas? ¿Esta fórmula la agarra?"
-    nota="No la agarra: es sensible a mayúsculas. Es la entrada perfecta a Text.Proper o Text.Lower antes de la condicional, si alguien no lo menciona, señalarlo."
+    pregunta="¿Dónde terminarían un valor vacío y una disposición que nadie había visto antes?"
+    nota="Probar Retrabajo, RETRABAJO, Desecho, Concesión, null y un texto desconocido. Las últimas dos entradas deben quedar como Revisar; nunca como una aceptación automática. La clasificación es didáctica, no una autorización de liberación."
   />
 </EjemploReal>

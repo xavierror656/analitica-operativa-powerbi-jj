@@ -1,0 +1,17 @@
+---
+import controles from '../../data/controles-dia-03.json';
+import medidas from '../../data/medidas-dia-03.json';
+import TablaCurso from '../ui/TablaCurso.astro';
+interface Props { casos?: number[]; }
+const { casos = [0, 1, 4] } = Astro.props;
+const seleccion = casos.map(i => controles.casos[i]);
+const principales = medidas.filter(m => m.principal);
+const valor = (caso: typeof controles.casos[number], nombre: string) => {
+  const v = caso.valores[nombre as keyof typeof caso.valores];
+  if (v === null) return 'Sin datos';
+  return nombre.startsWith('%') ? (v * 100).toFixed(2) + ' %' : v.toLocaleString('es-MX');
+};
+---
+<TablaCurso columnas={['Indicador', ...seleccion.map(c => c.caso)]}
+  filas={principales.map(m => [m.nombre, ...seleccion.map(c => valor(c, m.nombre))])} />
+<p class="texto-chico text-dim mt-4">Cada columna parte de filtros limpios. Turno solo filtra producción; mantenimiento conserva su alcance por fecha y línea/área.</p>

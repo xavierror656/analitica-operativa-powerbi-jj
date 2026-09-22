@@ -12,8 +12,8 @@ import Notas from '../ui/Notas.astro';
   <Notas
     slot="notas"
     minutos={7}
-    dice="Este es el clásico de Excel: si alguien abrió el CSV en Excel y lo volvió a guardar, Excel interpretó el lote como número y se comió los ceros. El dato no se ve mal a simple vista, y por eso es el más peligroso de los nueve."
+    dice="Aquí el generador quitó un cero del sufijo a propósito. El lote es texto: separar por guion, completar el sufijo a cuatro caracteres y volver a unir. No atribuir este ejemplo al comportamiento automático de Excel."
     pregunta="¿Por qué importa que el lote tenga los ceros exactos, en un contexto de dispositivos médicos?"
-    nota="Trazabilidad: el número de lote tiene que coincidir carácter por carácter con el que está en el registro físico. Un lote sin ceros no es 'casi el mismo', es un lote que no existe en el sistema de origen."
+    nota="Regla de este ejercicio: prefijo AAMM y secuencia de cuatro dígitos. Aplicarla también en fact_calidad. Guardar el valor original. La guía incluye Text.PadStart; fuera del ejercicio, no inventar ceros sin una especificación del identificador."
   />
 </EjemploReal>

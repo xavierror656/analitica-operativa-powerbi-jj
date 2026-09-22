@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import MedidaDax from '../dia-03/MedidaDax.astro';
+---
+<EjemploReal modulo="D3-M15" titulo={"Una duración correctiva no equivale a disponibilidad"}>
+  <div class="flex flex-col gap-8">
+    <MedidaDax id="minutos" /><p>Eventos correctivos cuenta filas de mantenimiento donde tipo = correctivo. Es un conteo de registros de este dataset.</p>
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Revisar el filtro fijo de tipo y compararlo con mantenimiento total del día 2."} nota={"Sin filtros: 560 eventos y 71,248 minutos correctivos. No usar la suma de horas_operacion del generador como exposición única: puede repetirse por parte."} />
+</EjemploReal>

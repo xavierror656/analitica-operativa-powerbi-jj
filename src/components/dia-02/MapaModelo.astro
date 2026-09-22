@@ -1,0 +1,12 @@
+---
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<TablaCurso columnas={['Dimensión →', 'Producción', 'Calidad', 'Mantenimiento']}
+  filas={[
+    ['Calendario', '1 → *', '1 → *', '1 → *'],
+    ['Línea', '1 → *', '1 → *', '1 → *'],
+    ['Parte', '1 → *', '1 → *', 'Sin relación'],
+    ['Turno', '1 → *', 'Sin relación', 'Sin relación'],
+    ['Defecto', 'Sin relación', '1 → *', 'Sin relación'],
+  ]} leyenda="Tres hechos con dimensiones compartidas · 10 relaciones activas · filtro único" />
+<p class="texto-chico text-dim mt-8">Cada flecha representa una relación. No conectamos los hechos entre sí ni inventamos claves ausentes.</p>

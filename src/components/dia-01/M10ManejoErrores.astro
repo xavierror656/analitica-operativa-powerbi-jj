@@ -9,12 +9,12 @@ import Notas from '../ui/Notas.astro';
   <div class="flex flex-col gap-10">
     <Comparacion tituloA="Sin manejo de errores" tituloB="Con manejo de errores" iconoA="circle-x" iconoB="circle-check-big">
       <p slot="a">
-        Una fila con la hora en formato incorrecto revienta la consulta completa. El
-        reporte no carga y nadie sabe cuál de las 7,000 filas fue.
+        Una conversión de hora puede generar Error en una celda. Si no se revisa,
+        puede impedir cargar esa tabla al modelo o dejar un resultado incompleto.
       </p>
       <p slot="b">
-        Power Query aísla la fila con error, deja cargar las demás, y las filas
-        aisladas quedan en una tabla aparte para revisarlas.
+        Tú creas una consulta de excepciones con Conservar errores y otra de datos
+        válidos con Quitar errores, desde el mismo paso. Power Query no las separa automáticamente.
       </p>
     </Comparacion>
     <Nota tono="alto">

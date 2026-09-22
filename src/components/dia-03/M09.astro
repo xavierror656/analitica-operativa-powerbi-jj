@@ -1,0 +1,12 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+import MedidaDax from '../dia-03/MedidaDax.astro';
+---
+<EjemploReal modulo="D3-M09" titulo={"Declara qué conserva el denominador"}>
+  <div class="flex flex-col gap-8">
+    <MedidaDax id="participacion" /><Nota>Quita todos los filtros de dim_linea, incluido área. Conserva filtros de otras dimensiones, como fecha o turno.</Nota>
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Filtrar L1 y luego un periodo: observar numerador y denominador. Explicar que total planta significa aquí todas las líneas dentro del resto de la selección."} nota={"Esta medida es auxiliar; no reemplaza ninguno de los seis indicadores A3. No llamarla porcentaje total global si hay filtros de parte o turno activos."} />
+</EjemploReal>

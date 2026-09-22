@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D2-M08" titulo={"Abre A1 y guarda una copia A2"} minutos={5}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Guarda como Apellido_Nombre_A2.pbix","d":"Conserva A1 como punto de recuperación."},{"t":"Actualiza y comprueba","d":"Ocho tablas separadas, tipos revisados y conciliación disponible."},{"t":"Revisa relaciones existentes","d":"Inventaría las autodetectadas; compara con el mapa antes de corregirlas en la copia."}]} />
+  </div>
+  <Notas slot="notas" minutos={5} dice={"El instructor hace los mismos pasos en pantalla. Continuamos el mismo archivo, como exige la propuesta."} nota={"Si A1 está incompleta, declarar pendientes y acompañar la corrección. No entregar como validado un PBIX con datos crudos para que alcance al grupo."} />
+</TuTurno>

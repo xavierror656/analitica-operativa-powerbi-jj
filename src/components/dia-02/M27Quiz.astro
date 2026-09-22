@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Quiz from '../ui/Quiz.astro';
+---
+<EjemploReal modulo="D2-M27" titulo={"¿Qué solución mantiene el significado?"}>
+  <div class="flex flex-col gap-8">
+    <Quiz pregunta={"Tu dimensión tiene dos filas con linea_id = L1 y distinta área. Desktop propone muchos a muchos. ¿Qué haces primero?"} opciones={[{"texto":"Reviso el catálogo y defino cuál es la entidad y su clave única.","correcta":true},{"texto":"Acepto muchos a muchos para poder continuar.","correcta":false},{"texto":"Elimino una fila de L1 al azar.","correcta":false}]} explicacion={"La cardinalidad debe reflejar el negocio. Si el catálogo mezcla entidades o versiones, hay que aclararlo antes de modelar; cambiar la relación no resuelve el conflicto."} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Pedir dos posibles explicaciones: error duplicado o historial de cambios. Elegir una respuesta exige saber qué significa esa fila."} nota={"El ejercicio usa un catálogo vigente simple. Dimensiones históricas quedan como discusión, no se incorpora un tema avanzado nuevo obligatorio."} />
+</EjemploReal>

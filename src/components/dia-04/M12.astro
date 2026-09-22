@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<Mecanismo modulo="D4-M12" titulo={"El detalle conserva el contexto del resumen"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Zona de Detalle","Campos","Alcance"]} filas={[["Producción","Fecha, línea, turno, parte, lote y medidas A3","Admite filtro de turno y lote"],["Calidad","Fecha, línea, parte, lote, defecto y rechazos","No hereda turno en el modelo base"],["Mantenimiento","Fecha_evento, equipo, tipo y duración","No atribuirlo a parte o lote"]]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Diseñar dos o tres zonas según la pregunta; no juntar columnas de los tres hechos en una tabla plana."} nota={"Trazabilidad significa llegar al registro pertinente con el contexto visible. No inventar relaciones para que toda zona responda a cualquier filtro."} />
+</Mecanismo>

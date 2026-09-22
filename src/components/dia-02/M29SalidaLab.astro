@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<EjemploReal modulo="D2-M29" titulo={"El laboratorio termina cuando puedes explicar el antes y después"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Evidencia","Pregunta de control"]} filas={[["Jerarquía y orden de mes","¿Separa años y permite bajar al detalle?"],["Campos organizados","¿Otra área encuentra la dimensión adecuada?"],["Falla restaurada","¿El mismo filtro vuelve a producir la cifra de referencia?"]]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Revisar una evidencia por mesa. Si el error continúa, escribir síntoma y prueba pendiente para iniciar el taller."} nota={"Receso 14:45–15:00. Todos conservan el modelo base y sus diez relaciones funcionales."} />
+</EjemploReal>

@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<Mecanismo modulo="D3-M12" titulo={"Seis indicadores que este dataset permite sostener"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Indicador","Pregunta","Alcance"]} filas={[["Piezas","¿Cuánto se produjo?","Producción"],["% Cumplimiento","¿Cuánto del plan se logró?","Producción / plan"],["% Buenas","¿Qué parte fue buena?","Buenas / producidas"],["% Rechazo producción","¿Qué parte no fue buena?","Diferencia / producidas"],["Eventos correctivos","¿Cuántas intervenciones?","Mantenimiento correctivo"],["Minutos correctivos","¿Cuánto duraron?","Mantenimiento correctivo"]]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Acordar estas definiciones para el caso. El PDF deja los seis indicadores al grupo: esta selección cabe en las columnas disponibles."} nota={"No afirmar OEE, MTBF, FPY ni disponibilidad: faltan definiciones o tiempo de exposición fiable. Los cuatro primeros admiten turno; los dos últimos no."} />
+</Mecanismo>

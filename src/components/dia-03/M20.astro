@@ -1,0 +1,12 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+import MedidaDax from '../dia-03/MedidaDax.astro';
+---
+<EjemploReal modulo="D3-M20" titulo={"Compara periodos equivalentes"}>
+  <div class="flex flex-col gap-8">
+    <MedidaDax id="anterior" /><Nota>En una fila de mayo de 2025: 337,491 piezas actuales frente a 343,875 en abril. Usa anio_mes, no nombre_mes aislado.</Nota>
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Configurar tabla mensual con anio_mes, Piezas y Piezas mes anterior. Mantener filtros comunes."} nota={"DATEADD clásico sobre una columna espera una selección de fechas continua. Para esta práctica comparar meses completos, no selecciones sueltas ni un mes parcial con uno completo."} />
+</EjemploReal>

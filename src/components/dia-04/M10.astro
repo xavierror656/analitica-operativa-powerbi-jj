@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D4-M10" titulo={"Termina la primera versión del resumen"} minutos={40}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"0–15 min · Estructura","d":"Alinea visuales y conserva el orden de lectura."},{"t":"15–30 min · Pregunta y filtros","d":"Configura fecha, línea/área, títulos y unidades."},{"t":"30–40 min · Control","d":"Repite dos cortes A3 y comprueba que el diseño no cambió el cálculo."}]} />
+  </div>
+  <Notas slot="notas" minutos={40} dice={"Seguir acompañando: la actividad núcleo 1 es guiada. Revisar por mesa al minuto 15 y al 30."} nota={"No invertir tiempo en efectos decorativos mientras falte la pregunta, el periodo o una cifra de control."} />
+</TuTurno>

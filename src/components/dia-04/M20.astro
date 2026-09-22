@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D4-M20" titulo={"Construye un tooltip de página útil"} minutos={10}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Página auxiliar Tooltip","d":"Activa uso como información sobre herramientas y tamaño adecuado."},{"t":"Añade contexto","d":"Línea, periodo y dos medidas, sin una tabla diminuta."},{"t":"Asigna y contrasta","d":"Asocia la página al visual; al pasar el cursor verifica que herede el punto correcto."}]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Crear y probar un tooltip sobre las barras por línea."} nota={"El tooltip no debe contener la única explicación crítica: también debe ser accesible desde el detalle o una etiqueta. Revisar contexto automático, no asumirlo."} />
+</TuTurno>

@@ -4,24 +4,22 @@ import Comparacion from '../ui/Comparacion.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
-<EjemploReal modulo="D1-M1b" titulo="Power BI no es Excel con otro nombre">
+<EjemploReal modulo="D1-M1b" titulo="Elige la herramienta según el trabajo">
   <Comparacion tituloA="Excel" tituloB="Power BI" iconoA="file-spreadsheet" iconoB="bar-chart-3">
     <ul slot="a" class="flex flex-col gap-3 list-disc pl-6">
-      <li>Cada persona tiene su propia copia del archivo</li>
-      <li>Fórmula y dato viven en la misma celda</li>
-      <li>Actualizar significa volver a pegar</li>
-      <li>El límite práctico son unos cientos de miles de filas</li>
+      <li>Captura, cálculos de celda y análisis ad hoc</li>
+      <li>También puede usar Power Query y modelos de datos</li>
+      <li>Conviene cuando necesitas editar datos y explorar escenarios</li>
     </ul>
     <ul slot="b" class="flex flex-col gap-3 list-disc pl-6">
-      <li>Una fuente, varias personas viendo el mismo reporte</li>
-      <li>El dato vive en un modelo; la fórmula, en una medida aparte</li>
-      <li>Actualizar significa dar clic en "Actualizar"</li>
-      <li>Trabaja cómodo con millones de filas</li>
+      <li>Modelo compartido e indicadores consistentes</li>
+      <li>Reportes interactivos sobre varias fuentes</li>
+      <li>Actualización y acceso configurados para su distribución</li>
     </ul>
   </Comparacion>
   <Notas
     slot="notas"
-    minutos={7}
+    minutos={5}
     dice="No venimos a reemplazar Excel, Excel sigue siendo la herramienta correcta para muchas cosas. Venimos a resolver lo que Excel deja de poder resolver bien: varias fuentes, mucho volumen, y un reporte que varias personas necesitan ver actualizado al mismo tiempo."
     pregunta="¿Alguien ha vivido el problema de 'versión_final_v3_buena.xlsx'?"
     nota="Todo el salón lo ha vivido. No es una crítica a Excel, es la razón de ser del programa: cuando el archivo se vuelve el problema, cambia la herramienta."

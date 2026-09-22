@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D4-M09" titulo={"Construye tendencia y comparación"} minutos={12}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Tendencia","d":"Eje anio_mes; valores Piezas o una tasa definida, con unidad explícita."},{"t":"Comparación","d":"Barras por dim_linea[nombre_linea] y una medida A3."},{"t":"Verificación","d":"Mismo periodo en ambos; comprobar mayo de 2025 contra Control_A3."}]} />
+  </div>
+  <Notas slot="notas" minutos={12} dice={"Instructor y participantes construyen en paralelo. Mostrar el efecto de ordenar una etiqueta temporal alfabéticamente."} nota={"No mezclar piezas y porcentajes en un mismo eje. Conservar el año; nombre_mes aislado agrega años diferentes."} />
+</TuTurno>

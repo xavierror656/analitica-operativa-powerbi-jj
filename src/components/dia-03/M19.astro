@@ -1,0 +1,12 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+import MedidaDax from '../dia-03/MedidaDax.astro';
+---
+<EjemploReal modulo="D3-M19" titulo={"Acumular exige definir el corte"}>
+  <div class="flex flex-col gap-8">
+    <MedidaDax id="mtd" /><Nota>Al 07/05/2025, sin otros filtros: Piezas MTD = 77,234. El acumulado va desde el inicio de ese mes hasta el corte.</Nota>
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Crear una tabla por fecha y contrastar suma manual del 1 al 7 de mayo."} nota={"No confundir acumulado del mes con acumulado histórico ni con sumar tarjetas MTD de varios días."} />
+</EjemploReal>

@@ -33,7 +33,8 @@ const { pregunta, opciones, explicacion } = Astro.props;
       ))
     }
   </div>
-  {explicacion && <p class="quiz-explicacion mt-8 hidden text-2xl text-dim">{explicacion}</p>}
+  <p class="quiz-resultado texto-chico mt-4" role="status" aria-live="polite"></p>
+  {explicacion && <p class="quiz-explicacion mt-4 hidden text-2xl text-dim">{explicacion}</p>}
 </div>
 
 <script>
@@ -44,12 +45,11 @@ const { pregunta, opciones, explicacion } = Astro.props;
 
       const botones = Array.from(quiz.querySelectorAll<HTMLButtonElement>('.quiz-opcion'));
       const explicacionEl = quiz.querySelector<HTMLElement>('.quiz-explicacion');
-      let respondido = false;
 
       botones.forEach((btn) => {
         btn.addEventListener('click', () => {
-          if (respondido) return;
-          respondido = true;
+          if (quiz.dataset.respondido === 'true') return;
+          quiz.dataset.respondido = 'true';
 
           const esCorrecta = btn.dataset.correcta === 'true';
           botones.forEach((b) => {
@@ -64,6 +64,8 @@ const { pregunta, opciones, explicacion } = Astro.props;
             btn.querySelector('.quiz-icono-incorrecta')?.classList.remove('hidden');
           }
           explicacionEl?.classList.remove('hidden');
+          const resultado = quiz.querySelector<HTMLElement>('.quiz-resultado');
+          if (resultado) resultado.textContent = esCorrecta ? 'Correcto. Explica tu razonamiento.' : 'Revisa la respuesta señalada y explica qué cambiarías.';
         });
       });
     });
@@ -72,11 +74,12 @@ const { pregunta, opciones, explicacion } = Astro.props;
 
   // Reiniciar el quiz de una slide cuando se deja de ver, para que la
   // próxima vez que alguien pase por ahí (o repita la sesión) esté en blanco.
-  document.addEventListener('slidechanged', ((ev: CustomEvent) => {
+  document.addEventListener('slidechanged', (ev) => {
+    const currentSlide = (ev as Event & { currentSlide?: HTMLElement }).currentSlide;
     document.querySelectorAll<HTMLElement>('.quiz').forEach((quiz) => {
       const section = quiz.closest('section');
-      if (!section || section === ev.detail?.currentSlide) return;
-      quiz.dataset.wired = '';
+      if (!section || section === currentSlide) return;
+      delete quiz.dataset.respondido;
       const botones = Array.from(quiz.querySelectorAll<HTMLButtonElement>('.quiz-opcion'));
       botones.forEach((b) => {
         b.disabled = false;
@@ -84,7 +87,8 @@ const { pregunta, opciones, explicacion } = Astro.props;
         b.querySelectorAll('.quiz-opcion-icono').forEach((el) => el.classList.add('hidden'));
       });
       quiz.querySelector('.quiz-explicacion')?.classList.add('hidden');
-      init();
+      const resultado = quiz.querySelector('.quiz-resultado');
+      if (resultado) resultado.textContent = '';
     });
-  }) as EventListener);
+  });
 </script>

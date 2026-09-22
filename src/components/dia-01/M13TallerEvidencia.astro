@@ -7,21 +7,18 @@ import Notas from '../ui/Notas.astro';
 <TuTurno modulo="D1-M13" titulo="Evidencia A1: depura tu archivo y documéntalo" minutos={55}>
   <div class="flex flex-col gap-10">
     <p class="text-3xl">
-      Deja fact_produccion, fact_calidad y fact_mantenimiento limpios y consolidados,
-      con cada paso de Power Query nombrado de forma que se entienda sin abrir la
-      fórmula.
+      Entrega Apellido_Nombre_A1.pbix y tu bitácora: ocho tablas, reglas documentadas,
+      excepciones visibles y conciliación de filas y piezas. Guarda una copia antes de actualizar.
     </p>
     <Nota tono="alto">
-      Criterio de aceptación: si le pasas tu archivo a un compañero de otra área, sin
-      explicación previa, tiene que poder leer tus pasos y saber qué le hiciste a los
-      datos. Eso es lo que hace a un archivo auditable, y es lo que evalúa la
-      competencia C1.
+      Prueba de aceptación: otra persona cambia RutaDatos, actualiza dos veces y obtiene
+      los mismos conteos y totales. Toda fila retirada tiene un motivo; todo dato pendiente queda declarado.
     </Nota>
   </div>
   <Notas
     slot="notas"
     minutos={55}
     dice="Este es su archivo, el mismo que van a reutilizar los próximos cuatro días. Lo que dejen mal documentado hoy, lo van a pagar el jueves."
-    nota="Circular por mesa. Si alguien termina temprano, pedirle que audite el archivo de un compañero de otra área: es la mejor prueba de que la documentación sirve."
+    nota="Distribución de los 55 min: 25 completar reglas, 15 conciliar, 10 documentar, 5 guardar y actualizar. La guía contiene la plantilla. Si falta tiempo, priorizar trazabilidad y declarar pendientes; no sustituir faltantes por cero para completar una lista."
   />
 </TuTurno>

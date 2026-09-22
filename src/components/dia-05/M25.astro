@@ -1,0 +1,11 @@
+---
+import Practica from '../slides/Practica.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Practica modulo="D5-M25" titulo={"Defiende una afirmación y reconoce un límite"} minutos={10}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"5 min · Preguntas del revisor","d":"Pide fuente, filtro, denominador y comparación."},{"t":"5 min · Respuesta y ajuste","d":"Muestra el rastro o retira la afirmación."}]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Dar valor a reconocer un límite con precisión. No premiar seguridad verbal sin respaldo."} nota={"El autor debe poder volver al reporte y a la bitácora sin depender de la memoria de un tercero."} />
+</Practica>

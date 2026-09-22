@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D2-M03" titulo={"Describe el grano antes de unir"} minutos={8}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"2 min · Producción","d":"Explica qué combinación distingue sus registros."},{"t":"3 min · Calidad","d":"Un lote aparece en varios eventos: ¿es un duplicado o un detalle legítimo?"},{"t":"3 min · Comparte","d":"Escribe una relación que NO crearías y explica por qué."}]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Trabajar por parejas con el archivo abierto. Pedir una respuesta de Operaciones y otra de Ingeniería."} nota={"Respuesta esperada: lote no es clave única en calidad; fecha se repite en los tres hechos. No aceptar muchas filas como definición de granularidad."} />
+</TuTurno>

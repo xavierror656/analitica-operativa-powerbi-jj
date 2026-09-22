@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<Mecanismo modulo="D5-M20" titulo={"Audita cada afirmación antes de defenderla"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Tipo","Cómo se reconoce","Tratamiento"]} filas={[["Dato","Se reproduce con campo, filtro y cálculo","Citar y verificar"],["Interpretación","Relaciona observaciones y contexto","Explicar supuestos"],["Hipótesis causal","Propone por qué ocurrió","Exigir evidencia adicional"]]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Tomar una oración del ensayo y clasificar sus partes."} nota={"Eliminar cualquier afirmación que no tenga respaldo o marcarla como hipótesis, no maquillarla con lenguaje más seguro."} />
+</Mecanismo>

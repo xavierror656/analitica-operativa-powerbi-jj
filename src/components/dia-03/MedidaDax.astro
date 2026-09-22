@@ -1,0 +1,10 @@
+---
+import medidas from '../../data/medidas-dia-03.json';
+import Cita from '../ui/Cita.astro';
+interface Props { id: string; }
+const { id } = Astro.props;
+const medida = medidas.find(m => m.id === id);
+if (!medida) throw new Error('Medida desconocida: ' + id);
+---
+<Cita mono>{medida.nombre + ' =\n' + medida.expresion}</Cita>
+<p class="texto-chico text-dim mt-4">Formato: {medida.formato} · Unidad: {medida.unidad}</p>

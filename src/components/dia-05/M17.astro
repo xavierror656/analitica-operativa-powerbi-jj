@@ -1,0 +1,11 @@
+---
+import Practica from '../slides/Practica.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Practica modulo="D5-M17" titulo={"Ensaya en tres rondas de catorce minutos"} minutos={42}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"7 min · Presentación","d":"Un representante usa el reporte y solicita una decisión."},{"t":"5 min · Retroalimentación","d":"La pareja identifica una cifra, una inferencia y una pregunta sin respuesta."},{"t":"2 min · Ajuste","d":"Anota la corrección; cambia el expositor en la siguiente ronda."}]} />
+  </div>
+  <Notas slot="notas" minutos={42} dice={"Tres rondas de 14 minutos dentro de cada equipo. Distribuir exposiciones para observar a distintos integrantes."} nota={"La exposición final será ante el grupo. En el ensayo no se exige crear un deck adicional: el reporte y una ficha ejecutiva son suficientes."} />
+</Practica>

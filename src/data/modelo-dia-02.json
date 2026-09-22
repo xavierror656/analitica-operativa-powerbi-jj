@@ -1,0 +1,17 @@
+{
+  "relaciones": [
+    ["dim_calendario", "fecha", "fact_produccion", "fecha"],
+    ["dim_calendario", "fecha", "fact_calidad", "fecha"],
+    ["dim_calendario", "fecha", "fact_mantenimiento", "fecha_evento"],
+    ["dim_linea", "linea_id", "fact_produccion", "linea_id"],
+    ["dim_linea", "linea_id", "fact_calidad", "linea_id"],
+    ["dim_linea", "linea_id", "fact_mantenimiento", "linea_id"],
+    ["dim_parte", "parte_id", "fact_produccion", "parte_id"],
+    ["dim_parte", "parte_id", "fact_calidad", "parte_id"],
+    ["dim_turno", "nombre", "fact_produccion", "turno"],
+    ["dim_defecto", "defecto_id", "fact_calidad", "tipo_defecto"]
+  ],
+  "cardinalidad": "1:*",
+  "direccion": "dimensión → hecho",
+  "activas": true
+}

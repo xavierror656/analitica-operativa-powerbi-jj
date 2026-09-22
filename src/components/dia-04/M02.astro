@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import PlanoReporte from '../dia-04/PlanoReporte.astro';
+---
+<Mecanismo modulo="D4-M02" titulo={"Ordena la lectura antes de decorar"}>
+  <div class="flex flex-col gap-8">
+    <PlanoReporte />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Recorrer en voz alta el orden: pregunta, periodo, cifras, explicación visual, detalle."} nota={"El plano es un esquema didáctico, no una captura de Power BI ni un archivo PBIX. Mantener espacios y alineación sin reducir el tamaño hasta volver ilegible el texto."} />
+</Mecanismo>

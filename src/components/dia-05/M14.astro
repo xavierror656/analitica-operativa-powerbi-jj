@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<Mecanismo modulo="D5-M14" titulo={"Siete minutos para llegar a una decisión"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Tiempo","Contenido","Resultado"]} filas={[["0:00–1:00","Pregunta y contexto","La audiencia sabe qué se decide"],["1:00–3:00","Dos hallazgos con evidencia","Cifras, filtros y comparación"],["3:00–5:00","Interpretación y límites","Hipótesis separadas de hechos"],["5:00–6:30","Recomendación y verificación","Acción, responsable propuesto y seguimiento"],["6:30–7:00","Solicitud a la junta","Decisión o dato que se necesita"]]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Ensayar el cierre antes de llenar todo el tiempo con recorrido por gráficos."} nota={"Estructura didáctica para cumplir la presentación de siete minutos del PDF; no añade un formato obligatorio corporativo."} />
+</Mecanismo>

@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Mecanismo modulo="D2-M30" titulo={"A2 se evalúa con la escala del programa"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"1 · Inicial","d":"Completa la evidencia con apoyo del instructor en pasos críticos."},{"t":"2 · En desarrollo","d":"Ejecuta de forma autónoma sobre el dataset practicado."},{"t":"3 · Competente","d":"Resuelve una variante no vista y justifica sus decisiones de modelo."},{"t":"4 · Avanzado","d":"Detecta y corrige un error de otro participante y sustenta la corrección."}]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Leer los criterios de la sección 4 del PDF. No confundir terminar rápido o explicar el caso repetido con transferencia a una variante."} nota={"El nivel se registra por desempeño observado. La acreditación sugerida del programa exige nivel 2 en las cinco competencias y al menos dos en nivel 3; A2 no acredita por sí sola todo el curso."} />
+</Mecanismo>

@@ -1,0 +1,12 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+import MedidaDax from '../dia-03/MedidaDax.astro';
+---
+<EjemploReal modulo="D3-M08" titulo={"CALCULATE cambia el contexto de evaluación"}>
+  <div class="flex flex-col gap-8">
+    <MedidaDax id="turno3" /><Nota>Prueba con un segmentador de dim_turno[nombre] = 1. Esta medida reemplaza el filtro de esa misma columna por 3.</Nota>
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Comparar [Piezas] con [Piezas turno 3]. Pedir una predicción antes de seleccionar turno 1."} nota={"La sustitución se refiere a la columna nombre. Un filtro simultáneo en otra columna de turno puede restringir el resultado; no generalizar que CALCULATE borra todos los filtros."} />
+</EjemploReal>

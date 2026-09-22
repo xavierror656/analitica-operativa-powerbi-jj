@@ -1,0 +1,26 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const bloques = [
+  ['08:00', 'Entender', 'Reconocer una fuente confiable'],
+  ['09:00', 'Conectar', '8 consultas y un inventario de anomalías'],
+  ['10:45', 'Limpiar', 'Reglas para líneas, turnos y lotes'],
+  ['13:15', 'Repetir', 'Parámetros, condiciones y excepciones'],
+  ['15:00', 'Demostrar', 'Archivo A1 + bitácora + conciliación'],
+  ['16:30', 'Validar', 'Revisión cruzada y actualización'],
+];
+---
+<Mecanismo modulo="D1-M0" titulo="Hoy vas a dejar datos que puedas defender">
+  <div class="day-roadmap">
+    {bloques.map(([hora, verbo, resultado]) => <div class="day-roadmap-item">
+      <span class="day-time">{hora}</span><strong>{verbo}</strong><p>{resultado}</p>
+    </div>)}
+  </div>
+  <p class="texto-chico text-dim mt-8">Recesos: 10:30 y 14:45 · Comida: 12:15–13:15 · Fin: 17:00</p>
+  <a class="day-guide-link" href={`${base}/dia-01/guia/`} target="_blank" rel="noopener">Abrir guía de trabajo, reglas y bitácora ↗</a>
+  <Notas slot="notas" minutos={5}
+    dice="Al terminar podrás conectar ocho tablas sin mezclarlas, justificar cada corrección y explicar cualquier cambio en filas o piezas. La guía se queda abierta junto a Power BI."
+    pregunta="Del 1 al 3: ¿nunca has abierto Power Query, ya conectas archivos o ya limpias datos?"
+    nota="Usar esta pregunta solo para distribuir apoyo, no para calificar. Confirmar Power BI Desktop abierto y carpeta local disponible. No se requiere acceso a sistemas de planta. La portada no añade tiempo; estos cinco minutos pertenecen al fundamento." />
+</Mecanismo>

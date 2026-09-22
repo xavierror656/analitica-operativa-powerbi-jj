@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D3-M27" titulo={"Integra y valida tus seis indicadores"} minutos={50}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"0–20 min · Completa","d":"Medidas, nombres, formatos y calendario."},{"t":"20–40 min · Contrasta","d":"Sin filtros, fecha + L1, turno 1 y Ensamble; verifica blancos."},{"t":"40–50 min · Documenta","d":"Seis fichas, una prueba temporal y archivo guardado."}]} />
+  </div>
+  <Notas slot="notas" minutos={50} dice={"Trabajo autónomo. Resolver dudas en el lugar; registrar apoyo si afecta un paso crítico."} nota={"No convertir mantenimiento por turno en un requisito imposible. Debe marcarse que ese filtro no aplica en el modelo base."} />
+</TuTurno>

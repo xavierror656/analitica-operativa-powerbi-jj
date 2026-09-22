@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import ControlesIndicadores from '../dia-03/ControlesIndicadores.astro';
+---
+<EjemploReal modulo="D3-M17" titulo={"Referencia para contrastar las definiciones"}>
+  <div class="flex flex-col gap-8">
+    <ControlesIndicadores />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Leer una fila a la vez. Los porcentajes se redondean solo al mostrarlos; comparar antes los numeradores y denominadores."} nota={"La columna sin filtros es la referencia del ZIP tras A1. Documentar exclusiones adicionales. Comida 12:15–13:15."} />
+</EjemploReal>

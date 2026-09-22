@@ -22,3 +22,6 @@ dist/
 .astro/
 
 .claude/
+
+# Extracción local de documentos de referencia y dependencias temporales
+/tmp/

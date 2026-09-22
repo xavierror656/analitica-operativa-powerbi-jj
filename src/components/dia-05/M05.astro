@@ -1,0 +1,12 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+import Cita from '../ui/Cita.astro';
+---
+<TuTurno modulo="D5-M05" titulo={"Prueba un rol de lectura por área"} minutos={10}>
+  <div class="flex flex-col gap-8">
+    <Cita mono>{"Regla de ejemplo en dim_linea:\n[area] = \"Ensamble\""}</Cita><Pasos items={[{"t":"Administrar roles","d":"Crear rol Ensamble y aplicar la expresión sobre dim_linea."},{"t":"Ver como","d":"Comprobar producción, calidad y mantenimiento bajo ese rol."},{"t":"Servicio, cuando esté autorizado","d":"Asignar miembros y probar como Viewer; los roles de edición no validan la restricción de lectura."}]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Demostración del instructor o práctica local con datos sintéticos. Guardar copia antes de configurar el rol."} nota={"RLS aplica a lectores Viewer, no a Admin/Member/Contributor del área de trabajo en el mismo sentido. Ocultar campos no reemplaza RLS. La asignación real requiere autorización."} />
+</TuTurno>

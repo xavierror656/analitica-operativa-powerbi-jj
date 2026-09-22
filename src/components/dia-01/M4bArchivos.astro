@@ -16,10 +16,10 @@ const hechos = [
     <div class="grid grid-cols-3 gap-6">
       {
         hechos.map((h) => (
-          <div class="rounded-xl bg-ink-2/40 border border-white/10 p-6">
+          <div class="rounded-xl bg-paper-2 border border-ink/10 p-6">
             <Icono nombre={h.icono} class="w-7 h-7 text-accent mb-3" />
             <p class="font-codigo text-xl font-bold text-accent mb-3">{h.nombre}</p>
-            <p class="text-base text-dim leading-snug">{h.cols}</p>
+            <p class="texto-chico text-dim leading-snug">{h.cols}</p>
           </div>
         ))
       }

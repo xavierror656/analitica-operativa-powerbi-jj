@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D2-M14" titulo={"Completa las relaciones con acompañamiento"} minutos={32}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"0–12 min · Calendario y línea","d":"Conecta ambas dimensiones a los tres hechos; ya tienes una relación de línea."},{"t":"12–22 min · Parte, turno y defecto","d":"Usa el mapa de diez relaciones y verifica las claves."},{"t":"22–32 min · Prueba y guarda","d":"Revisa dirección, estado activo, totales y cualquier relación autodetectada sobrante."}]} />
+  </div>
+  <Notas slot="notas" minutos={32} dice={"Seguir construyendo en paralelo, como indica el núcleo 1 de la propuesta. Revisar por mesa al minuto 12 y al 22."} nota={"Si el participante termina antes, pedirle que explique una ruta al compañero sin tocar su equipo. La práctica autónoma corresponde al núcleo 2."} />
+</TuTurno>

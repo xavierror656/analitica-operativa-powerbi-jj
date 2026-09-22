@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+
+---
+<Mecanismo modulo="D2-M00" titulo={"Un modelo que puedas explicar y comprobar"}>
+  <div class="flex flex-col gap-8">
+    <div class="day-roadmap"><div class="day-roadmap-item"><span class="day-time">08:00</span><strong>Entender</strong><p>Hechos, dimensiones y granularidad</p></div><div class="day-roadmap-item"><span class="day-time">09:00</span><strong>Armar el modelo</strong><p>Claves y relaciones verificadas</p></div><div class="day-roadmap-item"><span class="day-time">10:45</span><strong>Pregúntale al modelo</strong><p>Filtros con resultados comprobables</p></div><div class="day-roadmap-item"><span class="day-time">13:15</span><strong>Organizar y diagnosticar</strong><p>Jerarquías, campos y relaciones</p></div><div class="day-roadmap-item"><span class="day-time">15:00</span><strong>Construir A2</strong><p>Auditar, corregir y documentar</p></div><div class="day-roadmap-item"><span class="day-time">16:30</span><strong>Validar</strong><p>Cifras, evidencia y cierre</p></div></div><a class="day-guide-link" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/dia-02/guia/`} target="_blank" rel="noopener">Abrir guía, mapa de relaciones y bitácora A2 ↗</a>
+  </div>
+  <Notas slot="notas" minutos={5} dice={"Hoy retomamos A1. Al terminar podrás justificar las relaciones y demostrar cuándo un filtro llega a la tabla correcta."} nota={"Base: propuesta didáctica, sección 3 Día 2 y C2 de sección 4. Recesos 10:30 y 14:45; comida 12:15; salida 17:00. Son 450 minutos efectivos."} />
+</Mecanismo>

@@ -12,7 +12,7 @@ import Notas from '../ui/Notas.astro';
       { texto: 'En una medida DAX, cada vez que alguien abre el reporte' },
       { texto: 'No hace falta resolverlo, Power BI lo normaliza solo' },
     ]}
-    explicacion='Si la transformación es estática (no cambia según lo que alguien filtre en el visual), va en Power Query: se ejecuta una sola vez, al cargar. Meterla en DAX significa recalcularla cada vez que alguien toca un filtro, sin necesidad.'
+    explicacion='La limpieza de texto se aplica en Power Query en cada actualización. Una medida DAX responde al contexto de filtro; una columna calculada DAX también se calcula durante el procesamiento del modelo. Hoy normalizamos antes de cargar.'
   />
   <Notas
     slot="notas"

@@ -1,0 +1,12 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+import Nota from '../ui/Nota.astro';
+---
+<Mecanismo modulo="D3-M21" titulo={"El promedio móvil también tiene denominador"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Ventana de siete días calendario","d":"Incluye el día de corte y los seis anteriores."},{"t":"Día sin producción en el caso","d":"Para este ejercicio se cuenta como cero dentro de una ventana con cobertura conocida."},{"t":"Resultado al 07/05/2025","d":"77,234 / 7 = 11,033.43 piezas por día calendario."}]} /><Nota>La fórmula completa está en el recetario. No interpretes meses sin cobertura como ceros operativos.</Nota>
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Mostrar el domingo 4 de mayo sin producción. Comparar promedio de siete días con promedio de solo seis días que tuvieron registros."} nota={"La definición es calendario, no siete turnos ni siete días laborados. No extrapolar esta imputación fuera de la ventana de datos conocidos."} />
+</Mecanismo>

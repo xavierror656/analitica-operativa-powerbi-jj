@@ -1,0 +1,65 @@
+---
+import { Content } from '../../content/guia-dia-01.md';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Guía práctica del día 1: conexión, limpieza en Power Query, conciliación y bitácora de evidencia A1." />
+    <title>Día 1 · Guía de trabajo y evidencia A1</title>
+  </head>
+  <body>
+    <a class="skip" href="#contenido">Ir al contenido</a>
+    <header>
+      <nav aria-label="Recursos del día 1">
+        <a href={`${base}/dia-01/`}>← Presentación</a>
+        <a href={`${base}/descargas/dataset-planta-sintetico.zip`} download>Dataset</a>
+        <a href={`${base}/descargas/guia-dia-01.md`} download>Descargar guía</a>
+        <button type="button" id="imprimir">Imprimir / guardar PDF</button>
+      </nav>
+      <p class="eyebrow">ANALÍTICA OPERATIVA CON POWER BI · DÍA 01</p>
+      <h1>De datos sueltos a una fuente confiable.</h1>
+      <p class="intro">Tu guía de práctica: conecta, limpia, comprueba y documenta la evidencia A1.</p>
+      <div class="meta"><span>7.5 horas de trabajo</span><span>8 tablas</span><span>1 evidencia acumulativa</span></div>
+    </header>
+    <main id="contenido" tabindex="-1"><Content /></main>
+    <footer>Material de apoyo · Instructor: Javier A. Flores Flores · Datos sintéticos para capacitación</footer>
+    <script>document.querySelector('#imprimir')?.addEventListener('click', () => window.print());</script>
+  </body>
+</html>
+<style is:global>
+  :root { font-family: 'Segoe UI', system-ui, sans-serif; color: #123a34; background: #f4f7f6; font-size: 18px; line-height: 1.65; }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  header { background: #0e3b36; color: #f4f7f6; padding: 28px max(24px, calc((100vw - 1040px) / 2)) 52px; }
+  nav { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 26px; margin-bottom: 48px; font-size: 16px; }
+  nav a { color: #a5eee1; } nav button { border: 1px solid #a5eee1; padding: 8px 16px; border-radius: 6px; background: transparent; color: white; font: inherit; cursor: pointer; }
+  h1 { font-size: clamp(2rem, 5vw, 3.3rem); line-height: 1.12; max-width: 850px; margin: 12px 0 24px; text-wrap: balance; }
+  .eyebrow { font-size: 14px; letter-spacing: .1em; color: #a5eee1; }
+  .intro { max-width: 740px; font-size: 21px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 12px 28px; color: #b7d6d1; font-size: 16px; }
+  main { max-width: 1088px; margin: auto; padding: 24px; overflow-wrap: anywhere; }
+  h2 { margin-top: 56px; font-size: 1.7rem; line-height: 1.25; border-top: 2px solid #d6e5e0; padding-top: 28px; }
+  h3 { margin-top: 36px; font-size: 1.2rem; } a { color: #076b5e; text-underline-offset: 4px; }
+  li { margin: 8px 0; } table { display: block; overflow-x: auto; border-collapse: collapse; margin: 24px 0; font-size: 16px; }
+  th, td { border: 1px solid #c8d9d3; padding: 12px 16px; text-align: left; vertical-align: top; min-width: 135px; }
+  th { background: #e0eee8; } tr:nth-child(even) { background: #edf3f0; }
+  pre { padding: 22px; border-radius: 8px; overflow-x: auto; font-size: 16px; line-height: 1.6; }
+  code { font-family: Consolas, monospace; } :not(pre) > code { background: #e0eee8; padding: 2px 5px; border-radius: 4px; }
+  footer { max-width: 1088px; margin: 48px auto 0; padding: 24px; border-top: 1px solid #c8d9d3; font-size: 14px; }
+  :focus-visible { outline: 3px solid #cb8410; outline-offset: 5px; }
+  .skip { position: absolute; top: -100px; left: 16px; background: white; padding: 12px; z-index: 1; }.skip:focus { top: 12px; }
+  @media print {
+    :root { background: white; color: black; font-size: 11pt; }
+    header { background: white; color: black; padding: 0 0 16px; }
+    nav, .skip, .eyebrow, .meta, footer { display: none; }
+    h1 { font-size: 26pt; } main { padding: 0; max-width: none; }
+    h2 { margin-top: 24px; padding-top: 12px; } h2, h3 { break-after: avoid; }
+    table { display: table; width: 100%; font-size: 9pt; } th, td { min-width: 0; padding: 6px; } tr { break-inside: avoid; }
+    pre { white-space: pre-wrap; font-size: 9pt; border: 1px solid #aaa; }
+    pre, pre span { background: white !important; color: black !important; }
+    a { color: black; } @page { margin: 16mm; }
+  }
+</style>

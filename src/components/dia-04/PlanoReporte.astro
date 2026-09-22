@@ -1,0 +1,21 @@
+---
+// Esquema funcional del reporte, no captura ni PBIX ejecutable.
+---
+<div class="plano" role="img" aria-label="Plano del reporte: encabezado con periodo y alcance, indicadores, tendencia y comparación de líneas, enlace al detalle">
+  <div class="encabezado">Pregunta + periodo + alcance del dato</div>
+  <div class="indicadores"><div>Piezas</div><div>Cumplimiento</div><div>Rechazo</div></div>
+  <div class="visuales"><div>Tendencia por mes<br /><small>¿Qué cambió?</small></div><div>Comparación por línea<br /><small>¿Dónde se concentra?</small></div></div>
+  <div class="pie">Fecha y línea/área · Fuente / actualización · Ir al detalle →</div>
+</div>
+<p class="texto-chico text-dim mt-6">Esquema didáctico. El participante lo implementa en su PBIX y valida cada cifra con A3.</p>
+<style>
+  .plano { border: 3px solid #0e3b36; border-radius: 12px; padding: 28px; display: grid; gap: 22px; font-size: 28px; }
+  .encabezado { font-weight: 700; padding: 16px; background: #0e3b36; color: white; }
+  .indicadores, .visuales { display: grid; gap: 22px; }
+  .indicadores { grid-template-columns: repeat(3,1fr); }
+  .visuales { grid-template-columns: 1.3fr 1fr; }
+  .indicadores > div { border-bottom: 4px solid #08796b; padding: 20px; background: #e7efed; }
+  .visuales > div { padding: 30px 24px; border: 2px solid #adc9c1; min-height: 180px; }
+  small { color: #4a615d; font-size: 25px; }
+  .pie { font-size: 25px; border-top: 1px solid #adc9c1; padding-top: 16px; }
+</style>

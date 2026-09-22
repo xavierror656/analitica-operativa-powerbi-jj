@@ -41,7 +41,7 @@ python generar_dataset_sintetico.py
 Produce en `datos/salida/` las 8 tablas de la Opción A del programa (`fact_producción`,
 `fact_calidad`, `fact_mantenimiento` y sus dimensiones): 18 meses, 4 líneas, 3 turnos, con
 los defectos de captura sembrados a propósito (nombres de línea inconsistentes, fechas en
-dos formatos, horas en 12h/24h, ceros perdidos en lote, duplicados, filas de subtotal
+tres formatos, horas en 12h/24h, ceros perdidos en lote, duplicados, filas de subtotal
 embebidas, celdas vacías vs. ceros reales, códigos con espacios, turno capturado con
 nombre de supervisor). Esos defectos son el material del Día 1: sin ellos, la actividad de
 limpieza no tiene nada que resolver.
@@ -200,16 +200,45 @@ tocan módulos distintos del mismo día, no hay conflicto de merge; si hay que t
 
 | Día | Slides | Estado |
 |---|---|---|
-| **Día 1: Conexión y preparación de datos** | 51 slides oficiales (ritmo verificado contra las 7.5 h reales) + 5 de extra opcional, cronómetro real, tres quiz interactivos, descarga real del dataset | ✅ Listo |
-| Día 2: Modelo de datos | — | ⬜ Pendiente |
-| Día 3: Indicadores en DAX | — | ⬜ Pendiente |
-| Día 4: Reporte operativo | — | ⬜ Pendiente |
-| Día 5: Análisis, publicación y proyecto | — | ⬜ Pendiente |
+| **Día 1: Conexión y preparación de datos** | 52 slides oficiales (portada + 51 módulos; 450 minutos planificados) + 5 extras, guía imprimible, bitácora A1, cronómetro y tres quiz | ✅ Contenido implementado; pendiente pilotaje en aula |
+| **Día 2: Modelo de datos** | 39 slides (portada + 38 módulos; 450 minutos), 4 quiz, guía y bitácora A2, controles de relaciones y filtros | ✅ Implementado con base en la propuesta PDF; pendiente validación en Desktop y pilotaje |
+| Día 3: Indicadores en DAX | 34 slides; 450 minutos; guía, controles y evidencia A3 | ✅ Implementado; pendiente pilotaje en Desktop y aula |
+| Día 4: Reporte operativo | 34 slides; 450 minutos; guía, controles y evidencia A4 | ✅ Implementado; pendiente pilotaje en Desktop y aula |
+| Día 5: Análisis, publicación y proyecto | 34 slides; 450 minutos; guía, controles y evidencia A5 | ✅ Implementado; pendiente pilotaje en Desktop y aula |
 
 El contenido día por día completo (horarios, qué evalúa cada evidencia, la evaluación
 diagnóstica con clave de respuestas) está en la propuesta didáctica original; cada
 carpeta `dia-0X-.../README.md` resume su bloque como referencia rápida al escribir
 slides.
+
+### Material y controles del Día 1
+
+La presentación y la portada del sitio enlazan la guía `/dia-01/guia/`. Se puede
+imprimir o descargar como Markdown; incluye conexión paso a paso, reglas de limpieza,
+ejemplos M, solución de problemas y bitácora. Se mantiene en
+`src/content/guia-dia-01.md`. Los controles del instructor están en
+`dia-01-conexion-preparacion/evidencia-A1/README.md`.
+
+`python scripts/verificar_dia1.py` verifica el ZIP distribuido, la conciliación de
+producción y calidad por lote y los minutos de cada bloque. `node --test
+tests/interacciones.test.mjs` comprueba el reinicio de cuestionarios y el cronómetro
+con tiempo real. La compilación no sustituye probar las consultas en Power BI Desktop
+ni pilotear los tiempos con participantes.
+
+### Material y controles del Día 2
+
+Presentación `/dia-02/` y guía `/dia-02/guia/`, con descarga Markdown e impresión.
+El contenido se basa en el PDF indicado por el instructor; la correspondencia de
+secciones y páginas está en `dia-02-modelo-datos/fuente-y-alineacion.md`.
+
+El Día 2 se imparte íntegramente en Power BI Desktop. Por indicación del instructor,
+Python se reserva para el Día 5. Los controles de la guía cubren diez relaciones,
+claves únicas y sin huérfanos y seis cortes de referencia derivados del ZIP tras A1.
+La evidencia A2 incluye rúbrica fiel al PDF, variante reservada de nivel 3 y prueba
+de auditoría para nivel 4. Se conserva el archivo A1 para continuar la secuencia.
+
+Las comprobaciones internas del repositorio se documentan en `scripts/README.md`;
+no son actividades del curso.
 
 ### Lo que falta portar de otros talleres, a propósito no incluido todavía
 
@@ -244,3 +273,7 @@ del tercero.
 `astro 7.3.3` · `reveal.js 6.0.2` · `tailwindcss 4.3.3` · `@tailwindcss/vite 4.3.3` ·
 `astro-icon 1.2.0` · `@iconify-json/lucide 1.2.135`. Verificado con `npm run build` al
 momento de armar el repo.
+
+### Material de los días 3–5
+
+Presentaciones y guías disponibles para los cinco días. Los días 3 y 4 se imparten en Power BI Desktop; Python aparece solo en el laboratorio del Día 5. Consulta [la correspondencia con el PDF](fuente-y-alineacion-dias-03-05.md) y las carpetas de evidencia para rúbricas y variantes reservadas. El recetario DAX y el calendario se descargan desde Día 3; el verificador externo se presenta en Día 5.

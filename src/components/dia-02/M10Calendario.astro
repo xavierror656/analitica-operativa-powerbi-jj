@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Mecanismo modulo="D2-M10" titulo={"Una misma fecha debe filtrar los tres hechos"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Revisa los tipos","d":"dim_calendario[fecha], producción[fecha], calidad[fecha] y mantenimiento[fecha_evento]: tipo Fecha."},{"t":"Comprueba el intervalo","d":"Del 01/03/2025 al 31/08/2026: 549 días continuos, incluidos domingos sin producción."},{"t":"Usa el calendario explícito","d":"Marca dim_calendario como tabla de fechas usando fecha; trabaja con sus campos en los visuales."}]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Mostrar fecha_evento de mantenimiento: el nombre es distinto, pero el tipo y significado deben corresponder al mismo día."} nota={"Para la inteligencia de tiempo clásica del día 3, extender el calendario a años completos antes de calcular comparativos anuales. Marcarlo no rellena fechas. Hoy no escribimos medidas DAX."} />
+</Mecanismo>

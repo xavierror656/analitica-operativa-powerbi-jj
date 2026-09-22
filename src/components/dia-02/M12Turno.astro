@@ -1,0 +1,12 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<EjemploReal modulo="D2-M12" titulo={"El nombre de columna no garantiza una clave compatible"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Columna","Contenido","Decisión de hoy"]} filas={[["dim_turno[turno_id]","T1, T2, T3","No corresponde directamente con producción"],["dim_turno[nombre]","1, 2, 3 como texto","Lado 1 de la relación"],["fact_produccion[turno]","1, 2, 3 como texto","Lado * tras la limpieza A1"]]} /><Nota>T1 no es igual a 1. Una relación puede existir y aun así no encontrar las claves esperadas.</Nota>
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Mostrar el catálogo original y la columna final de A1. Solicitar que identifiquen la pareja de columnas sin arrastrar todavía."} nota={"Variante válida: obtener turno_id mediante una búsqueda documentada. No crear simultáneamente dos relaciones activas para la misma función."} />
+</EjemploReal>

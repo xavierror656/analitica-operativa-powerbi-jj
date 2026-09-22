@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Mecanismo modulo="D5-M02" titulo={"Publicar y conceder acceso son decisiones distintas"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Área de trabajo autorizada","d":"Identifica dueño, propósito y audiencia; confirma licencia/capacidad con TI."},{"t":"Publicar desde Desktop","d":"En la demostración: elegir destino, revisar el reporte y el modelo semántico."},{"t":"Acceso mínimo necesario","d":"Distingue editar de leer; prueba con una cuenta o rol de lector autorizado."}]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Demostrar solo en un espacio de capacitación con datos sintéticos y autorización. Si no existe, explicar el flujo y usar entrega local."} nota={"No usar Publicar en web como sustituto de compartir internamente: expone acceso público. No publicar archivos reales ni enviar enlaces desde este material."} />
+</Mecanismo>

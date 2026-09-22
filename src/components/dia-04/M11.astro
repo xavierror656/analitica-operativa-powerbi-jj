@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<EjemploReal modulo="D4-M11" titulo={"El resumen pasa si responde en menos de un minuto"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"¿Qué periodo estoy viendo?","d":"El filtro está a la vista."},{"t":"¿Cuál es el resultado y dónde se concentra?","d":"Tarjetas y comparación responden sin explicar ejes ocultos."},{"t":"¿Cómo llego al detalle?","d":"Hay una ruta clara y consistente."}]} />
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Un compañero lee el resumen durante un minuto y relata lo que entiende; el autor escucha."} nota={"Es una revisión breve, no sustituye la prueba formal con lector del taller. Receso 10:30–10:45."} />
+</EjemploReal>

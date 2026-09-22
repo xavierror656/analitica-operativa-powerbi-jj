@@ -1,0 +1,11 @@
+---
+import TuTurno from '../slides/TuTurno.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<TuTurno modulo="D4-M06" titulo={"Guarda A4 y conserva los controles"} minutos={8}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Guardar como A4","d":"Partir del PBIX A3 validado."},{"t":"Crear Resumen","d":"Configurar lienzo y ordenar panel de campos."},{"t":"Conservar Control_A3","d":"Mantenerlo como apoyo de auditoría; no reemplazarlo por el diseño."}]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"El instructor prepara la misma página en paralelo."} nota={"Ocultar una página de control de la navegación no la convierte en segura. La versión de práctica usa datos sintéticos."} />
+</TuTurno>

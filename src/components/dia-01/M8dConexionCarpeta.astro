@@ -4,21 +4,21 @@ import Comparacion from '../ui/Comparacion.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
-<EjemploReal modulo="D1-M8d" titulo="Conexión a carpeta, no a archivo suelto">
+<EjemploReal modulo="D1-M8d" titulo="Combina archivos solo si representan la misma tabla">
   <Comparacion tituloA="Conectar a un archivo" tituloB="Conectar a una carpeta" iconoA="file" iconoB="folder">
     <ul slot="a" class="flex flex-col gap-3 list-disc pl-6">
-      <li>Sirve mientras nadie agregue un archivo nuevo</li>
-      <li>El mes que viene, hay que repetir todo el proceso a mano</li>
+      <li>Hoy: un CSV por tabla, ocho consultas separadas</li>
+      <li>Actualizar relee ese archivo y repite sus transformaciones</li>
     </ul>
     <ul slot="b" class="flex flex-col gap-3 list-disc pl-6">
-      <li>Power BI combina todos los archivos de la carpeta con la misma estructura</li>
-      <li>El mes que viene, solo agregan el archivo nuevo a la carpeta y actualizan</li>
+      <li>Varios CSV mensuales de producción con las mismas columnas</li>
+      <li>Transformar datos → filtrar archivos → combinar; no incluir calidad ni catálogos</li>
     </ul>
   </Comparacion>
   <Notas
     slot="notas"
     minutos={6}
     dice="El dataset de hoy trae un archivo por tabla, pero en planta van a tener un archivo por mes o por turno. Conectar a la carpeta es lo que hace que esa acumulación no les vuelva a doler."
-    nota="La combinación requiere que todos los archivos de la carpeta tengan exactamente la misma estructura de columnas. Si un mes cambia, la consulta truena, y ahí es donde entra el manejo de errores de la siguiente slide."
+    nota="Demo en una carpeta aparte: dos CSV de producción con periodos que no se traslapen. Verificar que filas combinadas = filas archivo 1 + filas archivo 2. No copiar el mismo archivo dos veces: eso duplicaría producción. La guía explica cómo preparar esta demo."
   />
 </EjemploReal>

@@ -1,0 +1,11 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
+---
+<Mecanismo modulo="D5-M16" titulo={"La solicitud final debe poder responderse"}>
+  <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Acción","d":"Qué se propone revisar, medir o probar."},{"t":"Responsable y fecha propuestos","d":"Quién podría dar seguimiento y cuándo, sujetos a acuerdo."},{"t":"Criterio","d":"Qué evidencia permitiría sostener o descartar la hipótesis."}]} />
+  </div>
+  <Notas slot="notas" minutos={8} dice={"Convertir mejorar la calidad en una solicitud concreta con dato requerido y revisión definida."} nota={"No asignar compromisos reales a personas ausentes. En el caso, roles y fechas son propuestas de capacitación."} />
+</Mecanismo>

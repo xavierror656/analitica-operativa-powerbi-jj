@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Quiz from '../ui/Quiz.astro';
+---
+<EjemploReal modulo="D4-M31" titulo={"Ticket de salida: ¿el lector sabe qué ve?"}>
+  <div class="flex flex-col gap-8">
+    <Quiz pregunta={"Turno cambia la producción, pero la tarjeta de minutos correctivos conserva el total del periodo. ¿Qué debe comunicar el reporte?"} opciones={[{"texto":"Que toda la pantalla corresponde al turno seleccionado.","correcta":false},{"texto":"Que mantenimiento conserva su alcance por fecha y línea; turno no aplica.","correcta":true},{"texto":"Que el turno seleccionado no tuvo mantenimiento.","correcta":false}]} explicacion={"El reporte debe hacer visible el alcance de cada zona. Un filtro ausente en el modelo no permite atribuir el resultado al turno."} />
+  </div>
+  <Notas slot="notas" minutos={7} dice={"Pedir que ubiquen esa explicación en su propio reporte, no solo que respondan el cuestionario."} nota={"Si falta en el producto, corregir la etiqueta antes de entregar."} />
+</EjemploReal>

@@ -1,0 +1,12 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import Nota from '../ui/Nota.astro';
+import MedidaDax from '../dia-03/MedidaDax.astro';
+---
+<EjemploReal modulo="D3-M13" titulo={"Usa DIVIDE y conserva la falta de denominador"}>
+  <div class="flex flex-col gap-8">
+    <MedidaDax id="cumplimiento" /><Nota>Sin denominador válido, el resultado queda en blanco. Formatear como porcentaje no requiere multiplicar por 100 en la medida.</Nota>
+  </div>
+  <Notas slot="notas" minutos={10} dice={"Crear % Cumplimiento; después % Buenas y % Rechazo producción siguiendo el recetario. Probar un periodo sin datos."} nota={"No devolver cero por defecto: podría presentarse como cumplimiento medido. El total de un porcentaje se recalcula, no suma los porcentajes de las filas."} />
+</EjemploReal>

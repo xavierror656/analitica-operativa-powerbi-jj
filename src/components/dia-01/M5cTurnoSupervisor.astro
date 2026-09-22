@@ -5,15 +5,15 @@ import Notas from '../ui/Notas.astro';
 ---
 
 <EjemploReal modulo="D1-M5c" titulo="Turno capturado con el nombre del supervisor">
-  <Comparacion tituloA="Como llegó" tituloB="Como debe quedar" iconoA="circle-x" iconoB="circle-check-big">
+  <Comparacion tituloA="Dato recibido" tituloB="Regla verificable del ejercicio" iconoA="circle-x" iconoB="circle-check-big">
     <p slot="a" class="font-codigo text-3xl">turno: "R. Domínguez"</p>
-    <p slot="b" class="font-codigo text-3xl">turno: "1"</p>
+    <p slot="b" class="text-3xl">hora_inicio 06:00 → turno "1"<br />14:00 → "2" · 22:00 → "3"</p>
   </Comparacion>
   <Notas
     slot="notas"
     minutos={7}
     dice="Alguien, en algún momento, capturó quién estaba a cargo en vez de qué turno era. Tiene sentido para esa persona en ese momento, y rompe cualquier análisis por turno."
     pregunta="¿Cómo sabrían, sin preguntarle a nadie, que 'R. Domínguez' correspondía al turno 1 y no al 2 o al 3?"
-    nota="La respuesta honesta es que no se puede saber con certeza solo con el dato: hay que cruzar contra otra fuente (el rol de supervisores por turno) o marcarlo como dato perdido. Es un buen momento para hablar de cuándo NO se puede arreglar un dato solo."
+    nota="El generador asigna supervisores al azar: no hay equivalencia supervisor-turno. En este dataset, normalizar hora_inicio y contrastar con dim_turno permite recuperar el turno; conservar turno_original. Si la hora no coincide, registrar una excepción. En datos reales confirmar la regla con el dueño del dato."
   />
 </EjemploReal>

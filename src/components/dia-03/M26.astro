@@ -1,0 +1,11 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+---
+<EjemploReal modulo="D3-M26" titulo={"La ficha del indicador permite auditarlo"}>
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={["Campo","Qué documentar"]} filas={[["Definición y unidad","Pregunta y significado del numerador/denominador"],["Fórmula y formato","Medida DAX exacta y forma de presentación"],["Filtros y alcance","Fecha, turno y área; límites o no aplica"],["Validación","Origen, esperado, observado y diferencia"]]} />
+  </div>
+  <Notas slot="notas" minutos={7} dice={"Abrir la plantilla de la guía antes del trabajo autónomo."} nota={"Nombrar específicamente cada una de las seis medidas, sus auxiliares y la referencia temporal que se probó."} />
+</EjemploReal>
