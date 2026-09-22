@@ -1,0 +1,77 @@
+// Medidas separadas; tabla _Medidas. Si el nombre existe desde 3.1, actualizar esa medida.
+// Porcentajes: formato %, sin multiplicar por 100.
+// MTTR/MTBF requieren el turno derivado y la relación 17 para validar por turno.
+// Scrap por lote queda en BLANK deliberadamente: no existe dimensión compartida de lote.
+// OEE usa tiempos únicos de línea; MTBF utiliza horas-equipo y fallas con paro.
+
+Piezas ud =
+SUM(fact_produccion[piezas_producidas])
+
+Plan ud =
+SUM(fact_produccion[piezas_plan])
+
+Buenas ud =
+SUM(fact_produccion[piezas_buenas])
+
+Rechazadas ud =
+SUM(fact_calidad[piezas_rechazadas])
+
+Horas programadas h =
+DIVIDE(SUM(fact_produccion[minutos_programados]), 60)
+
+Horas operación h =
+DIVIDE(SUM(fact_produccion[operacion_min]), 60)
+
+Cumplimiento % =
+DIVIDE([Piezas ud], [Plan ud])
+
+Yield % =
+DIVIDE([Buenas ud], [Piezas ud])
+
+Scrap % =
+IF(
+    ISFILTERED(fact_produccion[lote]) || ISFILTERED(fact_calidad[lote]),
+    BLANK(),
+    DIVIDE([Rechazadas ud], [Piezas ud])
+)
+
+Disponibilidad % =
+DIVIDE([Horas operación h], [Horas programadas h])
+
+Productividad ud/h =
+DIVIDE([Piezas ud], [Horas operación h])
+
+Horas ideales h =
+SUMX(
+    fact_produccion,
+    DIVIDE(fact_produccion[piezas_producidas], RELATED(dim_parte[estandar_hora]))
+)
+
+Rendimiento % =
+DIVIDE([Horas ideales h], [Horas operación h])
+
+OEE % =
+[Disponibilidad %] * [Rendimiento %] * [Yield %]
+
+Fallas n =
+CALCULATE(
+    COUNTROWS(fact_mantenimiento),
+    fact_mantenimiento[tipo] = "correctivo",
+    fact_mantenimiento[afecta_produccion] = 1
+)
+
+Reparación min =
+CALCULATE(
+    SUM(fact_mantenimiento[duracion_min]),
+    fact_mantenimiento[tipo] = "correctivo",
+    fact_mantenimiento[afecta_produccion] = 1
+)
+
+MTTR min =
+DIVIDE([Reparación min], [Fallas n])
+
+Exposición equipos h =
+DIVIDE(SUM(fact_exposicion_equipo[minutos_operacion]), 60)
+
+MTBF h =
+DIVIDE([Exposición equipos h], [Fallas n])

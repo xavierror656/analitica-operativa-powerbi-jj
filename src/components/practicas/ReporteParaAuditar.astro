@@ -1,0 +1,12 @@
+---
+// Espécimen deliberadamente deficiente: visuales calculados del caso, nunca un PBIX.
+import datos from '../../data/practicas-reporte.json';
+const colors=['#dc2626','#2563eb','#9333ea','#16a34a','#ea580c','#db2777','#0891b2','#ca8a04','#4f46e5','#65a30d','#e11d48','#0f766e'];
+const monthly=datos.meses;
+const total=monthly.reduce((s,r)=>s+r.piezas,0);
+let angle=-Math.PI/2;
+const arcs=monthly.map((r,i)=>{let next=angle+r.piezas/total*Math.PI*2;let d=`M 100 100 L ${100+85*Math.cos(angle)} ${100+85*Math.sin(angle)} A 85 85 0 ${next-angle>Math.PI?1:0} 1 ${100+85*Math.cos(next)} ${100+85*Math.sin(next)} Z`;angle=next;return {d,color:colors[i],mes:r.mes};});
+---
+<p class="texto-chico">EJEMPLO PARA CORREGIR · títulos genéricos, exceso de color y eje truncado</p>
+<div class="mal-reporte"><div><strong>Gráfico 1</strong><svg viewBox="0 0 200 200" role="img" aria-label="Pastel de doce meses difícil de comparar">{arcs.map(a=><path d={a.d} fill={a.color}><title>{a.mes}</title></path>)}</svg></div><div><strong>Gráfico 2</strong>{datos.lineas.map((l,i)=><div class="barra"><span>{l.linea}</span><i style={'width:'+Math.max(2,(l.oee-.7)/.2*100)+'%;background:'+colors[i]}/><small>{(l.oee*100).toFixed(1)} %</small></div>)}<p class="texto-chico">Eje comienza en 70 %</p></div><div><strong>Gráfico 3</strong>{datos.medidores.map((m,i)=><div class="medidor" style={'border-color:'+colors[i]}>{m.nombre}<b>{m.valor}</b><span>●</span></div>)}</div><div class="tabla-densa"><strong>Gráfico 4</strong><table><thead><tr><th>Mes</th><th>Piezas</th><th>Mes</th><th>Piezas</th></tr></thead><tbody>{monthly.slice(0,6).map((r,i)=><tr><td>{r.mes}</td><td>{r.piezas.toLocaleString('es-MX')}</td><td>{monthly[i+6].mes}</td><td>{monthly[i+6].piezas.toLocaleString('es-MX')}</td></tr>)}</tbody></table></div></div>
+<style>.mal-reporte{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:16px;margin-top:16px;font-size:25px}.mal-reporte>div{border:2px solid #b7c7c2;padding:12px;background:white}svg{width:210px;height:210px}.barra{display:flex;align-items:center;gap:8px;margin:18px 0}.barra i{display:block;height:24px}.barra span,.barra small{flex-shrink:0;font-size:23px}.medidor{display:inline-flex;flex-direction:column;align-items:center;border:5px solid;border-radius:50%;width:100px;height:95px;font-size:16px;margin:5px}.medidor b{font-size:21px}.medidor span{color:#dc2626}.tabla-densa{grid-column:1/-1}table{font-size:24px;width:100%;border-collapse:collapse}td,th{border:1px solid #ddd;padding:2px 8px}</style>

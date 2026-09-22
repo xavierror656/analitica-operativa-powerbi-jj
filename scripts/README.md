@@ -12,6 +12,7 @@ python tests/verificador_dia5_test.py
 node --test tests/interacciones.test.mjs
 npm run build
 node scripts/verificar_curso.mjs
+python scripts/verificar_practicas.py
 ```
 
 El verificador de Día 2 contrasta las diez relaciones, claves únicas y sin huérfanos,
@@ -31,3 +32,16 @@ Después de compilar, `verificar_curso.mjs` comprueba las 102 diapositivas de lo
 3–5, sus notas y cronómetros, 450 minutos por día, rutas y descargas, dependencias
 de medidas y que la enseñanza de Python aparezca únicamente en Día 5. Son controles
 de estructura y contenido, no una prueba visual ni una ejecución del motor DAX/M.
+
+## Plan desglosado de prácticas
+
+`preparar_material_practicas.py` genera consignas y formularios a partir de
+`src/data/practicas-plan.json` (transcripción estructurada del Word) y
+`practicas-desarrollo.json` (desarrollo de slides y ajustes explícitos).
+`datos/scripts/generar_practicas.py` genera el caso y sus 16 ZIP reproducibles;
+ejecutarlo después de preparar el material. Los CSV no contienen KPI resueltos.
+
+`verificar_practicas.py` inspecciona los ZIP entregados, limpia de forma independiente,
+contrasta totales mediante SQL, verifica claves, conciliación por lote, unidades de
+exposición, los cinco patrones narrativos, variantes de fallos y los 90 minutos de
+cada presentación compilada. No ejecuta el motor de Power BI.

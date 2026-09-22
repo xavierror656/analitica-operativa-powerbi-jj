@@ -1,0 +1,18 @@
+{
+  "version": "practicas-2026-09-v1",
+  "desde": "2025-01-01",
+  "hasta": "2026-06-30",
+  "tablas": {
+    "dim_linea": 4,
+    "dim_parte": 5,
+    "dim_turno": 3,
+    "dim_defecto": 6,
+    "dim_equipo": 8,
+    "dim_calendario": 730,
+    "fact_produccion": 5552,
+    "fact_calidad": 11096,
+    "fact_mantenimiento": 716,
+    "fact_exposicion_equipo": 11088
+  },
+  "control_piezas": 3761757
+}

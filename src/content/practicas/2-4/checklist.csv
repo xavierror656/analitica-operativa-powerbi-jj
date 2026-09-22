@@ -1,0 +1,9 @@
+﻿criterio,conforme,hallazgo,evidencia,correccion_o_argumento,revisor,fecha,verificacion
+Granularidad documentada en cada hecho,,,,,,,
+Relaciones 1:* con filtro único o justificación,,,,,,,
+Sin relaciones entre hechos,,,,,,,
+Calendario marcado y continuo,,,,,,,
+Claves técnicas ocultas,,,,,,,
+Tipos y claves consistentes en ambos lados,,,,,,,
+Jerarquías creadas y límites ISO explicados,,,,,,,
+Cifra de control reconciliada,,,,,,,

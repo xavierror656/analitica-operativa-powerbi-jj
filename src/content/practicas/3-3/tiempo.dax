@@ -1,0 +1,40 @@
+// Usar en visual por meses completos. Media móvil: media simple de tres tasas mensuales.
+// No es la razón conjunta del trimestre. Ventanas sin tres meses cubiertos devuelven BLANK.
+
+Scrap anterior % =
+CALCULATE([Scrap %], DATEADD(dim_calendario[fecha], -1, MONTH))
+
+Variación scrap % =
+VAR Actual = [Scrap %]
+VAR Anterior = [Scrap anterior %]
+RETURN IF(ISBLANK(Actual) || ISBLANK(Anterior), BLANK(), DIVIDE(Actual-Anterior, Anterior))
+
+Scrap YTD % =
+DIVIDE(
+    TOTALYTD([Rechazadas ud], dim_calendario[fecha]),
+    TOTALYTD([Piezas ud], dim_calendario[fecha])
+)
+
+Scrap mismo periodo AA % =
+CALCULATE([Scrap %], SAMEPERIODLASTYEAR(dim_calendario[fecha]))
+
+Media móvil 3 meses % =
+VAR Corte = MAX(dim_calendario[fecha])
+VAR FinMes = EOMONTH(Corte, 0)
+VAR Inicio = EOMONTH(Corte, -3)+1
+VAR Ventana = CALCULATETABLE(
+    DATESBETWEEN(dim_calendario[fecha], Inicio, FinMes),
+    REMOVEFILTERS(dim_calendario)
+)
+VAR Meses = CALCULATETABLE(
+    VALUES(dim_calendario[anio_mes]),
+    REMOVEFILTERS(dim_calendario), Ventana
+)
+RETURN IF(
+    Corte < DATE(2025,3,1) || FinMes > DATE(2026,6,30), BLANK(),
+    AVERAGEX(Meses,
+        VAR MesActual = dim_calendario[anio_mes]
+        RETURN CALCULATE([Scrap %], REMOVEFILTERS(dim_calendario),
+            dim_calendario[anio_mes] = MesActual)
+    )
+)

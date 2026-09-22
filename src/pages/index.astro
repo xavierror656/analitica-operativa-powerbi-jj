@@ -48,6 +48,11 @@ const estadoTexto = { listo: 'Disponible', pendiente: 'Pendiente' } as const;
         <span>👤 Instructor: Javier A. Flores Flores</span>
       </div>
 
+      <div class="mt-10 rounded-2xl border border-accent/50 bg-accent/10 p-6">
+        <h2 class="font-titulo text-2xl font-semibold">Prácticas desglosadas · Días 2–5</h2>
+        <p class="mt-2 text-[#b7d6d1]">Las 16 actividades del nuevo plan, cada una con diapositivas, datos crudos y formatos de evidencia.</p>
+        <a class="mt-4 inline-block text-accent-light underline underline-offset-4" href={`${base}/practicas/`}>Abrir actividades y descargas →</a>
+      </div>
       <ol class="mt-12 flex flex-col gap-4">
         {
           dias.map((d) => (

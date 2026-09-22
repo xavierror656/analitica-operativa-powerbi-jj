@@ -1,0 +1,771 @@
+{
+  "2-1": {
+    "titulo": "Armar el modelo",
+    "pasos": [
+      [
+        10,
+        "Conecta las capturas del caso",
+        [
+          "Abre una copia del PBIX del Día 1 y usa la carpeta de este paquete.",
+          "Combina producción y calidad por separado; verifica la limpieza descrita en montaje.md.",
+          "Crea una tarjeta de piezas sin filtros y anota el total."
+        ]
+      ],
+      [
+        15,
+        "Observa una relación mal planteada",
+        [
+          "En una copia, relaciona los dos hechos por fecha y prueba el filtro tipo de mantenimiento.",
+          "Anota qué fechas y filas quedan seleccionadas; no presupongas que el total aumentará.",
+          "En el microcaso, combina producción con eventos por fecha y expande: 3 × 2 = 6 filas."
+        ]
+      ],
+      [
+        10,
+        "Explica la diferencia",
+        [
+          "El microcaso pasa de 600 a 1,200 piezas por expansión de filas.",
+          "Una relación propaga filtros; no duplica físicamente los registros de la tabla original.",
+          "Señala qué operación cambió la granularidad y por qué el número parece plausible."
+        ]
+      ],
+      [
+        30,
+        "Construye la estrella",
+        [
+          "Retira la relación directa y la consulta combinada del microcaso.",
+          "Crea las 16 relaciones de montaje.md, con claves únicas y filtro dimensión → hecho.",
+          "Calendario y línea filtran cuatro hechos; parte, turno, defecto y equipo tienen alcances específicos."
+        ]
+      ],
+      [
+        15,
+        "Organiza fechas y claves",
+        [
+          "Marca dim_calendario[fecha] como tabla de fechas.",
+          "Comprueba 730 días continuos y ordena nombre_mes por mes.",
+          "Oculta claves de los hechos; conserva campos legibles de las dimensiones."
+        ]
+      ],
+      [
+        10,
+        "Compara contra la fuente",
+        [
+          "Limpia todos los filtros: 3,761,757 piezas tras retirar ocho copias exactas.",
+          "Comprueba también 117,998 rechazadas; guarda una captura con el contexto.",
+          "Conserva la copia A2 y documenta las rutas de filtros."
+        ]
+      ]
+    ],
+    "nota": "La inflación se demuestra con Merge + Expand; corregimos la atribución del Word a la relación muchos a muchos.",
+    "recursos": [
+      "crudos/ · diez tablas en CSV",
+      "microcaso/ · tres producciones y dos eventos",
+      "montaje.md · limpieza y 16 relaciones"
+    ],
+    "evidencia": "Diagrama y tarjeta sin filtros reconciliada; explicación del microcaso 600 → 1,200."
+  },
+  "2-2": {
+    "pasos": [
+      [
+        5,
+        "Prepara la investigación",
+        [
+          "Formen parejas de áreas distintas.",
+          "Abran actividad/preguntas.csv y el modelo A2.",
+          "Usen tablas y matrices; todavía no escriban medidas DAX."
+        ]
+      ],
+      [
+        45,
+        "Responde diez preguntas",
+        [
+          "Usa dimensiones para agrupar y segmentar; declara periodo, unidad y agregación.",
+          "Registra la respuesta y el visual que la sostiene en actividad/respuestas.csv.",
+          "Si no existe una ruta de filtro válida, explica qué dato o relación falta."
+        ]
+      ],
+      [
+        20,
+        "Contrasta con otra pareja",
+        [
+          "Intercambia respuestas antes de ver la clave del instructor.",
+          "Si difieren, compara filtros, columnas y sumas frente a conteos.",
+          "Repite el corte y anota la corrección."
+        ]
+      ],
+      [
+        20,
+        "Defiende lo que no se puede responder",
+        [
+          "El lote no es dimensión compartida entre hechos.",
+          "Mantenimiento todavía no tiene turno ni parte; no infieras atribuciones con la línea solamente.",
+          "Propón una extensión, la regla de negocio y cómo verificarla antes de usarla."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/preguntas.csv · 10 preguntas",
+      "actividad/respuestas.csv · registro vacío",
+      "Modelo A2 del mismo caso"
+    ],
+    "nota": "La pregunta de semanas con inhábiles se refiere a las seis fechas festivas indicadas, no a cualquier semana con domingo."
+  },
+  "2-3": {
+    "pasos": [
+      [
+        50,
+        "Investiga cuatro síntomas",
+        [
+          "Trabaja en cuatro copias aisladas preparadas por el instructor con laboratorio/caso-a a caso-d.",
+          "Registra síntoma, hipótesis, causa, corrección y comprobación en actividad/diagnostico.csv.",
+          "Corrige datos en Power Query y estado/dirección de relación en Modelo; no actives bidireccionalidad por ensayo."
+        ]
+      ],
+      [
+        40,
+        "Organiza el modelo reparado",
+        [
+          "Crea Año > Trimestre > Mes > Semana y Área > Línea > Celda; aclara semanas ISO que cruzan mes.",
+          "Ordena nombre_mes por mes, aplica formatos y oculta campos técnicos.",
+          "Repite controles de filas, unicidad y total después de reparar cada copia."
+        ]
+      ]
+    ],
+    "nota": "Los CSV no pueden guardar relaciones inactivas. El instructor monta ese estado en Desktop. Una clave con espacio puede fallar al empatar y tras Recortar quedar duplicada; no se afirma que duplique automáticamente SUM.",
+    "recursos": [
+      "laboratorio/caso-a a caso-d · variantes crudas",
+      "actividad/sintomas.csv · sin causas",
+      "actividad/diagnostico.csv · registro vacío"
+    ],
+    "evidencia": "Cuatro diagnósticos con prueba antes/después y un modelo organizado."
+  },
+  "2-4": {
+    "pasos": [
+      [
+        30,
+        "Audita un modelo de otra área",
+        [
+          "Abre actividad/checklist.csv y revisa sus ocho criterios.",
+          "Anota evidencia concreta de cada hallazgo: tabla, relación, captura o cifra.",
+          "No marques conforme un criterio que no hayas probado."
+        ]
+      ],
+      [
+        45,
+        "Corrige o justifica",
+        [
+          "El autor corrige datos y relaciones en una copia conservando la anterior.",
+          "Si discrepa, escribe su razón y una prueba reproducible.",
+          "Recalcula el total y verifica un filtro de cada dimensión."
+        ]
+      ],
+      [
+        15,
+        "Revisa y firma",
+        [
+          "El revisor repite las pruebas afectadas.",
+          "Registra veredicto, nombre y fecha; no basta una firma sin resultados.",
+          "Entrega A2 con el checklist y pendientes explícitos."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/checklist.csv · ocho puntos",
+      "Capturas y archivo A2"
+    ],
+    "evidencia": "Modelo corregido y checklist revisado por otra área."
+  },
+  "3-1": {
+    "pasos": [
+      [
+        4,
+        "Fija la celda antes de predecir",
+        [
+          "Matriz: dim_linea[linea_id] por dim_turno[turno]. Segmentador: abril de 2026.",
+          "La celda marcada es L3 / turno 1. Usa estas columnas exactas.",
+          "Abre actividad/predicciones.csv; ocho rondas de siete minutos completan los 60 minutos iniciales."
+        ]
+      ],
+      [
+        7,
+        "Suma simple",
+        [
+          "2 min: predice el valor de L3 / turno 1 y justifícalo.",
+          "3 min: crea la medida y compara con tu predicción.",
+          "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
+        ],
+        "Piezas ud = SUM(fact_produccion[piezas_producidas])"
+      ],
+      [
+        7,
+        "Sustituir el turno",
+        [
+          "2 min: predice el valor de L3 / turno 1 y justifícalo.",
+          "3 min: crea la medida y compara con tu predicción.",
+          "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
+        ],
+        "Turno 3 ud = CALCULATE([Piezas ud], dim_turno[turno] = \"3\")"
+      ],
+      [
+        7,
+        "Quitar la línea",
+        [
+          "2 min: predice el valor de L3 / turno 1 y justifícalo.",
+          "3 min: crea la medida y compara con tu predicción.",
+          "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
+        ],
+        "Todas las líneas ud = CALCULATE([Piezas ud], ALL(dim_linea))"
+      ],
+      [
+        7,
+        "Intersectar el turno",
+        [
+          "2 min: predice el valor de L3 / turno 1 y justifícalo.",
+          "3 min: crea la medida y compara con tu predicción.",
+          "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
+        ],
+        "Intersección ud = CALCULATE([Piezas ud], KEEPFILTERS(dim_turno[turno] = \"3\"))"
+      ],
+      [
+        7,
+        "Filtrar registros",
+        [
+          "2 min: predice el valor de L3 / turno 1 y justifícalo.",
+          "3 min: crea la medida y compara con tu predicción.",
+          "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
+        ],
+        "Registros grandes ud = CALCULATE([Piezas ud], FILTER(fact_produccion, fact_produccion[piezas_producidas] >= 600))"
+      ],
+      [
+        7,
+        "Razón de rechazo",
+        [
+          "2 min: predice el valor de L3 / turno 1 y justifícalo.",
+          "3 min: crea la medida y compara con tu predicción.",
+          "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
+        ],
+        "Rechazo producción % = DIVIDE(SUM(fact_produccion[piezas_producidas])-SUM(fact_produccion[piezas_buenas]), [Piezas ud])"
+      ],
+      [
+        7,
+        "Variables",
+        [
+          "2 min: predice el valor de L3 / turno 1 y justifícalo.",
+          "3 min: crea la medida y compara con tu predicción.",
+          "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
+        ],
+        "No buenas ud = VAR Total = [Piezas ud] VAR Buenas = SUM(fact_produccion[piezas_buenas]) RETURN Total-Buenas"
+      ],
+      [
+        7,
+        "MTTR",
+        [
+          "2 min: predice el valor de L3 / turno 1 y justifícalo.",
+          "3 min: crea la medida y compara con tu predicción.",
+          "2 min: explica la discrepancia; MTTR todavía recibe fecha y línea, sin turno."
+        ],
+        "MTTR min = DIVIDE(CALCULATE(SUM(fact_mantenimiento[duracion_min]), fact_mantenimiento[tipo]=\"correctivo\", fact_mantenimiento[afecta_produccion]=1), CALCULATE(COUNTROWS(fact_mantenimiento), fact_mantenimiento[tipo]=\"correctivo\", fact_mantenimiento[afecta_produccion]=1))"
+      ],
+      [
+        10,
+        "Explica tus errores",
+        [
+          "CALCULATE sustituye el filtro de esa columna; KEEPFILTERS conserva su intersección.",
+          "ALL(dim_linea) quita también área y celda, pero conserva mes y turno.",
+          "Se evalúa tu explicación, no cuántas predicciones acertaste."
+        ]
+      ],
+      [
+        20,
+        "Contrasta MTTR con Power Query",
+        [
+          "Filtra correctivos con afecta_produccion=1 y el mismo corte de fecha/línea.",
+          "Agrupa por equipo: suma minutos y cuenta eventos. Divide total de minutos entre total de eventos.",
+          "Compara con la media simple de promedios por equipo: ponderan diferente y deben nombrarse distinto."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/predicciones.csv · ocho rondas",
+      "actividad/predicciones.dax · una medida por vez",
+      "Capturas crudas de mantenimiento para Agrupar por"
+    ],
+    "nota": "La etapa A2 no tiene turno en mantenimiento. La octava medida conserva ese alcance; la extensión se hace explícitamente en 3.2."
+  },
+  "3-2": {
+    "pasos": [
+      [
+        10,
+        "Acuerda nombres y alcance",
+        [
+          "Crea _Medidas y carpetas Operaciones, Ingeniería y Business Excellence.",
+          "Aplica el cambio documentado en montaje.md: derivar turno de inicio y crear la relación 17.",
+          "Usa unidades al final: ud, %, min, h o ud/h; no mezcles horas-equipo con horas de línea."
+        ]
+      ],
+      [
+        50,
+        "Construye los indicadores de tu área",
+        [
+          "Operaciones: cumplimiento, disponibilidad y productividad. Ingeniería: scrap y MTBF.",
+          "Business Excellence: rendimiento con SUMX/RELATED, yield y OEE.",
+          "Compara el corte 06/04/2026, L3, turno 1; contrasta el estándar capturado con la ficha de ingeniería."
+        ]
+      ],
+      [
+        20,
+        "Integra y cuestiona el OEE",
+        [
+          "OEE = disponibilidad × rendimiento × yield, con el mismo corte y reglas.",
+          "Si supera 100 %, revisa unidades, tiempos y estándar; nunca recortes la medida a 100 %.",
+          "Documenta la corrección del catálogo por referencia, vuelve a calcular y conserva evidencia del antes."
+        ]
+      ],
+      [
+        10,
+        "Presenta una validación",
+        [
+          "Cada área explica un indicador en un minuto; el tiempo restante permite contraste.",
+          "Expón numerador, denominador y la ruta de filtros.",
+          "Muestra por qué lote no filtra ambos hechos en Scrap %, aunque un visual devuelva un número."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/medidas.dax · recetario",
+      "recursos/estandares_ingenieria.csv · referencia",
+      "Exposición por equipo y metas didácticas"
+    ],
+    "nota": "OEE solo es posible aquí porque los tiempos son únicos por bloque y los estándares tienen unidad. MTBF cuenta fallas con efecto en producción y utiliza horas-equipo.",
+    "evidencia": "Medidas por área, control manual y registro de revisión del estándar. Sin KPI precalculados en los CSV."
+  },
+  "3-3": {
+    "pasos": [
+      [
+        20,
+        "Construye comparaciones temporales",
+        [
+          "Usa el calendario marcado y meses completos; copia las medidas del recetario una por una.",
+          "Construye anterior, variación, YTD, promedio móvil de tres meses y mismo periodo del año anterior.",
+          "El Scrap YTD es razón de sumas acumuladas; no suma porcentajes mensuales."
+        ]
+      ],
+      [
+        40,
+        "Contrasta L2 y L4",
+        [
+          "Grafica Scrap % mensual y promedio móvil de tres meses para las dos líneas.",
+          "Observa octubre de 2025–junio de 2026 y compara mayo con junio de 2026.",
+          "Para año anterior usa meses de enero a junio de 2026; 2025 no tiene comparador previo."
+        ]
+      ],
+      [
+        20,
+        "Escribe una conclusión de tres líneas",
+        [
+          "Incluye cifra, periodo comparado y fuente.",
+          "Distingue un descenso sostenido de un mes atípico.",
+          "No atribuyas causalidad a un proyecto real: la historia es sintética y la serie no demuestra causa por sí sola."
+        ]
+      ],
+      [
+        10,
+        "Defiende la comparación",
+        [
+          "Lee dos o tres conclusiones.",
+          "Declara si el promedio móvil es media simple de tasas mensuales y por qué no es la tasa conjunta del trimestre.",
+          "Revisa ventanas incompletas y BLANK; no conviertas meses sin historia en cero."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/tiempo.dax · cinco comparaciones",
+      "actividad/conclusion.csv · registro vacío"
+    ],
+    "nota": "El instructor permite ruta autónoma avanzada y refuerza contexto con el resto, tal como pide el plan.",
+    "evidencia": "Gráfico L2/L4 y conclusión de tres líneas sustentada."
+  },
+  "3-4": {
+    "pasos": [
+      [
+        45,
+        "Documenta seis indicadores",
+        [
+          "Completa una ficha por cumplimiento, yield, scrap, disponibilidad, OEE y MTTR.",
+          "Especifica pregunta, fórmula, unidad, meta didáctica, fuente, trampa y responsable.",
+          "Señala el cambio de alcance de turno aplicado en 3.2."
+        ]
+      ],
+      [
+        35,
+        "Valida tres cortes",
+        [
+          "Contrasta una fecha, un turno y una línea con registros crudos limpiados de forma reproducible.",
+          "Usa los mismos filtros y la misma referencia de estándar en ambos cálculos.",
+          "Exige igualdad de cantidades y de definiciones; compara razones sin redondeo previo y registra precisión numérica."
+        ]
+      ],
+      [
+        10,
+        "Intercambia una ficha",
+        [
+          "Otra persona debe explicar el indicador sin preguntar al autor.",
+          "Corrige ambigüedades y registra su observación.",
+          "Entrega A3 con fichas y tres cortes; con apoyo puede priorizar tres fichas, registrando las pendientes."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/fichas.csv · seis indicadores",
+      "actividad/validaciones.csv · tres cortes por indicador"
+    ],
+    "nota": "La tolerancia cero del Word significa ninguna discrepancia conceptual o de conteo. Para números de punto flotante usar 1e-10 antes del formato; no exigir igualdad de cadenas redondeadas."
+  },
+  "4-1": {
+    "pasos": [
+      [
+        30,
+        "Audita la página deficiente",
+        [
+          "Observa el ejemplo deliberadamente mal diseñado de esta actividad.",
+          "Identifica pastel de doce rebanadas, seis medidores, tabla densa, color sin significado, eje truncado y títulos genéricos.",
+          "Propón en papel jerarquía, pregunta, visuales y qué requiere atención."
+        ]
+      ],
+      [
+        50,
+        "Construye tu resumen",
+        [
+          "Tarjetas: OEE, cumplimiento, scrap, disponibilidad y MTTR contra metas didácticas.",
+          "Tendencia OEE de 18 meses y comparación entre líneas; declara alcance de los indicadores.",
+          "Titula con un hallazgo válido para los filtros seleccionados; usa un título dinámico o una vista fija explícita."
+        ]
+      ],
+      [
+        10,
+        "Prueba cinco segundos",
+        [
+          "Otra persona observa la página durante cinco segundos.",
+          "Oculta la vista y pide que diga qué situación necesita atención y dónde.",
+          "Registra respuesta y cambio de diseño; no expliques antes."
+        ]
+      ]
+    ],
+    "recursos": [
+      "Ejemplo de reporte deficiente dentro de las slides",
+      "recursos/metas.csv · umbral, unidad y sentido",
+      "actividad/prueba_cinco_segundos.csv"
+    ],
+    "nota": "La página deficiente es un ejemplo web reproducible y una guía de montaje; no se entrega un PBIX ya construido."
+  },
+  "4-2": {
+    "pasos": [
+      [
+        30,
+        "Detalle de producción",
+        [
+          "Crea tabla por fecha operativa, línea, turno y lote.",
+          "Drillthrough con la misma dim_linea[linea_id] usada en el origen.",
+          "Comprueba filtros transferidos y retorno; navegación de página sola no transmite una barra seleccionada."
+        ]
+      ],
+      [
+        25,
+        "Eventos por equipo y fecha",
+        [
+          "Crea página Eventos con dim_equipo[equipo_id] y fecha de dim_calendario como campos de drillthrough.",
+          "Desde Detalle, una tabla de eventos por equipo aporta el campo al clic derecho.",
+          "Incluye inicio, fin, causa, duración y afecta_produccion; comprueba al menos dos equipos."
+        ]
+      ],
+      [
+        15,
+        "Sincroniza y vuelve",
+        [
+          "Configura segmentadores sincronizados por las páginas previstas.",
+          "Añade botón Atrás y prueba en modo lectura o Ctrl + clic en Desktop.",
+          "Comprueba que un marcador de vista no restaure datos guardados por accidente."
+        ]
+      ],
+      [
+        20,
+        "Recorre de indicador a registro",
+        [
+          "Elige L3, segundo trimestre de 2026: resumen → día → equipo → eventos.",
+          "Consulta calidad del mismo día/línea y sus marcas horarias; no atribuyas al equipo por una relación inexistente.",
+          "Registra identificadores y tiempos. Deja la hipótesis abierta para Día 5."
+        ]
+      ]
+    ],
+    "recursos": [
+      "Registros crudos con inicio, fin y fecha_hora",
+      "actividad/recorrido.csv · trazabilidad"
+    ],
+    "nota": "Equipo filtra mantenimiento y exposición; no producción/calidad. El cruce temporal se comprueba explícitamente por fecha y línea, sin crear una relación causal automática."
+  },
+  "4-3": {
+    "pasos": [
+      [
+        15,
+        "Interacciones",
+        [
+          "Prueba filtrar, resaltar y ninguna interacción entre dos visuales; registra la intención.",
+          "Aplica la función en tu propio reporte y registra una prueba en actividad/estaciones.csv.",
+          "Prueba filtros antes y después; conserva una captura del resultado."
+        ]
+      ],
+      [
+        15,
+        "Formato contra meta",
+        [
+          "Usa metas.csv, su unidad y sentido. Los porcentajes se comparan con razones 0–1.",
+          "Aplica la función en tu propio reporte y registra una prueba en actividad/estaciones.csv.",
+          "Prueba filtros antes y después; conserva una captura del resultado."
+        ]
+      ],
+      [
+        15,
+        "Tooltip de treinta días",
+        [
+          "Configura página tooltip para la línea seleccionada y comprueba los últimos 30 días del corte.",
+          "Aplica la función en tu propio reporte y registra una prueba en actividad/estaciones.csv.",
+          "Prueba filtros antes y después; conserva una captura del resultado."
+        ]
+      ],
+      [
+        15,
+        "Marcadores y selector",
+        [
+          "Alterna vista por turno y línea con botones; desactiva Datos si solo cambia la vista.",
+          "Aplica la función en tu propio reporte y registra una prueba en actividad/estaciones.csv.",
+          "Prueba filtros antes y después; conserva una captura del resultado."
+        ]
+      ],
+      [
+        15,
+        "Menú y navegación",
+        [
+          "Crea menú con accesos a Resumen, Detalle y Eventos, incluyendo regreso.",
+          "Aplica la función en tu propio reporte y registra una prueba en actividad/estaciones.csv.",
+          "Prueba filtros antes y después; conserva una captura del resultado."
+        ]
+      ],
+      [
+        15,
+        "Comparte la función más útil",
+        [
+          "Muestra a quien tienes al lado qué pregunta facilita resolver.",
+          "Explica una limitación y cómo la probaste.",
+          "Entrega al menos tres funciones aplicadas; las cinco estaciones siguen disponibles."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/estaciones.csv · cinco retos",
+      "recursos/metas.csv",
+      "Tu reporte A4 en construcción"
+    ]
+  },
+  "4-4": {
+    "pasos": [
+      [
+        60,
+        "Termina el reporte",
+        [
+          "Valida las cifras antes de ajustar el diseño.",
+          "Comprueba resumen, detalle, eventos, navegación y filtros visibles.",
+          "Escribe tres preguntas: una de resumen, una de detalle y una de trazabilidad."
+        ]
+      ],
+      [
+        20,
+        "Observa sin ayudar",
+        [
+          "Un lector de otra área responde usando solo el reporte.",
+          "El autor guarda silencio, cronometra y registra cifra, contexto y bloqueo.",
+          "Usa actividad/lector.csv; no conviertas la prueba en una opinión de colores."
+        ]
+      ],
+      [
+        10,
+        "Corrige lo observado",
+        [
+          "Prioriza una interpretación incorrecta o una ruta bloqueada.",
+          "Registra qué cambió y comprueba la tarea afectada.",
+          "Entrega A4 y el registro. Si sobra tiempo, repite con un segundo lector."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/lector.csv · registro de tres preguntas",
+      "Reporte acumulativo A4"
+    ],
+    "evidencia": "Reporte de dos niveles y prueba documentada con lector de otra área."
+  },
+  "5-1": {
+    "pasos": [
+      [
+        60,
+        "Investiga antes de la junta",
+        [
+          "La gerencia observa una caída del OEE de L3 en abril–junio de 2026 frente a enero–marzo de 2026.",
+          "Registra evidencia a favor y en contra de cada hipótesis, incluidas las descartadas.",
+          "Comprueba eventos, exposición, producción, arranque y el comportamiento de otras líneas y turnos."
+        ]
+      ],
+      [
+        20,
+        "Comparte el veredicto",
+        [
+          "Cada equipo expone en un minuto; usa el resto para contrastar resultados.",
+          "Reconstruye una cifra desde un evento y su periodo.",
+          "Distingue la causa sembrada en la simulación de lo que los datos observacionales por sí solos prueban."
+        ]
+      ],
+      [
+        10,
+        "Discute la resolución",
+        [
+          "El instructor revela cómo se construyó la simulación.",
+          "Revisa qué observación refuta la hipótesis del turno como causa.",
+          "Registra qué faltaría verificar en una planta real antes de recomendar una acción causal."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/hipotesis.csv · a favor, en contra, veredicto",
+      "Tu reporte y registros crudos",
+      "Resolución reservada al instructor"
+    ],
+    "nota": "No revelar el equipo ni la causa en los ZIP del alumno. El rastro está en registros ordinarios, no en una columna que señale la solución."
+  },
+  "5-2": {
+    "pasos": [
+      [
+        30,
+        "Prepara una página de junta",
+        [
+          "Completa hallazgo, cifra, periodo, fuente, recomendación y lo que todavía no sabemos.",
+          "Incluye responsable propuesto y verificación, sin prometer mejoras no calculadas.",
+          "Usa actividad/pagina_junta.csv y prepara el acceso al detalle."
+        ]
+      ],
+      [
+        50,
+        "Ensaya con el gerente escéptico",
+        [
+          "Diez rondas de cinco minutos: tres de exposición y dos de preguntas.",
+          "Rota el papel del gerente usando actividad/tarjetas_gerente.csv.",
+          "Registra pregunta, respuesta y corrección; todos intervienen dentro de su equipo."
+        ]
+      ],
+      [
+        10,
+        "Revisa las preguntas difíciles",
+        [
+          "Identifica qué cifras o inferencias no pudiste sostener.",
+          "Ajusta la página y la recomendación.",
+          "El ensayo es de tres minutos; la presentación final será de siete."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/pagina_junta.csv · seis campos",
+      "actividad/tarjetas_gerente.csv · cinco preguntas",
+      "actividad/preguntas_recibidas.csv"
+    ]
+  },
+  "5-3": {
+    "pasos": [
+      [
+        20,
+        "Clasifica ocho afirmaciones",
+        [
+          "Abre actividad/afirmaciones.csv.",
+          "Elige sustentada, solo correlación, no sustentable con el modelo o uso como registro de calidad.",
+          "Anota la cifra/filtro o la ausencia de evidencia que justifica tu categoría."
+        ]
+      ],
+      [
+        20,
+        "Contrasta en pareja",
+        [
+          "Compara sin borrar tu respuesta inicial.",
+          "Una misma frase puede tener más de un problema: registra categoría principal y matiz.",
+          "Para una afirmación cuantitativa, reconstruye la cifra antes de aprobarla."
+        ]
+      ],
+      [
+        18,
+        "Debate lo que divide al grupo",
+        [
+          "Discute causalidad, atribuciones al personal y liberación de lotes.",
+          "El reporte apoya decisiones; no sustituye registros controlados ni sistemas validados.",
+          "La clase no demuestra eficacia formal de una acción correctiva."
+        ]
+      ],
+      [
+        12,
+        "Python solo hoy: contrasta un corte",
+        [
+          "El instructor ejecuta actividad/verificar_practicas.py sobre este ZIP y contrasta piezas y rechazos.",
+          "Compara el total de piezas y rechazos contra Power BI; no se lee PBIX ni se ejecuta DAX.",
+          "Sin instalación autorizada, observa la demostración y explica el alcance de la verificación."
+        ]
+      ],
+      [
+        20,
+        "Reescribe tres afirmaciones",
+        [
+          "Conserva dato, periodo, fuente y límite.",
+          "Convierte una causa no probada en hipótesis verificable.",
+          "Entrega clasificación final y tres versiones defendibles."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/afirmaciones.csv · ocho casos",
+      "actividad/reescrituras.csv · tres registros",
+      "actividad/verificar_practicas.py · solo Día 5"
+    ],
+    "nota": "Se conservan las cuatro tareas del Word; la plenaria pasa de 30 a 18 minutos para incluir los 12 minutos de Python solicitados por el usuario."
+  },
+  "5-4": {
+    "pasos": [
+      [
+        43,
+        "Integra el reporte final",
+        [
+          "Conserva A1–A4 y verifica el archivo acumulativo.",
+          "Completa rúbrica, hallazgo, limitaciones y plan de entrega.",
+          "Usa datos sintéticos; un extracto propio solo se usa con autorización formal y preparación suficiente."
+        ]
+      ],
+      [
+        42,
+        "Presenta durante siete minutos",
+        [
+          "Hasta seis equipos: seis × siete minutos = 42. Fija orden y abre archivos antes del bloque.",
+          "Integra las preguntas breves dentro de cada turno de siete minutos; no agregues tiempos fuera del bloque.",
+          "Cada integrante aporta evidencia observable; con menos equipos usa el tiempo restante para retroalimentación."
+        ]
+      ],
+      [
+        5,
+        "Registra A5",
+        [
+          "Guarda reporte y rúbrica con pendientes y responsables.",
+          "Publica solo si la política y permisos lo permiten; de lo contrario entrega PBIX local y exportación.",
+          "Anota lo realizado realmente, la fecha del dato y el responsable de actualización."
+        ]
+      ]
+    ],
+    "recursos": [
+      "actividad/rubrica.csv · cinco criterios del plan",
+      "actividad/entrega.csv · operación y pendientes"
+    ],
+    "nota": "El Word asigna 40 minutos a hasta seis presentaciones de siete. Ajuste explícito: integración 43, presentaciones 42 y registro 5, manteniendo los 90 minutos.",
+    "evidencia": "Reporte A5 integrado y rúbrica individual dentro del trabajo del equipo."
+  }
+}

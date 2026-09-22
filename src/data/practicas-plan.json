@@ -1,0 +1,507 @@
+[
+  {
+    "id": "2-1",
+    "numero": "2.1",
+    "dia": 2,
+    "orden": 1,
+    "titulo": "Armar el modelo",
+    "proposito": "Que cada participante construya el esquema estrella sobre el archivo que trae del Día 1 y, antes de hacerlo bien, vea con sus propios ojos cómo una relación mal planteada infla las cifras sin que Power BI marque ningún error.",
+    "preparacion": [
+      "Carpeta con fact_produccion y fact_calidad del conjunto sintético, más las dimensiones dim_linea, dim_parte, dim_turno, dim_defecto y una dim_equipo (equipo_id, linea_id, descripción).",
+      "Cifra de control anotada en el pizarrón: total de piezas_producidas en la fuente cruda para el periodo completo.",
+      "Dibujo preparado de tres filas de producción y dos eventos de mantenimiento en la misma fecha, para explicar la multiplicación de filas."
+    ],
+    "pasos": [
+      {
+        "minutos": 10,
+        "texto": "Abrir el archivo del Día 1 y cargar fact_produccion y fact_calidad reutilizando el patrón de conexión a carpeta que ya conocen."
+      },
+      {
+        "minutos": 15,
+        "texto": "Antes de mostrar la solución, pedir que relacionen fact_mantenimiento directamente con fact_produccion por fecha. Poner una tarjeta con la suma de piezas producidas y un segmentador por tipo de mantenimiento, y compararla contra la cifra de control."
+      },
+      {
+        "minutos": 10,
+        "texto": "Discusión guiada: ¿por qué subió la cifra? Explicar en el pizarrón la relación de muchos a muchos y cómo cada fecha con varios eventos multiplica las filas de producción."
+      },
+      {
+        "minutos": 30,
+        "texto": "Borrar la relación y construir la estrella: dim_calendario, dim_linea, dim_parte, dim_turno y dim_equipo, con relaciones de uno a varios y filtro en una sola dirección. Ninguna relación directa entre tablas de hechos."
+      },
+      {
+        "minutos": 15,
+        "texto": "Marcar dim_calendario como tabla de fechas y ocultar las llaves en las tablas de hechos."
+      },
+      {
+        "minutos": 10,
+        "texto": "Verificar que la tarjeta regresa exactamente a la cifra de control."
+      }
+    ],
+    "momento": "Lo que se quiere que recuerden es que la cifra inflada se ve perfectamente razonable: Power BI no avisa. La única defensa es tener una cifra de control y compararla siempre. Esa costumbre es la que se va a pedir en cada cierre del resto de la semana.",
+    "evidencia": "Captura del diagrama de modelo y de la tarjeta de piezas producidas coincidiendo con la cifra de control.",
+    "adelante": "Discutir si dim_equipo debe relacionarse con dim_linea (copo de nieve) o aplanarse agregando los atributos de línea en la propia dim_equipo, y justificar la decisión.",
+    "apoyo": "Entregar una plantilla con las dimensiones ya cargadas, de modo que solo construyan y verifiquen las relaciones."
+  },
+  {
+    "id": "2-2",
+    "numero": "2.2",
+    "dia": 2,
+    "orden": 2,
+    "titulo": "Pregúntale al modelo",
+    "proposito": "Aprender a leer el modelo como una fuente de respuestas y, sobre todo, a reconocer cuándo una pregunta no puede contestarse con él. Se trabaja sin DAX, solo con campos arrastrados a tablas y matrices.",
+    "preparacion": [
+      "Hoja impresa con diez preguntas de negocio y la clave de respuestas para el instructor.",
+      "Siete preguntas contestables, por ejemplo: qué línea acumuló más horas de paro en marzo; qué equipo registra más eventos correctivos en el último trimestre; qué familia de parte tuvo mayor volumen; en qué día de la semana hay más rechazos; qué tipo de defecto domina en la línea 2; qué turno produce más en semanas con día inhábil; cuántas piezas se produjeron entre las semanas ISO 10 y 14.",
+      "Tres preguntas no contestables con el modelo actual, por ejemplo: qué inspector rechazó más piezas del lote con más horas de paro (el lote no es dimensión compartida); cuánto mantenimiento correctivo hubo por turno (la tabla de mantenimiento no tiene turno); qué número de parte se ve más afectado por los correctivos (el mantenimiento se registra por equipo y línea, no por parte)."
+    ],
+    "pasos": [
+      {
+        "minutos": 5,
+        "texto": "Formar parejas mixtas entre áreas y entregar la hoja. Aclarar que no se permite escribir medidas."
+      },
+      {
+        "minutos": 45,
+        "texto": "Contestar las diez preguntas con visuales de tabla o matriz. Cada respuesta se anota con la cifra y el visual que la sostiene."
+      },
+      {
+        "minutos": 20,
+        "texto": "Intercambiar hojas con otra pareja y comparar. Donde las cifras no coincidan, ambas parejas revisan juntas qué filtro o qué campo usó cada una."
+      },
+      {
+        "minutos": 20,
+        "texto": "Cierre en plenaria sobre las tres preguntas no contestables: qué cambio al modelo haría falta (una dim_lote, derivar el turno a partir de la hora del evento, una tabla puente) y por qué, a veces, la respuesta correcta es que el modelo no sostiene esa pregunta."
+      }
+    ],
+    "momento": "La tentación natural es forzar una respuesta arrastrando cualquier campo que parezca servir, y Power BI casi siempre devuelve un número. Esta actividad entrena el hábito contrario: antes de responder, verificar que el camino de filtros existe.",
+    "evidencia": "Hoja con las siete respuestas sustentadas y la justificación escrita de por qué las otras tres no pueden contestarse.",
+    "adelante": "Implementar uno de los cambios propuestos (por ejemplo, derivar el turno del evento de mantenimiento en Power Query) y contestar la pregunta que antes no se podía.",
+    "apoyo": "Resolver juntos con el instructor las dos primeras preguntas antes de trabajar en pareja."
+  },
+  {
+    "id": "2-3",
+    "numero": "2.3",
+    "dia": 2,
+    "orden": 3,
+    "titulo": "Detective de relaciones",
+    "proposito": "Diagnosticar fallas de modelo a partir de sus síntomas, que es como aparecen en la vida real, y después dejar el modelo organizado para que otra persona pueda usarlo.",
+    "preparacion": [
+      "Un archivo .pbix con cuatro fallas sembradas: una relación inactiva entre dim_calendario y fact_calidad; fechas con hora en fact_calidad que no empatan con el calendario; un número de parte duplicado en dim_parte por un espacio al final, que convierte la relación en muchos a muchos; y linea_id como texto en una tabla y como número en otra.",
+      "Una hoja de síntomas, sin mencionar las causas: la matriz de rechazos por mes aparece en blanco; una parte muestra el doble de producción que en la fuente; el segmentador de línea no filtra el visual de calidad; Power BI se niega a crear una relación."
+    ],
+    "pasos": [
+      {
+        "minutos": 50,
+        "texto": "Para cada síntoma, llenar una tabla de tres columnas: síntoma, causa encontrada y corrección aplicada. La corrección debe hacerse en el lugar correcto (Power Query para tipos de dato y espacios, vista de modelo para relaciones)."
+      },
+      {
+        "minutos": 40,
+        "texto": "Organización del modelo: jerarquías Año > Trimestre > Mes > Semana y Área > Línea > Celda; ordenar nombre_mes por el número de mes; ocultar columnas técnicas; aplicar formato de número a las columnas de cantidad; agrupar campos en carpetas."
+      }
+    ],
+    "momento": "El duplicado por espacio al final conecta con los defectos sembrados en el archivo del Día 1. Vale la pena señalarlo: un problema de limpieza que no se resolvió en Power Query reaparece como un problema de modelo, y de ahí como una cifra equivocada.",
+    "evidencia": "Tabla de diagnóstico con las cuatro fallas resueltas y el modelo organizado.",
+    "adelante": "Buscar una quinta falla no anunciada: dejar una relación con filtro bidireccional innecesario que genera ambigüedad, y que la identifiquen por su cuenta.",
+    "apoyo": "Entregar los síntomas de uno en uno, con una pista sobre en qué vista buscar."
+  },
+  {
+    "id": "2-4",
+    "numero": "2.4",
+    "dia": 2,
+    "orden": 4,
+    "titulo": "Auditoría cruzada del modelo",
+    "proposito": "Que el modelo terminado pase por la revisión de una persona de otra área con un criterio común, y se corrija a partir de lo que esa persona encuentre.",
+    "preparacion": [
+      "Checklist de ocho puntos: cada tabla de hechos tiene su granularidad escrita; relaciones de uno a varios con filtro único salvo justificación; ninguna relación entre tablas de hechos; calendario marcado y continuo; llaves ocultas; tipos de dato consistentes en ambos lados de cada relación; jerarquías creadas; la cifra de control coincide."
+    ],
+    "pasos": [
+      {
+        "minutos": 30,
+        "texto": "Cada participante audita el modelo de un compañero de otra área usando el checklist y anota los hallazgos."
+      },
+      {
+        "minutos": 45,
+        "texto": "El autor corrige lo señalado. Si no está de acuerdo con un hallazgo, debe argumentarlo por escrito."
+      },
+      {
+        "minutos": 15,
+        "texto": "El revisor verifica las correcciones y firma el checklist."
+      }
+    ],
+    "momento": "La revisión entre áreas no es un trámite: alguien de Operaciones no conoce las abreviaturas de Ingeniería, y eso revela nombres de campo que solo entiende su autor.",
+    "evidencia": "Evidencia A2: el modelo corregido y el checklist firmado por el revisor.",
+    "adelante": "Actuar como revisores de un segundo modelo, lo que acerca al participante al nivel 4 de la escala de dominio.",
+    "apoyo": "El instructor acompaña la primera mitad de la auditoría para calibrar el criterio."
+  },
+  {
+    "id": "3-1",
+    "numero": "3.1",
+    "dia": 3,
+    "orden": 1,
+    "titulo": "¿Cuánto va a dar?",
+    "proposito": "Hacer tangible el contexto de filtro. Antes de ejecutar cada medida, los participantes predicen su resultado; el error entre lo que esperaban y lo que salió es lo que construye el concepto.",
+    "preparacion": [
+      "Una página con una matriz de línea por turno y un segmentador de mes ya aplicado, con una celda marcada para las predicciones.",
+      "Hoja de predicción con ocho medidas en secuencia: suma simple de piezas; CALCULATE con turno igual a 3; CALCULATE con ALL(dim_linea); la misma condición envuelta en KEEPFILTERS; FILTER con una condición sobre piezas; DIVIDE para el porcentaje de rechazo; una medida con variables; y el MTTR.",
+      "Los valores reales de cada medida en la celda marcada, para el instructor."
+    ],
+    "pasos": [
+      {
+        "minutos": 60,
+        "texto": "Ocho rondas de siete minutos. En cada una el instructor escribe la medida, los participantes anotan su predicción para la celda marcada (un valor, igual a otra celda o en blanco) y después la ejecutan y comparan."
+      },
+      {
+        "minutos": 10,
+        "texto": "Repaso de los errores más frecuentes del grupo, con énfasis en que CALCULATE reemplaza el filtro y KEEPFILTERS lo intersecta."
+      },
+      {
+        "minutos": 20,
+        "texto": "Rehacer el MTTR del Día 1 como medida y compararlo contra el que se obtuvo con Agrupar por en Power Query."
+      }
+    ],
+    "momento": "Es muy probable que el MTTR no coincida: si en Power Query se sacó el MTTR por equipo y luego se promedió, el resultado es un promedio de promedios, mientras que la medida divide el total entre el total. Ninguno está mal en sí; responden preguntas distintas. Es una de las lecciones más valiosas de la semana.",
+    "evidencia": "Hoja de predicciones. No se califica el número de aciertos sino la explicación de los errores.",
+    "adelante": "Agregar dos medidas extra con REMOVEFILTERS y ALLSELECTED para comparar contra ALL.",
+    "apoyo": "Reducir a las primeras cinco medidas y dedicar el tiempo sobrante a repetir la predicción con otra celda."
+  },
+  {
+    "id": "3-2",
+    "numero": "3.2",
+    "dia": 3,
+    "orden": 2,
+    "titulo": "Los indicadores de mi área",
+    "proposito": "Cada área construye los indicadores que usa en su trabajo, y Business Excellence integra el OEE a partir de las medidas de los demás, lo que obliga a revisar el trabajo ajeno.",
+    "preparacion": [
+      "Asignación: Operaciones construye Cumplimiento al plan, Disponibilidad y Productividad; Ingeniería construye Scrap % y MTBF (resolviendo el pendiente del Día 1); Business Excellence construye Rendimiento con SUMX y RELATED sobre estandar_hora, Yield y el OEE.",
+      "Convención de nombres acordada al inicio: tabla _Medidas, carpetas por área, unidad al final del nombre.",
+      "Para cada medida, un cálculo manual de control en Excel para una combinación concreta de día, línea y turno."
+    ],
+    "pasos": [
+      {
+        "minutos": 10,
+        "texto": "Acordar la convención de nombres y crear la tabla _Medidas."
+      },
+      {
+        "minutos": 50,
+        "texto": "Cada área construye y valida sus medidas contra el cálculo de control."
+      },
+      {
+        "minutos": 20,
+        "texto": "Business Excellence integra el OEE con las medidas de Disponibilidad de Operaciones y Yield propio. Si el OEE no cuadra, las áreas revisan juntas de dónde viene la diferencia."
+      },
+      {
+        "minutos": 10,
+        "texto": "Cada área presenta un indicador y su validación en un minuto."
+      }
+    ],
+    "momento": "Hay dos trampas sembradas. El Scrap % cruza dos tablas de hechos y solo funciona filtrando por dimensiones compartidas; si alguien lo intenta segmentar por lote, no sale. Y una parte con estándar desactualizado lleva el OEE por encima de 100%, lo que obliga a desconfiar de un resultado imposible en lugar de publicarlo.",
+    "evidencia": "Medidas del área validadas contra el cálculo de control.",
+    "adelante": "Construir el Pareto de defectos con porcentaje acumulado.",
+    "apoyo": "Entregar la fórmula de Rendimiento con SUMX y RELATED como punto de partida."
+  },
+  {
+    "id": "3-3",
+    "numero": "3.3",
+    "dia": 3,
+    "orden": 3,
+    "titulo": "¿La mejora se sostuvo?",
+    "proposito": "Aplicar la inteligencia de tiempo a la pregunta que trae Business Excellence: demostrar con datos si una mejora se mantuvo o fue un pico.",
+    "preparacion": [
+      "En el sintético, la mejora sostenida de la línea 2 y la mejora aparente de la línea 4.",
+      "Guía escrita para trabajo autónomo, con las medidas a construir: periodo anterior con DATEADD, variación porcentual, acumulado del año, promedio móvil de tres meses y mismo periodo del año anterior (los dieciocho meses de historia lo permiten)."
+    ],
+    "pasos": [
+      {
+        "minutos": 20,
+        "texto": "Construir las medidas de tiempo sobre el Scrap %."
+      },
+      {
+        "minutos": 40,
+        "texto": "Graficar el scrap real contra el promedio móvil para las líneas 2 y 4 y decidir cuál mejora se sostuvo."
+      },
+      {
+        "minutos": 20,
+        "texto": "Redactar una conclusión de tres líneas con la cifra, el periodo comparado y la fuente."
+      },
+      {
+        "minutos": 10,
+        "texto": "Leer dos o tres conclusiones en voz alta y discutirlas."
+      }
+    ],
+    "momento": "Si solo se compara contra el mes anterior, la línea 4 parece la gran mejora del año. El promedio móvil y la comparación contra el mismo periodo del año anterior son los que desenmascaran el pico. Es la diferencia entre presentar un resultado y defenderlo.",
+    "evidencia": "Gráfico comparativo y la conclusión escrita.",
+    "adelante": "Según la advertencia de la propuesta, este es el bloque para bifurcar: los avanzados trabajan de forma autónoma con la guía escrita y pueden agregar grupos de cálculo para la inteligencia de tiempo.",
+    "apoyo": "Mientras los avanzados trabajan solos, el instructor refuerza contexto de filtro con el resto del grupo antes de entrar al tiempo."
+  },
+  {
+    "id": "3-4",
+    "numero": "3.4",
+    "dia": 3,
+    "orden": 4,
+    "titulo": "Fichas y validación de los seis indicadores",
+    "proposito": "Documentar los seis indicadores del grupo de forma que cualquier persona sepa qué miden, cómo se calculan y cómo se validaron.",
+    "preparacion": [
+      "Plantilla de ficha con: nombre, pregunta que responde, definición operativa, fórmula DAX, unidad y formato, meta de ejemplo, fuente, trampa común y responsable.",
+      "Los seis indicadores sugeridos: Cumplimiento al plan, Yield, Scrap %, Disponibilidad, OEE y MTTR."
+    ],
+    "pasos": [
+      {
+        "minutos": 45,
+        "texto": "Llenar las fichas de los indicadores asignados a cada participante."
+      },
+      {
+        "minutos": 35,
+        "texto": "Validar cada indicador en tres cortes: una fecha, un turno y una línea, comparando la cifra de Power BI contra el cálculo directo en la fuente cruda. La tolerancia es cero."
+      },
+      {
+        "minutos": 10,
+        "texto": "Intercambiar una ficha con otra persona y verificar que la entienda sin preguntar."
+      }
+    ],
+    "momento": "La trampa común de cada ficha es lo que más valor tiene para el área. Por ejemplo, que el Scrap % no es sumable entre líneas, o que el MTBF cambia según si se cuentan o no los correctivos que no afectaron producción.",
+    "evidencia": "Evidencia A3: los seis indicadores documentados y validados.",
+    "adelante": "Agregar indicadores propios de su área con su ficha completa.",
+    "apoyo": "Enfocarse en tres indicadores bien documentados y validados en lugar de seis incompletos."
+  },
+  {
+    "id": "4-1",
+    "numero": "4.1",
+    "dia": 4,
+    "orden": 1,
+    "titulo": "Resumen en una página",
+    "proposito": "Aprender a diseñar una página ejecutiva empezando por reconocer lo que está mal en un mal reporte, y terminar con una página que comunique el estado de la planta en segundos.",
+    "preparacion": [
+      "Un .pbix con una página deliberadamente mal hecha: pastel de doce rebanadas, seis medidores juntos, una tabla gigante, semáforos en todos los visuales, ocho colores sin significado, ejes truncados y títulos como Gráfico 1.",
+      "Una tabla de metas por indicador para comparar contra ellas."
+    ],
+    "pasos": [
+      {
+        "minutos": 30,
+        "texto": "En parejas, listar todos los problemas de la página fea y proponer un rediseño en papel."
+      },
+      {
+        "minutos": 50,
+        "texto": "Construir la página ejecutiva propia: fila de tarjetas con OEE, Cumplimiento, Scrap, Disponibilidad y MTTR contra meta; tendencia del OEE en los dieciocho meses; comparativo entre líneas; títulos que enuncien el hallazgo."
+      },
+      {
+        "minutos": 10,
+        "texto": "Prueba de los cinco segundos: un compañero ve la página cinco segundos y tiene que decir qué está mal en la planta."
+      }
+    ],
+    "momento": "Dos reglas que conviene repetir hasta el cansancio: el color se reserva para lo que requiere atención, y el título dice el hallazgo, no el nombre del gráfico. Un título como la línea 3 explica la mayor parte de la caída del OEE hace más que cualquier formato.",
+    "evidencia": "Página ejecutiva terminada y el resultado de la prueba de cinco segundos.",
+    "adelante": "Construir títulos dinámicos con una medida de texto que cambie según el filtro.",
+    "apoyo": "Entregar el esqueleto de la página con la ubicación de cada visual ya definida."
+  },
+  {
+    "id": "4-2",
+    "numero": "4.2",
+    "dia": 4,
+    "orden": 2,
+    "titulo": "Detalle con filtros y trazabilidad",
+    "proposito": "Construir el segundo nivel del reporte y el camino que lleva de un indicador malo en el resumen hasta el evento concreto que lo explica.",
+    "preparacion": [
+      "Páginas de destino vacías para el detalle de producción y para los eventos de mantenimiento."
+    ],
+    "pasos": [
+      {
+        "minutos": 30,
+        "texto": "Página de detalle por línea, turno y día, con drill-through desde el resumen al hacer clic derecho sobre una línea."
+      },
+      {
+        "minutos": 25,
+        "texto": "Página de eventos de mantenimiento con drill-through por equipo y fecha."
+      },
+      {
+        "minutos": 15,
+        "texto": "Segmentadores sincronizados entre páginas y botón de regreso."
+      },
+      {
+        "minutos": 20,
+        "texto": "Recorrido completo: desde el OEE bajo de la línea 3 hasta el día, el equipo y los eventos correctivos."
+      }
+    ],
+    "momento": "Durante el recorrido los participantes empiezan a ver el equipo problemático de la línea 3. No hay que revelarlo todavía: basta con dejar la pregunta abierta, porque es el caso del Día 5.",
+    "evidencia": "Navegación funcionando del resumen al detalle y al evento.",
+    "adelante": "Agregar una página de detalle de calidad con drill-through por tipo de defecto.",
+    "apoyo": "Construir solo el drill-through de producción y dejar el de mantenimiento para el taller."
+  },
+  {
+    "id": "4-3",
+    "numero": "4.3",
+    "dia": 4,
+    "orden": 3,
+    "titulo": "Estaciones de interacción y navegación",
+    "proposito": "Profundizar en las funciones que hacen que un reporte se sienta terminado, trabajadas por estaciones para que cada participante avance a su ritmo.",
+    "preparacion": [
+      "Cinco tarjetas de reto, una por estación: editar interacciones entre visuales (filtrar, resaltar o ninguna); formato condicional contra la tabla de metas; tooltip de página con la tendencia de treinta días de la línea; marcadores para alternar entre vista por turno y vista por línea con un selector de botones; y una página de menú con navegación."
+    ],
+    "pasos": [
+      {
+        "minutos": 75,
+        "texto": "Cinco estaciones de quince minutos. Cada participante aplica el reto de la estación en su propio reporte."
+      },
+      {
+        "minutos": 15,
+        "texto": "Cada persona elige la función que más le sirve para su área y la muestra a quien tiene al lado."
+      }
+    ],
+    "momento": "El formato de estaciones evita que el grupo entero espere al más lento en cada función, y deja claro que no todas las funciones son necesarias en todos los reportes.",
+    "evidencia": "Al menos tres de las cinco funciones aplicadas en el reporte propio.",
+    "adelante": "Combinar marcadores y botones en un panel de filtros que se abre y se cierra.",
+    "apoyo": "Completar tres estaciones con calma en lugar de cinco con prisa."
+  },
+  {
+    "id": "4-4",
+    "numero": "4.4",
+    "dia": 4,
+    "orden": 4,
+    "titulo": "Prueba del lector ciego",
+    "proposito": "Comprobar que el reporte de dos niveles funciona para una persona de otra área sin ninguna explicación previa, que es el criterio de la competencia C4.",
+    "preparacion": [
+      "Formato de registro con el tiempo por pregunta, si la contestó bien y dónde se atoró."
+    ],
+    "pasos": [
+      {
+        "minutos": 60,
+        "texto": "Terminar el reporte de dos niveles."
+      },
+      {
+        "minutos": 20,
+        "texto": "El autor escribe tres preguntas: una de resumen, una de detalle y una de trazabilidad. Un lector de otra área las contesta usando el reporte. El autor no puede hablar; solo observa, cronometra y anota."
+      },
+      {
+        "minutos": 10,
+        "texto": "Ajustes a partir de lo observado."
+      }
+    ],
+    "momento": "Cuando el lector no encuentra algo, la reacción natural del autor es explicarle. Prohibir hablar es lo que hace útil la prueba: si el lector se atora, el problema es el diseño, no el lector.",
+    "evidencia": "Evidencia A4: el reporte de dos niveles y el registro de la prueba.",
+    "adelante": "Hacer la prueba con un segundo lector después de los ajustes y comparar tiempos.",
+    "apoyo": "Reducir la prueba a las preguntas de resumen y detalle."
+  },
+  {
+    "id": "5-1",
+    "numero": "5.1",
+    "dia": 5,
+    "orden": 1,
+    "titulo": "Del dato al hallazgo",
+    "proposito": "Resolver un caso tipo misterio usando el reporte construido en la semana, distinguiendo entre la causa real y una coincidencia que parece causa.",
+    "preparacion": [
+      "El planteamiento del caso: la gerencia nota que la línea 3 bajó su OEE en el segundo trimestre y necesita saber por qué antes de la junta de las once.",
+      "En el sintético, el equipo de la línea 3 con correctivos recurrentes, el scrap concentrado en las horas de arranque después de cada correctivo y la pista falsa del turno 3.",
+      "Bitácora de hipótesis con cuatro columnas: hipótesis, evidencia a favor, evidencia en contra y veredicto."
+    ],
+    "pasos": [
+      {
+        "minutos": 60,
+        "texto": "Los equipos mixtos investigan con su propio reporte y registran cada hipótesis en la bitácora, incluidas las que descartan."
+      },
+      {
+        "minutos": 20,
+        "texto": "Cada equipo comparte su veredicto en un minuto."
+      },
+      {
+        "minutos": 10,
+        "texto": "El instructor revela cómo se construyó el caso y qué rastro dejaba cada pista."
+      }
+    ],
+    "momento": "Algún equipo se va a ir con el turno 3. La pregunta para sacarlo de ahí es: si el turno 3 fuera la causa, ¿qué esperarías ver en las otras líneas? Esa pregunta es la esencia de la distinción entre correlación y causa que se formaliza en el laboratorio.",
+    "evidencia": "Bitácora de hipótesis con el veredicto del equipo.",
+    "adelante": "Cuantificar el impacto: cuántos puntos de OEE explica el equipo y cuánto quedaría sin explicar.",
+    "apoyo": "Dar una pista a mitad del bloque: revisar los eventos de mantenimiento de la línea en el periodo."
+  },
+  {
+    "id": "5-2",
+    "numero": "5.2",
+    "dia": 5,
+    "orden": 2,
+    "titulo": "Presentación en formato de junta",
+    "proposito": "Comunicar un hallazgo como se hace en una junta de producción: corto, con cifra y fuente, y aguantando preguntas.",
+    "preparacion": [
+      "Plantilla de una página con seis campos: hallazgo, cifra, periodo, fuente, recomendación y lo que todavía no sabemos.",
+      "Tarjetas del gerente escéptico: ¿de dónde sale ese número?, ¿contra qué periodo lo comparas?, ¿eso lo causó o coincidió?, ¿esto ya lo revisó Calidad?, ¿qué harías el lunes?"
+    ],
+    "pasos": [
+      {
+        "minutos": 30,
+        "texto": "Cada equipo prepara su página con el hallazgo del bloque anterior."
+      },
+      {
+        "minutos": 50,
+        "texto": "Rondas de tres minutos de presentación y dos minutos de preguntas con las tarjetas. El papel del gerente rota entre participantes."
+      },
+      {
+        "minutos": 10,
+        "texto": "Cierre: qué preguntas tumbaron más presentaciones y cómo prevenirlas."
+      }
+    ],
+    "momento": "El campo de lo que todavía no sabemos es el que más cuesta llenar y el que más credibilidad da. Decir qué no sostiene el análisis protege al participante frente a la pregunta difícil.",
+    "evidencia": "Página de junta y registro de las preguntas recibidas.",
+    "adelante": "Presentar sin la página, solo con el reporte en pantalla.",
+    "apoyo": "Ensayar una vez con el instructor antes de la ronda."
+  },
+  {
+    "id": "5-3",
+    "numero": "5.3",
+    "dia": 5,
+    "orden": 3,
+    "titulo": "Tacha lo que no puedes sostener",
+    "proposito": "Entrenar el criterio para redactar hallazgos defendibles y reconocer cuándo una afirmación cruza la línea hacia un uso regulado que el reporte no debe tener.",
+    "preparacion": [
+      "Ocho afirmaciones redactadas para clasificar. Por ejemplo: el scrap de la línea 2 bajó entre abril y septiembre (sustentada, si la cifra es correcta); el turno 3 provoca más scrap (solo correlación); el operador del turno 3 no está capacitado (no sustentable, el modelo no tiene datos de personal); el lote puede liberarse porque el reporte muestra que cumple (cruza a registro de calidad); el equipo falla en promedio cada cierto número de horas (sustentada); si hacemos preventivo semanal el OEE subirá cinco puntos (proyección sin sustento); la línea 1 es la más eficiente (incompleta, depende del indicador); el tablero demuestra que la acción correctiva fue efectiva (apoyo a la decisión, no evidencia formal).",
+      "Cuatro categorías: sustentada, solo correlación, no sustentable con el modelo y uso como registro de calidad."
+    ],
+    "pasos": [
+      {
+        "minutos": 20,
+        "texto": "Clasificación individual."
+      },
+      {
+        "minutos": 20,
+        "texto": "Comparar en parejas y acordar una clasificación."
+      },
+      {
+        "minutos": 30,
+        "texto": "Plenaria sobre las afirmaciones con más desacuerdo."
+      },
+      {
+        "minutos": 20,
+        "texto": "Reescribir tres afirmaciones para volverlas defendibles."
+      }
+    ],
+    "momento": "Las afirmaciones sobre liberación de lote y efectividad de la acción correctiva son las que conectan con la consideración de entorno regulado de la propuesta: el reporte es una herramienta de monitoreo y apoyo a la decisión, no sustituye sistemas validados ni registros controlados. Es justo el error de criterio que un participante entusiasta puede cometer el último día.",
+    "evidencia": "Clasificación final y las tres afirmaciones reescritas.",
+    "adelante": "Redactar afirmaciones nuevas para que otra pareja las clasifique.",
+    "apoyo": "Trabajar la clasificación en pareja desde el inicio."
+  },
+  {
+    "id": "5-4",
+    "numero": "5.4",
+    "dia": 5,
+    "orden": 4,
+    "titulo": "Proyecto final integrado",
+    "proposito": "Integrar todo lo de la semana en un reporte que el participante pueda llevar a su área al día siguiente, y defenderlo ante el grupo.",
+    "preparacion": [
+      "Rúbrica con cinco criterios, uno por competencia: modelo correcto, indicadores validados, diseño legible, hallazgo sustentado y manejo de preguntas.",
+      "Definición previa de si se publica en el servicio o se entrega como archivo local, según la política de la empresa."
+    ],
+    "pasos": [
+      {
+        "minutos": 45,
+        "texto": "Integración final del reporte por equipo mixto, con datos sintéticos o con extracto propio si hay autorización formal."
+      },
+      {
+        "minutos": 40,
+        "texto": "Presentaciones de siete minutos por equipo, evaluadas con la rúbrica."
+      },
+      {
+        "minutos": 5,
+        "texto": "Registro de la evidencia."
+      }
+    ],
+    "momento": "Con 18 a 22 participantes en equipos de cuatro salen cinco o seis equipos; siete minutos cada uno llenan el bloque sin margen. Conviene fijar el orden de presentación desde la mañana y cronometrar con rigor.",
+    "evidencia": "Evidencia A5: el reporte integrado y la rúbrica de la presentación.",
+    "adelante": "Publicar el reporte con seguridad a nivel de fila por línea, si la política lo permite.",
+    "apoyo": "Presentar el reporte con datos sintéticos aunque haya extracto propio disponible."
+  }
+]

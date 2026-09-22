@@ -1,0 +1,5 @@
+﻿caso,sintoma
+a,El filtro de mes no cambia el total de calidad.
+b,Las fechas con registros aparecen sin valor o en miembro en blanco.
+c,Tras recortar las claves de parte no se puede mantener una dimensión única.
+d,Las claves de línea no empatan o Power BI rechaza los tipos de la relación.

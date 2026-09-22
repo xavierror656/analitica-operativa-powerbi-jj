@@ -198,6 +198,15 @@ tocan módulos distintos del mismo día, no hay conflicto de merge; si hay que t
 
 ## Estado
 
+El plan desglosado `Plan_Practicas_PowerBI_Dias2-5.docx` ya tiene una entrada propia
+en **`/practicas/`**: 16 presentaciones y 16 ZIP con registros crudos, consignas y
+formularios. Utiliza el caso **Prácticas 2025–2026**, con exposición por equipo y
+estándares para sostener OEE y MTBF. Cada día conserva cuatro bloques de 90 minutos;
+estas prácticas sustituyen los bloques equivalentes, no amplían la jornada.
+El caso anterior permanece como referencia y sus cifras no se mezclan con el nuevo.
+Preparación, claves y ajustes técnicos en
+[guía del instructor](material-instructor/practicas/README.md).
+
 | Día | Slides | Estado |
 |---|---|---|
 | **Día 1: Conexión y preparación de datos** | 52 slides oficiales (portada + 51 módulos; 450 minutos planificados) + 5 extras, guía imprimible, bitácora A1, cronómetro y tres quiz | ✅ Contenido implementado; pendiente pilotaje en aula |

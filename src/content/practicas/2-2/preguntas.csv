@@ -1,0 +1,11 @@
+﻿numero,pregunta
+1,¿Qué línea acumula más minutos de paro en marzo de 2025? Convierte a horas al informar.
+2,¿Qué equipo registra más eventos correctivos en abril–junio de 2026? Incluye correctivos con y sin efecto en producción.
+3,¿Qué familia de parte tiene mayor volumen producido en los 18 meses?
+4,¿Qué día de la semana acumula más piezas rechazadas en los 18 meses?
+5,¿Qué tipo de defecto acumula más piezas rechazadas en L2 en los 18 meses?
+6,"¿Qué turno produce más en semanas ISO que contienen uno de estos festivos: 01/01/2025, 01/05/2025, 16/09/2025, 25/12/2025, 01/01/2026, 01/05/2026? Filtra año ISO y semana conjuntamente."
+7,¿Cuántas piezas se produjeron en las semanas ISO 10 a 14 del año ISO 2025?
+8,"¿Puede una matriz por inspector mostrar rechazos del lote con mayor paro usando solo las relaciones actuales, sin buscar y copiar manualmente el lote entre tablas?"
+9,¿El modelo A2 puede atribuir minutos correctivos por turno usando una dimensión conectada al hecho de mantenimiento?
+10,¿El modelo puede atribuir minutos correctivos a números de parte específicos y distinguirlos de otras partes de la misma línea?

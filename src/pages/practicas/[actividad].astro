@@ -1,0 +1,46 @@
+---
+import RevealDeck from '../../components/RevealDeck.astro';
+import Mecanismo from '../../components/slides/Mecanismo.astro';
+import TuTurno from '../../components/slides/TuTurno.astro';
+import Notas from '../../components/ui/Notas.astro';
+import Pasos from '../../components/ui/Pasos.astro';
+import Cita from '../../components/ui/Cita.astro';
+import Descarga from '../../components/ui/Descarga.astro';
+import plan from '../../data/practicas-plan.json';
+import desarrollo from '../../data/practicas-desarrollo.json';
+import ReporteParaAuditar from '../../components/practicas/ReporteParaAuditar.astro';
+export function getStaticPaths(){return plan.map(a=>({params:{actividad:a.id},props:{a}}));}
+const {a}=Astro.props;
+const d=desarrollo[a.id as keyof typeof desarrollo];
+const base=import.meta.env.BASE_URL.replace(/\/$/,'');
+const mod='P'+a.numero;
+---
+<RevealDeck titulo={'Actividad '+a.numero+' · '+a.titulo}>
+  <Mecanismo modulo={mod} titulo={a.titulo}>
+    <p class="text-3xl">{a.proposito}</p>
+    <p class="texto-chico mt-8 text-dim">Día {a.dia} · 90 minutos · Caso Prácticas 2025–2026</p>
+    <a class="day-guide-link" href={base+'/practicas/'}>← Todas las actividades</a>
+    <Notas slot="notas" minutos={0} dice="Presenta el propósito dentro del primer tramo de trabajo. Las slides de orientación no añaden minutos al bloque." />
+  </Mecanismo>
+  <Mecanismo modulo={mod} titulo="Prepara tu mesa de trabajo">
+    <Pasos items={d.recursos.map((r:string)=>({t:r,d:''}))}/>
+    <div class="mt-8"><Descarga href={'/descargas/practicas/actividad-'+a.id+'.zip'} nombre={'Actividad '+a.numero+' · Datos crudos y consigna'}/></div>
+    <p class="texto-chico text-dim mt-6">Continúa el mismo PBIX. Cada ZIP repite los datos para recuperación; no anexes los paquetes entre sí.</p>
+    <Notas slot="notas" minutos={0} dice="Extraer el ZIP antes de conectar. Leer montaje.md para el puente desde el Día 1; no mezclar cifras del caso anterior." nota={d.nota || 'Preparación y tiempos basados en el plan desglosado del instructor.'}/>
+  </Mecanismo>
+  {a.id==='4-1' && <Mecanismo modulo={mod} titulo="¿Qué problemas encuentras en este reporte?"><ReporteParaAuditar/><Notas slot="notas" minutos={0} dice="Ejemplo deliberadamente deficiente para auditar durante los primeros 30 minutos. No cuenta como diseño recomendado ni como PBIX entregado."/></Mecanismo>}
+  {d.pasos.map((paso:any,index:number)=><TuTurno modulo={mod+' · '+(index+1)} titulo={paso[1]} minutos={paso[0]}>
+    {paso[3] ? <><div class="formula-practica"><Cita mono>{paso[3]}</Cita></div><p class="texto-chico text-dim mt-5">2 min: predice · 3 min: ejecuta · 2 min: explica. Registra el mismo corte: abril 2026 / L3 / turno 1.</p></> : <Pasos items={paso[2].map((t:string,i:number)=>({t:['Haz','Comprueba','Registra'][i]||'Continúa',d:t}))}/>}
+    <Notas slot="notas" minutos={paso[0]} dice={paso[2].join(' ')} nota={(d.nota||'')+' Evidencia: '+('evidencia' in d?d.evidencia:a.evidencia)}/>
+  </TuTurno>)}
+  <Mecanismo modulo={mod} titulo="Deja una evidencia que pueda revisarse">
+    <p class="text-3xl">{'evidencia' in d?d.evidencia:a.evidencia}</p>
+    <p class="text-3xl mt-8">Guarda el archivo, los filtros y las comprobaciones. Anota cualquier ayuda recibida o pendiente.</p>
+    <Notas slot="notas" minutos={0} dice="Registrar la evidencia durante el último tramo de trabajo; no agregar un cierre fuera de los 90 minutos."/>
+  </Mecanismo>
+  <Mecanismo modulo={mod} titulo="Ajusta el apoyo sin perder el propósito">
+    <Pasos items={[{t:'Para profundizar',d:a.adelante},{t:'Si necesitas acompañamiento',d:a.apoyo}]}/>
+    <Notas slot="notas" minutos={0} dice="El instructor elige el apoyo según diagnóstico. Registrar si un criterio queda pendiente; una reducción de alcance no acredita automáticamente la evidencia completa."/>
+  </Mecanismo>
+</RevealDeck>
+<style is:global>.formula-practica pre{font-size:27px!important;line-height:1.45!important;overflow-wrap:anywhere}</style>

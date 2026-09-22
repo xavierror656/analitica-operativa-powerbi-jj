@@ -37,6 +37,9 @@ jobs:
       - name: Verify Days 3 to 5 curriculum and downloads
         run: node scripts/verificar_curso.mjs
 
+      - name: Verify detailed activities and raw datasets
+        run: python3 scripts/verificar_practicas.py
+
       - name: Verify indicator references and Day 5 verifier
         run: |
           python3 scripts/controles_dia3.py

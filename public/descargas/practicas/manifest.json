@@ -1,0 +1,114 @@
+[
+  {
+    "id": "2-1",
+    "archivo": "actividad-2-1.zip",
+    "sha256": "015333cbcbdf98b1a16ace1142381e4b37eb0f9792153c0cbda3b048eb2a2c2e",
+    "archivos": 69,
+    "bytes": 288308
+  },
+  {
+    "id": "2-2",
+    "archivo": "actividad-2-2.zip",
+    "sha256": "b0446b78d855d3d474143dc7a944093b243a1b54225398a8caf057f7dfb2373f",
+    "archivos": 69,
+    "bytes": 288617
+  },
+  {
+    "id": "2-3",
+    "archivo": "actividad-2-3.zip",
+    "sha256": "2ad38e8bd7092dd0dc8431e7152893d2314ca1026a55ba79a48750214581be72",
+    "archivos": 73,
+    "bytes": 290666
+  },
+  {
+    "id": "2-4",
+    "archivo": "actividad-2-4.zip",
+    "sha256": "0b25fd37022d26c86a27b1e4b59c4ed13208c951a2e556cbea73a51bae34a122",
+    "archivos": 68,
+    "bytes": 287756
+  },
+  {
+    "id": "3-1",
+    "archivo": "actividad-3-1.zip",
+    "sha256": "74321dc8e2eb878a42aa1e3a0523b757ec1cc677faead9b7485728a7c51e39d6",
+    "archivos": 69,
+    "bytes": 288914
+  },
+  {
+    "id": "3-2",
+    "archivo": "actividad-3-2.zip",
+    "sha256": "d14fc5957152fff0a8b809b153ff6fdcecec51c38790b63b5c2d6b00af867296",
+    "archivos": 68,
+    "bytes": 288623
+  },
+  {
+    "id": "3-3",
+    "archivo": "actividad-3-3.zip",
+    "sha256": "7b84d8e73b1e59079d75b13fe1725194f073f7eb13fd3fc01fbf7c561c077091",
+    "archivos": 69,
+    "bytes": 288587
+  },
+  {
+    "id": "3-4",
+    "archivo": "actividad-3-4.zip",
+    "sha256": "59a0038d541f729a01321ecdeb34756b8d13b417568ed675ade3f2f2b96cc76a",
+    "archivos": 69,
+    "bytes": 288073
+  },
+  {
+    "id": "4-1",
+    "archivo": "actividad-4-1.zip",
+    "sha256": "ef3b495dbb1919c5fc8667c758af17d47615a0af1336c1fa06f58bb6b8901820",
+    "archivos": 68,
+    "bytes": 287798
+  },
+  {
+    "id": "4-2",
+    "archivo": "actividad-4-2.zip",
+    "sha256": "3ad3d89b8636f654061c99f18f4773cd37036b490c39f0164bdc9d3dad33e11f",
+    "archivos": 68,
+    "bytes": 287906
+  },
+  {
+    "id": "4-3",
+    "archivo": "actividad-4-3.zip",
+    "sha256": "fd6b252c46cd984f33cf231185a329ab85153ca693f969d0255ae8fdf533f395",
+    "archivos": 68,
+    "bytes": 287781
+  },
+  {
+    "id": "4-4",
+    "archivo": "actividad-4-4.zip",
+    "sha256": "5eb5f19981af968fa4b3005147dbde38c8935eaf888e13e29be6a5900c7fa4a5",
+    "archivos": 68,
+    "bytes": 287554
+  },
+  {
+    "id": "5-1",
+    "archivo": "actividad-5-1.zip",
+    "sha256": "ad3aeff5943fc9a28fea8e6fab0696920aee0b173d78840ab21e7bcc27b22311",
+    "archivos": 68,
+    "bytes": 287719
+  },
+  {
+    "id": "5-2",
+    "archivo": "actividad-5-2.zip",
+    "sha256": "e419e005569f4c0cd53fe0e651507981b60547a40c6bdfdf383aeffdf5688612",
+    "archivos": 70,
+    "bytes": 288088
+  },
+  {
+    "id": "5-3",
+    "archivo": "actividad-5-3.zip",
+    "sha256": "b11608b8359d3d096adc32b4e99de065b6c2fdea857544c75022ec2f01497470",
+    "archivos": 70,
+    "bytes": 289602
+  },
+  {
+    "id": "5-4",
+    "archivo": "actividad-5-4.zip",
+    "sha256": "2d8bebf3468e9d76ef171d729c1f9536be5a65cfb01e64bb42c45325986bdb63",
+    "archivos": 69,
+    "bytes": 288106
+  }
+]
