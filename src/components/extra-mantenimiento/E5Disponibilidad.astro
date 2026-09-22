@@ -1,7 +1,7 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
 import Comparacion from '../ui/Comparacion.astro';
-import Cita from '../ui/Cita.astro';
+import Codigo from '../ui/Codigo.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
@@ -12,12 +12,12 @@ import Notas from '../ui/Notas.astro';
       Si segmentas por equipo o por mes, no se recalcula solo.
     </p>
     <div slot="b">
-      <Cita mono>{`Disponibilidad % =
+      <Codigo codigo={`Disponibilidad % =
 DIVIDE(
     SUM(MaintenanceData[Horas_Operativas]),
     SUM(MaintenanceData[Horas_Operativas])
         + SUM(MaintenanceData[Tiempo_Averia_Horas])
-)`}</Cita>
+)`} lenguaje="dax" />
     </div>
   </Comparacion>
   <Notas

@@ -1,0 +1,6 @@
+---
+import { Code } from 'astro:components';
+interface Props { codigo: string; lenguaje?: 'dax' | 'powerquery' | 'python' | 'text' | 'jsx' | 'tsx' | 'javascript'; }
+const { codigo, lenguaje = 'text' } = Astro.props;
+---
+<Code code={codigo} lang={lenguaje} theme="github-dark" />

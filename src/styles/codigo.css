@@ -1,0 +1,23 @@
+.codigo-bloque { min-width:0; width:100%; border:1px solid #353b45; border-radius:16px; overflow:hidden; background:#17191e; color:#e6edf3; text-align:left; }
+.codigo-cabecera { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:10px 20px; background:#24272e; color:#b9c2d0; font:500 14px/1.4 Inter, sans-serif; }
+.codigo-copiar { display:inline-flex; align-items:center; justify-content:center; min-height:34px; padding:5px 12px; border:1px solid #596575; border-radius:7px; background:#303640; color:#f4f7fb; font:inherit; cursor:pointer; white-space:nowrap; }
+.codigo-copiar:hover { background:#414c59; border-color:#a4b3c4; }
+.codigo-copiar:disabled { cursor:wait; }
+.codigo-bloque :focus-visible { outline:3px solid #5eead4; outline-offset:-3px; }
+.reading .codigo-bloque { margin:22px 0; }
+.reading .codigo-bloque pre, .reveal .slides section .codigo-bloque pre { width:100%; box-sizing:border-box; margin:0; padding:20px 24px; border:0; border-radius:0; box-shadow:none; background:#17191e!important; color:#e6edf3; white-space:pre; overflow:auto; overflow-wrap:normal; text-align:left; tab-size:4; }
+.codigo-bloque pre code { display:block; font:inherit; white-space:inherit; padding:0; max-height:none; }
+.reveal .slides section .codigo-cabecera { font-size:22px; padding:8px 20px; }
+.reveal .slides section .codigo-bloque pre { font-size:28px; line-height:1.4; white-space:pre-wrap; overflow-wrap:anywhere; }
+.reveal .slides section .receta-control .codigo-bloque pre { padding:16px 18px; font-size:24px; line-height:1.35; }
+.codigo-estado { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.codigo-error .codigo-estado { position:static; display:block; width:auto; height:auto; padding:8px 20px; clip-path:none; white-space:normal; font:14px/1.5 Inter,sans-serif; color:#ffd79a; }
+.reveal .codigo-error .codigo-estado { font-size:22px; }
+html.pdf-export .codigo-copiar, html.pdf-export .codigo-estado { display:none; }
+@media print {
+  .codigo-copiar, .codigo-estado { display:none!important; }
+  .codigo-bloque { border:1px solid #aaa; break-inside:avoid; }
+  .codigo-cabecera { background:#eee; color:#222; }
+  .reading .codigo-bloque pre, .reveal .slides section .codigo-bloque pre { white-space:pre-wrap; overflow-wrap:anywhere; overflow:visible; background:white!important; color:black!important; }
+  .codigo-bloque pre span { color:black!important; }
+}

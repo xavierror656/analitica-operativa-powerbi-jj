@@ -1,5 +1,6 @@
 ---
 import recetas from '../../data/dia-01-pasos.json';
+import Codigo from '../ui/Codigo.astro';
 interface Props { id: string }
 const { id } = Astro.props;
 const receta = recetas.find((item) => item.id === id);
@@ -14,7 +15,7 @@ const guia = `${base}/dia-01/guia/#paso-${id}`;
       {receta.pasos.map((paso) => <li><strong>{paso.accion}</strong><p>{paso.detalle}</p></li>)}
     </ol>
     <aside class="receta-control">
-      {receta.formula && <><strong>Fórmula M · puedes copiarla de la guía</strong><pre><code>{receta.formula}</code></pre></>}
+      {receta.formula && <Codigo codigo={receta.formula} lenguaje="powerquery" />}
       <div><strong>Comprueba</strong><p>{receta.comprueba}</p></div>
       <div><strong>Al terminar</strong><p>{receta.entrega}</p></div>
     </aside>

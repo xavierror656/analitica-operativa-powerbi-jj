@@ -4,7 +4,7 @@ import Mecanismo from '../../components/slides/Mecanismo.astro';
 import TuTurno from '../../components/slides/TuTurno.astro';
 import Notas from '../../components/ui/Notas.astro';
 import Pasos from '../../components/ui/Pasos.astro';
-import Cita from '../../components/ui/Cita.astro';
+import Codigo from '../../components/ui/Codigo.astro';
 import Descarga from '../../components/ui/Descarga.astro';
 import plan from '../../data/practicas-plan.json';
 import desarrollo from '../../data/practicas-desarrollo.json';
@@ -35,7 +35,7 @@ const mod='P'+a.numero;
   </Mecanismo>
   {a.id==='4-1' && <Mecanismo modulo={mod} titulo="¿Qué problemas encuentras en este reporte?"><ReporteParaAuditar/><Notas slot="notas" minutos={0} dice="Ejemplo deliberadamente deficiente para auditar durante los primeros 30 minutos. No cuenta como diseño recomendado ni como PBIX entregado."/></Mecanismo>}
   {d.pasos.map((paso:any,index:number)=><TuTurno modulo={mod+' · '+(index+1)} titulo={paso[1]} minutos={paso[0]}>
-    {paso[3] ? <><div class="formula-practica"><Cita mono>{paso[3]}</Cita></div><p class="texto-chico text-dim mt-5">2 min: predice · 3 min: ejecuta · 2 min: explica. Registra el mismo corte: abril 2026 / L3 / turno 1.</p></> : <Pasos items={paso[2].map((t:string,i:number)=>({t:['Haz','Comprueba','Registra'][i]||'Continúa',d:t}))}/>}
+    {paso[3] ? <><div class="formula-practica"><Codigo codigo={paso[3]} lenguaje="dax" /></div><p class="texto-chico text-dim mt-5">2 min: predice · 3 min: ejecuta · 2 min: explica. Registra el mismo corte: abril 2026 / L3 / turno 1.</p></> : <Pasos items={paso[2].map((t:string,i:number)=>({t:['Haz','Comprueba','Registra'][i]||'Continúa',d:t}))}/>}
     <Notas slot="notas" minutos={paso[0]} dice={paso[2].join(' ')} nota={(d.nota||'')+' Evidencia: '+('evidencia' in d?d.evidencia:a.evidencia)}/>
   </TuTurno>)}
   <Mecanismo modulo={mod} titulo="Deja una evidencia que pueda revisarse">

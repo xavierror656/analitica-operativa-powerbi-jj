@@ -1,6 +1,6 @@
 ---
 import Mecanismo from '../slides/Mecanismo.astro';
-import Cita from '../ui/Cita.astro';
+import Codigo from '../ui/Codigo.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
@@ -8,19 +8,19 @@ import Notas from '../ui/Notas.astro';
   <div class="flex flex-col gap-8">
     <div>
       <p class="text-2xl font-titulo font-bold mb-3">MTTR (horas)</p>
-      <Cita mono>{`MTTR =
+      <Codigo codigo={`MTTR =
 DIVIDE(
     SUM(MaintenanceData[Tiempo_Reparacion_Horas]),
     COUNTROWS(MaintenanceData)
-)`}</Cita>
+)`} lenguaje="dax" />
     </div>
     <div>
       <p class="text-2xl font-titulo font-bold mb-3">MTBF (horas)</p>
-      <Cita mono>{`MTBF =
+      <Codigo codigo={`MTBF =
 DIVIDE(
     SUM(MaintenanceData[Horas_Operativas]),
     COUNTROWS(MaintenanceData)
-)`}</Cita>
+)`} lenguaje="dax" />
     </div>
   </div>
   <Notas

@@ -1,11 +1,11 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
 import Notas from '../ui/Notas.astro';
-import Cita from '../ui/Cita.astro';
+import Codigo from '../ui/Codigo.astro';
 ---
 <EjemploReal modulo="D3-M22" titulo={"Variación relativa y puntos porcentuales son distintos"}>
   <div class="flex flex-col gap-8">
-    <Cita mono>{"% Variación mensual =\nVAR Actual = [Piezas]\nVAR Anterior = [Piezas mes anterior]\nRETURN IF(ISBLANK(Actual) || ISBLANK(Anterior),\n    BLANK(), DIVIDE(Actual - Anterior, Anterior))"}</Cita><p>Mayo frente a abril: −1.86 % en piezas. Pasar de 2 % a 3 % de rechazo sería +1 punto porcentual y +50 % relativo.</p>
+    <Codigo codigo={"% Variación mensual =\nVAR Actual = [Piezas]\nVAR Anterior = [Piezas mes anterior]\nRETURN IF(ISBLANK(Actual) || ISBLANK(Anterior),\n    BLANK(), DIVIDE(Actual - Anterior, Anterior))"} lenguaje="dax" /><p>Mayo frente a abril: −1.86 % en piezas. Pasar de 2 % a 3 % de rechazo sería +1 punto porcentual y +50 % relativo.</p>
   </div>
   <Notas slot="notas" minutos={7} dice={"Pedir que nombren la unidad antes de interpretar la cifra."} nota={"No calcular variación con periodo anterior ausente o denominador cero. Mostrar blanco y justificarlo."} />
 </EjemploReal>

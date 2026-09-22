@@ -4,6 +4,8 @@ Programa de capacitación para Johnson & Johnson (Ciudad Juárez), impartido por
 Center Tecmilenio. 5 días, 37.5 horas, cinco evidencias acumulativas (A1 a A5).
 Instructor: Javier A. Flores Flores.
 
+Las guías y las diapositivas muestran los ejemplos de código con encabezado de lenguaje y botón **Copiar código**. Las fórmulas M y DAX usan resaltado de sintaxis; Python permanece en el día 5. La copia conserva el texto y sus saltos de línea. Si el portapapeles está bloqueado, se selecciona el bloque para copiarlo con Ctrl+C. Los controles se ocultan al exportar a PDF. `Codigo.astro` permite incorporar nuevos ejemplos y los bloques Markdown reciben los mismos controles.
+
 Este repo tiene tres partes:
 
 ```

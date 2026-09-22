@@ -2,11 +2,11 @@
 import EjemploReal from '../slides/EjemploReal.astro';
 import Notas from '../ui/Notas.astro';
 import Pasos from '../ui/Pasos.astro';
-import Cita from '../ui/Cita.astro';
+import Codigo from '../ui/Codigo.astro';
 ---
 <EjemploReal modulo="D3-M04" titulo={"Una medida legible revela su intención"}>
   <div class="flex flex-col gap-8">
-    <Cita mono>{"No conformes producción =\nVAR Producidas = SUM(fact_produccion[piezas_producidas])\nVAR Buenas = SUM(fact_produccion[piezas_buenas])\nRETURN Producidas - Buenas"}</Cita><Pasos items={[{"t":"Nombre = expresión","d":"Tabla[columna] identifica el origen; [Medida] reutiliza una definición."},{"t":"VAR y RETURN","d":"Nombran resultados intermedios; evitan repetir lógica y facilitan explicarla."}]} />
+    <Codigo codigo={"No conformes producción =\nVAR Producidas = SUM(fact_produccion[piezas_producidas])\nVAR Buenas = SUM(fact_produccion[piezas_buenas])\nRETURN Producidas - Buenas"} lenguaje="dax" /><Pasos items={[{"t":"Nombre = expresión","d":"Tabla[columna] identifica el origen; [Medida] reutiliza una definición."},{"t":"VAR y RETURN","d":"Nombran resultados intermedios; evitan repetir lógica y facilitan explicarla."}]} />
   </div>
   <Notas slot="notas" minutos={15} dice={"Primero explicar el caso; después leer esta fórmula en voz alta. Una variable conserva el valor evaluado en su contexto de definición."} nota={"No crear aún esta variante si luego se usará la versión auxiliar del recetario con el mismo nombre. Mostrar una, no dos medidas homónimas."} />
 </EjemploReal>

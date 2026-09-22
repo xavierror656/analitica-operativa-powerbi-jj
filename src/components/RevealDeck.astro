@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Favicon from './Favicon.astro';
+import CodigoInteracciones from './CodigoInteracciones.astro';
 
 interface Props {
   titulo: string;
@@ -27,6 +28,7 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
     />
   </head>
   <body class="font-cuerpo">
+    <CodigoInteracciones />
     <nav class="deck-toolbar" aria-label="Recursos de la presentación">
       <div class="deck-context">
       <a class="deck-home" href={base+'/'}>← Curso</a>
