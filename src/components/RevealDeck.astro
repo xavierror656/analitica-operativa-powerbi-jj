@@ -91,7 +91,8 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
         showNotes: false,
         center: false,
         transition: 'slide',
-        keyboardCondition: (event: KeyboardEvent) => !(event.target instanceof Element && event.target.closest('.deck-toolbar')),
+        // Los controles conservan Space/Enter y sus teclas nativas al recibir foco.
+        keyboardCondition: (event: KeyboardEvent) => !(event.target instanceof Element && event.target.closest('.deck-toolbar, button, a, input, select, textarea, summary, [contenteditable="true"]')),
         plugins: pdf ? [] : [Notes],
       });
 
