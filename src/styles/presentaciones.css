@@ -15,7 +15,7 @@ body:has(.reveal) {
   background:linear-gradient(120deg,#fff 52%,var(--day-soft,#e4f5f1));
   color:#152b39;
 }
-.reveal .slides section[data-diseno] > :not(aside.notes,.slide-photo) { position:relative; z-index:1; }
+.reveal .slides section[data-diseno] > :not(aside.notes,.slide-photo,.slide-institutional-logos) { position:relative; z-index:1; }
 .reveal .slides section[data-diseno] > div.flex { gap:26px; }
 .reveal .slides section[data-diseno] h2 { font-size:58px; line-height:1.13; margin-bottom:14px; letter-spacing:-.025em; }
 .reveal .slides section[data-diseno] .slide-content { min-height:0; }
@@ -111,3 +111,8 @@ body[data-dia] .reveal .slides section[data-diseno].is-light > div > .font-codig
 .reveal .slides section[data-con-foto] .context-photo figcaption { font-size:21px; }
 .reveal .slides section[data-con-foto] .slide-content .pasos-lista > li { padding:16px 18px; }
 @media print { .reveal .slides section[data-diseno] { print-color-adjust:exact; -webkit-print-color-adjust:exact; } }
+.reveal .slides section > .slide-institutional-logos { position:absolute; left:108px; bottom:18px; z-index:3; display:flex; align-items:center; gap:12px; height:44px; pointer-events:none; }
+.reveal .slide-institutional-logos > span { display:flex; align-items:center; justify-content:center; height:44px; padding:8px 14px; border-radius:5px; box-sizing:border-box; }
+.reveal .slide-institutional-logos .slide-logo-tecmilenio { background:#0a2c28; }
+.reveal .slide-institutional-logos .slide-logo-jj { background:#fff; }
+.reveal .slide-institutional-logos img { display:block; width:190px; height:28px; max-width:none; max-height:none; margin:0; border:0; box-shadow:none; object-fit:contain; }

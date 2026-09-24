@@ -62,6 +62,13 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
       </div>
     </div>
 
+    <template id="logos-diapositiva">
+      <div class="slide-institutional-logos" aria-label="Skilling Center Tecmilenio y Johnson & Johnson">
+        <span class="slide-logo-tecmilenio"><img src={base+'/imagenes/logos/skilling-center-tecmilenio-blanco.png'} alt="Skilling Center Tecmilenio" width="714" height="143" /></span>
+        <span class="slide-logo-jj"><img src={base+'/imagenes/logos/johnson-johnson-rojo.png'} alt="Johnson & Johnson" width="2690" height="510" /></span>
+      </div>
+    </template>
+
     <script>
       import Reveal from 'reveal.js';
       import Notes from 'reveal.js/plugin/notes';
@@ -70,6 +77,10 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
 
       const params = new URLSearchParams(window.location.search);
       const pdf = params.has('print-pdf') || params.get('view') === 'print';
+      const logos = document.querySelector<HTMLTemplateElement>('#logos-diapositiva');
+      document.querySelectorAll('.reveal .slides section').forEach(section => {
+        if (!section.querySelector('section') && logos) section.append(logos.content.cloneNode(true));
+      });
       const hashInicial = window.location.hash;
       if (pdf) document.documentElement.classList.add('pdf-export');
       conectarBarraAutooculta({ document, window, pdf });
