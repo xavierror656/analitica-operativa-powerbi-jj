@@ -30,7 +30,12 @@ const dia = Astro.url.pathname.match(/\/dia-0([1-5])\//)?.[1] || Astro.url.pathn
     <a class="skip" href="#contenido">Ir al contenido</a>
     <header class="course-header"><div class="course-width">
       <nav class="course-nav" aria-label="Navegación del curso">
-        <a class="course-brand" href={base + '/'} aria-current={inicio ? 'page' : undefined}><LogoCurso/><span class="course-brand-text">Tecmilenio <span>· Johnson &amp; Johnson</span></span></a>
+        <a class:list={['course-brand', {'home-brand-logos': inicio}]} href={base + '/'} aria-current={inicio ? 'page' : undefined} aria-label={inicio ? 'Inicio · Skilling Center Tecmilenio y Johnson & Johnson' : undefined}>
+          {inicio ? <>
+            <img class="header-tecmilenio" src={base+'/imagenes/logos/skilling-center-tecmilenio-blanco.png'} alt="Skilling Center Tecmilenio" width="714" height="143" />
+            <span class="header-jj"><img src={base+'/imagenes/logos/johnson-johnson-rojo.png'} alt="Johnson & Johnson" width="2690" height="510" /></span>
+          </> : <><LogoCurso/><span class="course-brand-text">Tecmilenio <span>· Johnson &amp; Johnson</span></span></>}
+        </a>
         <NavegacionCurso />
       </nav>
       <slot name="portada">

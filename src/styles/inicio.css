@@ -1,6 +1,11 @@
 /* Portada sobre componentes y tema compartidos de daisyUI. */
 .home-page { background:#f5f7f8; }
 .home-page .course-width { max-width:1240px; }
+.home-brand-logos { gap:20px; max-width:100%; }
+.home-brand-logos .header-tecmilenio { display:block; width:174px; height:auto; }
+.home-brand-logos .header-jj { display:flex; align-items:center; background:#fff; border-radius:7px; padding:10px 12px; }
+.home-brand-logos .header-jj img { display:block; width:148px; height:auto; }
+@media(max-width:480px) { .home-brand-logos { gap:14px; width:318px; }.home-brand-logos .header-tecmilenio { width:calc(50% - 7px); }.home-brand-logos .header-jj { padding:9px; width:calc(50% - 7px); }.home-brand-logos .header-jj img { width:100%; } }
 .home-page .course-header { background:radial-gradient(ellipse at 80% 10%,#1b574c 0%,transparent 55%),#103b35; padding-bottom:76px; }
 .home-page .course-nav { padding-block:4px 20px; border-bottom:1px solid #ffffff26; margin-bottom:52px; }
 .home-hero { display:grid; grid-template-columns:1.25fr 1fr; align-items:center; gap:64px; }
