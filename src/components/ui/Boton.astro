@@ -1,0 +1,10 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+type Props = HTMLAttributes<'a'> & HTMLAttributes<'button'> & {
+  variante?: 'principal' | 'normal' | 'discreto';
+};
+const { href, variante = 'normal', class: clase, type, ...atributos } = Astro.props;
+const Tag = href === undefined ? 'button' : 'a';
+const variantes = { principal: 'btn-primary', normal: 'btn-outline', discreto: 'btn-ghost' };
+---
+<Tag href={href} type={Tag === 'button' ? type || 'button' : undefined} class:list={['btn', variantes[variante], clase]} {...atributos}><slot /></Tag>

@@ -1,4 +1,5 @@
 ---
+import Boton from '../../components/ui/Boton.astro';
 import CursoLayout from '../../components/CursoLayout.astro';
 import CasoDatos from '../../components/CasoDatos.astro';
 import FichaActividad from '../../components/FichaActividad.astro';
@@ -11,8 +12,8 @@ const temas = {2:'Modelo de datos',3:'Indicadores en DAX',4:'Reporte operativo',
 ---
 <CursoLayout titulo="Prácticas de los días 2–5" descripcion="Abre la actividad, prepara sus materiales y conserva la evidencia en tu reporte acumulativo." etiqueta="16 ACTIVIDADES · 90 MINUTOS CADA UNA">
   <nav slot="cabecera" class="course-actions resources" aria-label="Ir al día">
-    {[2,3,4,5].map(dia=><a class="button" href={'#dia-'+dia}>Día {dia}</a>)}
-    <a class="button" href={base+'/descargas/practicas/todas-las-actividades.zip'} download>Descargar los 16 paquetes</a>
+    {[2,3,4,5].map(dia=><Boton href={'#dia-'+dia}>Día {dia}</Boton>)}
+    <Boton href={base+'/descargas/practicas/todas-las-actividades.zip'} download>Descargar los 16 paquetes</Boton>
   </nav>
   <p data-resumen-avance role="status" aria-live="polite"></p>
   <noscript>Activa JavaScript para guardar el avance de tus prácticas.</noscript>
@@ -20,14 +21,14 @@ const temas = {2:'Modelo de datos',3:'Indicadores en DAX',4:'Reporte operativo',
   <p>Estos cuatro bloques de cada día sustituyen las prácticas de la presentación general. Se conservan fundamentos, pausas y cierre de la jornada.</p>
   {[2,3,4,5].map(dia=><section class="course-section" data-dia={dia} id={'dia-'+dia} aria-labelledby={'titulo-dia-'+dia}>
     <div class="section-heading"><h2 class="day-section-title" id={'titulo-dia-'+dia}><DistintivoDia dia={dia} compacto/>{temas[dia as keyof typeof temas]}</h2><a href={base+'/dia-0'+dia+'/'}>Presentación del día</a></div>
-    <div class="activity-grid">{actividades.filter(a=>a.dia===dia).map(a=><article class="activity-card">
+    <div class="activity-grid">{actividades.filter(a=>a.dia===dia).map(a=><article class="card activity-card">
       <p class="eyebrow">ACTIVIDAD {a.numero} · 90 MINUTOS</p>
       <h3>{a.titulo}</h3><p>{fichas[a.id as keyof typeof fichas].objetivo}</p>
       <EstadoPractica id={a.id}/>
       <details><summary>Qué abrir, comprobar y entregar</summary><FichaActividad id={a.id as keyof typeof fichas}/></details>
       <nav class="course-actions" aria-label={'Materiales de la actividad '+a.numero}>
-        <a class="button button-primary" href={base+'/practicas/'+a.id+'/'}>Diapositivas</a>
-        <a class="button" href={base+'/practicas/'+a.id+'/guia/'}>Guía paso a paso</a>
+        <Boton variante="principal" href={base+'/practicas/'+a.id+'/'}>Diapositivas</Boton>
+        <Boton href={base+'/practicas/'+a.id+'/guia/'}>Guía paso a paso</Boton>
         <a href={base+'/descargas/practicas/actividad-'+a.id+'.zip'} download>Datos y consigna ↓</a>
       </nav>
     </article>)}</div>

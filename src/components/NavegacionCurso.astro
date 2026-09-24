@@ -1,0 +1,20 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const ruta = Astro.url.pathname;
+const enlaces = [
+  ['/#programa', 'Los cinco días'],
+  ['/practicas/', 'Prácticas y materiales'],
+  ['/buscar/', 'Buscar'],
+  ['/entregas/', 'Mis entregas'],
+  ['/referencias/', 'Modelos de referencia'],
+];
+---
+<ul class="menu course-menu" aria-label="Secciones del curso">
+  {enlaces.map(([href, texto]) => <li><a href={base+href} aria-current={ruta === href || (href === '/#programa' && ruta === '/') ? 'page' : undefined}>{texto}</a></li>)}
+</ul>
+<style>
+  .course-menu { display:flex; flex-direction:row; flex-wrap:wrap; gap:4px; padding:0; margin:0; width:auto; font-size:.875rem; }
+  .course-menu a { min-height:44px; display:flex; align-items:center; padding:10px 12px; }
+  .course-menu a[aria-current=page] { color:#fff; background:#ffffff24; text-decoration:underline; text-underline-offset:5px; }
+  @media(max-width:800px) { .course-menu { width:100%; }.course-menu li { flex:1 1 auto; } }
+</style>

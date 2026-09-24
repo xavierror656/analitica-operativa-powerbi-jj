@@ -16,7 +16,6 @@
 .course-header .day-badge { margin-bottom:16px; }
 .day-row[data-dia] { border-left:5px solid var(--day-color); grid-template-columns:68px minmax(180px,1fr) auto; }
 .day-row[data-dia] .day-number { border:0; }
-[data-dia] .button-primary:hover { background:var(--day-color); filter:brightness(.88); }
 body[data-dia] .course-header .eyebrow { color:var(--day-accent); }
 body[data-dia] .course-nav a,body[data-dia] .course-brand span,body[data-dia] .intro,body[data-dia] .course-meta { color:var(--day-soft); }
 .day-section-title { display:flex; align-items:center; gap:12px; }

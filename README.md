@@ -23,6 +23,8 @@ conjuntos de datos. Ante cualquier duda de contenido, esa propuesta manda.
 
 ## Arrancar las slides
 
+La interfaz usa Astro, Tailwind CSS 4 y daisyUI 5. La [guía breve de interfaz](docs/ui.md) indica dónde cambiar botones, navegación, recursos y colores sin repetir código.
+
 La portada ofrece **Continuar mi curso** después de abrir una presentación. Las
 16 prácticas permiten marcar pendiente, en proceso o terminada desde catálogo y
 guía. Ambos avances se guardan en el navegador; no se sincronizan entre equipos.

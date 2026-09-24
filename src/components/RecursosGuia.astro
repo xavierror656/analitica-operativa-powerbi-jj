@@ -1,0 +1,14 @@
+---
+import Boton from './ui/Boton.astro';
+interface Props { dia: number; actividad?: string; }
+const { dia, actividad } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const rutaDia = `/dia-0${dia}`;
+---
+<nav class="course-actions resources" aria-label={actividad ? 'Recursos de la práctica' : `Recursos del día ${dia}`}>
+  <Boton href={base+(actividad ? `/practicas/${actividad}/` : `${rutaDia}/`)}>{actividad ? 'Abrir diapositivas' : 'Presentación del día'}</Boton>
+  <Boton href={base+(actividad ? `/descargas/practicas/actividad-${actividad}.zip` : `/descargas/guia-dia-0${dia}.md`)} download>{actividad ? 'Datos crudos y consigna' : 'Descargar guía'}</Boton>
+  {dia > 1 && <Boton href={base+`/practicas/#dia-${dia}`}>{actividad ? 'Actividades del día' : `Prácticas del día ${dia}`}</Boton>}
+  <Boton id="imprimir">Imprimir / guardar PDF</Boton>
+</nav>
+<script>document.querySelector('#imprimir')?.addEventListener('click', () => window.print());</script>

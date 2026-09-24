@@ -1,14 +1,8 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight.css" layer(base);
+@import "./ui.css";
 @import "reveal.js/reveal.css";
 
-/*
- * Paleta provisional. A diferencia del taller de electromovilidad, este curso
- * no tiene todavía un PPTX del que muestrear colores: son 147 slides las que
- * NO existen aquí. Estos tokens se inspiran en el documento de propuesta
- * (Skilling Center Tecmilenio: verde-teal oscuro de portada, acento turquesa,
- * tablas en gris claro). Ajustar contra la guía de marca oficial en cuanto
- * Tecmilenio la comparta.
- */
+/* Tokens del lienzo docente. Controles compartidos y tema: ui.css. */
 :root {
   /* Fondo oscuro (Tu turno · Práctica · Transición · Acto · Cierre) */
   --color-ink: #0e3b36;

@@ -1,4 +1,5 @@
 ---
+import Boton from '../components/ui/Boton.astro';
 import CursoLayout from '../components/CursoLayout.astro';
 import referencias from '../data/referencias.json';
 import DistintivoDia from '../components/DistintivoDia.astro';
@@ -9,10 +10,10 @@ for (const r of referencias) {
 ---
 <CursoLayout titulo="Modelos de referencia" descripcion="Archivos del caso base para comparar tu trabajo y retomar la clase desde el cierre de cada día.">
   <p>Conserva tu entrega antes de abrir una referencia. Al recibir un modelo, ajusta RutaDatos a tu carpeta y comprueba la actualización con los controles de la guía.</p>
-  <div class="activity-grid">{referencias.map(r=><section class="activity-card" data-dia={r.dia}>
+  <div class="activity-grid">{referencias.map(r=><section class="card activity-card" data-dia={r.dia}>
     <DistintivoDia dia={r.dia}/>
     <h2>Día {r.dia} · {r.titulo}</h2>
-    {r.archivo ? <><a class="button" href={'/descargas/referencias/'+r.archivo} download>Descargar referencia A{r.dia}</a><p>Revisión: {r.revision}</p></> : <p>El modelo de referencia de este día todavía no está disponible.</p>}
+    {r.archivo ? <><Boton href={'/descargas/referencias/'+r.archivo} download>Descargar referencia A{r.dia}</Boton><p>Revisión: {r.revision}</p></> : <p>El modelo de referencia de este día todavía no está disponible.</p>}
     <a href={'/dia-0'+r.dia+'/guia/'}>Consultar guía y controles del día {r.dia}</a>
   </section>)}</div>
 </CursoLayout>

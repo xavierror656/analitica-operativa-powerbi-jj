@@ -1,21 +1,16 @@
 ---
+import RecursosGuia from '../../components/RecursosGuia.astro';
 import { Content } from '../../content/guia-dia-01.md';
 import CursoLayout from '../../components/CursoLayout.astro';
 import CasoDatos from '../../components/CasoDatos.astro';
 import GuiaPasosDia1 from '../../components/GuiaPasosDia1.astro';
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <CursoLayout titulo="De datos sueltos a una fuente confiable." descripcion="Tu guía de práctica: conecta, limpia, comprueba y documenta la evidencia A1." etiqueta="GUÍA DEL DÍA 01 · EVIDENCIA A1">
   <div slot="cabecera">
     <div class="course-meta"><span>7.5 horas de trabajo</span><span>8 tablas</span><span>1 evidencia acumulativa</span></div>
-    <nav class="course-actions resources" aria-label="Recursos del día 1">
-      <a class="button" href={base+'/dia-01/'}>Presentación del día</a>
-      <a class="button" href={base+'/descargas/guia-dia-01.md'} download>Descargar guía</a>
-      <button class="button" type="button" id="imprimir">Imprimir / guardar PDF</button>
-    </nav>
+    <RecursosGuia dia={1} />
   </div>
   <CasoDatos caso="base" descarga="/descargas/dataset-planta-sintetico.zip" />
   <GuiaPasosDia1 />
   <article class="reading"><Content /></article>
 </CursoLayout>
-<script>document.querySelector('#imprimir')?.addEventListener('click', () => window.print());</script>

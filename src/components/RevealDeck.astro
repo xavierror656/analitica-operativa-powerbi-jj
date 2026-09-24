@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Favicon from './Favicon.astro';
+import Boton from './ui/Boton.astro';
 import CodigoInteracciones from './CodigoInteracciones.astro';
 import IdentidadEstilos from './IdentidadEstilos.astro';
 import '../styles/presentaciones.css';
@@ -46,14 +47,14 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
       <a href={base+datos} download>Datos {actividad ? 'de la actividad' : 'del caso base'}</a>
       {dia !== '1' && <a href={base+'/practicas/#dia-'+dia}>Prácticas del día</a>}
       <a id="exportar-pdf" href={Astro.url.pathname+'?print-pdf'} target="_blank" rel="noopener">Exportar PDF ↗</a>
-      <button id="reiniciar-presentacion" type="button">Volver al inicio</button>
-      <button id="proyectar" type="button" title="Pantalla completa; Esc para volver">Proyectar</button>
+      <Boton variante="discreto" id="reiniciar-presentacion" type="button">Volver al inicio</Boton>
+      <Boton variante="discreto" id="proyectar" type="button" title="Pantalla completa; Esc para volver">Proyectar</Boton>
       </div>
     </nav>
     <div class="pdf-tools" role="region" aria-label="Exportar presentación a PDF">
       <div><strong>Exportar presentación</strong><p id="pdf-status" role="status">Preparando las diapositivas…</p>
       <p>Destino: Guardar como PDF · Horizontal · Sin márgenes · Gráficos de fondo activados.</p></div>
-      <button id="guardar-pdf" type="button" disabled>Guardar como PDF</button>
+      <Boton variante="discreto" id="guardar-pdf" type="button" disabled>Guardar como PDF</Boton>
       <a href={Astro.url.pathname}>Volver a la presentación</a>
     </div>
     <div class="reveal">
