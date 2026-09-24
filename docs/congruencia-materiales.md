@@ -44,6 +44,30 @@ La demo de Carpeta sigue siendo un material preparado por el facilitador: dos CS
 
 Referencias para las aclaraciones: [actualización y gateways](https://learn.microsoft.com/en-us/power-bi/connect-data/refresh-data) y [agregaciones de campos](https://learn.microsoft.com/en-us/power-bi/create-reports/service-aggregates).
 
+## Día 2 — revisión del 24 de septiembre de 2026
+
+Se revisaron las 39 slides y sus notas, la guía, el contrato de diez relaciones, los seis controles, los README del día y de A2, y el catálogo de entregas. Las instrucciones y los criterios coinciden: continuidad desde A1, ocho tablas base, captura y bitácora; diagnóstico y auditoría con pruebas repetibles.
+
+| Slides | Correspondencia | Resultado |
+|---|---|---|
+| 1–9 | Resultado, granularidad, claves y mapa del modelo | Distinción consistente entre combinar filas y propagar filtros |
+| 10–17 | Secciones 1, 3 y 4 | Diez relaciones; claves de turno compatibles; calendario de 549 días |
+| 18–24 | Sección 5 y seis casos de control | Mismos filtros, cifras, unidades y límites de atribución |
+| 25–31 | Secciones 6 y 7 | Jerarquías, organización, diagnóstico y restauración de la falla |
+| 32–39 | Secciones 8–11 y criterios A2 | Auditoría, entrega, escala de dominio y continuidad a DAX |
+
+Se recalcularon los seis casos sobre los tres hechos desde el ZIP depurado: coinciden los 18 conteos y los 18 totales. Las diez relaciones propuestas tienen claves únicas en las dimensiones y cero huérfanas. Se verificaron los 549 días continuos y los ocho equipos con una sola línea por equipo de la variante del instructor. Los cronómetros coinciden con las notas y los bloques suman 60/90/90/90/90/30 minutos. Esta comprobación de datos no ejecuta las relaciones en Desktop.
+
+Corrección: la guía ahora indica deshabilitar carga en las consultas auxiliares de anti unión, para no convertir el diagnóstico en tablas adicionales de A2.
+
+### Prácticas 2.1–2.4 y sus materiales
+
+Se contrastaron las consignas, el montaje, las fichas de actividad, los pasos que generan las slides y la guía del instructor. El caso Prácticas está separado del caso base: diez tablas, 16 relaciones y 730 fechas de calendario; 3,761,757 piezas y 117,998 rechazadas. Sus cuatro bloques de 90 minutos sustituyen los correspondientes bloques del curso, como declara la guía del instructor.
+
+Las siete respuestas cuantitativas de 2.2 se recalcularon desde los CSV: L2/125 minutos, E31/39 correctivos, Empaque/2,380,127 piezas, lunes/20,255 rechazos, D01/21,500 rechazos en L2, turno 2/82,433 piezas en semanas de festivos, y 240,506 piezas en semanas ISO 10–14 de 2025. Coinciden con la clave del instructor. Las tres limitaciones restantes corresponden a las rutas ausentes del modelo: lote compartido, turno de mantenimiento y atribución a parte.
+
+Las cuatro copias con fallas de 2.3 requieren preparación del instructor en Desktop, explícita en guía y montaje; el ZIP no se presenta como un PBIX ya preparado. La auditoría 2.4 usa los mismos ocho criterios del formulario. Se comprobaron los hashes e inventarios de los 16 paquetes y la igualdad de sus 73 documentos/formularios con las fuentes, normalizando únicamente saltos de línea.
+
 ## Continuación
 
-La revisión de congruencia de los días 2–5 queda pendiente. Los controles del día 1 no prueban la congruencia del resto del curso.
+La revisión de contenido de los días 3–5 queda pendiente. La igualdad de los archivos empaquetados no demuestra por sí sola la corrección didáctica o numérica de esas jornadas.

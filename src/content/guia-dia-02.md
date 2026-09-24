@@ -65,6 +65,8 @@ En Power Query, activa perfilado sobre el conjunto completo. Para cada clave de 
 - Revisa tipo y valores en ambos extremos de la relación. Igual nombre no garantiza igual contenido.
 - Para buscar registros huérfanos, crea una consulta de diagnóstico desde el hecho y usa una combinación **anti izquierda** contra la dimensión por las claves elegidas. La salida muestra claves sin correspondencia.
 
+En esas consultas auxiliares desmarca **Habilitar carga**; conserva su nombre y propósito en la bitácora. Así puedes repetir el diagnóstico sin añadir tablas al modelo base de ocho tablas.
+
 No elimines una clave duplicada del catálogo al azar. Puede ser un error, una versión histórica o una entidad definida con una clave incompleta. Primero aclara su significado.
 
 Referencia: línea tiene 4 claves, parte 5, turno 3, defecto 6 y calendario 549 fechas. Tras las reglas A1 del ZIP de referencia, las diez relaciones de abajo tienen cero claves huérfanas.
