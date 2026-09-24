@@ -1,25 +1,32 @@
 ---
+import ImagenContexto from '../ui/ImagenContexto.astro';
+import type imagenes from '../../data/imagenes-curso.json';
 // Un caso concreto. Fondo claro por defecto.
 import Icono from '../ui/Icono.astro';
 
 interface Props {
+  imagen?: keyof typeof imagenes;
+  pieImagen?: string;
+  diseno?: string;
   modulo?: string;
   titulo: string;
   icono?: string;
 }
 const { modulo, titulo, icono } = Astro.props;
+const { imagen, pieImagen, diseno = 'ejemplo' } = Astro.props;
 ---
 
-<section class="is-light">
+<section class="is-light" data-diseno={diseno} data-con-foto={imagen ? "true" : undefined} data-tipo="ejemplo">
   <div class="flex flex-col gap-10 h-full">
     {modulo && <span class="font-codigo text-2xl text-accent">{modulo}</span>}
     <h2 class="flex items-center gap-4">
       {icono && <Icono nombre={icono} class="w-10 h-10 text-accent shrink-0" />}
       {titulo}
     </h2>
-    <div class="flex-1 flex flex-col justify-center">
+    <div class="slide-content flex-1 flex flex-col justify-center">
       <slot />
     </div>
   </div>
+  {imagen && <div class="slide-photo"><ImagenContexto imagen={imagen} pie={pieImagen} /></div>}
   <slot name="notas" />
 </section>

@@ -3,7 +3,7 @@ import EjemploReal from '../slides/EjemploReal.astro';
 import Notas from '../ui/Notas.astro';
 import Quiz from '../ui/Quiz.astro';
 ---
-<EjemploReal modulo="D4-M24" titulo={"Prueba el estado que el autor suele olvidar"}>
+<EjemploReal diseno="pregunta" modulo="D4-M24" titulo={"Prueba el estado que el autor suele olvidar"}>
   <div class="flex flex-col gap-8">
     <Quiz pregunta={"Creaste un marcador para mostrar una tabla. Al activarlo cambia también la fecha. ¿Qué revisas?"} opciones={[{"texto":"El nombre del botón únicamente.","correcta":false},{"texto":"La opción Datos del marcador y el estado guardado.","correcta":true},{"texto":"La cardinalidad de todas las relaciones.","correcta":false}]} explicacion={"Un marcador puede restaurar filtros si guarda Datos. Para una acción solo de visibilidad, configura y prueba las opciones que correspondan."} />
   </div>

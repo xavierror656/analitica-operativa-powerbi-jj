@@ -3,7 +3,7 @@ import EjemploReal from '../slides/EjemploReal.astro';
 import Notas from '../ui/Notas.astro';
 import Quiz from '../ui/Quiz.astro';
 ---
-<EjemploReal modulo="D2-M36" titulo={"Explica una decisión sin abrir tus notas"}>
+<EjemploReal diseno="pregunta" modulo="D2-M36" titulo={"Explica una decisión sin abrir tus notas"}>
   <div class="flex flex-col gap-8">
     <Quiz pregunta={"Necesitas analizar duración de mantenimiento por parte, pero mantenimiento no trae parte_id. ¿Qué puedes sostener hoy?"} opciones={[{"texto":"Cada parte recibe el mantenimiento completo de su línea.","correcta":false},{"texto":"Necesitas una fuente o regla de atribución válida antes de responder por parte.","correcta":true},{"texto":"Basta relacionar producción con mantenimiento por fecha.","correcta":false}]} explicacion={"Compartir fecha y línea permite comparar periodos y líneas, pero no asignar automáticamente una intervención a una parte. El modelo tiene que reconocer ese límite."} />
   </div>

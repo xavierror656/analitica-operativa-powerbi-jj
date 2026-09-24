@@ -1,0 +1,28 @@
+---
+import CursoLayout from '../components/CursoLayout.astro';
+import entregas from '../data/entregas.json';
+import DistintivoDia from '../components/DistintivoDia.astro';
+---
+<CursoLayout titulo="Mis entregas A1–A5" descripcion="Revisa tus evidencias acumulativas y descarga tu registro de autoevaluación.">
+  <p>Marcar un requisito es una autoevaluación; el instructor comprueba el desempeño y asigna el nivel. El registro se guarda solo en este navegador. No se suben archivos ni se envían respuestas.</p>
+  <nav class="course-actions" aria-label="Ir a una evidencia">{entregas.map((e,i)=><a class="button" data-dia={i+1} href={'#'+e.id}>{e.id}</a>)}</nav>
+  {entregas.map((e,i)=><section class="personal-panel evidence-panel" data-dia={i+1} id={e.id} data-evidencia={e.id}>
+    <DistintivoDia dia={i+1}/>
+    <h2>{e.id} · {e.titulo}</h2>
+    <p><strong>Entrega:</strong> {e.archivo}</p>
+    <p><a href={'/dia-0'+(i+1)+'/guia/'}>Consultar la guía y los criterios del día {i+1}</a></p>
+    <fieldset><legend>Requisitos que comprobé</legend>
+      {e.criterios.map(c=><label class="check-row"><input type="checkbox" data-criterio={c.id}/><span>{c.texto}</span></label>)}
+    </fieldset>
+    <label for={'notas-'+e.id}>Pruebas realizadas, archivos y pendientes</label>
+    <textarea id={'notas-'+e.id} rows="3" maxlength="5000" data-notas placeholder="Anota cómo comprobaste los requisitos y qué falta resolver."/>
+    <p data-conteo></p>
+    <p role="status" aria-live="polite">Se guarda en este navegador.</p>
+    <button type="button" class="button" data-exportar>Descargar autoevaluación {e.id}</button>
+  </section>)}
+  <noscript>Activa JavaScript para guardar y descargar el registro, o imprime esta lista.</noscript>
+</CursoLayout>
+<script>
+  import { conectarEntregas } from '../lib/entregas.mjs';
+  conectarEntregas(document, window);
+</script>

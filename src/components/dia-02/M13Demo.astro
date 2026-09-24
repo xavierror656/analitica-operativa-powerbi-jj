@@ -3,7 +3,7 @@ import TuTurno from '../slides/TuTurno.astro';
 import Notas from '../ui/Notas.astro';
 import Pasos from '../ui/Pasos.astro';
 ---
-<TuTurno modulo="D2-M13" titulo={"Construye la primera relación conmigo"} minutos={7}>
+<TuTurno diseno="accion" modulo="D2-M13" titulo={"Construye la primera relación conmigo"} minutos={7}>
   <div class="flex flex-col gap-8">
     <Pasos items={[{"t":"Vista Modelo → Administrar relaciones → Nueva","d":"Selecciona dim_linea[linea_id] y fact_produccion[linea_id]."},{"t":"Confirma antes de aceptar","d":"Lado 1 en dimensión, lado * en hecho; dirección única; activa."},{"t":"Prueba una tabla","d":"Filas: dim_linea[nombre_linea]. Valores: suma de piezas_producidas."}]} />
   </div>

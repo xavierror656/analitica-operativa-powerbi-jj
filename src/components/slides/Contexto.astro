@@ -1,20 +1,27 @@
 ---
+import ImagenContexto from '../ui/ImagenContexto.astro';
+import type imagenes from '../../data/imagenes-curso.json';
 // Una frase clave, grande, sin nada más. Fondo claro.
 import ConceptoAnimado from '../ui/ConceptoAnimado.astro';
 import type catalogo from '../../data/animaciones.json';
 interface Props {
+  imagen?: keyof typeof imagenes;
+  pieImagen?: string;
+  diseno?: string;
   modulo?: string;
   animacion?: keyof typeof catalogo;
 }
 const { modulo, animacion } = Astro.props;
+const { imagen, pieImagen, diseno = 'concepto' } = Astro.props;
 ---
 
-<section class="is-light">
+<section class="is-light" data-diseno={diseno} data-con-foto={imagen ? "true" : undefined} data-tipo="concepto">
   <div class:list={['slide-body items-start gap-8', !animacion && 'max-w-[1400px]']}>
     {modulo && <span class="font-codigo text-2xl text-accent">{modulo}</span>}
     {animacion ? <ConceptoAnimado animacion={animacion}><p class="text-7xl font-titulo font-bold leading-tight"><slot /></p></ConceptoAnimado> : <p class="text-7xl font-titulo font-bold leading-tight">
       <slot />
     </p>}
   </div>
+  {imagen && <div class="slide-photo"><ImagenContexto imagen={imagen} pie={pieImagen} /></div>}
   <slot name="notas" />
 </section>

@@ -1,0 +1,10 @@
+---
+import dias from '../data/identidad-dias.json';
+interface Props { dia: number | string; compacto?: boolean; }
+const { dia, compacto = false } = Astro.props;
+const identidad = dias.find(d => d.dia === Number(dia));
+---
+{identidad && <span class:list={['day-badge', { 'day-badge-compact': compacto }]} data-dia={dia}>
+  <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={identidad.icono}/></svg>
+  <span>Día {identidad.dia}{!compacto && <span class="day-badge-topic"> · {identidad.nombre}</span>}</span>
+</span>}

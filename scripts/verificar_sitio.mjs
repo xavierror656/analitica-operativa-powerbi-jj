@@ -9,7 +9,7 @@ const dist = path.join(root, 'dist');
 const origin = 'https://powerbi.floresjavier.com';
 const files = fs.readdirSync(dist, { recursive: true }).filter(name => fs.statSync(path.join(dist, name)).isFile());
 const pages = files.filter(name => name.endsWith('.html'));
-assert.equal(pages.length, 44, 'Se esperan 28 páginas originales y 16 guías de actividad');
+assert.equal(pages.length, 47, 'Se esperan las 44 páginas del curso, buscador, entregas y referencias');
 assert.equal(fs.readFileSync(path.join(dist, 'CNAME'), 'utf8').trim(), new URL(origin).hostname);
 let references = 0;
 

@@ -1,0 +1,10 @@
+---
+import dias from '../data/identidad-dias.json';
+import '../styles/identidad-dias.css';
+// Un mismo registro alimenta sitio, presentaciones e informes de referencia.
+const reglas = dias.map(d => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="${d.icono}" fill="none" stroke="${d.acento}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  return `[data-dia="${d.dia}"] { --day-color:${d.color}; --day-soft:${d.suave}; --day-accent:${d.acento}; --day-icon:url("data:image/svg+xml,${encodeURIComponent(svg)}"); }`;
+}).join('\n');
+---
+<style is:global set:html={reglas}></style>

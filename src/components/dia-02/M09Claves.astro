@@ -3,7 +3,7 @@ import Mecanismo from '../slides/Mecanismo.astro';
 import Notas from '../ui/Notas.astro';
 import TablaCurso from '../ui/TablaCurso.astro';
 ---
-<Mecanismo modulo="D2-M09" titulo={"Prueba las claves antes de dibujar relaciones"}>
+<Mecanismo diseno="datos" modulo="D2-M09" titulo={"Prueba las claves antes de dibujar relaciones"}>
   <div class="flex flex-col gap-8">
     <TablaCurso columnas={["Dimensión","Clave del lado 1","Valores esperados en el ZIP"]} filas={[["dim_linea","linea_id","4 únicos"],["dim_parte","parte_id","5 únicos"],["dim_turno","nombre","3 únicos: texto 1, 2 y 3"],["dim_defecto","defecto_id","6 únicos"],["dim_calendario","fecha","549 fechas únicas, sin huecos"]]} />
   </div>

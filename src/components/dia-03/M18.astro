@@ -4,7 +4,7 @@ import Notas from '../ui/Notas.astro';
 import Pasos from '../ui/Pasos.astro';
 import Descarga from '../ui/Descarga.astro';
 ---
-<TuTurno modulo="D3-M18" titulo={"Prepara un calendario de años completos"} minutos={10}>
+<TuTurno diseno="recurso" modulo="D3-M18" titulo={"Prepara un calendario de años completos"} minutos={10}>
   <div class="flex flex-col gap-8">
     <Pasos items={[{"t":"Copia de respaldo","d":"Guardar antes de editar dim_calendario."},{"t":"Power Query → Editor avanzado","d":"Usa el calendario del material; conserva el nombre de consulta y la columna fecha."},{"t":"Comprueba el modelo","d":"730 días de 2025–2026, sin huecos; marcar tabla de fechas y revisar las tres relaciones."}]} /><Descarga href="/descargas/calendario-dia-03.pq" nombre="Calendario completo para Power Query" />
   </div>

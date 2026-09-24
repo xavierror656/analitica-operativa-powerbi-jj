@@ -4,6 +4,7 @@ import Cronometro from '../ui/Cronometro.astro';
 import Icono from '../ui/Icono.astro';
 
 interface Props {
+  diseno?: string;
   modulo?: string;
   titulo: string;
   consigna?: string;
@@ -11,9 +12,10 @@ interface Props {
   minutos?: number;
 }
 const { modulo, titulo, consigna, pregunta, minutos } = Astro.props;
+const { diseno = 'taller' } = Astro.props;
 ---
 
-<section>
+<section data-diseno={diseno} data-tipo="taller">
   <div class="flex flex-col gap-10 h-full">
     <div class="activity-slide-heading">
       <div class="flex flex-col gap-4 min-w-0">
@@ -26,7 +28,7 @@ const { modulo, titulo, consigna, pregunta, minutos } = Astro.props;
       {minutos !== undefined && <Cronometro minutos={minutos} />}
     </div>
     {consigna && <p class="text-3xl">{consigna}</p>}
-    <div class="flex-1 flex flex-col justify-center">
+    <div class="slide-content flex-1 flex flex-col justify-center">
       <slot />
     </div>
     {pregunta && (

@@ -3,7 +3,7 @@ import Mecanismo from '../slides/Mecanismo.astro';
 import Notas from '../ui/Notas.astro';
 import TablaCurso from '../ui/TablaCurso.astro';
 ---
-<Mecanismo modulo="D5-M03" titulo={"El gateway conecta el servicio con una fuente local"}>
+<Mecanismo diseno="datos" modulo="D5-M03" titulo={"El gateway conecta el servicio con una fuente local"}>
   <div class="flex flex-col gap-8">
     <TablaCurso columnas={["Origen de la práctica","Qué se verifica","Responsable"]} filas={[["CSV en equipo o red interna","Ruta accesible desde el gateway y credenciales válidas","TI / dueño del origen"],["Origen en nube","Conector y autenticación admitidos","Dueño del modelo"],["Equipo del instructor","No asumir disponibilidad permanente","Definir operación antes de programar"]]} />
   </div>

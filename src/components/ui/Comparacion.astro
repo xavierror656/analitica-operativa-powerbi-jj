@@ -10,7 +10,7 @@ interface Props {
 const { tituloA, tituloB, iconoA, iconoB } = Astro.props;
 ---
 
-<div class="grid grid-cols-2 gap-12 w-full">
+<div class="comparison-panels grid grid-cols-2 gap-12 w-full">
   <div class="rounded-xl bg-ink-2/40 border border-white/10 p-8">
     <h4 class="flex items-center gap-3 font-titulo font-bold text-3xl mb-4">
       {iconoA && <Icono nombre={iconoA} class="w-7 h-7 shrink-0 text-dim" />}

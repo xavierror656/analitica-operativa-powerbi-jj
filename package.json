@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test:browser": "playwright test"
   },
   "dependencies": {
     "@iconify-json/lucide": "1.2.135",
@@ -18,6 +19,8 @@
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
     "jsdom": "26.1.0",
     "lottie-web": "5.13.0"
   }

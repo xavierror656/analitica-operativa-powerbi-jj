@@ -1,18 +1,25 @@
 ---
+import ImagenContexto from '../ui/ImagenContexto.astro';
+import type imagenes from '../../data/imagenes-curso.json';
 // Abre un bloque. Afirmación fuerte + pregunta al grupo. Fondo claro.
 interface Props {
+  imagen?: keyof typeof imagenes;
+  pieImagen?: string;
+  diseno?: string;
   modulo?: string;
   titulo: string;
   pregunta?: string;
 }
 const { modulo, titulo, pregunta } = Astro.props;
+const { imagen, pieImagen, diseno = 'apertura' } = Astro.props;
 ---
 
-<section class="is-light">
+<section class="is-light" data-diseno={diseno} data-con-foto={imagen ? "true" : undefined} data-tipo="apertura">
   <div class="slide-body gap-12">
     {modulo && <span class="font-codigo text-2xl text-accent">{modulo}</span>}
     <h1 class="text-8xl">{titulo}</h1>
     {pregunta && <p class="text-4xl text-dim">{pregunta}</p>}
   </div>
+  {imagen && <div class="slide-photo"><ImagenContexto imagen={imagen} pie={pieImagen} /></div>}
   <slot name="notas" />
 </section>

@@ -1,0 +1,59 @@
+---
+import CursoLayout from '../components/CursoLayout.astro';
+import plan from '../data/practicas-plan.json';
+const fuentes = import.meta.glob('../content/**/*.md', {query:'?raw', import:'default', eager:true});
+const indice = Object.entries(fuentes).flatMap(([ruta, raw]) => {
+  const dia = ruta.match(/guia-dia-0([1-5])\.md$/)?.[1];
+  const actividad = ruta.match(/practicas\/([2-5]-[1-4])\.md$/)?.[1];
+  if (!dia && !actividad) return [];
+  const ficha = plan.find(a => a.id === actividad);
+  const texto = String(raw).replace(/^---[\s\S]*?---/, '').replace(/```[^\n]*\n/g, '').replace(/[#*`>|]/g, '').replace(/\s+/g, ' ').trim();
+  return [{titulo: dia ? `Día ${dia} · Guía del participante` : `Práctica ${actividad?.replace('-', '.')} · ${ficha?.titulo}`, dia: dia || actividad?.[0], texto, url: dia ? `/dia-0${dia}/guia/` : `/practicas/${actividad}/guia/`}];
+});
+---
+<CursoLayout titulo="Buscar materiales" descripcion="Encuentra conceptos, fórmulas y actividades en las cinco guías y las 16 prácticas.">
+  <form id="buscador" class="personal-panel" role="search">
+    <label for="consulta">Concepto o fórmula</label>
+    <input id="consulta" name="q" type="search" placeholder="Por ejemplo: OEE, relaciones, CALCULATE" maxlength="200" />
+    <label for="dia-busqueda">Día</label>
+    <select id="dia-busqueda" name="dia"><option value="">Todos los días</option>{[1,2,3,4,5].map(d=><option value={d}>Día {d}</option>)}</select>
+    <button class="button button-primary" type="submit">Buscar</button>
+  </form>
+  <p id="resultado-estado" role="status" aria-live="polite">Escribe un término para buscar.</p>
+  <ul id="resultados" class="search-results"></ul>
+  <noscript>Activa JavaScript para buscar. También puedes consultar las guías desde Los cinco días.</noscript>
+  <script id="indice-busqueda" type="application/json" set:html={JSON.stringify(indice).replace(/</g, '\\u003c')}/>
+</CursoLayout>
+<script>
+  import { buscar, normalizar } from '../lib/busqueda.mjs';
+  const indice = JSON.parse(document.querySelector('#indice-busqueda')!.textContent!);
+  const form = document.querySelector<HTMLFormElement>('#buscador')!;
+  const consulta = document.querySelector<HTMLInputElement>('#consulta')!;
+  const dia = document.querySelector<HTMLSelectElement>('#dia-busqueda')!;
+  const lista = document.querySelector('#resultados')!;
+  const estado = document.querySelector('#resultado-estado')!;
+  const params = new URLSearchParams(location.search);
+  consulta.value = (params.get('q') || '').slice(0, 200);
+  dia.value = params.get('dia') || '';
+  function mostrar() {
+    const resultados = buscar(indice, consulta.value, dia.value);
+    lista.replaceChildren();
+    estado.textContent = !consulta.value.trim() ? 'Escribe un término para buscar.' : resultados.length ? `${resultados.length} materiales encontrados.` : 'No hay coincidencias. Prueba con otro término o con todos los días.';
+    for (const item of resultados) {
+      const li = document.createElement('li'), link = document.createElement('a'), p = document.createElement('p');
+      link.href = item.url; link.textContent = item.titulo;
+      const pos = normalizar(item.texto).indexOf(normalizar(consulta.value.trim()).split(/\s+/)[0]);
+      const inicio = Math.max(0, pos - 70);
+      p.textContent = (inicio ? '…' : '') + item.texto.slice(inicio, inicio + 240) + '…';
+      li.append(link, p); lista.append(li);
+    }
+  }
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const params = new URLSearchParams({q:consulta.value, dia:dia.value});
+    history.replaceState(null, '', '?' + params);
+    mostrar();
+  });
+  dia.addEventListener('change', mostrar);
+  mostrar();
+</script>

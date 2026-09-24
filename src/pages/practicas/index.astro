@@ -2,6 +2,8 @@
 import CursoLayout from '../../components/CursoLayout.astro';
 import CasoDatos from '../../components/CasoDatos.astro';
 import FichaActividad from '../../components/FichaActividad.astro';
+import EstadoPractica from '../../components/EstadoPractica.astro';
+import DistintivoDia from '../../components/DistintivoDia.astro';
 import actividades from '../../data/practicas-plan.json';
 import fichas from '../../data/practicas-aula.json';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -12,13 +14,16 @@ const temas = {2:'Modelo de datos',3:'Indicadores en DAX',4:'Reporte operativo',
     {[2,3,4,5].map(dia=><a class="button" href={'#dia-'+dia}>Día {dia}</a>)}
     <a class="button" href={base+'/descargas/practicas/todas-las-actividades.zip'} download>Descargar los 16 paquetes</a>
   </nav>
+  <p data-resumen-avance role="status" aria-live="polite"></p>
+  <noscript>Activa JavaScript para guardar el avance de tus prácticas.</noscript>
   <CasoDatos caso="practicas"/>
   <p>Estos cuatro bloques de cada día sustituyen las prácticas de la presentación general. Se conservan fundamentos, pausas y cierre de la jornada.</p>
-  {[2,3,4,5].map(dia=><section class="course-section" id={'dia-'+dia} aria-labelledby={'titulo-dia-'+dia}>
-    <div class="section-heading"><h2 id={'titulo-dia-'+dia}>Día {dia} · {temas[dia as keyof typeof temas]}</h2><a href={base+'/dia-0'+dia+'/'}>Presentación del día</a></div>
+  {[2,3,4,5].map(dia=><section class="course-section" data-dia={dia} id={'dia-'+dia} aria-labelledby={'titulo-dia-'+dia}>
+    <div class="section-heading"><h2 class="day-section-title" id={'titulo-dia-'+dia}><DistintivoDia dia={dia} compacto/>{temas[dia as keyof typeof temas]}</h2><a href={base+'/dia-0'+dia+'/'}>Presentación del día</a></div>
     <div class="activity-grid">{actividades.filter(a=>a.dia===dia).map(a=><article class="activity-card">
       <p class="eyebrow">ACTIVIDAD {a.numero} · 90 MINUTOS</p>
       <h3>{a.titulo}</h3><p>{fichas[a.id as keyof typeof fichas].objetivo}</p>
+      <EstadoPractica id={a.id}/>
       <details><summary>Qué abrir, comprobar y entregar</summary><FichaActividad id={a.id as keyof typeof fichas}/></details>
       <nav class="course-actions" aria-label={'Materiales de la actividad '+a.numero}>
         <a class="button button-primary" href={base+'/practicas/'+a.id+'/'}>Diapositivas</a>

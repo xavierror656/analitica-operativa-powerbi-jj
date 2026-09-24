@@ -2,6 +2,7 @@
 import CursoLayout from '../../../components/CursoLayout.astro';
 import CasoDatos from '../../../components/CasoDatos.astro';
 import FichaActividad from '../../../components/FichaActividad.astro';
+import EstadoPractica from '../../../components/EstadoPractica.astro';
 import plan from '../../../data/practicas-plan.json';
 import fichas from '../../../data/practicas-aula.json';
 export function getStaticPaths() { return plan.map(a => ({params:{actividad:a.id},props:{a}})); }
@@ -20,6 +21,7 @@ const base=import.meta.env.BASE_URL.replace(/\/$/,'');
     <a class="button" href={base+'/practicas/#dia-'+a.dia}>Actividades del día</a>
     <button class="button" type="button" id="imprimir">Imprimir / guardar PDF</button>
   </nav>
+  <EstadoPractica id={a.id}/>
   <FichaActividad id={a.id as keyof typeof fichas}/>
   <CasoDatos caso="practicas"/>
   <article class="reading" set:html={contenido}/>

@@ -1,4 +1,15 @@
 :root { --course-ink:#0e3b36; --course-text:#123a34; --course-muted:#49635d; --course-paper:#f4f7f6; --course-line:#c8d9d3; --course-accent:#08796b; font-family:'Inter','Segoe UI',sans-serif; color:var(--course-text); background:var(--course-paper); font-size:16px; line-height:1.6; }
+[hidden] { display:none!important; }
+.personal-panel { padding:24px; margin-bottom:24px; border:1px solid var(--course-line); border-radius:12px; background:white; }
+.personal-panel label,.practice-progress label { display:block; font-weight:600; }
+.personal-panel input[type=search],select,textarea { font:inherit; color:var(--course-text); background:white; border:1px solid #49635d; border-radius:6px; padding:10px; max-width:100%; }
+.personal-panel input[type=search],textarea { width:100%; }
+.personal-panel input[type=search],.personal-panel select { margin:8px 0 16px; }
+#buscador select { margin-right:12px; }
+.practice-progress { margin-bottom:16px; }.practice-progress select { display:block; width:100%; margin:8px 0; }.practice-progress small,.local-note { display:block; color:var(--course-muted); font-size:.875rem; }.local-note { margin:12px 0 0; }
+.search-results { list-style:none; padding:0; }.search-results li { padding:20px; background:white; border:1px solid var(--course-line); border-radius:8px; margin-bottom:14px; overflow-wrap:anywhere; }.search-results a { font-weight:700; }.search-results p { margin:8px 0 0; }
+.evidence-panel { margin-top:24px; scroll-margin-top:16px; }.evidence-panel fieldset { margin:0 0 20px; border:1px solid var(--course-line); padding:16px; min-width:0; }.evidence-panel .check-row { display:flex; align-items:flex-start; gap:12px; padding:10px 0; font-weight:400; }.check-row input { flex:0 0 auto; width:22px; height:22px; margin-top:3px; accent-color:var(--course-accent); }textarea { resize:vertical; }
+@media(max-width:480px) { .day-row { grid-template-columns:1fr; gap:12px; padding:18px; }.day-row .course-actions { grid-column:1; }.day-number { border:0; }.personal-panel,.activity-card { padding:18px; }.course-nav .course-actions { gap:12px 18px; } }
 * { box-sizing:border-box; } body { margin:0; }
 a { color:var(--course-accent); text-underline-offset:4px; } a:hover { text-decoration-thickness:2px; } button,input { font:inherit; }
 h1,h2,h3 { font-family:'Poppins','Segoe UI',sans-serif; line-height:1.25; }

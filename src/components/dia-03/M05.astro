@@ -3,7 +3,7 @@ import EjemploReal from '../slides/EjemploReal.astro';
 import Notas from '../ui/Notas.astro';
 import Quiz from '../ui/Quiz.astro';
 ---
-<EjemploReal modulo="D3-M05" titulo={"Chequeo: el promedio de porcentajes puede mentir"}>
+<EjemploReal diseno="pregunta" modulo="D3-M05" titulo={"Chequeo: el promedio de porcentajes puede mentir"}>
   <div class="flex flex-col gap-8">
     <Quiz pregunta={"A produce 100 y rechaza 5; B produce 900 y rechaza 9. ¿Cuál es el rechazo conjunto?"} opciones={[{"texto":"3.00 %, promedio de 5 % y 1 %.","correcta":false},{"texto":"1.40 %, 14 dividido entre 1,000.","correcta":true},{"texto":"14.00 %, sumar las piezas rechazadas.","correcta":false}]} explicacion={"Se suman numeradores y denominadores compatibles y luego se divide: 14 / 1,000. Promediar tasas da el mismo peso a lotes de tamaños diferentes."} />
   </div>

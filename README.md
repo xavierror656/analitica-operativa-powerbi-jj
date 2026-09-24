@@ -23,6 +23,34 @@ conjuntos de datos. Ante cualquier duda de contenido, esa propuesta manda.
 
 ## Arrancar las slides
 
+La portada ofrece **Continuar mi curso** después de abrir una presentación. Las
+16 prácticas permiten marcar pendiente, en proceso o terminada desde catálogo y
+guía. Ambos avances se guardan en el navegador; no se sincronizan entre equipos.
+
+**Buscar** consulta las cinco guías y las 16 prácticas, permite filtrar por día e
+ignora diferencias de acentos y mayúsculas. **Mis entregas** contiene los requisitos
+A1–A5 y exporta un registro Markdown de autoevaluación con marcas y notas; no envía
+archivos ni sustituye la evaluación del instructor. Si el navegador bloquea el
+guardado, la interfaz avisa y permite continuar en la página.
+
+**Modelos de referencia** muestra disponibilidad por día. Los PBIX están pendientes
+de incorporación y revisión en Desktop; el procedimiento está en `pbix/README.md`.
+
+Pruebas en navegador (tras instalar dependencias y compilar):
+
+```bash
+npx playwright install chromium
+npm run build
+npm run test:browser
+```
+
+Se verifican reanudación, estados, búsqueda, descarga de autoevaluaciones, teclado,
+accesibilidad automática y desbordamiento en móvil, laptop y proyector. Las capturas
+y trazas se guardan en `test-results/`; el informe está en `playwright-report/`.
+Para Chrome ya instalado puede usarse `PLAYWRIGHT_CHANNEL=chrome` (variable de
+entorno). Las pruebas no sustituyen una revisión con lector de pantalla o proyector
+físico. Configuración basada en la [guía de accesibilidad de Playwright](https://playwright.dev/docs/accessibility-testing).
+
 ```bash
 npm install
 npm run dev      # http://localhost:4321

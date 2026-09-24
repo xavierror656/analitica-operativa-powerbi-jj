@@ -1,16 +1,23 @@
 ---
+import ImagenContexto from '../ui/ImagenContexto.astro';
+import type imagenes from '../../data/imagenes-curso.json';
 // Puente entre bloques. Solo una frase, centrada. Fondo oscuro.
 import ConceptoAnimado from '../ui/ConceptoAnimado.astro';
 import type catalogo from '../../data/animaciones.json';
-interface Props { animacion?: keyof typeof catalogo }
+interface Props {
+  imagen?: keyof typeof imagenes;
+  pieImagen?: string;
+  diseno?: string; animacion?: keyof typeof catalogo }
 const { animacion } = Astro.props;
+const { imagen, pieImagen, diseno = 'puente' } = Astro.props;
 ---
 
-<section>
+<section data-diseno={diseno} data-con-foto={imagen ? "true" : undefined} data-tipo="puente">
   <div class="slide-body items-center">
     {animacion ? <ConceptoAnimado animacion={animacion}><p class="text-6xl font-titulo font-bold"><slot /></p></ConceptoAnimado> : <p class="text-6xl font-titulo font-bold text-center max-w-[1500px]">
       <slot />
     </p>}
   </div>
+  {imagen && <div class="slide-photo"><ImagenContexto imagen={imagen} pie={pieImagen} /></div>}
   <slot name="notas" />
 </section>

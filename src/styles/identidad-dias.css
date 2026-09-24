@@ -1,0 +1,42 @@
+/* El número y el pictograma acompañan siempre al color para identificar el día. */
+.course-brand { display:inline-flex; align-items:center; gap:12px; }
+.course-logo { flex:none; }
+.course-brand .course-brand-text { font-weight:700; color:inherit; }
+.course-header { border-bottom:5px solid transparent; border-image:linear-gradient(90deg,#075E54 0% 20%,#174E8C 20% 40%,#60389B 40% 60%,#99421F 60% 80%,#923260 80% 100%) 1; }
+[data-dia] {
+  --course-ink:var(--day-color); --course-accent:var(--day-color);
+  --color-ink:var(--day-color); --color-ink-2:var(--day-color); --color-ink-3:var(--day-color);
+  --color-paper:var(--day-soft); --color-accent:var(--day-accent);
+  --color-accent-light:var(--day-accent); --color-accent-dim:var(--day-accent);
+  --color-text-on-ink-dim:var(--day-soft);
+}
+.day-badge { display:inline-flex; align-items:center; gap:10px; color:var(--day-color); background:var(--day-soft); border:1px solid currentColor; border-radius:10px; padding:8px 12px; font:600 .875rem/1.4 'Inter','Segoe UI',sans-serif; }
+.day-badge svg { flex:none; width:32px; height:32px; }
+.day-badge-compact { flex-direction:column; gap:4px; padding:8px; white-space:nowrap; }
+.course-header .day-badge { margin-bottom:16px; }
+.day-row[data-dia] { border-left:5px solid var(--day-color); grid-template-columns:68px minmax(180px,1fr) auto; }
+.day-row[data-dia] .day-number { border:0; }
+[data-dia] .button-primary:hover { background:var(--day-color); filter:brightness(.88); }
+body[data-dia] .course-header .eyebrow { color:var(--day-accent); }
+body[data-dia] .course-nav a,body[data-dia] .course-brand span,body[data-dia] .intro,body[data-dia] .course-meta { color:var(--day-soft); }
+.day-section-title { display:flex; align-items:center; gap:12px; }
+.day-section-title svg { flex:none; }
+[data-dia] :is(.reading h2,.reading h3,.section-heading h2,.activity-card h2,.activity-card h3,.evidence-panel h2) { color:var(--day-color); }
+[data-dia] .reading th { background:var(--day-soft); }
+[data-dia].evidence-panel { border-top:4px solid var(--day-color); }
+:is(.evidence-panel,.activity-card) > .day-badge { align-self:flex-start; margin-bottom:16px; }
+body[data-dia] .course-header { border-image:none; border-color:var(--day-accent); }
+body[data-dia] .deck-toolbar { background:var(--day-color); border-color:var(--day-accent); }
+body[data-dia] .deck-toolbar a,body[data-dia] .deck-case,body[data-dia] .deck-saved { color:var(--day-soft); }
+.deck-context .day-badge { flex-direction:row; padding:3px 8px; border:0; }
+.deck-context .day-badge svg { width:24px; height:24px; }
+body[data-dia] .reveal .slides section::after { content:''; position:absolute; top:28px; right:40px; width:48px; height:48px; background:var(--day-color) var(--day-icon) center/34px 34px no-repeat; border-radius:12px; pointer-events:none; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
+body[data-dia] .reveal .slides section.is-light .text-accent { color:var(--day-color); }
+body[data-dia] .reveal .controls,body[data-dia] .reveal .progress { color:var(--day-color); }
+body[data-dia]:has(.slides > section.present:not(.is-light)) .reveal .controls { color:var(--day-accent); }
+body[data-dia] .day-roadmap-item,body[data-dia] .practice-contract > div { border-color:var(--day-color); background:var(--day-soft); }
+body[data-dia] .day-time,body[data-dia] .reveal .slides section .practice-contract h3 { color:var(--day-color); }
+.reading pre span[style*="#6A737D"] { color:#a6b0ba !important; }
+@media(max-width:1100px) { .day-row[data-dia] { grid-template-columns:68px minmax(0,1fr); } }
+@media(max-width:480px) { .day-row[data-dia] { grid-template-columns:1fr; }.day-row[data-dia] .course-actions { grid-column:1; }.day-number { justify-self:start; }.day-badge-topic { display:none; } }
+@media print { body[data-dia] .course-header :is(.intro,.course-meta,.eyebrow) { color:black; }.day-badge { print-color-adjust:exact; -webkit-print-color-adjust:exact; } }

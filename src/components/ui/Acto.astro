@@ -6,8 +6,9 @@ interface Props {
 const { numero, palabra } = Astro.props;
 ---
 
-<section>
+<section data-diseno="portada" data-tipo="portada">
   <div class="slide-body items-start gap-8">
+    <span class="cover-eyebrow">Analítica operativa · Power BI</span>
     <span class="font-titulo font-bold text-[260px] leading-none text-accent">{numero}</span>
     <span class="font-titulo font-bold text-7xl">{palabra}</span>
     <div class="w-64 h-2 bg-accent"></div>

@@ -3,7 +3,7 @@ import Mecanismo from '../slides/Mecanismo.astro';
 import Notas from '../ui/Notas.astro';
 import TablaCurso from '../ui/TablaCurso.astro';
 ---
-<Mecanismo modulo="D2-M11" titulo={"Diez relaciones para las ocho tablas"}>
+<Mecanismo diseno="datos" modulo="D2-M11" titulo={"Diez relaciones para las ocho tablas"}>
   <div class="flex flex-col gap-8">
     <TablaCurso columnas={["Desde el lado 1","Hacia el lado *","Cantidad"]} filas={[["dim_calendario[fecha]","Producción[fecha], calidad[fecha], mantenimiento[fecha_evento]","3"],["dim_linea[linea_id]","linea_id de los tres hechos","3"],["dim_parte[parte_id]","parte_id de producción y calidad","2"],["dim_turno[nombre]","fact_produccion[turno]","1"],["dim_defecto[defecto_id]","fact_calidad[tipo_defecto]","1"]]} /><p>Todas activas, 1:* y con filtro único desde dimensión hacia hecho.</p>
   </div>

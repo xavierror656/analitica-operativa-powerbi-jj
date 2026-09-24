@@ -1,16 +1,22 @@
 ---
+import ImagenContexto from '../ui/ImagenContexto.astro';
+import type imagenes from '../../data/imagenes-curso.json';
 // Cierre del día: validación de cifras, revisión cruzada, registro de evidencia. Fondo oscuro.
 import Icono from '../ui/Icono.astro';
 
 interface Props {
+  imagen?: keyof typeof imagenes;
+  pieImagen?: string;
+  diseno?: string;
   titulo: string;
   evidencia?: string;
   icono?: string;
 }
 const { titulo, evidencia, icono } = Astro.props;
+const { imagen, pieImagen, diseno = 'cierre' } = Astro.props;
 ---
 
-<section>
+<section data-diseno={diseno} data-con-foto={imagen ? "true" : undefined} data-tipo="cierre">
   <div class="slide-body gap-10">
     <div class="flex items-center justify-between">
       <h2 class="flex items-center gap-4">
@@ -25,5 +31,6 @@ const { titulo, evidencia, icono } = Astro.props;
     </div>
     <slot />
   </div>
+  {imagen && <div class="slide-photo"><ImagenContexto imagen={imagen} pie={pieImagen} /></div>}
   <slot name="notas" />
 </section>

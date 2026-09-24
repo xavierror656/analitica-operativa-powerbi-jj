@@ -1,0 +1,35 @@
+[
+  {"id":"A1","titulo":"Datos preparados y reproducibles","archivo":"Apellido_Nombre_A1.pbix y bitácora","criterios":[
+    {"id":"conexion","texto":"Ocho consultas finales con tipos adecuados y RutaDatos parametrizada."},
+    {"id":"limpieza","texto":"Nueve anomalías con regla sustentada o excepción declarada y originales rastreables."},
+    {"id":"integridad","texto":"Filas y piezas conciliadas entre origen, salida y retiradas sin superponer categorías."},
+    {"id":"faltantes","texto":"Horas de paro nulas conservadas y contadas, sin convertirlas en cero."},
+    {"id":"reproduccion","texto":"Dos actualizaciones estables sobre el mismo origen."},
+    {"id":"transferencia","texto":"Un compañero cambia RutaDatos, actualiza y documenta un hallazgo."}]},
+  {"id":"A2","titulo":"Modelo probado y auditado","archivo":"Apellido_Nombre_A2.pbix, captura del modelo y bitácora","criterios":[
+    {"id":"grano","texto":"Descripción del significado de una fila en cada hecho, sin mezclar niveles de detalle."},
+    {"id":"claves","texto":"Claves únicas, tipos compatibles y correspondencias comprobadas."},
+    {"id":"relaciones","texto":"Cardinalidad, dirección, estado activo y rutas justificados."},
+    {"id":"pruebas","texto":"Totales y cortes contrastados con la fuente; un filtro que aplica y otro que no."},
+    {"id":"organizacion","texto":"Jerarquías, meses ordenados, unidades y descripciones útiles."},
+    {"id":"auditoria","texto":"Hallazgo, corrección y repetición de prueba, o revisión sin hallazgos declarada."}]},
+  {"id":"A3","titulo":"Indicadores con contexto y validación","archivo":"PBIX A3, seis fichas de indicadores, matriz y registro del laboratorio","criterios":[
+    {"id":"fichas","texto":"Seis fichas con definición, fórmula, numerador, denominador y límites."},
+    {"id":"matriz","texto":"Matriz por fecha, turno y área para comprobar el contexto de filtro."},
+    {"id":"contraste","texto":"Indicadores contrastados contra la fuente bajo los mismos filtros."},
+    {"id":"laboratorio","texto":"Registro de cuatro técnicas observadas y al menos un contraste propio; cuatro en la ruta autónoma."},
+    {"id":"revision","texto":"Revisión y corrección documentadas, incluyendo el acompañamiento recibido."}]},
+  {"id":"A4","titulo":"Reporte operativo comprobado","archivo":"PBIX A4, capturas de Resumen y Detalle y registros de validación","criterios":[
+    {"id":"paginas","texto":"Páginas Resumen y Detalle con visuales que responden preguntas operativas."},
+    {"id":"controles","texto":"Controles numéricos conservan las cifras de A3 en el mismo contexto."},
+    {"id":"lectura","texto":"Títulos, unidades y filtros coherentes; lectura sin explicación previa."},
+    {"id":"interacciones","texto":"Mapa de interacciones y navegación comprobada."},
+    {"id":"lector","texto":"Registro de las tres tareas del lector y corrección comprobada."}]},
+  {"id":"A5","titulo":"Proyecto, hallazgo y operación","archivo":"A5_Equipo.pbix, ficha de hallazgo, guion y ficha de operación","criterios":[
+    {"id":"integracion","texto":"PBIX acumulativo con preparación, modelo, medidas y reporte; evidencias previas conservadas."},
+    {"id":"hallazgo","texto":"Ficha de hallazgo con pregunta, medida, filtros, comparación, límite y recomendación."},
+    {"id":"exposicion","texto":"Guion de siete minutos y registro de preguntas con respuestas o pendientes."},
+    {"id":"operacion","texto":"Ficha de operación: propietario, audiencia, origen, corte, actualización, acceso/RLS y ubicación autorizada o alternativa local."},
+    {"id":"contribuciones","texto":"Bitácora de afirmaciones corregidas y aportación observable de cada integrante."},
+    {"id":"transferencia","texto":"Otra persona puede abrir el archivo y localizar corte, responsable y restricciones; lo publicado realmente se distingue de lo planeado."}]}
+]

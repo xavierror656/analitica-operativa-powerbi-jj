@@ -3,7 +3,7 @@ import EjemploReal from '../slides/EjemploReal.astro';
 import Notas from '../ui/Notas.astro';
 import Quiz from '../ui/Quiz.astro';
 ---
-<EjemploReal modulo="D4-M05" titulo={"Un título debe decir qué cifra estás leyendo"}>
+<EjemploReal diseno="pregunta" modulo="D4-M05" titulo={"Un título debe decir qué cifra estás leyendo"}>
   <div class="flex flex-col gap-8">
     <Quiz pregunta={"La producción total de mayo es 337,491 y abril es 343,875. ¿Qué título sostiene el dato?"} opciones={[{"texto":"La productividad cayó por fallas de mantenimiento.","correcta":false},{"texto":"Mayo: producción 1.86 % menor que abril; comparar condiciones antes de atribuir causas.","correcta":true},{"texto":"El peor mes de la planta.","correcta":false}]} explicacion={"El título nombra periodo, métrica y comparación. No introduce productividad ni causa: esas afirmaciones requieren más evidencia."} />
   </div>

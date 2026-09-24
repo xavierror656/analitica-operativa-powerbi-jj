@@ -18,13 +18,13 @@ const base=import.meta.env.BASE_URL.replace(/\/$/,'');
 const mod='P'+a.numero;
 ---
 <RevealDeck titulo={'Actividad '+a.numero+' · '+a.titulo}>
-  <Mecanismo modulo={mod} titulo={a.titulo}>
+  <Mecanismo diseno="apertura" imagen={Number(a.id.slice(-1)) % 2 === 1 ? (a.dia === 3 ? 'analisis' : a.dia === 5 ? 'equipo' : 'revision') : undefined} pieImagen="Contexto ilustrativo de la práctica" modulo={mod} titulo={a.titulo}>
     <p class="text-3xl">{f.objetivo}</p>
     <p class="texto-chico mt-8 text-dim">Día {a.dia} · 90 minutos · Caso Prácticas 2025–2026</p>
     <a class="day-guide-link" href={base+'/practicas/'}>← Todas las actividades</a>
     <Notas slot="notas" minutos={0} dice="Presenta el propósito dentro del primer tramo de trabajo. Las slides de orientación no añaden minutos al bloque." />
   </Mecanismo>
-  <Mecanismo modulo={mod} titulo="Prepara tu mesa de trabajo">
+  <Mecanismo diseno="contraste" modulo={mod} titulo="Prepara tu mesa de trabajo">
     <div class="practice-contract">
       <div><h3>01 · Abre</h3><p>{f.abre}</p></div>
       <div><h3>02 · Construye</h3><p>{f.construye}</p></div>
@@ -33,12 +33,12 @@ const mod='P'+a.numero;
     <p class="texto-chico text-dim mt-6">Continúa el mismo PBIX. Cada ZIP repite los datos para recuperación; no anexes los paquetes entre sí.</p>
     <Notas slot="notas" minutos={0} dice="Extraer el ZIP antes de conectar. Leer montaje.md para el puente desde el Día 1; no mezclar cifras del caso anterior." nota={d.nota || 'Preparación y tiempos basados en el plan desglosado del instructor.'}/>
   </Mecanismo>
-  {a.id==='4-1' && <Mecanismo modulo={mod} titulo="¿Qué problemas encuentras en este reporte?"><ReporteParaAuditar/><Notas slot="notas" minutos={0} dice="Ejemplo deliberadamente deficiente para auditar durante los primeros 30 minutos. No cuenta como diseño recomendado ni como PBIX entregado."/></Mecanismo>}
-  {d.pasos.map((paso:any,index:number)=><TuTurno modulo={mod+' · '+(index+1)} titulo={paso[1]} minutos={paso[0]}>
-    {paso[3] ? <><div class="formula-practica"><Codigo codigo={paso[3]} lenguaje="dax" /></div><p class="texto-chico text-dim mt-5">2 min: predice · 3 min: ejecuta · 2 min: explica. Registra el mismo corte: abril 2026 / L3 / turno 1.</p></> : <Pasos items={paso[2].map((t:string,i:number)=>({t:['Haz','Comprueba','Registra'][i]||'Continúa',d:t}))}/>}
+  {a.id==='4-1' && <Mecanismo diseno="mapa" modulo={mod} titulo="¿Qué problemas encuentras en este reporte?"><ReporteParaAuditar/><Notas slot="notas" minutos={0} dice="Ejemplo deliberadamente deficiente para auditar durante los primeros 30 minutos. No cuenta como diseño recomendado ni como PBIX entregado."/></Mecanismo>}
+  {d.pasos.map((paso:any,index:number)=><TuTurno diseno={paso[3] ? 'formula' : 'accion'} modulo={mod+' · '+(index+1)} titulo={paso[1]} minutos={paso[0]}>
+    {paso[3] ? <><div class="formula-practica"><Codigo codigo={paso[3]} lenguaje="dax" /></div><p class="texto-chico text-dim mt-5">2 min: predice · 3 min: ejecuta · 2 min: explica. Registra el mismo corte: abril 2026 / L3 / turno 1.</p></> : <Pasos items={paso[2].map((t:string,i:number)=>({t:'Paso '+(i+1),d:t}))}/>}
     <Notas slot="notas" minutos={paso[0]} dice={paso[2].join(' ')} nota={(d.nota||'')+' Evidencia: '+('evidencia' in d?d.evidencia:a.evidencia)}/>
   </TuTurno>)}
-  <Mecanismo modulo={mod} titulo="Deja una evidencia que pueda revisarse">
+  <Mecanismo diseno="contraste" modulo={mod} titulo="Deja una evidencia que pueda revisarse">
     <div class="practice-contract">
       <div><h3>03 · Comprueba</h3><p>{f.comprueba}</p></div>
       <div><h3>04 · Entrega</h3><p>{f.entrega}</p></div>
@@ -46,7 +46,7 @@ const mod='P'+a.numero;
     <a class="day-guide-link" href={base+'/practicas/'+a.id+'/guia/'} target="_blank" rel="noopener">Guía y criterios de la actividad ↗</a>
     <Notas slot="notas" minutos={0} dice="Registrar la evidencia durante el último tramo de trabajo; no agregar un cierre fuera de los 90 minutos."/>
   </Mecanismo>
-  <Mecanismo modulo={mod} titulo="Ajusta el apoyo sin perder el propósito">
+  <Mecanismo diseno="secuencia" modulo={mod} titulo="Ajusta el apoyo sin perder el propósito">
     <Pasos items={[{t:'Para profundizar',d:a.adelante},{t:'Si necesitas acompañamiento',d:a.apoyo}]}/>
     <Notas slot="notas" minutos={0} dice="El instructor elige el apoyo según diagnóstico. Registrar si un criterio queda pendiente; una reducción de alcance no acredita automáticamente la evidencia completa."/>
   </Mecanismo>

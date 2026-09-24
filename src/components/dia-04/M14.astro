@@ -4,7 +4,7 @@ import Notas from '../ui/Notas.astro';
 import Pasos from '../ui/Pasos.astro';
 import Nota from '../ui/Nota.astro';
 ---
-<EjemploReal modulo="D4-M14" titulo={"Lote es trazabilidad, no una invitación a mezclar hechos"}>
+<EjemploReal diseno="secuencia" modulo="D4-M14" titulo={"Lote es trazabilidad, no una invitación a mezclar hechos"}>
   <div class="flex flex-col gap-8">
     <Nota>La tabla de producción muestra su lote y su turno. La tabla de calidad muestra sus propios eventos y lote. La misma etiqueta no crea una ruta automática entre ambas.</Nota><Pasos items={[{"t":"Filtro visible por zona","d":"Si buscas un lote en calidad, registra también ese filtro sobre calidad."},{"t":"No atribuyas de más","d":"Un rechazo por defecto no explica por sí mismo todo el resultado de producción."}]} />
   </div>

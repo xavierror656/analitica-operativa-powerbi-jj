@@ -3,7 +3,7 @@ import Mecanismo from '../slides/Mecanismo.astro';
 import Notas from '../ui/Notas.astro';
 import Pasos from '../ui/Pasos.astro';
 ---
-<Mecanismo modulo="D2-M19" titulo={"Si un filtro no responde, revisa la ruta"}>
+<Mecanismo diseno="secuencia" modulo="D2-M19" titulo={"Si un filtro no responde, revisa la ruta"}>
   <div class="flex flex-col gap-8">
     <Pasos items={[{"t":"¿Qué campo origina el filtro?","d":"Busca una columna de dimensión, no la clave de un hecho."},{"t":"¿La relación está activa y llega a ese hecho?","d":"Revisa columnas, tipos, marcas 1/* y dirección."},{"t":"¿Coinciden las claves y la prueba visual?","d":"Comprueba correspondencias; después revisa filtros e interacciones del visual."}]} />
   </div>

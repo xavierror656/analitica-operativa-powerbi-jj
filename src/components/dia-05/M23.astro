@@ -5,7 +5,7 @@ import Nota from '../ui/Nota.astro';
 import Codigo from '../ui/Codigo.astro';
 import Descarga from '../ui/Descarga.astro';
 ---
-<TuTurno modulo="D5-M23" titulo={"Python: una segunda comprobación de la cifra"} minutos={12}>
+<TuTurno diseno="formula" modulo="D5-M23" titulo={"Python: una segunda comprobación de la cifra"} minutos={12}>
   <div class="flex flex-col gap-8">
     <Codigo codigo={"producidas = [100, 900]\nrechazadas = [5, 9]\ntasa = sum(rechazadas) / sum(producidas)\nprint(f\"Rechazo conjunto: {tasa:.2%}\")"} lenguaje="python" /><Descarga href="/descargas/verificar_cifras_dia05.py" nombre="Verificador del dataset · Python" /><Nota>Después, el instructor ejecuta el verificador del ZIP y contrasta un corte con Power BI. No lee el PBIX ni ejecuta DAX.</Nota>
   </div>

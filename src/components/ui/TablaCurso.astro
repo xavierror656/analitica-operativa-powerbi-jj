@@ -10,7 +10,7 @@ const { columnas, filas, leyenda } = Astro.props;
 <style>
   .tabla-curso { width: 100%; border-collapse: collapse; font-size: 27px; line-height: 1.35; background: #f4f7f6; color: #123a34; }
   th, td { text-align: left; padding: 16px 22px; border-bottom: 1px solid #adc9c1; vertical-align: top; }
-  thead { background: #0e3b36; color: #f4f7f6; }
+  thead { background: var(--day-color, #0e3b36); color: #f4f7f6; }
   tbody tr:nth-child(even) { background: #e7efed; }
   tbody th { font-weight: 600; } caption { text-align: left; font-size: 25px; margin-bottom: 18px; background: #f4f7f6; color: #123a34; padding: 8px; }
 </style>

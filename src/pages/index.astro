@@ -1,19 +1,27 @@
 ---
 import CursoLayout from '../components/CursoLayout.astro';
 import CasoDatos from '../components/CasoDatos.astro';
+import DistintivoDia from '../components/DistintivoDia.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const dias = ['Conexión y preparación de datos','Modelo de datos','Indicadores en DAX','Reporte operativo','Análisis, publicación y proyecto'];
 ---
 <CursoLayout titulo="Analítica Operativa con Power BI" descripcion="Del dato de planta al reporte de decisión. Elige el día y abre el material que usarás en clase." etiqueta="SKILLING CENTER TECMILENIO · CIUDAD JUÁREZ" inicio>
   <div slot="cabecera" class="course-meta"><span>5 días · 37.5 horas</span><span>Evidencias acumulativas A1–A5</span><span>Instructor: Javier A. Flores Flores</span></div>
+  <section class="course-section personal-panel" aria-labelledby="continuar-titulo">
+    <h2 id="continuar-titulo">Continuar mi curso</h2>
+    <p data-sin-avance>Abre una presentación para comenzar. Aquí podrás retomar tu última diapositiva.</p>
+    <a class="button button-primary" data-continuar hidden href={base+'/dia-01/'}>Continuar</a>
+    <p class="local-note">Tu avance se guarda en este navegador y no se sincroniza entre equipos.</p>
+  </section>
   <section class="course-section" id="programa" aria-labelledby="programa-titulo">
     <div class="section-heading"><h2 id="programa-titulo">Tu material, día por día</h2><p>Presentaciones, guías y trabajo práctico</p></div>
-    <ol class="day-list">{dias.map((titulo,i)=><li class="day-row">
-      <span class="day-number">{String(i+1).padStart(2,'0')}</span>
+    <ol class="day-list">{dias.map((titulo,i)=><li class="day-row" data-dia={i+1}>
+      <span class="day-number"><DistintivoDia dia={i+1} compacto/></span>
       <div><h3>{titulo}</h3><p>Evidencia A{i+1} · 7.5 horas{i > 0 ? ' · 4 prácticas de 90 min' : ' · Conexión y limpieza'}</p></div>
       <nav class="course-actions" aria-label={'Material del día '+(i+1)}>
         <a class="button button-primary" href={base+'/dia-0'+(i+1)+'/'}>Presentación</a>
         <a class="button" href={base+'/dia-0'+(i+1)+'/guia/'}>Guía del día</a>
+        <a class="button" href={base+'/entregas/#A'+(i+1)}>Revisar entrega A{i+1}</a>
         {i > 0 ? <a class="button" href={base+'/practicas/#dia-'+(i+1)}>Prácticas y datos</a> : <a class="button" href={base+'/descargas/dataset-planta-sintetico.zip'} download>Datos del día 1</a>}
       </nav>
     </li>)}</ol>

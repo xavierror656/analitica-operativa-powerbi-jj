@@ -14,6 +14,8 @@ npm run build
 node scripts/verificar_sitio.mjs
 node scripts/verificar_curso.mjs
 python scripts/verificar_practicas.py
+npx playwright install chromium
+npm run test:browser
 ```
 
 El verificador de Día 2 contrasta las diez relaciones, claves únicas y sin huérfanos,
@@ -34,7 +36,7 @@ Después de compilar, `verificar_curso.mjs` comprueba las 102 diapositivas de lo
 de medidas y que la enseñanza de Python aparezca únicamente en Día 5. Son controles
 de estructura y contenido, no una prueba visual ni una ejecución del motor DAX/M.
 
-`verificar_sitio.mjs` revisa las 44 páginas compiladas, sus estilos, enlaces y
+`verificar_sitio.mjs` revisa las 47 páginas compiladas, sus estilos, enlaces y
 descargas locales, las clases de tipografía y el dominio de `CNAME`. Rechaza el
 antiguo prefijo `/analitica-operativa-powerbi-jj/`: producción sirve desde la raíz
 de `https://powerbi.floresjavier.com/`. Corre también antes de subir el artefacto
@@ -45,6 +47,15 @@ de la barra de presentación y la reserva de Python para el Día 5. La prueba de
 interacciones cubre el contador de diapositivas, teclado en recursos y recuperación
 si el navegador deniega pantalla completa. Son pruebas automáticas de estructura
 y comportamiento; la revisión visual de laptop/proyector requiere navegador.
+
+`npm run test:browser` sirve `dist/` con un servidor local de pruebas y ejecuta
+Playwright y axe en 390×844, 1366×768 y 1920×1080. Comprueba reanudación, estados
+persistidos entre catálogo y guía, búsqueda, exportación de autoevaluaciones,
+almacenamiento bloqueado, acceso por teclado y desbordamientos. Guarda capturas
+para revisión en `test-results/` e informe en `playwright-report/`; CI los adjunta
+como artefacto. Las comprobaciones automáticas de accesibilidad no certifican por
+sí solas conformidad completa. Para Chrome instalado, definir la variable
+`PLAYWRIGHT_CHANNEL=chrome` antes de ejecutar las pruebas.
 
 ## Plan desglosado de prácticas
 

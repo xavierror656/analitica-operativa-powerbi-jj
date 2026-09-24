@@ -3,7 +3,7 @@ import Mecanismo from '../slides/Mecanismo.astro';
 import Notas from '../ui/Notas.astro';
 import Pasos from '../ui/Pasos.astro';
 ---
-<Mecanismo modulo="D2-M23" titulo={"Una jerarquía ordena la exploración"}>
+<Mecanismo diseno="secuencia" modulo="D2-M23" titulo={"Una jerarquía ordena la exploración"}>
   <div class="flex flex-col gap-8">
     <Pasos items={[{"t":"Calendario: año → mes → fecha","d":"Crea la jerarquía con columnas de dim_calendario."},{"t":"Ordena nombre_mes por mes","d":"Enero debe ir antes de febrero; usa anio para separar años."},{"t":"Línea: área → nombre de línea","d":"Ambos niveles provienen de dim_linea; explica qué conserva el detalle."}]} />
   </div>

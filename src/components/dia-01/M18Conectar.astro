@@ -4,11 +4,11 @@ import Pasos from '../ui/Pasos.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
-<TuTurno modulo="D1-M18 · Extra" titulo="Conecta el archivo" minutos={15}>
+<TuTurno diseno="accion" modulo="D1-M18 · Extra" titulo="Conecta el archivo" minutos={15}>
   <Pasos
     items={[
       { t: 'Obtener datos', d: 'Power BI Desktop → Obtener datos → Excel → selecciona el archivo descargado.' },
-      { t: 'Carga la hoja MaintenanceData', d: 'Es la única hoja del archivo.' },
+      { t: 'Selecciona la hoja MaintenanceData', d: 'En el Navegador, marca la única hoja y pulsa Transformar datos.' },
       { t: 'Revisa los tipos de dato', d: 'Fecha debe quedar como fecha, las columnas de horas como decimal, no como texto.' },
       { t: 'Carga el modelo', d: 'Cerrar y aplicar.' },
     ]}

@@ -10,6 +10,7 @@ export function conectarAvance(deck, { pathname, hash = '', pdf = false, storage
     try {
       const { h, v = 0 } = deck.getIndices();
       storage().setItem(clave, JSON.stringify({ version: 1, h, v }));
+      storage().setItem('powerbi:ultima:v1', JSON.stringify({ version: 1, pathname, h, v }));
       informar('Avance guardado en este navegador');
     } catch {
       disponible = false;

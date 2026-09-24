@@ -1,0 +1,113 @@
+/* Cada diapositiva elige una composición por contenido, además del color del día. */
+body:has(.reveal) {
+  --slide-coral:#f17d66;
+  --slide-gold:#f5c65a;
+  --slide-blue:#75cde1;
+  --slide-violet:#c5b3f1;
+}
+.reveal .slides section[data-diseno] {
+  padding:80px 104px;
+  background:linear-gradient(125deg,color-mix(in srgb,var(--day-color,#075e54) 82%,#10192e),var(--day-color,#075e54));
+  border-top:12px solid var(--day-accent,#71e1ce);
+  overflow:hidden;
+}
+.reveal .slides section[data-diseno].is-light {
+  background:linear-gradient(120deg,#fff 52%,var(--day-soft,#e4f5f1));
+  color:#152b39;
+}
+.reveal .slides section[data-diseno] > :not(aside.notes,.slide-photo) { position:relative; z-index:1; }
+.reveal .slides section[data-diseno] > div.flex { gap:26px; }
+.reveal .slides section[data-diseno] h2 { font-size:58px; line-height:1.13; margin-bottom:14px; letter-spacing:-.025em; }
+.reveal .slides section[data-diseno] .slide-content { min-height:0; }
+.reveal .slides section[data-diseno] .slide-content > .flex { gap:24px; }
+.reveal .slides section[data-diseno] > div > .font-codigo {
+  align-self:flex-start; padding:8px 18px; border-radius:8px; font-size:23px;
+  background:var(--day-color,#075e54); color:white;
+}
+.reveal .slides section[data-diseno]:not(.is-light) > div > .font-codigo { background:var(--day-accent); color:#182638; }
+body[data-dia] .reveal .slides section[data-diseno].is-light > div > .font-codigo { color:#fff; }
+.reveal .slides section[data-diseno]::before {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:12px;
+  background:linear-gradient(90deg,var(--day-accent) 0% 40%,var(--slide-gold) 40% 65%,var(--slide-coral) 65% 85%,var(--slide-blue) 85%);
+  pointer-events:none;
+}
+/* Las aperturas dejan respirar una idea; las tablas y recetas ocupan el ancho. */
+.reveal .slides section[data-diseno="apertura"].is-light { background:linear-gradient(105deg,var(--day-soft) 0% 69%,var(--day-color) 69% 100%); padding-right:620px; }
+.reveal .slides section[data-diseno="apertura"] h1 { font-size:84px; line-height:1.1; letter-spacing:-.04em; }
+.reveal .slides section[data-diseno="apertura"] .text-dim { border-left:9px solid var(--slide-coral); padding-left:28px; font-size:35px; }
+.reveal .slides section[data-diseno="concepto"].is-light { background:linear-gradient(135deg,#fff3d4,var(--day-soft)); }
+.reveal .slides section[data-diseno="concepto"] > div { max-width:none; border-left:16px solid var(--day-color); padding-left:50px; }
+.reveal .slides section[data-diseno="concepto"] .slide-body > p { font-size:68px; line-height:1.2; max-width:1420px; }
+.reveal .slides section[data-diseno="puente"] { background:linear-gradient(130deg,#182c48,var(--day-color)); }
+.reveal .slides section[data-diseno="puente"] .slide-body > p { font-size:68px; border-top:10px solid var(--slide-gold); padding-top:50px; }
+.reveal .slides section[data-diseno="portada"] { background:linear-gradient(120deg,#16263d 0% 38%,var(--day-color) 38% 83%,var(--day-accent) 83%); }
+.reveal .slides section[data-diseno="portada"] .slide-body { padding-left:80px; }
+.reveal .slides section[data-diseno="portada"] .cover-eyebrow { font-size:28px; letter-spacing:.12em; text-transform:uppercase; color:#fff; }
+.reveal .slides section[data-diseno="portada"] .text-7xl { font-size:110px; letter-spacing:-.04em; }
+.reveal .slides section[data-diseno="portada"] .text-\[260px\] { font-size:300px; color:var(--day-accent); }
+/* Agenda: seis estaciones. Secuencia: tarjetas numeradas de lectura continua. */
+.reveal [data-diseno] .day-roadmap { gap:20px; }
+.reveal [data-diseno] .day-roadmap-item { border:0; border-radius:18px; padding:20px 24px; background:#fff; box-shadow:0 5px 0 #152b3912; border-left:10px solid var(--day-color); }
+.reveal [data-diseno] .day-roadmap-item:nth-child(3n+2) { border-color:#cc563e; background:#fff1eb; }
+.reveal [data-diseno] .day-roadmap-item:nth-child(3n) { border-color:#af790f; background:#fff7df; }
+.reveal [data-diseno] .day-roadmap-item strong { font-size:34px; }
+.reveal [data-diseno] .day-roadmap-item p { font-size:27px; }
+.reveal [data-diseno] .pasos-lista { gap:18px; }
+.reveal [data-diseno] .pasos-lista > li { padding:16px 22px; border-radius:14px; background:#ffffff0c; border-left:6px solid var(--slide-blue); }
+.reveal [data-diseno].is-light .pasos-lista > li { background:#fff; box-shadow:0 3px 0 #132f4410; }
+.reveal [data-diseno] .pasos-lista > li:nth-child(3n+2) { border-color:var(--slide-coral); }
+.reveal [data-diseno] .pasos-lista > li:nth-child(3n) { border-color:var(--slide-gold); }
+.reveal [data-diseno] .pasos-lista > li > span:first-child { border:0; background:var(--day-color); color:#fff; border-radius:12px; }
+.reveal [data-diseno]:not(.is-light) .pasos-lista > li > span:first-child { background:var(--day-accent); color:#152b39; }
+.reveal [data-diseno="secuencia"] .pasos-lista:not(.pasos-columnas) { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.reveal [data-diseno="secuencia"] .pasos-lista:not(.pasos-columnas) > li { flex-direction:column; padding:28px; gap:24px; border-left:0; border-top:10px solid var(--slide-blue); }
+.reveal [data-diseno="secuencia"] .pasos-lista:not(.pasos-columnas) > li:nth-child(3n+2) { border-color:var(--slide-coral); }
+.reveal [data-diseno="secuencia"] .pasos-lista:not(.pasos-columnas) > li:nth-child(3n) { border-color:var(--slide-gold); }
+.reveal [data-diseno="secuencia"] .concepto-animado .pasos-lista:not(.pasos-columnas) { grid-template-columns:1fr; }
+.reveal [data-diseno="secuencia"] .concepto-animado .pasos-lista > li { flex-direction:row; padding:16px 22px; border-top:0; border-left:6px solid var(--slide-blue); }
+.reveal [data-diseno="secuencia"] .pasos-lista[data-cantidad="4"],.reveal [data-diseno="secuencia"] .pasos-lista[data-cantidad="2"] { grid-template-columns:repeat(2,minmax(0,1fr)); }
+/* Comparaciones, evidencia tabular y código tienen superficies distintas. */
+.reveal [data-diseno] .comparison-panels > div { border-radius:24px; padding:36px; border:0; border-top:12px solid var(--slide-coral); background:#fff0e9; color:#152b39; }
+.reveal [data-diseno] .comparison-panels > div + div { border-color:var(--day-color); background:var(--day-soft); }
+.reveal [data-diseno] .comparison-panels h4 { font-size:36px; margin-bottom:28px; }
+.reveal [data-diseno] .tabla-curso { border-radius:16px; overflow:hidden; box-shadow:0 6px 0 #152b3912; background:#fff; color:#152b39; }
+.reveal [data-diseno] .tabla-curso th,.reveal [data-diseno] .tabla-curso td { padding:18px 24px; border-bottom:2px solid #d7e1e8; }
+.reveal [data-diseno] .tabla-curso thead { background:var(--day-color); color:#fff; }
+.reveal [data-diseno] .tabla-curso tbody th { border-left:7px solid var(--slide-blue); }
+.reveal [data-diseno] .tabla-curso tbody tr:nth-child(even) { background:var(--day-soft); }
+.reveal [data-diseno] .tabla-curso tbody tr:nth-child(3n+2) th { border-left-color:var(--slide-coral); }
+.reveal [data-diseno] .tabla-curso tbody tr:nth-child(3n) th { border-left-color:var(--slide-gold); }
+.reveal [data-diseno="formula"] pre { border-left:10px solid var(--slide-gold); border-radius:16px; padding:28px; background:#142237; color:#f7fbff; }
+.reveal [data-diseno="receta"] h2 { font-size:54px; }
+.reveal [data-diseno="receta"] .receta-control { padding:22px; border:0; background:var(--day-soft); color:#152b39; border-radius:18px; border-top:8px solid var(--slide-gold); }
+.reveal [data-diseno="receta"] .receta-control p { font-size:26px; }
+.reveal [data-diseno="receta"] .receta-ubicacion { padding:10px 18px; background:var(--day-color); color:white; border-radius:8px; }
+.reveal [data-diseno="receta"]:not(.is-light) .receta-ubicacion { background:#ffffff12; }
+.reveal [data-diseno="receta"] .receta-pasos li::marker { color:var(--day-color); font-size:32px; }
+.reveal [data-diseno="receta"] .receta-pasos { list-style:decimal; }
+.reveal [data-diseno="receta"]:not(.is-light) .receta-pasos li::marker { color:var(--day-accent); }
+.reveal .slides section[data-diseno="pregunta"].is-light { background:linear-gradient(120deg,#fff2cf,#fff 70%); }
+.reveal .slides section[data-diseno="pregunta"] .quiz-opcion { background:white; border:2px solid #c4ced8; border-left:9px solid var(--day-color); border-radius:14px; padding:20px 28px; }
+.reveal .slides section[data-diseno="pregunta"] .quiz-opcion.quiz-correcta { border-color:#087655; background:#e1f5eb; }
+.reveal .slides section[data-diseno="pregunta"] .quiz-opcion.quiz-incorrecta { border-color:#b44e1a; background:#fff0e6; }
+.reveal [data-diseno] .activity-slide-heading { padding-bottom:24px; border-bottom:2px solid #ffffff45; }
+.reveal [data-diseno] .cronometro { background:#142237; border:2px solid var(--slide-gold); border-radius:18px; box-shadow:8px 8px 0 #0002; }
+.reveal [data-diseno] .cronometro-numero { color:#fff; }
+.reveal [data-diseno] .cronometro-corriendo .cronometro-numero { color:var(--day-accent); }
+.reveal [data-diseno] .cronometro-ultimo .cronometro-numero,.reveal [data-diseno] .cronometro-cero .cronometro-numero { color:var(--slide-gold); }
+.reveal [data-diseno] .practice-contract > div { border-radius:18px; border:0; border-top:10px solid var(--day-color); background:white; box-shadow:0 5px 0 #152b3912; padding:30px; }
+.reveal [data-diseno] .practice-contract > div + div { border-color:#cc563e; background:#fff2e9; }
+.reveal [data-diseno="cierre"] .slide-body { border-left:14px solid var(--slide-gold); padding-left:44px; }
+.reveal [data-diseno="cierre"] .concepto-animado { grid-template-columns:minmax(0,1fr) 400px; gap:32px; }
+.reveal [data-diseno] .day-guide-link { color:var(--day-color); }
+.reveal [data-diseno]:not(.is-light) .day-guide-link { color:var(--day-accent); }
+.reveal .slides section[data-con-foto] { padding-right:650px; }
+.reveal .slides section[data-con-foto] > .slide-photo { position:absolute; top:110px; right:90px; bottom:80px; width:480px; z-index:2; }
+.reveal .slides section[data-con-foto] .slide-body { padding-left:0; border-left:0; }
+.reveal .slides section[data-con-foto][data-diseno="concepto"] .slide-body > p { font-size:59px; }
+.reveal .slides section[data-con-foto][data-diseno="puente"] .slide-body > p { font-size:59px; text-align:left; }
+.reveal .slides section[data-con-foto] .concepto-animado { grid-template-columns:1fr; }
+.reveal .slides section[data-con-foto] .tabla-curso :is(th,td) { padding:15px 18px; }
+.reveal .slides section[data-con-foto] .context-photo figcaption { font-size:21px; }
+.reveal .slides section[data-con-foto] .slide-content .pasos-lista > li { padding:16px 18px; }
+@media print { .reveal .slides section[data-diseno] { print-color-adjust:exact; -webkit-print-color-adjust:exact; } }

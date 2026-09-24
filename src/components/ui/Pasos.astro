@@ -10,7 +10,7 @@ interface Props {
 const { items, poco = false } = Astro.props;
 ---
 
-<ol class:list={['pasos-lista gap-6 list-none p-0 m-0', items.length >= 5 ? 'pasos-columnas' : 'flex flex-col']}>
+<ol data-cantidad={items.length} class:list={['pasos-lista gap-6 list-none p-0 m-0', items.length >= 5 ? 'pasos-columnas' : 'flex flex-col']}>
   {
     items.map((item, i) => (
       <li class:list={['flex items-start gap-6', { 'fragment fade-up': poco }]}>

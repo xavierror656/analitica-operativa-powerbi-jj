@@ -2,6 +2,9 @@
 import '../styles/global.css';
 import Favicon from './Favicon.astro';
 import CodigoInteracciones from './CodigoInteracciones.astro';
+import IdentidadEstilos from './IdentidadEstilos.astro';
+import '../styles/presentaciones.css';
+import DistintivoDia from './DistintivoDia.astro';
 
 interface Props {
   titulo: string;
@@ -20,6 +23,7 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{titulo}</title>
     <Favicon />
+    <IdentidadEstilos />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,11 +31,12 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
       rel="stylesheet"
     />
   </head>
-  <body class="font-cuerpo">
+  <body class="font-cuerpo" data-dia={dia}>
     <CodigoInteracciones />
     <nav class="deck-toolbar" aria-label="Recursos de la presentación">
       <div class="deck-context">
       <a class="deck-home" href={base+'/'}>← Curso</a>
+      {dia && <DistintivoDia dia={dia} compacto/>}
       <span class="deck-case">{actividad ? `Práctica ${actividad.replace('-', '.')} · Caso 2025–2026` : `Día ${dia} · Caso base`}</span>
       <span class="deck-position" id="deck-position" aria-label="Diapositiva actual"></span>
       <span id="deck-saved" class="deck-saved" role="status" aria-live="polite"></span>
@@ -79,6 +84,8 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
         progress: true,
         hash: true,
         view: pdf ? 'print' : 'slide',
+        // Mantener la navegación por diapositivas y sus hashes también en móvil.
+        scrollActivationWidth: null,
         pdfSeparateFragments: false,
         pdfPageHeightOffset: 0,
         showNotes: false,
@@ -161,5 +168,11 @@ const datos = actividad ? `/descargas/practicas/actividad-${actividad}.zip` : '/
   html.pdf-export.reveal-print .reveal .slides section { padding:96px 120px !important; print-color-adjust:exact; -webkit-print-color-adjust:exact; }
   html.reveal-print .reveal .slides aside.notes { display:none !important; }
   @media (prefers-reduced-motion:reduce) { html.toolbar-auto .deck-toolbar { transition:none; } }
+  @media(max-width:800px) {
+    .deck-toolbar { height:auto; max-height:45dvh; overflow:auto; padding:12px 16px; }
+    .deck-context,.deck-actions { flex-wrap:wrap; gap:10px 16px; }
+    .deck-saved { flex-basis:100%; }
+    .deck-toolbar a,.deck-toolbar button { white-space:normal; min-height:32px; }
+  }
   @media print { .deck-toolbar,.pdf-tools,html.pdf-export .pdf-tools { display:none !important; }body:has(.deck-toolbar),body:has(.deck-toolbar) .reveal,html.toolbar-auto body:has(.deck-toolbar) .reveal { height:auto; overflow:visible; } }
 </style>

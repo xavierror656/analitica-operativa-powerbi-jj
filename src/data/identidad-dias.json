@@ -1,0 +1,7 @@
+[
+  {"dia":1,"nombre":"Preparar datos","color":"#075E54","suave":"#E7F5F0","acento":"#73E2C5","icono":"M6 8h20v16H6z M6 13h20 M12 13v11 M17 18h5 M17 21h3"},
+  {"dia":2,"nombre":"Relacionar el modelo","color":"#174E8C","suave":"#EAF1FB","acento":"#9AC8FF","icono":"M12 12h8v8h-8z M3 3h7v7H3z M22 3h7v7h-7z M3 22h7v7H3z M22 22h7v7h-7z M10 10l2 2 M20 12l2-2 M10 22l2-2 M20 20l2 2"},
+  {"dia":3,"nombre":"Calcular indicadores","color":"#60389B","suave":"#F3EDFB","acento":"#D4B9FF","icono":"M14 5h-4L7 27H3 M3 13h12 M20 12l8 12 M28 12l-8 12"},
+  {"dia":4,"nombre":"Diseñar el reporte","color":"#99421F","suave":"#FFF0E7","acento":"#FFD3B3","icono":"M4 5h24v22H4z M4 11h24 M9 22v-5 M16 22v-8 M23 22v-3"},
+  {"dia":5,"nombre":"Analizar y compartir","color":"#923260","suave":"#FBEAF2","acento":"#FFB5D6","icono":"M4 25V7 M4 25h24 M8 20l6-7 5 3 8-10 M21 6h6v6"}
+]

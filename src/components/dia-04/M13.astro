@@ -3,7 +3,7 @@ import TuTurno from '../slides/TuTurno.astro';
 import Notas from '../ui/Notas.astro';
 import Pasos from '../ui/Pasos.astro';
 ---
-<TuTurno modulo="D4-M13" titulo={"Lleva una línea del resumen al detalle"} minutos={10}>
+<TuTurno diseno="accion" modulo="D4-M13" titulo={"Lleva una línea del resumen al detalle"} minutos={10}>
   <div class="flex flex-col gap-8">
     <Pasos items={[{"t":"En Detalle","d":"Agrega dim_linea[nombre_linea] a los campos de drillthrough."},{"t":"En Resumen","d":"Usa ese mismo campo en las barras por línea; clic derecho sobre una barra → Obtener detalles."},{"t":"Conserva y verifica","d":"Activa conservar filtros cuando aplique y comprueba fecha, línea y botón de regreso."}]} />
   </div>

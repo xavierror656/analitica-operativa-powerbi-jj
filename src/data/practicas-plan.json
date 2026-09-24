@@ -5,7 +5,7 @@
     "dia": 2,
     "orden": 1,
     "titulo": "Armar el modelo",
-    "proposito": "Que cada participante construya el esquema estrella sobre el archivo que trae del Día 1 y, antes de hacerlo bien, vea con sus propios ojos cómo una relación mal planteada infla las cifras sin que Power BI marque ningún error.",
+    "proposito": "Construir el esquema estrella del caso Prácticas en una copia del archivo del Día 1 y distinguir dos operaciones: una relación propaga filtros; combinar y expandir tablas puede repetir filas e inflar una suma.",
     "preparacion": [
       "Carpeta con fact_produccion y fact_calidad del conjunto sintético, más las dimensiones dim_linea, dim_parte, dim_turno, dim_defecto y una dim_equipo (equipo_id, linea_id, descripción).",
       "Cifra de control anotada en el pizarrón: total de piezas_producidas en la fuente cruda para el periodo completo.",
@@ -18,15 +18,15 @@
       },
       {
         "minutos": 15,
-        "texto": "Antes de mostrar la solución, pedir que relacionen fact_mantenimiento directamente con fact_produccion por fecha. Poner una tarjeta con la suma de piezas producidas y un segmentador por tipo de mantenimiento, y compararla contra la cifra de control."
+        "texto": "En una copia, relacionar fact_mantenimiento con fact_produccion por fecha y observar el filtro por tipo de mantenimiento sin presuponer que subirá el total. Después, combinar y expandir las tablas del microcaso por fecha para observar la repetición de filas."
       },
       {
         "minutos": 10,
-        "texto": "Discusión guiada: ¿por qué subió la cifra? Explicar en el pizarrón la relación de muchos a muchos y cómo cada fecha con varios eventos multiplica las filas de producción."
+        "texto": "Explicar por qué el microcaso pasa de 600 a 1,200 piezas: tres producciones coinciden con dos eventos y la expansión produce seis filas. Contrastar con una relación del modelo, que propaga filtros sin duplicar físicamente los registros de origen."
       },
       {
         "minutos": 30,
-        "texto": "Borrar la relación y construir la estrella: dim_calendario, dim_linea, dim_parte, dim_turno y dim_equipo, con relaciones de uno a varios y filtro en una sola dirección. Ninguna relación directa entre tablas de hechos."
+        "texto": "Retirar la relación directa y la consulta combinada del microcaso. Construir las 16 relaciones de montaje.md con dim_calendario, dim_linea, dim_parte, dim_turno, dim_defecto y dim_equipo: uno a varios y filtro dimensión → hecho, sin relaciones directas entre hechos."
       },
       {
         "minutos": 15,
@@ -34,10 +34,10 @@
       },
       {
         "minutos": 10,
-        "texto": "Verificar que la tarjeta regresa exactamente a la cifra de control."
+        "texto": "Limpiar filtros y contrastar piezas y rechazos con la fuente depurada; guardar la evidencia y explicar cualquier diferencia."
       }
     ],
-    "momento": "Lo que se quiere que recuerden es que la cifra inflada se ve perfectamente razonable: Power BI no avisa. La única defensa es tener una cifra de control y compararla siempre. Esa costumbre es la que se va a pedir en cada cierre del resto de la semana.",
+    "momento": "Una suma inflada por expansión puede parecer razonable. Identificar qué operación cambió las filas y contrastar contra una cifra de control permite detectarla; una relación del modelo debe comprobarse por su alcance de filtros. Mantener ambas verificaciones en los cierres de la semana.",
     "evidencia": "Captura del diagrama de modelo y de la tarjeta de piezas producidas coincidiendo con la cifra de control.",
     "adelante": "Discutir si dim_equipo debe relacionarse con dim_linea (copo de nieve) o aplanarse agregando los atributos de línea en la propia dim_equipo, y justificar la decisión.",
     "apoyo": "Entregar una plantilla con las dimensiones ya cargadas, de modo que solo construyan y verifiquen las relaciones."

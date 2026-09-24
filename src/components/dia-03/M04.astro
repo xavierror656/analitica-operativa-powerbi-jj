@@ -4,7 +4,7 @@ import Notas from '../ui/Notas.astro';
 import Pasos from '../ui/Pasos.astro';
 import Codigo from '../ui/Codigo.astro';
 ---
-<EjemploReal modulo="D3-M04" titulo={"Una medida legible revela su intención"}>
+<EjemploReal diseno="formula" modulo="D3-M04" titulo={"Una medida legible revela su intención"}>
   <div class="flex flex-col gap-8">
     <Codigo codigo={"No conformes producción =\nVAR Producidas = SUM(fact_produccion[piezas_producidas])\nVAR Buenas = SUM(fact_produccion[piezas_buenas])\nRETURN Producidas - Buenas"} lenguaje="dax" /><Pasos items={[{"t":"Nombre = expresión","d":"Tabla[columna] identifica el origen; [Medida] reutiliza una definición."},{"t":"VAR y RETURN","d":"Nombran resultados intermedios; evitan repetir lógica y facilitan explicarla."}]} />
   </div>

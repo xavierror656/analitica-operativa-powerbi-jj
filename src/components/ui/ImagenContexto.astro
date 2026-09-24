@@ -1,0 +1,19 @@
+---
+import imagenes from '../../data/imagenes-curso.json';
+interface Props { imagen: keyof typeof imagenes; pie?: string; posicion?: string; }
+const {imagen,pie='Imagen de contexto',posicion='center'}=Astro.props;
+const foto=imagenes[imagen];
+if(!foto) throw new Error(`Imagen de curso desconocida: ${imagen}`);
+const base=import.meta.env.BASE_URL.replace(/\/$/,'');
+---
+<figure class="context-photo">
+  <img src={`${base}/imagenes/curso/${foto.archivo}`} alt={foto.alt} decoding="async" style={`object-position:${posicion}`} />
+  <figcaption><span>{pie}</span><a href={foto.fuente} target="_blank" rel="noopener">Foto: {foto.autor} · Unsplash</a></figcaption>
+</figure>
+<style>
+  .context-photo { margin:0; min-width:0; height:100%; display:flex; flex-direction:column; overflow:hidden; border-radius:22px; border:1px solid color-mix(in srgb,var(--color-accent) 40%,transparent); background:var(--color-paper); color:var(--color-text-on-paper); }
+  .context-photo img { display:block; width:100%; height:100%; min-height:0; flex:1; object-fit:cover; margin:0; }
+  .context-photo figcaption { flex:none; display:flex; flex-direction:column; gap:4px; padding:12px 16px; font-size:14px; line-height:1.4; }
+  .context-photo figcaption span { font-weight:600; }
+  .context-photo a { color:inherit; text-decoration:underline; }
+</style>
