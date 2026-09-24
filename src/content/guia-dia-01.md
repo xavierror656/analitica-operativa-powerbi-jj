@@ -216,6 +216,19 @@ La escala de dominio se aplica junto con estos controles: 1, con apoyo directo; 
 
 Si terminas antes, intercambia archivo y bitácora, documenta un hallazgo reproducible y prueba un valor desconocido en tu consulta de prueba. No adelantes DAX a costa de dejar A1 sin validar.
 
+## Extra opcional: mantenimiento en Excel
+
+Corresponde a las cinco diapositivas Extra (46 minutos). Está fuera de los 450 minutos del día y de la evidencia A1. Guarda A1 y abre un **PBIX nuevo** para este ejercicio.
+
+1. Descarga [Data_Mantenimiento_2025.xlsx](https://powerbi.floresjavier.com/descargas/Data_Mantenimiento_2025.xlsx). El libro contiene la hoja `MaintenanceData`, con 150 registros y ocho columnas.
+2. En Power BI Desktop elige **Obtener datos → Excel**, selecciona el archivo, marca `MaintenanceData` y pulsa **Transformar datos**.
+3. Revisa los tipos: `Fecha`, fecha; `Equipo` y `Tipo_Falla`, texto; `Tiempo_Averia_Horas`, `Tiempo_Reparacion_Horas`, `Horas_Operativas` y `Disponibilidad_Porc`, decimal; `Ordenes_Pendientes`, entero. Comprueba los 150 registros y pulsa **Cerrar y aplicar**.
+4. Crea una tarjeta con **Suma de Ordenes_Pendientes**. Representa la suma de los valores registrados, no las órdenes pendientes actuales: sumar registros de distintas fechas puede contar una misma orden más de una vez.
+5. Crea un gráfico de líneas: eje X `Fecha` (fecha simple), eje Y **Promedio de Disponibilidad_Porc**. El archivo usa escala 0–100: conserva formato decimal y titula el eje «Disponibilidad (%)». Aplicar directamente formato porcentaje a 76.36 mostraría 7636 %. Este promedio aritmético es didáctico; no sustituye un cálculo operacional ponderado por tiempo.
+6. Añade una segmentación por `Equipo`, selecciona `Extrusora 2` y compara una fecha con su registro original del Excel. Comprueba que ambos visuales respondan al filtro.
+
+Guarda este ejercicio como `Apellido_Nombre_Extra_Mantenimiento.pbix`. No agregues su tabla al modelo de ocho tablas de A1.
+
 ## Referencias técnicas
 
 - [Microsoft Learn: conector Carpeta y archivos compatibles](https://learn.microsoft.com/en-us/power-query/connectors/folder).

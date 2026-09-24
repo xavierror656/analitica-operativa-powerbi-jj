@@ -7,8 +7,8 @@ import Notas from '../ui/Notas.astro';
 <TuTurno diseno="accion" modulo="D1-M19 · Extra" titulo="Arma las primeras tres visualizaciones" minutos={20}>
   <Pasos
     items={[
-      { t: 'Una tarjeta', d: 'Suma de Ordenes_Pendientes: el número que alguien pregunta primero en una junta.' },
-      { t: 'Un gráfico de líneas', d: 'Disponibilidad_Porc por Fecha: ¿sube o baja con el tiempo?' },
+      { t: 'Una tarjeta', d: 'Suma de Ordenes_Pendientes: valores registrados; no representa el pendiente actual.' },
+      { t: 'Un gráfico de líneas', d: 'Promedio de Disponibilidad_Porc por Fecha, escala 0–100; conserva formato decimal.' },
       { t: 'Una segmentación', d: 'Por Equipo: que cualquiera pueda filtrar a "solo Extrusora 2".' },
     ]}
   />
@@ -16,6 +16,6 @@ import Notas from '../ui/Notas.astro';
     slot="notas"
     minutos={20}
     dice="Tres visuales, no diez. La instrucción de hoy es que cada uno conteste una pregunta concreta, no llenar la página."
-    nota="Si alguien termina antes, que pruebe cambiar el gráfico de líneas a promedio móvil de 7 días: se nota mucho mejor la tendencia con datos diarios ruidosos."
+    nota="Es un promedio aritmético didáctico, no disponibilidad operacional ponderada. No aplicar formato porcentaje a valores como 76.36: se mostrarían como 7636 %. Si terminan antes, filtrar equipo y fecha y comparar con la fila original del Excel."
   />
 </TuTurno>

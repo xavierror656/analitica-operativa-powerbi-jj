@@ -7,7 +7,7 @@ import Notas from '../ui/Notas.astro';
 <TuTurno diseno="accion" modulo="D1-M18 · Extra" titulo="Conecta el archivo" minutos={15}>
   <Pasos
     items={[
-      { t: 'Obtener datos', d: 'Power BI Desktop → Obtener datos → Excel → selecciona el archivo descargado.' },
+      { t: 'Abre un PBIX nuevo', d: 'Guarda A1. En otro archivo: Obtener datos → Excel → selecciona el archivo descargado.' },
       { t: 'Selecciona la hoja MaintenanceData', d: 'En el Navegador, marca la única hoja y pulsa Transformar datos.' },
       { t: 'Revisa los tipos de dato', d: 'Fecha debe quedar como fecha, las columnas de horas como decimal, no como texto.' },
       { t: 'Carga el modelo', d: 'Cerrar y aplicar.' },
@@ -16,7 +16,7 @@ import Notas from '../ui/Notas.astro';
   <Notas
     slot="notas"
     minutos={15}
-    dice="Es la misma técnica que usaron esta mañana con la carpeta de CSV, solo que aquí el origen es un solo archivo Excel: Obtener datos → Excel en vez de Carpeta."
+    dice="Es el mismo patrón que usaron con Texto/CSV, solo que aquí el origen es Excel. Trabajen en un PBIX separado para conservar las ocho tablas de A1."
     nota="El objetivo de este extra es que reconozcan el patrón con un archivo que no es el del curso: Obtener datos, perfilar, cargar, sin importar la fuente."
   />
 </TuTurno>

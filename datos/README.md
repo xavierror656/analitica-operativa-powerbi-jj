@@ -54,10 +54,12 @@ CSV: nacen dentro de sistemas específicos, con su propio conector en Power BI.
 | *(no está en el curso)* | Datos de sensor/máquina en tiempo real | Historian / SCADA (OSIsoft PI, Ignition) | Conector PI, más avanzado que el programa |
 
 **La distinción que importa para el Día 1** no es qué sistema es, es **local vs.
-remoto**: un CSV o Excel se conecta directo desde Power BI Desktop; una base de datos
-(SQL Server, SAP, o el MES, que por dentro también es una base de datos) requiere
-credenciales de IT y, para actualizarse sola en el servicio, un gateway (tema del
-Día 5). Esta comparación está en la slide `D1-M3b`
+remoto**: un CSV o Excel se conecta directo desde Power BI Desktop; una fuente remota
+requiere el conector y los permisos autorizados para esa plataforma. Un MES puede
+ofrecer una base de datos, una API o exportaciones, según su configuración. Para
+actualizar en el servicio se necesita gateway cuando la fuente no es accesible
+directamente desde la nube; una fuente de nube accesible puede no necesitarlo
+(tema del Día 5). Esta comparación está en la slide `D1-M3b`
 (`src/components/dia-01/M3bLocalVsRemoto.astro`).
 
 ⚠️ **Cuál de estos usa J&J en Ciudad Juárez sigue sin confirmarse** (propuesta,

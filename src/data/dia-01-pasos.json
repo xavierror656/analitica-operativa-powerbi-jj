@@ -83,7 +83,7 @@
     "pasos": [
       {
         "accion": "Abre producción",
-        "detalle": "Agregar columna → Columna personalizada. Nombre: linea_limpia. Pega la fórmula de la derecha."
+        "detalle": "Agregar columna → Columna personalizada. Nombre: linea_limpia. Pega la fórmula de esta receta."
       },
       {
         "accion": "Revisa ambos valores",
@@ -327,7 +327,7 @@
     "pasos": [
       {
         "accion": "Nombra la columna",
-        "detalle": "Escribe categoria_scrap. Pega la fórmula de la derecha sin añadir un signo = al inicio."
+        "detalle": "Escribe categoria_scrap. Pega la fórmula de esta receta sin añadir un signo = al inicio."
       },
       {
         "accion": "Acepta y asigna tipo",
