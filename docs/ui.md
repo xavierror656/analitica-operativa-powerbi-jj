@@ -6,6 +6,7 @@
 - **Tema y componentes daisyUI:** `src/styles/ui.css`. Solo se compilan los componentes incluidos en su configuración. No cargar estilos desde CDN.
 - **Botón o enlace de acción:** `src/components/ui/Boton.astro`. Usar `href` para enlaces; sin `href` emite un botón. `variante="principal"`, `"normal"` (predeterminada) o `"discreto"`. Admite atributos HTML, `data-*`, `download`, `disabled` y contenido por slot.
 - **Navegación del curso:** `NavegacionCurso.astro`; enlaces en una sola lista, con página actual indicada.
+- **Portada:** `src/pages/index.astro` reúne la presentación del curso, reanudación, herramientas, programa y materiales. Su composición vive en `src/styles/inicio.css`; usa el slot `portada` de `CursoLayout` y los componentes daisyUI compartidos.
 - **Recursos de las 21 guías:** `RecursosGuia.astro`, con `dia` y `actividad` opcional; centraliza enlaces, descargas e impresión.
 - **Estado de prácticas:** `EstadoPractica.astro`; persistencia en `src/lib/curso-personal.mjs`.
 - **Colores de los cinco días:** `src/data/identidad-dias.json`; conservar los pictogramas y etiquetas además del color.

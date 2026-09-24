@@ -1,35 +1,82 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Boton from '../components/ui/Boton.astro';
 import CursoLayout from '../components/CursoLayout.astro';
 import CasoDatos from '../components/CasoDatos.astro';
 import DistintivoDia from '../components/DistintivoDia.astro';
+import '../styles/inicio.css';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const dias = ['Conexión y preparación de datos','Modelo de datos','Indicadores en DAX','Reporte operativo','Análisis, publicación y proyecto'];
+const dias = [
+  {titulo:'Conecta y prepara',tema:'Conexión y preparación de datos',resultado:'Convierte archivos de planta en una fuente limpia y confiable.'},
+  {titulo:'Construye el modelo',tema:'Modelo de datos',resultado:'Relaciona las tablas y comprueba que cada filtro cuenta la historia correcta.'},
+  {titulo:'Da sentido a las cifras',tema:'Indicadores en DAX',resultado:'Crea indicadores que puedas explicar, contrastar y defender.'},
+  {titulo:'Diseña para decidir',tema:'Reporte operativo',resultado:'Organiza un reporte que lleve de la pregunta al detalle.'},
+  {titulo:'Comparte tus hallazgos',tema:'Análisis, publicación y proyecto',resultado:'Integra el análisis y presenta tu proyecto con evidencia.'},
+];
+const herramientas = [
+  {icono:'search',titulo:'Encuentra lo que necesitas',texto:'Busca conceptos, fórmulas y pasos en las guías del curso.',href:'/buscar/',accion:'Buscar materiales'},
+  {icono:'list-checks',titulo:'Construye tu evidencia',texto:'Revisa los requisitos A1–A5 y descarga tu autoevaluación.',href:'/entregas/',accion:'Revisar mis entregas'},
+  {icono:'flask-conical',titulo:'Lleva la teoría a la práctica',texto:'Abre las 16 actividades con sus guías, datos y consignas.',href:'/practicas/',accion:'Explorar prácticas'},
+];
 ---
-<CursoLayout titulo="Analítica Operativa con Power BI" descripcion="Del dato de planta al reporte de decisión. Elige el día y abre el material que usarás en clase." etiqueta="SKILLING CENTER TECMILENIO · CIUDAD JUÁREZ" inicio>
-  <div slot="cabecera" class="course-meta"><span>5 días · 37.5 horas</span><span>Evidencias acumulativas A1–A5</span><span>Instructor: Javier A. Flores Flores</span></div>
-  <section class="card course-section personal-panel" aria-labelledby="continuar-titulo">
-    <h2 id="continuar-titulo">Continuar mi curso</h2>
-    <p data-sin-avance>Abre una presentación para comenzar. Aquí podrás retomar tu última diapositiva.</p>
-    <Boton variante="principal" data-continuar hidden href={base+'/dia-01/'}>Continuar</Boton>
-    <p class="local-note">Tu avance se guarda en este navegador y no se sincroniza entre equipos.</p>
+<CursoLayout titulo="Analítica Operativa con Power BI" descripcion="Transforma los datos de planta en decisiones. Tu espacio de clase: presentaciones, prácticas, guías y entregas." inicio>
+  <div slot="portada" class="home-hero">
+    <div class="hero-copy">
+      <p class="eyebrow">DEL DATO A LA DECISIÓN</p>
+      <h1>Tu siguiente decisión<br/>empieza con <span>un buen dato.</span></h1>
+      <p class="hero-intro">Analítica Operativa con Power BI</p>
+      <p class="hero-description">Conecta, analiza y cuenta la historia de tu operación. Todo lo que necesitas para avanzar en clase, en un solo lugar.</p>
+      <div class="hero-actions">
+        <Boton href="#programa" class="hero-primary">Explorar el curso <Icon name="lucide:arrow-down" width="18" height="18" /></Boton>
+        <a href={base+'/dia-01/guia/'} class="hero-guide">Preparar mi primera clase <span aria-hidden="true">↗</span></a>
+      </div>
+      <dl class="hero-facts">
+        <div><dt>Recorrido</dt><dd>5 días</dd></div>
+        <div><dt>Aprendizaje aplicado</dt><dd>37.5 horas</dd></div>
+        <div><dt>Proyecto acumulativo</dt><dd>A1 → A5</dd></div>
+      </dl>
+    </div>
+    <div class="hero-visual">
+      <figure class="hero-photo">
+        <img src={base+'/imagenes/curso/fabrica.jpg'} alt="Equipos y líneas de trabajo en una planta industrial" width="900" height="1000" fetchpriority="high" />
+        <figcaption>El contexto: tu operación.<br/><strong>La herramienta: tus datos.</strong><a href="https://unsplash.com/photos/mMgC9U15XR0" target="_blank" rel="noopener">Foto: xingbowen / Unsplash</a></figcaption>
+      </figure>
+      <div class="hero-route card">
+        <span class="route-icon"><Icon name="lucide:chart-no-axes-combined" width="24" height="24" /></span>
+        <div><strong>Una ruta. Un proyecto.</strong><p>Datos <span>→</span> Modelo <span>→</span> Decisiones</p></div>
+      </div>
+    </div>
+  </div>
+  <section class="card home-resume" aria-labelledby="continuar-titulo">
+    <span class="resume-icon"><Icon name="lucide:play" width="26" height="26" /></span>
+    <div class="resume-copy"><p class="section-kicker">TU ESPACIO DE CLASE</p><h2 id="continuar-titulo">Continúa donde te quedaste</h2>
+      <p data-sin-avance>¿Primera vez aquí? Comienza con la presentación del día 1.</p>
+      <p class="local-note">El avance se guarda en este navegador.</p>
+    </div>
+    <div class="resume-actions"><Boton variante="principal" data-continuar hidden href={base+'/dia-01/'}>Continuar</Boton><Boton class="resume-start" href={base+'/dia-01/'}>Comenzar día 1 <span aria-hidden="true">→</span></Boton></div>
   </section>
-  <section class="course-section" id="programa" aria-labelledby="programa-titulo">
-    <div class="section-heading"><h2 id="programa-titulo">Tu material, día por día</h2><p>Presentaciones, guías y trabajo práctico</p></div>
-    <ol class="day-list">{dias.map((titulo,i)=><li class="card day-row" data-dia={i+1}>
-      <span class="day-number"><DistintivoDia dia={i+1} compacto/></span>
-      <div><h3>{titulo}</h3><p>Evidencia A{i+1} · 7.5 horas{i > 0 ? ' · 4 prácticas de 90 min' : ' · Conexión y limpieza'}</p></div>
-      <nav class="course-actions" aria-label={'Material del día '+(i+1)}>
-        <Boton variante="principal" href={base+'/dia-0'+(i+1)+'/'}>Presentación</Boton>
-        <Boton href={base+'/dia-0'+(i+1)+'/guia/'}>Guía del día</Boton>
-        <Boton href={base+'/entregas/#A'+(i+1)}>Revisar entrega A{i+1}</Boton>
-        {i > 0 ? <Boton href={base+'/practicas/#dia-'+(i+1)}>Prácticas y datos</Boton> : <Boton href={base+'/descargas/dataset-planta-sintetico.zip'} download>Datos del día 1</Boton>}
+  <section class="home-tools" aria-label="Herramientas para tu aprendizaje">
+    {herramientas.map(h=><article class="card tool-card"><span class="tool-icon"><Icon name={'lucide:'+h.icono} width="24" height="24" /></span><h2>{h.titulo}</h2><p>{h.texto}</p><a href={base+h.href}>{h.accion}<Icon name="lucide:arrow-up-right" width="18" height="18" /></a></article>)}
+  </section>
+  <section class="home-program" id="programa" aria-labelledby="programa-titulo">
+    <div class="home-section-heading"><div><p class="section-kicker">APRENDE. APLICA. COMPRUEBA.</p><h2 id="programa-titulo">Cinco días para transformar<br/>tu manera de ver los datos.</h2></div><p>Cada día construye sobre el anterior.<br/>Tu reporte crece contigo.</p></div>
+    <ol class="home-days">{dias.map((d,i)=><li class="card home-day" data-dia={i+1}>
+      <div class="home-day-top"><DistintivoDia dia={i+1} compacto/><span class="badge">7.5 h · Evidencia A{i+1}</span></div>
+      <p class="day-topic">{d.tema}</p><h3>{d.titulo}</h3><p class="day-result">{d.resultado}</p>
+      <nav aria-label={'Material del día '+(i+1)} class="home-day-links">
+        <Boton variante="principal" href={base+'/dia-0'+(i+1)+'/'}>Abrir presentación <span aria-hidden="true">↗</span></Boton>
+        <div><a href={base+'/dia-0'+(i+1)+'/guia/'}>Guía del día</a><a href={base+'/entregas/#A'+(i+1)}>Entrega A{i+1}</a>
+        {i>0?<a href={base+'/practicas/#dia-'+(i+1)}>Prácticas y datos</a>:<a href={base+'/descargas/dataset-planta-sintetico.zip'} download>Descargar datos</a>}</div>
       </nav>
     </li>)}</ol>
   </section>
-  <section class="course-section" aria-labelledby="casos-titulo">
-    <div class="section-heading"><h2 id="casos-titulo">Elige el caso indicado en clase</h2></div>
+  <section class="home-materials" aria-labelledby="casos-titulo">
+    <div class="home-section-heading"><div><p class="section-kicker">LISTO PARA TRABAJAR</p><h2 id="casos-titulo">Tus materiales, a la mano.</h2></div><p>Usa el caso indicado por el instructor.<br/>Cada paquete tiene sus propias cifras.</p></div>
     <div class="case-grid"><CasoDatos caso="base" descarga="/descargas/dataset-planta-sintetico.zip"/><CasoDatos caso="practicas" descarga="/descargas/practicas/todas-las-actividades.zip"/></div>
-    <p style="margin-top:20px">Las prácticas desglosadas sustituyen los cuatro bloques prácticos del día correspondiente. Conserva los fundamentos, las pausas y el cierre; no sumes otra jornada de actividades.</p>
+    <p class="materials-note"><Icon name="lucide:info" width="20" height="20" />Las prácticas sustituyen los cuatro bloques prácticos de su día. Conserva los fundamentos, las pausas y el cierre; no sumes otra jornada.</p>
+  </section>
+  <section class="home-closing card" aria-labelledby="cierre-portada">
+    <div><p class="section-kicker">APRENDER HACIENDO</p><h2 id="cierre-portada">De una pregunta de planta<br/>a una decisión con evidencia.</h2><p>Con Javier A. Flores Flores · Ciudad Juárez</p><a href={base+'/referencias/'}>Consultar disponibilidad de modelos de referencia <span aria-hidden="true">↗</span></a></div>
+    <div class="home-partners"><img src={base+'/imagenes/logos/skilling-center-tecmilenio-blanco.png'} alt="Skilling Center Tecmilenio" width="714" height="143"/><span><img src={base+'/imagenes/logos/johnson-johnson-rojo.png'} alt="Johnson & Johnson" width="2690" height="510"/></span></div>
   </section>
 </CursoLayout>
