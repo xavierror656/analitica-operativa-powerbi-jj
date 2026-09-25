@@ -21,6 +21,6 @@ import Notas from '../ui/Notas.astro';
     slot="notas"
     minutos={5}
     dice="Una fila es un evento de falla: qué equipo, cuánto tardó en repararse, cuántas horas operó antes de fallar."
-    nota="Disponibilidad_Porc es un valor proporcionado por este archivo, en escala 0–100. El extra no incluye una fórmula ni una base de tiempo para reconstruirlo; no deducirla de las otras columnas. Practicamos conexión, tipos y visuales."
+    nota="Disponibilidad_Porc es un valor proporcionado, en escala 0–100, sin base de tiempo documentada para reconstruirlo. La medida DAX del extra calcula su promedio y lo divide entre 100 para usar formato porcentaje. Los cálculos se crean en Power BI."
   />
 </Mecanismo>

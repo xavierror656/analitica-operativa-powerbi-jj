@@ -4,18 +4,19 @@ import Pasos from '../ui/Pasos.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
-<TuTurno diseno="accion" modulo="D1-M19 · Extra" titulo="Arma las primeras tres visualizaciones" minutos={20}>
+<TuTurno diseno="accion" modulo="D1-M19 · Extra" titulo="Construye el panel de mantenimiento" minutos={20}>
   <Pasos
     items={[
-      { t: 'Una tarjeta', d: 'Suma de Ordenes_Pendientes: valores registrados; no representa el pendiente actual.' },
-      { t: 'Un gráfico de líneas', d: 'Promedio de Disponibilidad_Porc por Fecha, escala 0–100; conserva formato decimal.' },
-      { t: 'Una segmentación', d: 'Por Equipo: que cualquiera pueda filtrar a "solo Extrusora 2".' },
+      { t: 'Cuatro medidas, cuatro tarjetas', d: 'Arrastra [Fallas registradas], [MTTR (h)], [MTBF didactico (h)] y [Disponibilidad reportada %] a sus tarjetas.' },
+      { t: 'Asigna los formatos', d: 'Fallas: entero. MTTR y MTBF: decimal, dos posiciones. Disponibilidad: porcentaje, dos posiciones. Unidades de visualización: Ninguna.' },
+      { t: 'Agrega la evolución por fecha', d: 'Gráfico de líneas: Fecha en el eje X y [Disponibilidad reportada %] en el eje Y. Usa la medida que creaste.' },
+      { t: 'Filtra por Equipo', d: 'Agrega un segmentador, selecciona Extrusora 2 y contrasta las cuatro tarjetas con la siguiente diapositiva.' },
     ]}
   />
   <Notas
     slot="notas"
     minutos={20}
-    dice="Tres visuales, no diez. La instrucción de hoy es que cada uno conteste una pregunta concreta, no llenar la página."
-    nota="Es un promedio aritmético didáctico, no disponibilidad operacional ponderada. No aplicar formato porcentaje a valores como 76.36: se mostrarían como 7636 %. Si terminan antes, filtrar equipo y fecha y comparar con la fila original del Excel."
+    dice="Todos los cálculos se crean como medidas DAX en Power BI. Construir cuatro tarjetas, una línea por fecha y un segmentador por Equipo. No editar ni calcular columnas en el archivo de origen."
+    nota="La medida de disponibilidad devuelve una fracción porque divide entre 100: aplicarle formato porcentaje. No arrastrar la columna cruda en su lugar. MTBF conserva el alcance didáctico indicado. El día 3 profundiza en medidas y contexto de filtro."
   />
 </TuTurno>

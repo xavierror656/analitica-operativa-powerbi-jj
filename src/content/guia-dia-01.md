@@ -238,14 +238,75 @@ Si terminas antes, intercambia archivo y bitácora, documenta un hallazgo reprod
 
 ## Extra opcional: mantenimiento en Excel
 
-Corresponde a las cinco diapositivas Extra (46 minutos). Está fuera de los 450 minutos del día y de la evidencia A1. Guarda A1 y abre un **PBIX nuevo** para este ejercicio.
+Corresponde a las once diapositivas Extra (70 minutos). Está fuera de los 450 minutos del día y de la evidencia A1. Guarda A1 y abre un **PBIX nuevo** para este ejercicio. Todos los KPI se calculan dentro de **Power BI con medidas DAX**; el archivo descargado solo es la fuente de datos.
 
 1. Descarga [Data_Mantenimiento_2025.xlsx](https://powerbi.floresjavier.com/descargas/Data_Mantenimiento_2025.xlsx). El libro contiene la hoja `MaintenanceData`, con 150 registros y ocho columnas.
 2. En Power BI Desktop elige **Obtener datos → Excel**, selecciona el archivo, marca `MaintenanceData` y pulsa **Transformar datos**.
 3. Revisa los tipos: `Fecha`, fecha; `Equipo` y `Tipo_Falla`, texto; `Tiempo_Averia_Horas`, `Tiempo_Reparacion_Horas`, `Horas_Operativas` y `Disponibilidad_Porc`, decimal; `Ordenes_Pendientes`, entero. Comprueba los 150 registros y pulsa **Cerrar y aplicar**.
-4. Crea una tarjeta con **Suma de Ordenes_Pendientes**. Representa la suma de los valores registrados, no las órdenes pendientes actuales: sumar registros de distintas fechas puede contar una misma orden más de una vez.
-5. Crea un gráfico de líneas: eje X `Fecha` (fecha simple), eje Y **Promedio de Disponibilidad_Porc**. El archivo usa escala 0–100: conserva formato decimal y titula el eje «Disponibilidad (%)». Aplicar directamente formato porcentaje a 76.36 mostraría 7636 %. Este promedio aritmético es didáctico; no sustituye un cálculo operacional ponderado por tiempo.
-6. Añade una segmentación por `Equipo`, selecciona `Extrusora 2` y compara una fecha con su registro original del Excel. Comprueba que ambos visuales respondan al filtro.
+4. En el panel Datos, selecciona `MaintenanceData`, haz clic derecho → **Nueva medida**, pega la primera fórmula de abajo y pulsa Enter. Repite para las otras tres. Crea medidas, no columnas calculadas.
+5. En Vista Informe, agrega cuatro **Tarjetas** y arrastra una medida a cada una. Después agrega un gráfico de líneas: eje X `Fecha` (fecha simple), eje Y **[Disponibilidad reportada %]**. La medida divide el valor de origen entre 100; así puedes asignarle formato **Porcentaje**, dos decimales. Este promedio es didáctico; no sustituye un cálculo operacional ponderado por tiempo.
+6. Añade una segmentación por `Equipo`. Limpia los filtros, comprueba los totales y selecciona solo `Extrusora 2`. Las cuatro tarjetas y el gráfico deben responder al filtro.
+
+### Los cuatro indicadores del ejercicio
+
+| Indicador | Cálculo y configuración de la tarjeta | Lectura |
+|---|---|---|
+| Fallas registradas | Medida `[Fallas registradas]`; formato entero | Número de eventos; cada fila del archivo es una falla |
+| MTTR (h) | Medida `[MTTR (h)]`; decimal con dos posiciones | Tiempo medio de reparación registrado; menor es más rápido en condiciones comparables |
+| MTBF didáctico (h) | Medida `[MTBF didactico (h)]`; decimal con dos posiciones | Operación media por falla bajo el supuesto del ejercicio; mayor representa más operación por falla |
+| Disponibilidad reportada media (%) | Medida `[Disponibilidad reportada %]`; formato **Porcentaje**, dos decimales | Media de los porcentajes proporcionados para los registros visibles |
+
+### Crea estas medidas en Power BI, en este orden
+
+```dax
+Fallas registradas =
+COUNTROWS(MaintenanceData)
+```
+
+```dax
+MTTR (h) =
+DIVIDE(
+    SUM(MaintenanceData[Tiempo_Reparacion_Horas]),
+    [Fallas registradas]
+)
+```
+
+```dax
+MTBF didactico (h) =
+DIVIDE(
+    SUM(MaintenanceData[Horas_Operativas]),
+    [Fallas registradas]
+)
+```
+
+```dax
+Disponibilidad reportada % =
+DIVIDE(
+    AVERAGE(MaintenanceData[Disponibilidad_Porc]),
+    100
+)
+```
+
+Selecciona cada medida y ajusta su formato en **Herramientas de medida**. En las tarjetas, usa **Unidades de visualización: Ninguna**. La disponibilidad devuelve aproximadamente `0.835595`; con formato Porcentaje se ve `83.56 %`. No uses la columna cruda en lugar de la medida ni vuelvas a dividir entre 100.
+
+`DIVIDE` devuelve blanco si no hay denominador válido; no sustituyas automáticamente ese resultado por cero. En esta fuente las duraciones están completas. Si tu Power BI usa separadores DAX localizados, cambia las comas entre argumentos por punto y coma. Las medidas se recalculan con los filtros de Equipo y Fecha.
+
+**Alcance de MTBF:** suponemos que las horas de cada fila corresponden a su evento y no se traslapan. El archivo no acredita exposición completa, incluidos intervalos sin fallas; el resultado es didáctico, no un MTBF operacional certificado ni una predicción de la siguiente falla. Compara el mismo equipo y periodos compatibles.
+
+**Alcance de MTTR:** usamos el tiempo de reparación que registra el archivo. No añadimos tiempos de espera o recuperación que no estén documentados. Los 150 registros tienen duración; con otra fuente hay que revisar nulos y contar las reparaciones correspondientes.
+
+**Disponibilidad:** no se documenta cómo se obtuvo `Disponibilidad_Porc` ni su base de tiempo. No la reconstruyas a partir de las otras columnas ni presentes el promedio por registro como disponibilidad operacional ponderada.
+
+| Filtro independiente | Fallas | MTTR (h) | MTBF didáctico (h) | Disponibilidad reportada media (%) |
+|---|---:|---:|---:|---:|
+| Sin filtros | 150 | 2.98 | 20.04 | 83.56 |
+| Solo Extrusora 2 | 32 | 2.76 | 20.19 | 83.34 |
+
+Controles sin filtros: 446.29 horas de reparación / 150 = 2.98 h; 3,006.44 horas operativas / 150 = 20.04 h; suma de porcentajes 12,533.93 / 150 = 83.56 %. Para Extrusora 2: 88.26 / 32 = 2.76 h; 646.14 / 32 = 20.19 h; 2,666.73 / 32 = 83.34 %. Redondea al mostrar, no antes de calcular.
+
+`Ordenes_Pendientes` queda como dato de apoyo: sumar sus registros de distintas fechas puede contar una misma orden más de una vez y no demuestra cuántas siguen abiertas hoy.
+
+Referencias del extra: [Microsoft Learn: crear medidas en Power BI](https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-tutorial-create-measures), [Microsoft Learn: DIVIDE](https://learn.microsoft.com/en-us/dax/divide-function-dax), [IBM: tiempo medio de reparación](https://www.ibm.com/think/topics/mttr) e [IBM: tiempo medio entre fallas](https://www.ibm.com/think/topics/mtbf). Las cifras de control corresponden a los datos de `MaintenanceData`; los cálculos de la práctica se crean en Power BI.
 
 Guarda este ejercicio como `Apellido_Nombre_Extra_Mantenimiento.pbix`. No agregues su tabla al modelo de ocho tablas de A1.
 

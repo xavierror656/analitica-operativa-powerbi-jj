@@ -1,0 +1,34 @@
+---
+import Codigo from '../ui/Codigo.astro';
+interface Props {
+  dax:string;
+  pregunta:string;
+  formula:string;
+  ejemplo:string;
+  lectura:string;
+  alcance:string;
+}
+const { dax, pregunta, formula, ejemplo, lectura, alcance } = Astro.props;
+---
+<div class="indicador-mantenimiento">
+  <p class="pregunta-kpi">{pregunta}</p>
+  <div class="calculo-kpi">
+    <div class="dax-kpi"><span>Power BI → Nueva medida</span><Codigo codigo={dax} lenguaje="dax" /></div>
+    <div><span>{formula}</span><p>{ejemplo}</p><span class="control-kpi">Resultado sin filtros</span></div>
+  </div>
+  <p class="lectura-kpi">{lectura}</p>
+  <p class="alcance-kpi">{alcance}</p>
+</div>
+<style>
+  .indicador-mantenimiento { display:flex; flex-direction:column; gap:24px; }
+  :global(.reveal) .indicador-mantenimiento p { margin:0; }
+  :global(.reveal) .pregunta-kpi { font-size:32px; line-height:1.35; }
+  .calculo-kpi { display:grid; grid-template-columns:1.65fr 1fr; align-items:center; gap:42px; }
+  .calculo-kpi span { display:block; font-size:25px; color:#42635c; margin-bottom:18px; }
+  .calculo-kpi .control-kpi { margin:18px 0 0; }
+  .dax-kpi { min-width:0; }
+  :global(.reveal) .dax-kpi :global(pre) { font-size:26px; line-height:1.4; white-space:pre-wrap; overflow-wrap:anywhere; padding:24px; }
+  :global(.reveal) .calculo-kpi p { font-size:39px; line-height:1.3; font-weight:700; color:#075e54; }
+  :global(.reveal) .lectura-kpi { font-size:29px; line-height:1.4; }
+  :global(.reveal) .alcance-kpi { font-size:26px; line-height:1.4; border-left:6px solid #ba8415; padding-left:22px; }
+</style>

@@ -1,0 +1,17 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+import Notas from '../ui/Notas.astro';
+---
+<EjemploReal diseno="datos" modulo="D1-M20 · Extra" titulo="Comprueba tus indicadores al filtrar">
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={['Selección', 'Fallas', 'MTTR · h', 'MTBF didáctico · h', 'Disponibilidad reportada media · %']} filas={[
+      ['Sin filtros', '150', '2.98', '20.04', '83.56'],
+      ['Solo Extrusora 2', '32', '2.76', '20.19', '83.34'],
+    ]} />
+    <p><strong>Primero limpia todos los filtros.</strong> Después selecciona Extrusora 2, sin restringir Fecha ni Tipo_Falla. Las cuatro tarjetas deben responder.</p>
+    <p>Si no coincide: confirma que usaste las medidas, revisa sus fórmulas y limpia filtros activos. Disponibilidad usa formato porcentaje; MTTR y MTBF, decimal.</p>
+    <p class="texto-chico">Ordenes_Pendientes queda como dato de apoyo: sumar sus registros no demuestra cuántas órdenes siguen abiertas hoy.</p>
+  </div>
+  <Notas slot="notas" minutos={5} dice="Pedir que expliquen cuál indicador habla de reparación y cuál de operación. El filtro cambia la población; no debe usarse para escoger solo el resultado más favorable." nota="Controles calculados desde el Excel del ejercicio. Extrusora 2: 32 registros, 88.26 horas de reparación, 646.14 horas operativas y suma de porcentajes 2,666.73. Estos controles aritméticos no sustituyen la validación de las definiciones para uso operacional." />
+</EjemploReal>
