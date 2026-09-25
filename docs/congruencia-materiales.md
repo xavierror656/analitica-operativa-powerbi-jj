@@ -68,6 +68,12 @@ Las siete respuestas cuantitativas de 2.2 se recalcularon desde los CSV: L2/125 
 
 Las cuatro copias con fallas de 2.3 requieren preparación del instructor en Desktop, explícita en guía y montaje; el ZIP no se presenta como un PBIX ya preparado. La auditoría 2.4 usa los mismos ocho criterios del formulario. Se comprobaron los hashes e inventarios de los 16 paquetes y la igualdad de sus 73 documentos/formularios con las fuentes, normalizando únicamente saltos de línea.
 
-## Continuación
+## Viabilidad adicional del día 2
 
-La revisión de contenido de los días 3–5 queda pendiente. La igualdad de los archivos empaquetados no demuestra por sí sola la corrección didáctica o numérica de esas jornadas.
+Se verificaron las 16 relaciones del caso Prácticas contra sus CSV depurados y las variantes distribuidas de 2.3. A/B/D contienen 36 filas y 407 rechazos: 273 del 02/01/2025 y 134 del 03/01/2025; por línea, 136/136/70/65. Extraer fecha en B y reconstruir L1–L4 en D devuelve exactamente la muestra A. En C, las seis filas se reducen a cinco claves al retirar la copia idéntica de P001 tras recortar.
+
+Se precisó la transición en `montaje.md`: nombres sin conflictos, consultas anteriores sin carga, columna de fecha temporal y preparación previa a los 90 minutos. La [guía de viabilidad](../material-instructor/practicas/dia-02-viabilidad.md) explica las pruebas de 2.1–2.4 y cómo preparar C/D sin exigir relaciones que Desktop rechaza. Las actualizaciones de montaje se distribuyen en todos los paquetes porque comparten ese documento; los datos y las consignas permanecen iguales.
+
+Dictamen: resolubles desde los datos y las instrucciones corregidas, con preparación del instructor. El pilotaje de interfaz y duración en Desktop/aula sigue pendiente; esta revisión no creó ni ejecutó los PBIX.
+
+Los días 3–5 quedan fuera del alcance de esta revisión solicitada para los días 1 y 2. La igualdad de los archivos empaquetados no demuestra por sí sola la corrección didáctica o numérica de esas jornadas.

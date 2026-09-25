@@ -4,15 +4,19 @@
 
 Guardar el PBIX del Día 1. Crear una copia `Practicas_A2.pbix` y conservar las consultas originales sin carga si corresponden al caso anterior. Estas prácticas usan otro dataset con exposición y estándares; sus totales no deben compararse con 5,822,881 del material anterior.
 
+Si vienes del caso anterior, en esta copia renombra sus consultas finales con el prefijo `Anterior_` y desmarca **Habilitar carga** antes de importar. Conserva sus consultas auxiliares y parámetros si dependen de ellos. Las diez consultas nuevas deben usar exactamente los nombres de la tabla de relaciones, sin sufijos como `(2)`. Usa una página de control nueva: los visuales anteriores pueden perder sus campos al retirar las tablas cargadas. A1 permanece intacta en su archivo original.
+
 1. Extraer el ZIP. Para producción, calidad y mantenimiento, usar **Obtener datos → Carpeta** una vez por subcarpeta. Combinar los CSV de esa misma familia, no toda la raíz.
 2. Confirmar delimitador coma y codificación UTF-8. Mantener inicialmente claves y fechas como texto.
 3. Quitar duplicados EXACTOS de todas las columnas de negocio, excluyendo `Source.Name` si el asistente lo añadió. Hay ocho copias por cada uno de esos tres hechos. No eliminar registros solo porque comparten fecha o lote.
-4. Aplicar Recortar a `linea_id`, `parte_id` y `tipo_defecto` donde existan. Convertir fecha con una columna personalizada: `if Text.Contains([fecha], "/") then Date.FromText([fecha], [Format="dd/MM/yyyy", Culture="es-MX"]) else Date.FromText([fecha], [Format="yyyy-MM-dd", Culture="en-US"])`. Sustituir la columna conservando el nombre `fecha`.
+4. Aplicar Recortar a `linea_id`, `parte_id` y `tipo_defecto` donde existan. Con `fecha` todavía como texto, agregar `fecha_limpia` con la fórmula `if Text.Contains([fecha], "/") then Date.FromText([fecha], [Format="dd/MM/yyyy", Culture="es-MX"]) else Date.FromText([fecha], [Format="yyyy-MM-dd", Culture="en-US"])` y asignar tipo Fecha. Tras comprobarla, renombrar la original a `fecha_original` y `fecha_limpia` a `fecha`. No crear la columna personalizada con un nombre que ya exista.
 5. Cantidades y minutos: número entero. Turno y claves: texto. Inicio, fin y fecha_hora: fecha/hora. No borrar la hora del evento; fecha y marca horaria cumplen funciones distintas.
 6. Cargar las seis dimensiones y `fact_exposicion_equipo` como CSV individuales. Mantener el calendario de 730 fechas. Marcarlo como tabla de fechas y ordenar `nombre_mes` por `mes`.
 7. Validar 5,544 registros de producción, 11,088 de calidad, 708 de mantenimiento y 11,088 de exposición tras limpieza. Producción: **3,761,757 piezas**. Rechazo de calidad: **117,998**, igual a producidas menos buenas.
 
 Si el grupo ya limpió este caso en Día 1, reutilizar esas consultas. Si llega con el caso anterior, el instructor prepara esta transición antes del bloque 2.1 para conservar sus 90 minutos; el participante realiza la conexión y comprueba los pasos. No se entrega un CSV «limpio» como sustituto de la práctica.
+
+**Punto de entrada de 2.1:** las diez consultas de este caso deben estar listas para actualizar y pasar los controles anteriores. Los primeros diez minutos sirven para reconectar y comprobar ese trabajo. Si hay que importar y limpiar desde cero, completar una sesión de transición antes de empezar; los 90 minutos no incluyen esa preparación. Registrar el tiempo real del primer pilotaje antes de prometer esa duración al grupo.
 
 ## Relaciones al terminar Día 2
 

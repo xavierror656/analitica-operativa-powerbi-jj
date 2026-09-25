@@ -29,6 +29,12 @@ pilotaje con participantes; no son duraciones medidas en aula.
 
 ## Preparación del instructor
 
+Si usarás las actividades 2.1–2.4 del caso Prácticas, consulta también la
+[revisión de viabilidad y preparación de copias](../material-instructor/practicas/dia-02-viabilidad.md).
+Ese caso usa diez tablas y 16 relaciones; su transición desde A1 debe completarse
+antes de los bloques de 90 minutos. Los controles de este README corresponden al
+caso base de ocho tablas.
+
 1. Probar el PBIX A1 en Power BI Desktop, conservar un respaldo y guardar una copia
    A2. Este repositorio no contiene un PBIX A2 ya construido.
 2. Revisar el mapa de la guía: diez relaciones activas 1:* con filtro único desde

@@ -13,6 +13,8 @@ Las presentaciones se abren en `/practicas/`. Cada actividad tiene su ZIP con da
 
 ## Clave de 2.2
 
+Para impartir el día 2, completa primero la [preparación y prueba de viabilidad](dia-02-viabilidad.md). Incluye cómo entregar los casos C y D sin exigir que Desktop cargue relaciones incompatibles, y los controles de las muestras de 36 filas.
+
 | Pregunta | Respuesta de referencia |
 |---|---|
 | 1 | L2, 125 minutos = 2.083333… horas de paro en marzo de 2025 |
