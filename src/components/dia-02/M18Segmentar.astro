@@ -1,11 +1,14 @@
 ---
 import TuTurno from '../slides/TuTurno.astro';
 import Notas from '../ui/Notas.astro';
-import Pasos from '../ui/Pasos.astro';
+import RecetaModelo from './RecetaModelo.astro';
 ---
 <TuTurno diseno="accion" modulo="D2-M18" titulo={"Predice, filtra y contrasta"} minutos={8}>
-  <div class="flex flex-col gap-8">
-    <Pasos items={[{"t":"Limpia filtros anteriores","d":"Sin selección ni filtros de página o informe activos."},{"t":"Selecciona L1 desde dim_linea","d":"Las tres tarjetas deben responder a esa dimensión compartida."},{"t":"Agrega 01/03/2025 desde dim_calendario","d":"Predice qué filas quedan; contrasta con 2,301 piezas, 77 rechazos y 21 minutos."}]} />
-  </div>
+  <RecetaModelo pasos={[
+    {titulo:'Parte de Control_A2 sin filtros', detalle:'Limpia segmentadores, selecciones de gráficos y filtros de visual, página e informe.'},
+    {titulo:'Selecciona la línea', detalle:'En un segmentador de dim_linea[linea_id], elige L1. Predice cuáles de las tres tarjetas cambiarán.'},
+    {titulo:'Agrega la fecha', detalle:'En dim_calendario[fecha], selecciona solo 01/03/2025. Conserva L1.'},
+    {titulo:'Contrasta y registra', detalle:'Compara contra las consultas A1 con los mismos filtros. Anota filtro, valor y fuente en la bitácora.'},
+  ]} control="Las tres tarjetas usan Suma: piezas_producidas, piezas_rechazadas y duracion_min. Muestra enteros completos." resultado="Fecha + L1: 2,301 piezas producidas · 77 rechazadas · 21 minutos de mantenimiento." />
   <Notas slot="notas" minutos={8} dice={"Participantes ejecutan y justifican qué condición deja fuera cada fila. Comparar con filtro directo en la consulta A1."} nota={"Usar tipo Fecha, no texto ambiguo. Separar filtro de segmentador de selección accidental de un gráfico. Guardar evidencias de los filtros aplicados."} />
 </TuTurno>

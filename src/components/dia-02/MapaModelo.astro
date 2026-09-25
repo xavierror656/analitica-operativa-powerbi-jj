@@ -1,12 +1,49 @@
 ---
-import TablaCurso from '../ui/TablaCurso.astro';
+import modelo from '../../data/modelo-dia-02.json';
+const dimensiones = [
+  { nombre:'dim_calendario', clave:'fecha', color:'#1b5088' },
+  { nombre:'dim_linea', clave:'linea_id', color:'#06746e' },
+  { nombre:'dim_parte', clave:'parte_id', color:'#805213' },
+  { nombre:'dim_turno', clave:'nombre', color:'#67449b' },
+  { nombre:'dim_defecto', clave:'defecto_id', color:'#b3442d' },
+];
+const hechos = ['fact_produccion','fact_calidad','fact_mantenimiento'];
+const enlaces = modelo.relaciones.map(([dim, pk, fact, fk]) => {
+  const origen = dimensiones.findIndex(d => d.nombre === dim);
+  const destino = hechos.indexOf(fact);
+  const entradas = modelo.relaciones.filter(r => r[2] === fact);
+  const posicion = entradas.findIndex(r => r[0] === dim);
+  return { dim, pk, fact, fk, origen, y1:65+origen*120, y2:76+destino*200+posicion*25 };
+});
 ---
-<TablaCurso columnas={['Dimensión →', 'Producción', 'Calidad', 'Mantenimiento']}
-  filas={[
-    ['Calendario', '1 → *', '1 → *', '1 → *'],
-    ['Línea', '1 → *', '1 → *', '1 → *'],
-    ['Parte', '1 → *', '1 → *', 'Sin relación'],
-    ['Turno', '1 → *', 'Sin relación', 'Sin relación'],
-    ['Defecto', 'Sin relación', '1 → *', 'Sin relación'],
-  ]} leyenda="Tres hechos con dimensiones compartidas · 10 relaciones activas · filtro único" />
-<p class="texto-chico text-dim mt-8">Cada flecha representa una relación. No conectamos los hechos entre sí ni inventamos claves ausentes.</p>
+<figure class="mapa-modelo">
+  <svg viewBox="0 0 1650 650" role="img" aria-labelledby="mapa-d2-titulo mapa-d2-descripcion">
+    <title id="mapa-d2-titulo">Ocho tablas y diez relaciones del modelo A2</title>
+    <desc id="mapa-d2-descripcion">Calendario y línea filtran los tres hechos. Parte filtra producción y calidad. Turno solo filtra producción y defecto solo calidad. Todas las relaciones son activas, uno a muchos, desde dimensión hacia hecho.</desc>
+    <defs>
+      {dimensiones.map((d,i) => <marker id={`flecha-d2-${i}`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill={d.color} /></marker>)}
+    </defs>
+    {enlaces.map(e => <path class="relacion" data-desde={e.dim} data-hacia={e.fact} d={`M 500 ${e.y1} C 740 ${e.y1}, 820 ${e.y2}, 1080 ${e.y2}`} fill="none" stroke={dimensiones[e.origen].color} stroke-width="4" marker-end={`url(#flecha-d2-${e.origen})`}><title>{`${e.dim}[${e.pk}] → ${e.fact}[${e.fk}] · 1:*`}</title></path>)}
+    {dimensiones.map((d,i) => <g>
+      <rect x="0" y={20+i*120} width="475" height="90" rx="10" fill="#fff" stroke={d.color} stroke-width="3" />
+      <text x="25" y={56+i*120} fill={d.color} font-size="30" font-weight="700">{d.nombre}</text>
+      <text x="25" y={89+i*120} fill="#253d52" font-size="25">{d.clave} · clave única</text>
+      <text x="483" y={55+i*120} fill={d.color} font-size="26" font-weight="700">1</text>
+    </g>)}
+    {hechos.map((h,i) => <g>
+      <rect x="1095" y={40+i*200} width="545" height="152" rx="10" fill="#e8f0fa" stroke="#1b5088" stroke-width="3" />
+      <text x="1120" y={82+i*200} fill="#1b5088" font-size="30" font-weight="700">{h}</text>
+      <text x="1120" y={122+i*200} fill="#253d52" font-size="25">{i===0?'fecha · linea_id · parte_id':i===1?'fecha · linea_id · parte_id':'fecha_evento · linea_id'}</text>
+      <text x="1120" y={160+i*200} fill="#253d52" font-size="25">{i===0?'turno':i===1?'tipo_defecto':'Registros de mantenimiento'}</text>
+      <text x="1064" y={59+i*200} fill="#1b5088" font-size="32" font-weight="700">*</text>
+    </g>)}
+    <text x="0" y="640" fill="#253d52" font-size="27">Dimensiones: lado 1</text>
+    <text x="1095" y="640" fill="#253d52" font-size="27">Hechos: lado * · reciben el filtro</text>
+  </svg>
+  <figcaption>10 relaciones activas · Cada hecho conserva su detalle · Parte no filtra mantenimiento</figcaption>
+</figure>
+<style>
+  .mapa-modelo { margin:0; }
+  .mapa-modelo svg { display:block; width:100%; max-height:620px; }
+  .mapa-modelo figcaption { margin-top:12px; font-size:27px; color:#253d52; }
+</style>
