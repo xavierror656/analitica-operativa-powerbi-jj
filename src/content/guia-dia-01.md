@@ -50,17 +50,33 @@ En **Obtener datos → Texto/CSV**, elige `fact_produccion.csv`. Comprueba delim
 | dim_defecto | Un tipo de defecto |
 | dim_calendario | Una fecha |
 
+![Ventana Obtener datos con una flecha roja sobre la opción Texto o CSV](/imagenes/capturas/dia-01/a1-obtener-datos-csv.png)
+
+*En **Obtener datos**, elige **Texto o CSV**.*
+
+![Vista previa de fact_produccion.csv con delimitador coma y UTF-8; horas_operacion aparece como 752 y horas_paro como 48; una flecha señala Transform data](/imagenes/capturas/dia-01/a1-vista-previa-csv.png)
+
+*Vista previa del archivo. Revisa origen UTF-8 y delimitador coma, y elige **Transformar datos** (en algunas instalaciones el botón aparece como **Transform data**). Fíjate en `horas_operacion` y `horas_paro`: muestran `752` y `48` en lugar de `7.52` y `0.48`. La detección automática de tipos leyó el punto decimal como separador de miles. Es lo que explica más abajo la configuración regional.*
+
 **No combines los ocho CSV en una sola tabla.** El conector Carpeta permite combinar archivos de la misma estructura: por ejemplo, varios meses de producción. Calidad, mantenimiento y catálogos permanecen separados.
 
 Revisa el paso automático **Tipo cambiado**. Antes de convertir, conserva como texto los identificadores y las columnas que vas a investigar. Si una conversión produjo errores, vuelve al paso anterior para recuperar el texto; convertir un error a texto no recupera el valor original. Los decimales del CSV usan punto: al asignar tipo Decimal, usa una configuración regional que lo interprete correctamente, por ejemplo Inglés (Estados Unidos).
 
 En **Vista**, activa Calidad, Distribución y Perfil de columna. Cambia el perfilado de las primeras 1,000 filas al **conjunto completo**. Un texto puede aparecer como válido aunque sea una línea mal escrita.
 
+![Editor de Power Query con las casillas de calidad, distribución y perfil de columna activas; una flecha señala la opción de generar perfiles sobre el conjunto de datos completo](/imagenes/capturas/dia-01/a1-perfil-conjunto-completo.png)
+
+*Con el perfilado sobre las primeras 1,000 filas la barra de estado dice «999+ filas». Al elegir el conjunto completo aparece el número exacto.*
+
 **Checkpoint:** ocho consultas con los nombres de los archivos; al menos tres anomalías registradas con tabla, columna, ejemplo y posible impacto.
 
 ## 2. Decide la regla antes de transformar
 
 Primero registra el número de filas y la suma de `piezas_producidas` del origen. En producción, separa las filas con `turno = "Total día"`; después identifica duplicados exactos comparando **todas las columnas originales**. Hazlo antes de añadir índices o columnas que vuelvan artificialmente única cada fila. Guarda el conteo y las piezas retiradas de cada grupo.
+
+![Menú Inicio, Reducir filas, Quitar filas, con una flecha sobre Quitar duplicados; en la barra de fórmulas se ve el filtro de subtotales ya aplicado](/imagenes/capturas/dia-01/a1-quitar-duplicados.png)
+
+*Quitar duplicados va después de filtrar «Total día». Antes de aplicarlo, selecciona **todas** las columnas de la tabla: si solo queda una seleccionada, se eliminarían filas legítimas. Con las reglas de este curso, la tabla pasa de 7,175 a 7,067 filas.*
 
 Las nueve anomalías del ejercicio tienen estas reglas:
 
@@ -75,6 +91,10 @@ Las nueve anomalías del ejercicio tienen estas reglas:
 | Horas de paro vacías | Mantener null y marcar pendiente; no sustituir por cero | Reportas cuántos datos faltan |
 | Espacios en defecto | Aplicar Recortar a tipo_defecto | Los códigos coinciden con dim_defecto |
 | Supervisor en turno | Recuperar desde hora_inicio normalizada y contrastar con dim_turno | 06:00 → "1"; 14:00 → "2"; 22:00 → "3" |
+
+![Menú contextual de la columna tipo_defecto: Transformar y Recortar, señalado con una flecha roja](/imagenes/capturas/dia-01/a1-recortar-espacios.png)
+
+*Para «Espacios en defecto»: clic derecho en el encabezado de `tipo_defecto` → **Transformar → Recortar**.*
 
 **Estas reglas corresponden al dataset del curso.** Los supervisores se asignaron al azar: su nombre no identifica el turno. Guarda `turno_original` antes de sustituirlo. El turno queda como texto "1", "2" o "3", compatible con `dim_turno[nombre]`; `dim_turno[turno_id]` contiene T1, T2 y T3, que son otra clave. Las relaciones se trabajan en el día 2.
 
