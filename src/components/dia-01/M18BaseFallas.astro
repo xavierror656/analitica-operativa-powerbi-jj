@@ -7,10 +7,10 @@ import kpis from '../../data/kpi-mantenimiento.json';
 <EjemploReal diseno="formula" modulo="D1-M18base · Extra" titulo="Power BI: crea tu primera medida">
   <div class="flex flex-col gap-8">
     <p><strong>1.</strong> En el panel Datos, selecciona <strong>MaintenanceData</strong>. Haz clic derecho → <strong>Nueva medida</strong> (también disponible en la cinta).</p>
-    <p><strong>2.</strong> Pega esta fórmula en la barra y pulsa Enter:</p>
+    <p><strong>2.</strong> Haz clic dentro de la barra de fórmula, pulsa <strong>Ctrl+A</strong> y escribe la fórmula completa. Sustituye también el texto inicial <strong>Medida =</strong>:</p>
     <Codigo codigo={kpis.fallas} lenguaje="dax" />
     <p><strong>3.</strong> En Vista Informe, agrega una <strong>Tarjeta</strong> y arrastra <strong>[Fallas registradas]</strong>. Sin filtros debe mostrar <strong>150</strong>.</p>
-    <p class="texto-chico">Crea una medida, no una columna calculada. Las siguientes fórmulas usarán [Fallas registradas] y responderán a los filtros del informe.</p>
+    <p class="texto-chico">Al escribir COUNTROWS(, elige MaintenanceData del autocompletado y cierra ). Pulsa Enter. Hazlo en Nueva medida de Power BI, fuera de Power Query.</p>
   </div>
   <Notas slot="notas" minutos={4} dice="Repetiremos Nueva medida para cada KPI. Contamos filas porque en este caso cada fila representa una falla. Confirmar el nombre MaintenanceData en el panel Datos." nota="Fuente: https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-tutorial-create-measures y https://learn.microsoft.com/en-us/dax/countrows-function-dax. Si el equipo usa separadores DAX localizados, adaptar las comas a punto y coma en DIVIDE. Esta práctica guiada anticipa medidas; la explicación sistemática se retoma el día 3." />
 </EjemploReal>

@@ -9,8 +9,8 @@ import Notas from '../ui/Notas.astro';
     items={[
       { t: 'Abre un PBIX nuevo', d: 'Guarda A1. En otro archivo: Obtener datos → Excel → selecciona el archivo descargado.' },
       { t: 'Selecciona la hoja MaintenanceData', d: 'En el Navegador, marca la única hoja y pulsa Transformar datos.' },
-      { t: 'Revisa los tipos de dato', d: 'Fecha debe quedar como fecha, las columnas de horas como decimal, no como texto.' },
-      { t: 'Carga el modelo', d: 'Cerrar y aplicar.' },
+      { t: 'Comprueba nombre y encabezados', d: 'La consulta debe llamarse MaintenanceData. Si ves Column1, Column2… usa Transformar → Usar la primera fila como encabezados. Si ya ves Fecha y Equipo, no repitas ese paso.' },
+      { t: 'Revisa tipos y carga', d: 'Fecha: fecha; horas y Disponibilidad_Porc: decimal; Ordenes_Pendientes: entero. Deben quedar 150 filas. Cerrar y aplicar.' },
     ]}
   />
   <Notas

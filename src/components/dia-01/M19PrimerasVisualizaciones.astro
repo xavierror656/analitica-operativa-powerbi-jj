@@ -7,10 +7,10 @@ import Notas from '../ui/Notas.astro';
 <TuTurno diseno="accion" modulo="D1-M19 · Extra" titulo="Construye el panel de mantenimiento" minutos={20}>
   <Pasos
     items={[
-      { t: 'Cuatro medidas, cuatro tarjetas', d: 'Arrastra [Fallas registradas], [MTTR (h)], [MTBF didactico (h)] y [Disponibilidad reportada %] a sus tarjetas.' },
+      { t: 'Crea cuatro tarjetas', d: 'En Vista Informe, clic en un espacio vacío → Tarjeta → arrastra una medida a Valores. Repite para Fallas registradas, MTTR (h), MTBF didactico (h) y Disponibilidad reportada %.' },
       { t: 'Asigna los formatos', d: 'Fallas: entero. MTTR y MTBF: decimal, dos posiciones. Disponibilidad: porcentaje, dos posiciones. Unidades de visualización: Ninguna.' },
-      { t: 'Agrega la evolución por fecha', d: 'Gráfico de líneas: Fecha en el eje X y [Disponibilidad reportada %] en el eje Y. Usa la medida que creaste.' },
-      { t: 'Filtra por Equipo', d: 'Agrega un segmentador, selecciona Extrusora 2 y contrasta las cuatro tarjetas con la siguiente diapositiva.' },
+      { t: 'Agrega la evolución por fecha', d: 'Clic en espacio vacío → Gráfico de líneas. Eje X: Fecha; en su menú elige Fecha, no Jerarquía de fecha. Eje Y: la medida Disponibilidad reportada %.' },
+      { t: 'Filtra y guarda', d: 'Clic en espacio vacío → Segmentación de datos → campo Equipo → Extrusora 2. Comprueba la siguiente diapositiva y guarda Apellido_Nombre_Extra_Mantenimiento.pbix.' },
     ]}
   />
   <Notas

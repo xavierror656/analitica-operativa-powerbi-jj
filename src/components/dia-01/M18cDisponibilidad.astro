@@ -10,8 +10,8 @@ import kpis from '../../data/kpi-mantenimiento.json';
     pregunta="¿Qué promedio tienen los porcentajes reportados para las filas seleccionadas?"
     formula="Promedio reportado ÷ 100; formato Porcentaje"
     ejemplo="0.835595… → 83.56 %"
-    lectura="Selecciona [Disponibilidad reportada %] → Herramientas de medida → Porcentaje, dos decimales. Usa esta medida en una Tarjeta y en una línea por Fecha."
-    alcance="La columna usa escala 0–100; la medida divide entre 100 antes de aplicar formato porcentaje. Es una media de valores reportados, no disponibilidad operacional ponderada por tiempo."
+    lectura="Nueva medida → sustituye Medida =. Escribe Disponibilidad reportada % = AVERAGE(, elige MaintenanceData[Disponibilidad_Porc] y termina con ) / 100. Enter → formato Porcentaje, dos decimales → Tarjeta."
+    alcance="Columna H del Excel: empieza con 76.36. Conserva el origen como decimal en escala 0–100. Divide solo una vez entre 100; el promedio reportado no es disponibilidad ponderada por tiempo."
   />
   <Notas slot="notas" minutos={4} dice="El porcentaje ya está en el Excel. No sumarlo ni deducir su fórmula de Horas_Operativas y Tiempo_Averia_Horas. El promedio se recalcula sobre las filas visibles al filtrar." nota="Fuente: Data_Mantenimiento_2025.xlsx, hoja MaintenanceData, columna Disponibilidad_Porc. No se documenta el denominador temporal de sus porcentajes. La disponibilidad operacional requiere tiempo disponible y tiempo de referencia compatibles; el promedio por fila no reemplaza esa información." />
 </EjemploReal>

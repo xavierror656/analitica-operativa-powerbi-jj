@@ -1,6 +1,6 @@
 {
   "fallas": "Fallas registradas =\nCOUNTROWS(MaintenanceData)",
-  "mttr": "MTTR (h) =\nDIVIDE(\n    SUM(MaintenanceData[Tiempo_Reparacion_Horas]),\n    [Fallas registradas]\n)",
-  "mtbf": "MTBF didactico (h) =\nDIVIDE(\n    SUM(MaintenanceData[Horas_Operativas]),\n    [Fallas registradas]\n)",
-  "disponibilidad": "Disponibilidad reportada % =\nDIVIDE(\n    AVERAGE(MaintenanceData[Disponibilidad_Porc]),\n    100\n)"
+  "mttr": "MTTR (h) =\nAVERAGE(MaintenanceData[Tiempo_Reparacion_Horas])",
+  "mtbf": "MTBF didactico (h) =\nAVERAGE(MaintenanceData[Horas_Operativas])",
+  "disponibilidad": "Disponibilidad reportada % =\nAVERAGE(MaintenanceData[Disponibilidad_Porc]) / 100"
 }

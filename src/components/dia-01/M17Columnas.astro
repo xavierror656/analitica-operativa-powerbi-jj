@@ -1,22 +1,20 @@
 ---
 import Mecanismo from '../slides/Mecanismo.astro';
-import Chips from '../ui/Chips.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
 <Mecanismo diseno="explicacion" modulo="D1-M17 · Extra" titulo="Ocho columnas, una hoja: MaintenanceData">
-  <Chips
-    items={[
-      'Fecha',
-      'Equipo',
-      'Tipo_Falla',
-      'Tiempo_Averia_Horas',
-      'Tiempo_Reparacion_Horas',
-      'Horas_Operativas',
-      'Ordenes_Pendientes',
-      'Disponibilidad_Porc',
-    ]}
-  />
+  <TablaCurso columnas={['Excel · campo exacto', 'Tipo en Power Query', 'Uso en el panel']} filas={[
+    ['A · Fecha', 'Fecha', 'Eje X de la línea'],
+    ['B · Equipo', 'Texto', 'Segmentación'],
+    ['C · Tipo_Falla', 'Texto', 'Detalle del evento'],
+    ['D · Tiempo_Averia_Horas', 'Número decimal', 'Apoyo; no se usa para MTTR'],
+    ['E · Tiempo_Reparacion_Horas', 'Número decimal', 'MTTR: promedio'],
+    ['F · Horas_Operativas', 'Número decimal', 'MTBF didáctico: promedio'],
+    ['G · Ordenes_Pendientes', 'Número entero', 'Apoyo; no sumar como saldo actual'],
+    ['H · Disponibilidad_Porc', 'Número decimal', 'Promedio / 100 → formato %'],
+  ]} />
   <Notas
     slot="notas"
     minutos={5}

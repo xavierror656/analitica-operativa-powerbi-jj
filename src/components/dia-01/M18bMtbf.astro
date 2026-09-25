@@ -10,7 +10,7 @@ import kpis from '../../data/kpi-mantenimiento.json';
     pregunta="¿Cuántas horas de operación corresponden a cada falla registrada?"
     formula="Horas de operación ÷ fallas registradas"
     ejemplo="3,006.44 h ÷ 150 = 20.04 h"
-    lectura="Crea [MTBF didactico (h)] y úsala en otra Tarjeta, con dos decimales. Un valor mayor representa más operación por falla en condiciones comparables."
+    lectura="Nueva medida → clic en la barra → Ctrl+A. Escribe MTBF didactico (h) = AVERAGE(, elige MaintenanceData[Horas_Operativas] y cierra ). Enter → otra Tarjeta → dos decimales. Columna F del Excel: empieza con 20.36 h."
     alcance="Supuesto: las horas corresponden a cada evento y no se traslapan. La fuente no demuestra exposición completa; el resultado es didáctico y no predice cuándo fallará el equipo."
   />
   <Notas slot="notas" minutos={4} dice="MTBF viene de Mean Time Between Failures. Distinguirlo de MTTR: uno mide operación y otro reparación. Comparar por equipo; el total de equipos mezclados se usa solo como control aritmético." nota="Fuente conceptual: https://www.ibm.com/think/topics/mtbf. Control del Excel: 3,006.44 horas operativas y 150 eventos. Para un MTBF operacional se requieren exposición y fallas del mismo equipo y periodo, incluidos los intervalos sin fallas; no asumir que este archivo contiene esa cobertura." />

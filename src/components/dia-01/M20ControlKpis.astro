@@ -10,8 +10,8 @@ import Notas from '../ui/Notas.astro';
       ['Solo Extrusora 2', '32', '2.76', '20.19', '83.34'],
     ]} />
     <p><strong>Primero limpia todos los filtros.</strong> Después selecciona Extrusora 2, sin restringir Fecha ni Tipo_Falla. Las cuatro tarjetas deben responder.</p>
-    <p>Si no coincide: confirma que usaste las medidas, revisa sus fórmulas y limpia filtros activos. Disponibilidad usa formato porcentaje; MTTR y MTBF, decimal.</p>
-    <p class="texto-chico">Ordenes_Pendientes queda como dato de apoyo: sumar sus registros no demuestra cuántas órdenes siguen abiertas hoy.</p>
+    <p>Si no coincide: revisa <strong>150 filas</strong>, horas como decimal y medidas con icono de calculadora. <strong>8,355.95 %</strong> indica que falta dividir entre 100; <strong>0.84 %</strong>, que dividiste dos veces.</p>
+    <p class="texto-chico">Quita la selección de Equipo: deben volver los totales. Guarda el PBIX y una captura con cada selección. Ordenes_Pendientes queda como apoyo; su suma no demuestra cuántas órdenes siguen abiertas hoy.</p>
   </div>
   <Notas slot="notas" minutos={5} dice="Pedir que expliquen cuál indicador habla de reparación y cuál de operación. El filtro cambia la población; no debe usarse para escoger solo el resultado más favorable." nota="Controles calculados desde el Excel del ejercicio. Extrusora 2: 32 registros, 88.26 horas de reparación, 646.14 horas operativas y suma de porcentajes 2,666.73. Estos controles aritméticos no sustituyen la validación de las definiciones para uso operacional." />
 </EjemploReal>

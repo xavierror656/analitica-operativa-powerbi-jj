@@ -10,8 +10,8 @@ import kpis from '../../data/kpi-mantenimiento.json';
     pregunta="Cuando ocurre una falla, ¿cuánto tiempo de reparación registramos en promedio?"
     formula="Horas de reparación ÷ reparaciones registradas"
     ejemplo="446.29 h ÷ 150 = 2.98 h"
-    lectura="Crea la medida [MTTR (h)] y arrástrala a una Tarjeta. En Herramientas de medida, usa número decimal con dos decimales. Cada fila de este caso aporta una reparación."
-    alcance="Un MTTR menor indica reparaciones más rápidas en condiciones comparables. Aquí mide el tiempo de reparación registrado; no añadimos esperas que el archivo no documenta."
+    lectura="Nueva medida → clic en la barra → Ctrl+A. Escribe MTTR (h) = AVERAGE(, elige MaintenanceData[Tiempo_Reparacion_Horas] del autocompletado y cierra ). Enter → Tarjeta → dos decimales."
+    alcance="Usa Tiempo_Reparacion_Horas: columna E del Excel, primer valor 1.62. No elijas Tiempo_Averia_Horas. Aquí las 150 reparaciones tienen duración; su promedio es 2.98 h."
   />
   <Notas slot="notas" minutos={4} dice="MTTR viene de Mean Time To Repair. Leer 2.98 como horas decimales, no como horas y minutos. Comparar el mismo equipo entre periodos y revisar causas antes de fijar una meta." nota="Fuente conceptual: https://www.ibm.com/think/topics/mttr. Control del Excel sin filtros: 150 filas con duración, 446.29 horas. Promedio y suma dividida entre 150 coinciden porque no hay duraciones faltantes. Con datos nuevos, revisar nulos antes de contar reparaciones." />
 </EjemploReal>
