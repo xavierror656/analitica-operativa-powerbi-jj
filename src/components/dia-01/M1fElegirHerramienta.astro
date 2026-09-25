@@ -1,0 +1,16 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Quiz from '../ui/Quiz.astro';
+import Notas from '../ui/Notas.astro';
+---
+<EjemploReal diseno="pregunta" modulo="D1-M1f" titulo="¿En cuál caso empezarías con Power BI?" icono="circle-question-mark">
+  <Quiz pregunta="Las tres solicitudes vienen de mantenimiento. Elige la que requiere principalmente análisis."
+    opciones={[
+      {texto:'Capturar y aprobar una orden de reparación.'},
+      {texto:'Comparar cada semana las fallas por equipo y su tiempo de reparación.', correcta:true},
+      {texto:'Activar un paro automático cuando una máquina excede su límite.'},
+    ]}
+    explicacion="Comparar fallas y tiempos requiere análisis. La orden se gestiona en una aplicación; el paro, en el sistema de control. Power BI puede analizar después los datos de ambos."
+  />
+  <Notas slot="notas" minutos={2} dice="Pedir una elección y una razón. Después revelar la respuesta y conectar con las tres preguntas de las áreas en la siguiente diapositiva." nota="La clave es identificar la función principal, no clasificar una herramienta como buena o mala. Una misma solución puede combinar captura, control y análisis sin asignar las tres funciones al reporte." />
+</EjemploReal>

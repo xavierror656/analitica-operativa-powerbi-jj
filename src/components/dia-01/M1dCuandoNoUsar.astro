@@ -1,0 +1,19 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+import Notas from '../ui/Notas.astro';
+---
+<EjemploReal diseno="datos" modulo="D1-M1d" titulo="Cuándo no usar Power BI como solución principal">
+  <div class="flex flex-col gap-8">
+    <TablaCurso columnas={['Lo que necesitas', 'Mejor punto de partida', 'Dónde sí aporta Power BI']} filas={[
+      ['Capturar fallas, corregir órdenes o aprobar solicitudes', 'Aplicación de captura, ERP o Power Apps', 'Analizar los registros y los tiempos del proceso'],
+      ['Resolver un cálculo puntual y editar unas cuantas celdas', 'Hoja de cálculo o consulta directa', 'Cuando el análisis debe repetirse y compartirse'],
+      ['Accionar una máquina o ejecutar un paro automático', 'Sistema de control industrial diseñado para esa función', 'Revisar tendencias, eventos e indicadores después'],
+    ]} />
+    <p><strong>Un reporte no sustituye el sistema que registra o ejecuta la operación.</strong> Puede integrarse con otras aplicaciones, pero cada una conserva su función.</p>
+  </div>
+  <Notas slot="notas" minutos={3}
+    dice="Ejemplo: registrar una reparación y analizar cuánto tardan las reparaciones son trabajos diferentes. El primero necesita captura; el segundo puede aprovechar Power BI. Para un cálculo de una sola vez, pregunta si mantener un modelo y un reporte aporta valor."
+    pregunta="¿Tu necesidad principal es registrar, ejecutar o analizar?"
+    nota="No afirmar que Power BI nunca admite acciones: puede integrar Power Apps y otras soluciones. La aplicación y la fuente resuelven escritura, validación y permisos. Fuente: https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/powerapps-custom-visual. La selección de herramientas de la tabla es orientación didáctica según la tarea, no una prohibición técnica. No equiparar visualización de datos recientes con control industrial." />
+</EjemploReal>

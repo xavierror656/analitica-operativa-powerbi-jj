@@ -1,0 +1,19 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Pasos from '../ui/Pasos.astro';
+import Notas from '../ui/Notas.astro';
+---
+<Mecanismo diseno="explicacion" modulo="D1-M1e" titulo="Cuándo todavía no conviene hacer un tablero">
+  <div class="flex flex-col gap-8">
+    <Pasos items={[
+      {t:'No hay una decisión que apoyar', d:'«Quiero un dashboard» no define el problema. Primero: quién lo usará, qué pregunta responderá y qué acción cambiará.'},
+      {t:'Las cifras no tienen una definición común', d:'Si dos áreas calculan scrap de forma distinta, acuerden numerador, denominador y periodo antes de publicar un KPI.'},
+      {t:'La fuente no tiene responsable ni actualización verificable', d:'Define quién corrige los datos, cuándo llegan y cuánto retraso tolera la decisión. Actualizar un reporte no corrige por sí solo el origen.'},
+    ]} />
+    <p class="texto-chico">Puedes explorar y perfilar datos para detectar problemas. Publica el indicador cuando su significado y su actualización estén claros.</p>
+  </div>
+  <Notas slot="notas" minutos={3}
+    dice="Un tablero puede mostrar una cifra con precisión visual y aun así no servir para decidir. Si alguien pide datos al segundo, primero hay que diseñar y comprobar toda la ruta de actualización."
+    pregunta="Si mañana aparece un número distinto, ¿quién puede explicar de dónde salió?"
+    nota="En Import, el modelo refleja la última carga; otros modos tienen distintos requisitos de consulta y actualización. Power BI puede apoyar escenarios de datos recientes con una arquitectura adecuada; no prometer inmediatez por el solo hecho de publicar. Fuente: https://learn.microsoft.com/en-us/power-bi/connect-data/refresh-data. No convertir la calidad perfecta en prerrequisito: el perfilado del día 1 sirve precisamente para diagnosticar y documentar problemas." />
+</Mecanismo>

@@ -12,6 +12,24 @@ Al terminar podrás:
 - Distinguir una corrección sustentada de un dato que necesita revisión.
 - Actualizar y justificar las diferencias en filas y piezas.
 
+## Cuándo no usar Power BI como solución principal
+
+Elige la herramienta por la tarea que necesitas resolver:
+
+| Necesidad | Mejor punto de partida | Papel de Power BI |
+|---|---|---|
+| Capturar fallas, corregir órdenes o aprobar solicitudes | Aplicación de captura, ERP o Power Apps | Analizar registros y tiempos del proceso |
+| Resolver un cálculo puntual y editar unas cuantas celdas | Hoja de cálculo o consulta directa | Compartir y repetir el análisis cuando eso aporte valor |
+| Accionar una máquina o ejecutar un paro automático | Sistema de control industrial diseñado para esa función | Analizar tendencias, eventos e indicadores |
+
+Un reporte puede integrarse con aplicaciones de captura; eso no lo convierte por sí solo en el sistema que valida, registra y ejecuta la operación. [Microsoft Learn: integración de Power Apps](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/powerapps-custom-visual).
+
+Antes de publicar un tablero, acuerda **qué decisión apoya, quién lo usará, cómo se define cada indicador y quién mantiene su fuente**. Si las áreas calculan scrap de forma distinta, define numerador, denominador y periodo antes de presentar una cifra común. Puedes usar Power Query para explorar y detectar problemas mientras aclaras estas reglas.
+
+Confirma también cuánto retraso admite la decisión. Publicar no garantiza datos instantáneos: el modo de conexión, la fuente y la configuración determinan cómo se actualizan. [Microsoft Learn: actualización de datos](https://learn.microsoft.com/en-us/power-bi/connect-data/refresh-data).
+
+**Ejemplo de elección:** comparar cada semana fallas por equipo y tiempo de reparación es una tarea de análisis apropiada para Power BI. Capturar la orden o activar un paro requiere la aplicación o el sistema de control correspondiente.
+
 ## Antes de comenzar
 
 1. Abre Power BI Desktop en Windows. Las prácticas de hoy se realizan en Desktop; no requieren publicar en el servicio.
