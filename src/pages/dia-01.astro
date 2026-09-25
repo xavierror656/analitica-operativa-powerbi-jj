@@ -25,6 +25,7 @@ import M4bArchivos from '../components/dia-01/M4bArchivos.astro';
 import M4cFilaAntesDespues from '../components/dia-01/M4cFilaAntesDespues.astro';
 import M4dChecklist from '../components/dia-01/M4dChecklist.astro';
 import M4ConectarFuentes from '../components/dia-01/M4ConectarFuentes.astro';
+import CapturaPowerQuery from '../components/dia-01/CapturaPowerQuery.astro';
 import M4TuTurno2Documenta from '../components/dia-01/M4TuTurno2Documenta.astro';
 import M4eResultadoEsperado from '../components/dia-01/M4eResultadoEsperado.astro';
 import M4fTransicion from '../components/dia-01/M4fTransicion.astro';
@@ -101,6 +102,20 @@ import M19PrimerasVisualizaciones from '../components/dia-01/M19PrimerasVisualiz
   <M4bArchivos />
   <M4cFilaAntesDespues />
   <M4dChecklist />
+  <CapturaPowerQuery
+    archivo="a1-obtener-datos-csv"
+    titulo="Conexión a un archivo CSV"
+    alt="Ventana Obtener datos de Power Query, con una flecha sobre Texto o CSV."
+    indicacion="En Obtener datos, elige Texto o CSV y abre fact_produccion.csv."
+    comprueba="Conecta cada uno de los ocho CSV por separado: sus estructuras son diferentes."
+  />
+  <CapturaPowerQuery
+    archivo="a1-vista-previa-csv"
+    titulo="Vista previa antes de transformar"
+    alt="Vista previa del CSV en UTF-8, delimitado por coma; una flecha señala Transform data."
+    indicacion="Revisa UTF-8 y delimitador coma. Elige Transformar datos (Transform data)."
+    comprueba="752 y 48 deberían ser 7.52 y 0.48. Revisa Tipo cambiado y convierte los decimales con configuración regional Inglés (Estados Unidos)."
+  />
   <M4ConectarFuentes />
   <M4TuTurno2Documenta />
   <M4eResultadoEsperado />
@@ -109,9 +124,23 @@ import M19PrimerasVisualizaciones from '../components/dia-01/M19PrimerasVisualiz
   <!-- 10:45 Núcleo 2: Turnos, líneas y lotes en orden (90 min) -->
   <M5aContexto />
   <M5eDuplicados />
+  <CapturaPowerQuery
+    archivo="a1-quitar-duplicados"
+    titulo="Quitar duplicados exactos"
+    alt="Menú Reducir filas y Quitar filas, con una flecha sobre Quitar duplicados."
+    indicacion="Primero filtra Total día. Selecciona todas las columnas originales y elige Quitar duplicados."
+    comprueba="Después de retirar subtotales quedan 7,175 filas. Al quitar 108 duplicados exactos deben quedar 7,067."
+  />
   <M5bLineaInconsistente />
   <M5cTurnoSupervisor />
   <M5dLoteCeros />
+  <CapturaPowerQuery
+    archivo="a1-recortar-espacios"
+    titulo="Recortar espacios en tipo_defecto"
+    alt="Menú contextual de tipo_defecto con Transformar y Recortar señalado por una flecha."
+    indicacion="En fact_calidad, haz clic derecho en tipo_defecto y elige Transformar → Recortar."
+    comprueba="Los códigos sin espacios deben coincidir con dim_defecto[defecto_id]."
+  />
   <M5TurnosLineas />
   <M5fChecklistCierre />
   <M6Transicion />
@@ -120,6 +149,13 @@ import M19PrimerasVisualizaciones from '../components/dia-01/M19PrimerasVisualiz
   <M7CadaPasoQueda />
   <M8PowerQueryAFondo />
   <M8cPerfilado />
+  <CapturaPowerQuery
+    archivo="a1-perfil-conjunto-completo"
+    titulo="Perfilado sobre el conjunto completo"
+    alt="Power Query con calidad, distribución y perfil de columna activos; una flecha señala el perfilado sobre el conjunto completo."
+    indicacion="En Vista, activa Calidad, Distribución y Perfil de columna. Abajo, cambia las primeras 1,000 filas por el conjunto completo."
+    comprueba="El perfil debe cubrir todos los registros. Un texto válido todavía puede contener una línea mal escrita."
+  />
   <M8dConexionCarpeta />
   <M8eParametros />
   <M8bChequeo />

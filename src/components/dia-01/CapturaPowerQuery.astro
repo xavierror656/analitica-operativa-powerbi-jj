@@ -1,0 +1,37 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+
+interface Props {
+  archivo: string;
+  titulo: string;
+  alt: string;
+  indicacion: string;
+  comprueba: string;
+}
+const { archivo, titulo, alt, indicacion, comprueba } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<EjemploReal diseno="captura" titulo={titulo}>
+  <div class="captura-demostracion">
+    <figure>
+      <img src={`${base}/imagenes/capturas/dia-01/${archivo}.png`} alt={alt} />
+    </figure>
+    <div class="captura-indicaciones">
+      <p>{indicacion}</p>
+      <div class="captura-comprueba"><strong>Comprueba</strong><p>{comprueba}</p></div>
+    </div>
+  </div>
+  <Notas slot="notas" minutos={0} dice={indicacion} nota={`Apoyo visual dentro del tiempo de la actividad, sin minutos adicionales. ${comprueba}`} />
+</EjemploReal>
+
+<style>
+  .captura-demostracion { display:grid; grid-template-columns:minmax(0,1fr) 390px; align-items:center; gap:36px; }
+  :global(.reveal) .captura-demostracion figure { margin:0; min-width:0; }
+  :global(.reveal) .captura-demostracion img { display:block; width:100%; height:710px; max-width:100%; max-height:none; object-fit:contain; margin:0; border:0; box-shadow:none; }
+  .captura-indicaciones { display:flex; flex-direction:column; gap:40px; }
+  :global(.reveal) .captura-indicaciones p { margin:0; font-size:30px; line-height:1.4; }
+  .captura-comprueba { border-top:5px solid var(--day-color); padding-top:24px; }
+  .captura-comprueba strong { display:block; margin-bottom:12px; color:var(--day-color); font-size:28px; }
+</style>
