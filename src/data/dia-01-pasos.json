@@ -131,15 +131,15 @@
   {
     "id": "turnos",
     "titulo": "Recupera el turno desde la hora",
-    "ubicacion": "fact_produccion · primero sigue la receta «Horas» de la guía",
+    "ubicacion": "Inicio → Transformar datos → fact_produccion · Power Query (M)",
     "pasos": [
       {
-        "accion": "Normaliza hora_inicio",
-        "detalle": "Usa la receta Horas de la guía hasta obtener tipo Hora. Conserva su texto original."
+        "accion": "Revisa hora_inicio",
+        "detalle": "Puede estar como Texto o como Hora. Esta fórmula interpreta ambos tipos sin modificar la columna original."
       },
       {
         "accion": "Agrega turno_limpio",
-        "detalle": "Agregar columna → Columna personalizada. Pega la fórmula; después asigna tipo Texto."
+        "detalle": "Agregar columna → Columna personalizada. Nombre: turno_limpio. Pega desde let, sin turno_limpio =. Acepta y asigna tipo Texto."
       },
       {
         "accion": "Contrasta con dim_turno",
@@ -150,9 +150,10 @@
         "detalle": "Renombra turno a turno_original y turno_limpio a turno. Documenta cualquier «Revisar»."
       }
     ],
-    "formula": "if [hora_inicio] = #time(6,0,0) then \"1\"\nelse if [hora_inicio] = #time(14,0,0)\nthen \"2\"\nelse if [hora_inicio] = #time(22,0,0)\nthen \"3\"\nelse \"Revisar\"",
-    "comprueba": "En este dataset se recuperan 308 registros con supervisor en turno después de depurar producción.",
+    "formula": "let\n valor = [hora_inicio],\n hora = if valor = null then null\n else if Value.Is(valor, type time) then valor\n else Time.FromText(\n   Text.Replace(Text.Replace(\n     Text.Lower(Text.Trim(Text.From(valor))),\n     \"a.m.\", \"AM\"), \"p.m.\", \"PM\"),\n   [Culture = \"en-US\"])\nin\n if hora = #time(6,0,0) then \"1\"\n else if hora = #time(14,0,0) then \"2\"\n else if hora = #time(22,0,0) then \"3\"\n else \"Revisar\"",
+    "comprueba": "6:00 a.m. / 06:00 → 1; 2:00 p.m. / 14:00 → 2; 10:00 p.m. / 22:00 → 3.",
     "entrega": "El nombre del supervisor no determina el turno; usa la hora y la regla del ejercicio.",
+    "ayuda": "Esta fórmula es M: úsala en Columna personalizada de Power Query, no en Nueva columna ni Nueva medida del modelo. Si ya creaste turno_limpio, edita el paso con el engrane en Pasos aplicados. null y horas distintas de 06:00, 14:00 y 22:00 quedan como Revisar; texto que no se pueda convertir produce Error y debe inspeccionarse. La conversión es interna: sigue la receta Horas para dejar hora_inicio con tipo Hora. Después de depurar producción se recuperan 308 registros con supervisor en turno.",
     "enlaces": [
       "horas"
     ]
