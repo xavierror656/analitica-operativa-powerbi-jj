@@ -1,7 +1,7 @@
 {
   "2-1": {
     "objetivo": "Construye una estrella y distingue la propagación de filtros de la duplicación de filas al combinar y expandir tablas.",
-    "abre": "Una copia del PBIX del Día 1, montaje.md y la carpeta crudos/ del paquete 2.1.",
+    "abre": "Una copia de A1 ya preparada con las diez consultas del nuevo caso según montaje.md y la carpeta crudos/ del paquete 2.1.",
     "construye": "Modelo A2 con 16 relaciones y comparación del microcaso antes y después de expandir.",
     "comprueba": "Sin filtros: 3,761,757 piezas y 117,998 rechazadas. Explica el microcaso de 600 a 1,200 piezas.",
     "entrega": "Practicas_A2_Apellido.pbix y capturas del modelo, las tarjetas y el microcaso."

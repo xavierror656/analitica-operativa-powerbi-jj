@@ -16,7 +16,7 @@ Si vienes del caso anterior, en esta copia renombra sus consultas finales con el
 
 Si el grupo ya limpió este caso en Día 1, reutilizar esas consultas. Si llega con el caso anterior, el instructor prepara esta transición antes del bloque 2.1 para conservar sus 90 minutos; el participante realiza la conexión y comprueba los pasos. No se entrega un CSV «limpio» como sustituto de la práctica.
 
-**Punto de entrada de 2.1:** las diez consultas de este caso deben estar listas para actualizar y pasar los controles anteriores. Los primeros diez minutos sirven para reconectar y comprobar ese trabajo. Si hay que importar y limpiar desde cero, completar una sesión de transición antes de empezar; los 90 minutos no incluyen esa preparación. Registrar el tiempo real del primer pilotaje antes de prometer esa duración al grupo.
+**Punto de entrada de 2.1:** las diez consultas de este caso deben estar listas para actualizar y pasar los controles anteriores en una copia por participante. Los tres hechos se combinan por carpeta; seis dimensiones y `fact_exposicion_equipo` son CSV individuales. Los primeros diez minutos sirven para reconectar y comprobar ese trabajo. Si hay que importar y limpiar los 54 CSV de hechos desde cero, completa una sesión de transición antes de empezar; los 90 minutos no incluyen esa preparación. Registra el tiempo real del primer pilotaje antes de prometer esa duración al grupo.
 
 ## Relaciones al terminar Día 2
 

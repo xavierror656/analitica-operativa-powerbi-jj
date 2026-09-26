@@ -7,14 +7,14 @@
     "titulo": "Armar el modelo",
     "proposito": "Construir el esquema estrella del caso Prácticas en una copia del archivo del Día 1 y distinguir dos operaciones: una relación propaga filtros; combinar y expandir tablas puede repetir filas e inflar una suma.",
     "preparacion": [
-      "Carpeta con fact_produccion y fact_calidad del conjunto sintético, más las dimensiones dim_linea, dim_parte, dim_turno, dim_defecto y una dim_equipo (equipo_id, linea_id, descripción).",
-      "Cifra de control anotada en el pizarrón: total de piezas_producidas en la fuente cruda para el periodo completo.",
+      "Copia de A1 con el caso de diez tablas ya importado y depurado según montaje.md: tres hechos combinados por carpeta, seis dimensiones y fact_exposicion_equipo individuales. A1 original intacto.",
+      "Cifras de control del caso nuevo: 5,544 filas y 3,761,757 piezas de producción; 11,088 filas y 117,998 piezas rechazadas de calidad.",
       "Dibujo preparado de tres filas de producción y dos eventos de mantenimiento en la misma fecha, para explicar la multiplicación de filas."
     ],
     "pasos": [
       {
         "minutos": 10,
-        "texto": "Abrir el archivo del Día 1 y cargar fact_produccion y fact_calidad reutilizando el patrón de conexión a carpeta que ya conocen."
+        "texto": "Abrir la copia preparada con las diez consultas del caso nuevo; actualizar y comprobar filas, tipos y sumas antes de crear relaciones. La transición desde A1 se prepara antes de los 90 minutos."
       },
       {
         "minutos": 15,

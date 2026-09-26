@@ -4,11 +4,11 @@
     "pasos": [
       [
         10,
-        "Conecta las capturas del caso",
+        "Comprueba el caso ya preparado",
         [
-          "Abre una copia del PBIX del Día 1 y usa la carpeta de este paquete.",
-          "Combina producción y calidad por separado; verifica la limpieza descrita en montaje.md.",
-          "Crea una tarjeta de piezas sin filtros y anota el total."
+          "Abre la copia de A1 preparada con las diez consultas del nuevo caso; conserva A1 original. La transición completa de montaje.md se realiza antes de estos 90 minutos.",
+          "Actualiza las tres familias de hechos combinadas por separado y las siete consultas individuales; comprueba filas y tipos de montaje.md.",
+          "Crea una tarjeta de piezas sin filtros: 3,761,757; calidad: 117,998 rechazadas. Si difiere, corrige la carga antes de crear relaciones."
         ]
       ],
       [
