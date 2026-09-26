@@ -41,7 +41,7 @@ test('descarga Word del día 1 contiene todas las recetas, tablas y fórmulas de
   const recetas = JSON.parse(readFileSync('src/data/dia-01-pasos.json', 'utf8'));
   for (const receta of recetas) {
     assert.ok(texto.includes(receta.titulo));
-    assert.ok(bookmarks.has(`paso_${receta.id}`));
+    assert.ok(bookmarks.has(`paso_${receta.id.replaceAll('-', '_')}`));
   }
   for (const link of nodos(doc, 'hyperlink')) {
     const anchor = link.getAttributeNS(ns, 'anchor');

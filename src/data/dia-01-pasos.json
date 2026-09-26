@@ -213,23 +213,23 @@
   {
     "id": "limpieza",
     "titulo": "Resuelve la limpieza en este orden",
-    "ubicacion": "En pareja · Power Query y guía abiertos",
+    "ubicacion": "Inicio → Transformar datos · selecciona la consulta en el panel izquierdo",
     "pasos": [
       {
         "accion": "0–8 min · Retira filas justificadas",
-        "detalle": "Sigue «Duplicados»: primero Total día, luego copias exactas sobre columnas originales."
+        "detalle": "fact_produccion: filtro de turno → excluye Total día. Selecciona todas las columnas originales → Inicio → Quitar filas → Quitar duplicados. Hazlo una sola vez."
       },
       {
         "accion": "8–20 min · Limpia líneas y fechas",
-        "detalle": "Sigue las recetas «Líneas» y «Fechas». Crea columnas limpias y conserva las originales."
+        "detalle": "Agregar columna → Columna personalizada. Usa las recetas Líneas y Fechas; el nombre va separado de la fórmula M. Conserva originales antes de renombrar."
       },
       {
         "accion": "20–40 min · Horas, turnos y lotes",
-        "detalle": "Aplica «Horas» antes de «Turnos»; después «Lotes» en producción y calidad. Cambien de operador."
+        "detalle": "Aplica Horas y Turnos en producción. Para Lotes: columna lote como Texto → Columna personalizada → nombre lote_limpio. Repite en fact_calidad."
       },
       {
         "accion": "40–53 min · Revisa y documenta",
-        "detalle": "Calidad: selecciona tipo_defecto → Transformar → Formato → Recortar. Mantén null en horas_paro."
+        "detalle": "fact_calidad: tipo_defecto → Transformar → Formato → Recortar. Producción: conserva null en horas_paro. Quita filtros de exploración y comprueba la siguiente diapositiva."
       }
     ],
     "comprueba": "Producción: 7,067 filas; 5,822,881 piezas; 208 horas_paro faltantes. Justifica cualquier diferencia.",
@@ -242,7 +242,36 @@
       "turnos",
       "lotes"
     ],
-    "ayuda": "Primero completa la receta Duplicados; normalizar antes puede convertir registros diferentes en filas iguales. Las recetas detalladas están enlazadas debajo. Usa Número entero para piezas y Texto para códigos y lotes. Para decimales con punto: clic derecho en encabezado → Cambiar tipo → Usar configuración regional → Número decimal → Inglés (Estados Unidos). Conserva los nulos de horas_paro."
+    "ayuda": "Primero completa la receta Duplicados; normalizar antes puede convertir registros diferentes en filas iguales. Si ya creaste columnas limpias, vuelve al paso anterior a esas transformaciones para comprobar dónde retiraste duplicados; no repitas la deduplicación sobre columnas modificadas. Estas fórmulas son M: se ejecutan en Power Query, no en Nueva columna o Nueva medida del modelo. En Columna personalizada escribe el nombre en su casilla y pega solo la fórmula. Para Error en lote_limpio, pulsa una celda Error y lee Detalles: confirma que lote todavía existe con ese nombre, tiene tipo Texto y contiene un guion normal (-). El CSV trae ejemplos como 2503-001; las filas Total día de producción tienen lote vacío y deben haberse retirado. Si ya renombraste lote a lote_original, revisa la referencia y el orden de Pasos aplicados. No uses Quitar errores para ocultar el problema. Para decimales con punto: clic derecho en encabezado → Cambiar tipo → Usar configuración regional → Número decimal → Inglés (Estados Unidos). Si Tipo cambiado ya alteró el valor, corrige ese paso desde el texto original. Usa Número entero para piezas y conserva los nulos de horas_paro."
+  },
+  {
+    "id": "comprobar-limpieza",
+    "titulo": "Comprueba la limpieza contra los CSV",
+    "ubicacion": "Power Query → Vista → perfilado sobre el conjunto completo",
+    "pasos": [
+      { "accion": "Revisa códigos y lotes", "detalle": "Filtra linea_id: solo L1–L4. En producción, turno: texto 1, 2 o 3. lote: 2503-001 → 2503-0001 en producción y calidad. Quita esos filtros al terminar." },
+      { "accion": "Cuenta sin alterar la consulta", "detalle": "Clic derecho en fact_produccion → Duplicar. En la copia: Transformar → Contar filas. Anota 7,067 y elimina solo la copia temporal." },
+      { "accion": "Suma las piezas", "detalle": "Duplica otra vez fact_produccion. Selecciona piezas_producidas (Número entero) → Transformar → Estadísticas → Suma. Anota 5,822,881 y elimina la copia." },
+      { "accion": "Revisa vacíos y calidad", "detalle": "Perfil de horas_paro: 208 vacíos, se conservan. fact_calidad: 26,825 filas, sin deduplicar eventos. Registra y resuelve cualquier Error antes de aplicar." }
+    ],
+    "comprueba": "Producción: 7,187 − 12 subtotales − 108 copias = 7,067. Calidad conserva sus 26,825 eventos.",
+    "entrega": "Anota observado y esperado en la bitácora. Toda exclusión adicional debe explicar sus filas y piezas.",
+    "ayuda": "Para contar los vacíos exactamente, duplica fact_produccion, filtra horas_paro dejando solo null y usa Transformar → Contar filas: 208. Elimina únicamente esa copia. Para calidad usa otra copia temporal y Contar filas. No ejecutes Contar filas ni Suma en las consultas principales: convierten la tabla en un valor. Si los controles difieren, inspecciona en orden: filtro Total día, duplicados sobre columnas originales, filtros exploratorios y conversiones de tipos. No vuelvas a quitar duplicados para forzar el resultado. Los turnos 1/2/3 se contrastan con dim_turno[nombre]; turno_id contiene T1/T2/T3.",
+    "enlaces": ["duplicados", "limpieza"]
+  },
+  {
+    "id": "guardar-limpieza",
+    "titulo": "Guarda y deja listo el laboratorio",
+    "ubicacion": "Desde el editor de Power Query → Power BI Desktop",
+    "pasos": [
+      { "accion": "Conserva las ocho consultas", "detalle": "Retira las copias temporales de conteo y los filtros de exploración. Guarda columnas originales y registra los errores pendientes en la bitácora." },
+      { "accion": "Aplica y guarda", "detalle": "Inicio → Cerrar y aplicar. En Desktop: Archivo → Guardar como → Apellido_Nombre_A1.pbix. Conserva la carpeta de los ocho CSV." },
+      { "accion": "Retoma el mismo archivo", "detalle": "Para continuar: Inicio → Transformar datos. Trabaja en estas consultas; no importes otra vez los CSV. Sigue con perfilado, RutaDatos y columnas condicionales." }
+    ],
+    "comprueba": "Ocho tablas base separadas: tres fact_ y cinco dim_. PBIX y bitácora guardados.",
+    "entrega": "Si Cerrar y aplicar falla, vuelve a la consulta y al paso indicados por el error; corrige y vuelve a comprobar.",
+    "ayuda": "Las tablas son fact_produccion, fact_calidad, fact_mantenimiento, dim_linea, dim_parte, dim_turno, dim_defecto y dim_calendario. No borres una consulta base ni sustituyas errores por cero para poder guardar. Una consulta de diagnóstico que debas conservar puede permanecer con Habilitar carga desmarcado. Guardar el PBIX no incorpora los CSV como archivos de origen portátiles: conserva su carpeta para actualizar.",
+    "enlaces": ["comprobar-limpieza", "perfilado", "parametro"]
   },
   {
     "id": "perfilado",

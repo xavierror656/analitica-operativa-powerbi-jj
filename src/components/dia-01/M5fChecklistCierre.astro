@@ -1,23 +1,15 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
-import Chips from '../ui/Chips.astro';
+import RecetaGuiada from './RecetaGuiada.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
-<EjemploReal diseno="ejemplo" modulo="D1-M5f" titulo="Antes del receso, revisa contra esto" icono="list-checks">
-  <Chips
-    items={[
-      'linea_id: un solo formato',
-      'turno: texto 1 / 2 / 3, validado por hora_inicio',
-      'lote: ceros completos',
-      'Duplicados exactos de producción retirados y contados',
-      'Pasos nombrados, no "Cambié tipo"',
-    ]}
-  />
+<EjemploReal diseno="receta" modulo="D1-M5f" titulo="Comprueba la limpieza contra los CSV" icono="list-checks">
+  <RecetaGuiada id="comprobar-limpieza" />
   <Notas
     slot="notas"
     minutos={6}
-    dice="Cinco cosas, nada más. Si les falta una, es más rápido resolverla ahora que después de comer con el archivo ya avanzado."
+    dice="Medir en copias temporales, nunca reemplazar las tablas principales por un conteo o una suma. Si no coincide, localizar el paso que cambia el control."
     nota="Este checklist se repite, ampliado, en el taller de evidencia de la tarde. Aquí es la primera pasada."
   />
 </EjemploReal>
