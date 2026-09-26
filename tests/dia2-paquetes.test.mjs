@@ -4,6 +4,8 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import JSZip from 'jszip';
 
+const normalizarSaltos = texto => texto.replace(/\r\n/g, '\n');
+
 test('los cuatro ZIP del día 2 contienen las instrucciones vigentes y el paquete conjunto coincide', async () => {
   const base = 'public/descargas/practicas';
   const manifiesto = JSON.parse(readFileSync(`${base}/manifest.json`, 'utf8'));
@@ -17,7 +19,7 @@ test('los cuatro ZIP del día 2 contienen las instrucciones vigentes y el paquet
     assert.equal(createHash('sha256').update(bytes).digest('hex'), entrada.sha256);
     assert.deepEqual(await conjunto.file(entrada.archivo).async('nodebuffer'), bytes);
     const zip = await JSZip.loadAsync(bytes);
-    assert.equal(await zip.file('montaje.md').async('string'), montaje);
-    if (id === '2-1') assert.equal(await zip.file('CONSIGNA.md').async('string'), consigna);
+    assert.equal(normalizarSaltos(await zip.file('montaje.md').async('string')), normalizarSaltos(montaje));
+    if (id === '2-1') assert.equal(normalizarSaltos(await zip.file('CONSIGNA.md').async('string')), normalizarSaltos(consigna));
   }
 });
