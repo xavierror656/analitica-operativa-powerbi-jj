@@ -7,13 +7,14 @@ import { existsSync } from 'node:fs';
 for (const r of referencias) {
   if (r.archivo && (!/^dia-0[1-5]-referencia\.pbix$/.test(r.archivo) || !r.revision || !existsSync(`public/descargas/referencias/${r.archivo}`))) throw new Error(`Referencia del día ${r.dia}: falta archivo o revisión`);
 }
+const proyectoDisponible = (dia: number) => existsSync(`public/descargas/referencias/dia-0${dia}-referencia-pbip.zip`);
 ---
 <CursoLayout titulo="Modelos de referencia" descripcion="Archivos del caso base para comparar tu trabajo y retomar la clase desde el cierre de cada día.">
   <p>Conserva tu entrega antes de abrir una referencia. Al recibir un modelo, ajusta RutaDatos a tu carpeta y comprueba la actualización con los controles de la guía.</p>
   <div class="activity-grid">{referencias.map(r=><section class="card activity-card" data-dia={r.dia}>
     <DistintivoDia dia={r.dia}/>
     <h2>Día {r.dia} · {r.titulo}</h2>
-    {r.archivo ? <><Boton href={'/descargas/referencias/'+r.archivo} download>Descargar referencia A{r.dia}</Boton><p>Revisión: {r.revision}</p></> : <p>El modelo de referencia de este día todavía no está disponible.</p>}
+    {r.archivo ? <><Boton href={'/descargas/referencias/'+r.archivo} download>Descargar referencia A{r.dia}</Boton><p>Revisión: {r.revision}</p></> : proyectoDisponible(r.dia) ? <p>Proyecto de referencia disponible al final de la práctica del día {r.dia}.</p> : <p>El modelo de referencia de este día todavía no está disponible.</p>}
     <a href={'/dia-0'+r.dia+'/guia/'}>Consultar guía y controles del día {r.dia}</a>
   </section>)}</div>
 </CursoLayout>
