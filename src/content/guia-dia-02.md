@@ -140,12 +140,12 @@ Antes de cada prueba, **limpia todos los filtros**, incluyendo selecciones de ot
 | Línea L1 | 1,340,826 | 33,170 | 23,409 |
 | Fecha 01/03/2025 + línea L1 | 2,301 | 77 | 21 |
 | Turno 1 | 1,954,605 | 144,882 | 93,298 |
+| Parte P-1001 | 1,189,291 | 29,629 | 93,298 |
+| Defecto D01 | 5,822,881 | 24,235 | 93,298 |
 
 ![Página Control_A2 con las tarjetas mostrando 2,301, 77 y 21; los segmentadores Línea (L1) y Fecha (2025 marzo 1) aparecen resaltados al mismo tiempo, ambos con el borde de selección activo](/imagenes/capturas/dia-02/a2-segmentadores-linea-fecha-combinados.png)
 
 *L1 y 01/03/2025 seleccionados a la vez, con Ctrl, en dos segmentadores distintos. Así se ve el checkpoint «Fecha 01/03/2025 + línea L1» cumplido: ambos bordes de selección visibles y las tres tarjetas coinciden con la fila de arriba.*
-| Parte P-1001 | 1,189,291 | 29,629 | 93,298 |
-| Defecto D01 | 5,822,881 | 24,235 | 93,298 |
 
 ![Tabla con linea_id y Suma de piezas_producidas: L1 1,340,826; L2 1,251,016; L3 1,682,162; L4 1,548,877; Total 5,822,881](/imagenes/capturas/dia-02/a2-tabla-linea-piezas-producidas.png)
 
