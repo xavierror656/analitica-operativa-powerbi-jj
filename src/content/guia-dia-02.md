@@ -200,9 +200,11 @@ Esto se hace sobre el modelo, en **Vista de informe** (panel **Datos**, a la der
 
 **Ordena `nombre_mes` por `mes`** (si no, sale enero después de julio, en orden alfabético):
 
-1. En el panel Datos, busca el campo **`nombre_mes` independiente** — no el que quedó anidado dentro de la jerarquía; ese está más abajo en el árbol de `dim_calendario`, junto a `mes` y `periodo_fiscal`. Solo el independiente activa el paso siguiente.
-2. Haz **clic izquierdo, una sola vez**, sobre ese `nombre_mes`. Arriba de la cinta aparecen dos pestañas nuevas: **Herramientas de tablas** y **Herramientas de columnas**. Si solo aparece la primera, seleccionaste el campo equivocado.
-3. Ve a **Herramientas de columnas → Ordenar por columna → mes**.
+1. En **Vista Modelo**, abre el panel **Propiedades** (columna derecha; si aparece colapsado como una pestaña vertical, haz clic para expandirlo).
+2. Haz clic izquierdo, una sola vez, sobre el campo `nombre_mes` en su tabla. En Propiedades, abre la sección **Avanzado**.
+3. En **Ordenar por columna**, elige **`mes`**.
+
+El panel Propiedades siempre funciona, esté el campo anidado en una jerarquía o no — es más confiable que buscar la pestaña **Herramientas de columna** en la cinta, que a veces no aparece según dónde hiciste clic.
 
 No selecciones `anio` para este paso: ordenar `anio` por `mes` da un error, porque un mismo año corresponde a varios meses. Los meses se repiten entre años: incluye `anio` al comparar periodos.
 
@@ -222,10 +224,41 @@ Expandir un nivel es solo navegación visual: no crea una relación ni corrige u
 
 ### Columnas, formato y organización
 
-- Organiza las dimensiones y los hechos en la vista Modelo y añade descripciones de propósito, granularidad y límites.
-- Oculta claves redundantes de los hechos en la vista de informe para favorecer los campos de las dimensiones. Conserva los datos para las relaciones y la auditoría.
-- Deja disponibles las dimensiones necesarias para segmentar. No ocultes las ocho tablas completas.
-- Usa **No resumir** para identificadores; formato entero para piezas y minutos. En cada visual confirma la agregación intencional.
+**Organiza el diagrama y documenta cada tabla:**
+
+1. Acomoda las cajas de la Vista Modelo con las dimensiones de un lado y los hechos del otro; ayuda a leer el diagrama, no cambia nada del modelo.
+2. Haz clic, una vez, en el **título** de una tabla (no en un campo de adentro) para seleccionarla completa.
+3. En el panel **Propiedades → General**, escribe en **Descripción** qué representa la tabla, su grano y su límite conocido. Por ejemplo, para `fact_produccion`: «Producción por línea, turno y parte. Una fila = un turno de una línea para una parte en una fecha.» Repite al menos en las 3 tablas de hechos y en `dim_calendario`.
+
+**Oculta las claves repetidas, solo en las tablas de hechos:**
+
+Cada hecho tiene columnas que existen únicamente para conectar una relación (`linea_id`, `parte_id`, `turno`…) y que ya tienen su versión más clara en la dimensión correspondiente (`dim_linea[nombre_linea]`). Ocúltalas para que, al construir un visual, se use el campo de la dimensión:
+
+1. Dentro de la caja de un hecho, pasa el mouse sobre el campo a ocultar. Aparece un icono de **ojo** a la derecha de esa fila.
+2. Haz clic en el ojo. El campo queda oculto de la Vista de informe, pero sigue activo para la relación.
+
+| Tabla | Campos a ocultar |
+|---|---|
+| `fact_produccion` | `linea_id`, `parte_id`, `turno`, `fecha` |
+| `fact_calidad` | `linea_id`, `parte_id`, `tipo_defecto`, `fecha` |
+| `fact_mantenimiento` | `linea_id`, `fecha_evento` |
+
+No ocultes columnas de piezas, horas, duración ni las columnas `_original`: esas sí se usan para análisis y auditoría. **No ocultes ninguna tabla de dimensión completa** — ahí viven los segmentadores que armaste en la sección 5.
+
+**Corrige la agregación por defecto de los campos numéricos:**
+
+En el diagrama, un símbolo **Σ** antes del nombre de un campo indica que Power BI le puso **Suma** como agregación automática. Eso está bien para `piezas_producidas` o `duracion_min`, pero no tiene sentido para un año o una capacidad estándar.
+
+![Panel Propiedades en Vista Modelo, sección Avanzado, con el campo anio seleccionado y el menú Resumir por desplegado mostrando la opción Ninguno resaltada](/imagenes/capturas/dia-02/a2-propiedades-resumir-por-ninguno.png)
+
+*Con el campo seleccionado, en Propiedades → Avanzado → **Resumir por**, cambia de Suma a **Ninguno**.*
+
+1. Selecciona `anio` en `dim_calendario` y aplica el cambio de arriba.
+2. Repite con `capacidad_hora` (`dim_linea`) y `estandar_hora` (`dim_parte`).
+
+En cada visual que uses después, confirma la agregación mostrada: si una tarjeta o tabla suma algo que no debería sumarse, revisa este ajuste antes de sospechar del modelo.
+
+**Una limitación que no se corrige aquí:** las horas de producción del generador pueden repetirse cuando varias partes comparten un mismo turno. No las sumes hoy como horas únicas de línea ni las uses para calcular disponibilidad; anótalo como pendiente en tu bitácora.
 - Las horas de producción del generador pueden repetirse por registros de distintas partes en un mismo turno. No se suman hoy como horas únicas de línea ni se usan para calcular disponibilidad.
 
 ### Tabla oculta y consulta sin carga no son lo mismo
