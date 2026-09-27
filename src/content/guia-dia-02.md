@@ -186,10 +186,39 @@ Si presentas piezas producidas por tipo de defecto, el total puede repetirse en 
 
 ### Jerarquías
 
-- En `dim_calendario`, crea año → mes → fecha usando `anio`, `nombre_mes` y `fecha`.
-- Ordena `nombre_mes` por `mes`. Los meses se repiten entre años: incluye `anio` al comparar periodos.
-- En `dim_linea`, crea área → nombre de línea con `area` y `nombre_linea`.
-- Prueba expandir niveles en una matriz. Una jerarquía facilita navegación; no crea una relación ni corrige una que esté mal.
+Esto se hace sobre el modelo, en **Vista de informe** (panel **Datos**, a la derecha) o en **Vista Modelo**. Power Query ya no se usa después de A1.
+
+**En `dim_calendario`, año → mes → fecha:**
+
+1. En el panel Datos, expande `dim_calendario`. Clic derecho en **`anio`** → **Crear jerarquía**.
+2. Clic derecho en **`nombre_mes`** → **Agregar a jerarquía existente** → elige la jerarquía que acabas de crear. Repite con **`fecha`**.
+3. Dentro de la jerarquía, ordena los niveles **`anio` → `nombre_mes` → `fecha`**, de lo general a lo específico.
+
+![Panel Datos con clic derecho sobre el campo anio y el menú contextual mostrando Crear jerarquía resaltado; la cinta superior ya muestra las pestañas Herramientas de tablas y Herramientas de columnas](/imagenes/capturas/dia-02/a2-crear-jerarquia-calendario.png)
+
+*Clic derecho sobre el campo, no sobre la tabla. Al seleccionar un campo con clic izquierdo aparecen las pestañas de la cinta; el clic derecho abre el menú con Crear jerarquía.*
+
+**Ordena `nombre_mes` por `mes`** (si no, sale enero después de julio, en orden alfabético):
+
+1. En el panel Datos, busca el campo **`nombre_mes` independiente** — no el que quedó anidado dentro de la jerarquía; ese está más abajo en el árbol de `dim_calendario`, junto a `mes` y `periodo_fiscal`. Solo el independiente activa el paso siguiente.
+2. Haz **clic izquierdo, una sola vez**, sobre ese `nombre_mes`. Arriba de la cinta aparecen dos pestañas nuevas: **Herramientas de tablas** y **Herramientas de columnas**. Si solo aparece la primera, seleccionaste el campo equivocado.
+3. Ve a **Herramientas de columnas → Ordenar por columna → mes**.
+
+No selecciones `anio` para este paso: ordenar `anio` por `mes` da un error, porque un mismo año corresponde a varios meses. Los meses se repiten entre años: incluye `anio` al comparar periodos.
+
+**En `dim_linea`, área → nombre de línea**, mismo procedimiento: clic derecho en **`area`** → **Crear jerarquía**, después clic derecho en **`nombre_linea`** → **Agregar a jerarquía existente**.
+
+**Prueba expandir niveles en una matriz:**
+
+1. En un espacio vacío de la página, agrega un visual de **Matriz** (no Tabla).
+2. Arrastra la jerarquía completa de `dim_linea` a **Filas**, y `fact_produccion[piezas_producidas]` a **Valores**.
+3. Debe mostrar solo **Ensamble** y **Empaque**, cada uno con una flecha para expandir. Al expandir, aparecen las líneas de esa área sin que cambie el total del área.
+
+![Matriz expandida: Empaque con Línea 3 y Línea 4, Ensamble con Línea 1 y Línea 2, y un total de 5,822,881 que coincide con el de las tarjetas](/imagenes/capturas/dia-02/a2-matriz-jerarquia-linea-expandida.png)
+
+*Cada área expandida muestra sus líneas sin alterar el subtotal del área ni el total general, 5,822,881 — la misma cifra de conciliación de A1.*
+
+Expandir un nivel es solo navegación visual: no crea una relación ni corrige una que esté mal. Si una relación del modelo estuviera rota, armar esta jerarquía no la arregla.
 
 ### Columnas, formato y organización
 
