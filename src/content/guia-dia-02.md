@@ -259,7 +259,6 @@ En el diagrama, un símbolo **Σ** antes del nombre de un campo indica que Power
 En cada visual que uses después, confirma la agregación mostrada: si una tarjeta o tabla suma algo que no debería sumarse, revisa este ajuste antes de sospechar del modelo.
 
 **Una limitación que no se corrige aquí:** las horas de producción del generador pueden repetirse cuando varias partes comparten un mismo turno. No las sumes hoy como horas únicas de línea ni las uses para calcular disponibilidad; anótalo como pendiente en tu bitácora.
-- Las horas de producción del generador pueden repetirse por registros de distintas partes en un mismo turno. No se suman hoy como horas únicas de línea ni se usan para calcular disponibilidad.
 
 ### Tabla oculta y consulta sin carga no son lo mismo
 
@@ -280,6 +279,39 @@ Ocultar campos o tablas organiza la autoría; **no es una medida de seguridad**.
 | El total creció frente a A1 | Revisa las consultas, combinaciones, duplicados y la misma selección de filtros | Culpar a una medida sin verificar el origen |
 
 **Falla controlada:** guarda una copia de prueba. Desactiva calendario → mantenimiento; aplica una fecha y registra el síntoma. Sigue la ruta, restaura la relación y repite exactamente el filtro. Nunca entregues como A2 la copia que dejaste deliberadamente con la falla.
+
+### Anti-unión: encuentra claves huérfanas
+
+Vuelve a abrir **Power Query** para esto — es la única excepción después de A1, y solo para una consulta auxiliar que no se agrega al modelo.
+
+**Sobre tu modelo real, debe dar 0 filas:**
+
+1. **Inicio → Transformar datos**. En la cinta del editor, **Inicio → Combinar → Combinar consultas para crear una nueva**.
+
+![Cinta de Power Query con el menú Combinar desplegado, flecha sobre Combinar consultas para crear una nueva](/imagenes/capturas/dia-02/a2-combinar-consultas-nueva.png)
+
+2. Primera tabla `fact_produccion`, clic en su columna `linea_id`. Segunda tabla `dim_linea`, clic en su columna `linea_id`. En **Tipo de combinación**, elige **Anti izquierda (solo filas de la primera)**.
+
+![Cuadro Combinar con fact_produccion y dim_linea, linea_id resaltada en ambas, Anti izquierda seleccionado; el aviso confirma que la selección excluye 7,067 de 7,067 filas](/imagenes/capturas/dia-02/a2-anti-izquierda-produccion.png)
+
+*El aviso «la selección excluye 7,067 de 7,067 filas de la primera tabla» confirma cero huérfanas: todas tus líneas de producción existen en `dim_linea`.*
+
+3. Acepta y renombra la consulta nueva, por ejemplo `Diagnostico_LineaHuerfana`. Clic derecho sobre ella → desmarca **Habilitar carga**, para que no se vuelva una novena tabla del modelo.
+
+![Menú contextual de la consulta Diagnostico_LineaHuerfana con una flecha sobre Habilitar carga](/imagenes/capturas/dia-02/a2-deshabilitar-carga.png)
+
+**Prueba con un caso conocido, para confirmar que el método sí detecta un problema** (0 filas arriba solo prueba que tus datos están limpios, no que el método funcione):
+
+1. **Inicio → Introducir datos**. Crea una tabla de 3 filas con columna `linea_id`: `L1`, `L2`, `L9` (`L9` no existe en `dim_linea`).
+2. Repite el anti-unión: esa tabla de prueba contra `dim_linea`, columna `linea_id`, **Anti izquierda**.
+
+![Mismo cuadro Combinar con la tabla de prueba (L1, L2, L9) contra dim_linea; el aviso dice que la selección excluye 2 de 3 filas de la primera tabla](/imagenes/capturas/dia-02/a2-anti-izquierda-prueba-l9.png)
+
+3. Debe quedar **una fila: `L9`**. Deshabilita también su carga antes de aplicar.
+
+![Resultado de la consulta con una sola fila, linea_id = L9, confirmando que el anti-unión detecta la clave huérfana](/imagenes/capturas/dia-02/a2-resultado-l9-detectado.png)
+
+*`L9` es tu prueba de caso límite, la misma lógica de las consultas de prueba con Introducir datos del Día 1.*
 
 Si las relaciones y claves son correctas, revisa filtros del visual, página e informe y sus interacciones. No modifiques varias cosas a la vez: perderías la evidencia de qué corrigió el problema.
 
