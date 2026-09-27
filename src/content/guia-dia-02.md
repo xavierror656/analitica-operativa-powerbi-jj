@@ -88,6 +88,10 @@ Referencia: línea tiene 4 claves, parte 5, turno 3, defecto 6 y calendario 549 
 
 En **Vista Modelo → Administrar relaciones → Nueva**, crea una relación a la vez. La ubicación de las opciones puede cambiar entre versiones; comprueba siempre las columnas y propiedades antes de aceptar.
 
+![Cinta de Inicio en Vista Modelo, con dos flechas rojas: una hacia el icono de Vista Modelo en el panel izquierdo y otra hacia Administrar relaciones](/imagenes/capturas/dia-02/a2-vista-modelo-administrar-relaciones.png)
+
+*El icono de **Vista Modelo** está en la barra vertical izquierda (flecha 1). **Administrar relaciones** está en la cinta **Inicio**, dentro del grupo Relaciones (flecha 2).*
+
 | Dimensión: lado 1 | Hecho: lado * |
 |---|---|
 | dim_calendario[fecha] | fact_produccion[fecha] |
@@ -104,6 +108,10 @@ En **Vista Modelo → Administrar relaciones → Nueva**, crea una relación a l
 Para este diseño: **diez relaciones activas, 1:* y dirección única desde dimensión hacia hecho**. Si seleccionas el hecho primero, Desktop puede mostrar *:1: es la misma cardinalidad vista desde el otro extremo. Comprueba las marcas 1 y *.
 
 La lista es la implementación didáctica para estas ocho tablas; el PDF exige un modelo correcto, no un número universal de relaciones. No relaciones directamente los hechos por fecha ni por lote. No actives Ambos para forzar que todas las tarjetas reaccionen.
+
+![Cuadro Nueva relación: dim_linea.linea_id hacia fact_produccion.linea_id, cardinalidad Uno a varios (1:*), dirección de filtro cruzado Única](/imagenes/capturas/dia-02/a2-nueva-relacion-dim-linea.png)
+
+*Ejemplo con `dim_linea` → `fact_produccion`. Comprueba tres cosas antes de Guardar: la columna correcta resaltada en cada tabla, **Uno a varios (1:\*)** y dirección **Única**. El resto de las nueve relaciones se crea igual, cambiando solo las tablas y columnas.*
 
 ### La clave de turno
 
@@ -135,6 +143,8 @@ Configura las unidades de visualización para ver el entero completo, sin abrevi
 
 Agrega segmentadores desde **dim_linea**, **dim_calendario**, **dim_turno**, **dim_parte** y **dim_defecto**. Usa nombres legibles de las dimensiones; conserva el código en la bitácora para identificar el filtro sin ambigüedad.
 
+Para combinar una selección de un segmentador con la de otro distinto, mantén presionado **Ctrl** mientras haces clic en el segundo. Sin Ctrl, algunas instalaciones de Power BI Desktop reemplazan la selección anterior en lugar de sumarla.
+
 Antes de cada prueba, **limpia todos los filtros**, incluyendo selecciones de otros visuales y filtros de página o informe. Predice el resultado, aplica la selección y compáralo con un filtro directo sobre la consulta A1 depurada. Las cifras del cuadro son controles adicionales, no sustituyen ese contraste.
 
 | Prueba independiente | Producidas: piezas | Rechazadas: piezas | Mantenimiento: min |
@@ -145,6 +155,14 @@ Antes de cada prueba, **limpia todos los filtros**, incluyendo selecciones de ot
 | Turno 1 | 1,954,605 | 144,882 | 93,298 |
 | Parte P-1001 | 1,189,291 | 29,629 | 93,298 |
 | Defecto D01 | 5,822,881 | 24,235 | 93,298 |
+
+![Página Control_A2 con las tarjetas mostrando 2,301, 77 y 21; los segmentadores Línea (L1) y Fecha (2025 marzo 1) aparecen resaltados al mismo tiempo, ambos con el borde de selección activo](/imagenes/capturas/dia-02/a2-segmentadores-linea-fecha-combinados.png)
+
+*L1 y 01/03/2025 seleccionados a la vez, con Ctrl, en dos segmentadores distintos. Así se ve el checkpoint «Fecha 01/03/2025 + línea L1» cumplido: ambos bordes de selección visibles y las tres tarjetas coinciden con la fila de arriba.*
+
+![Tabla con linea_id y Suma de piezas_producidas: L1 1,340,826; L2 1,251,016; L3 1,682,162; L4 1,548,877; Total 5,822,881](/imagenes/capturas/dia-02/a2-tabla-linea-piezas-producidas.png)
+
+*Una tabla con `linea_id` y la suma de `piezas_producidas` es la prueba más simple de que la relación funciona: el total, 5,822,881, coincide con la conciliación de A1, y el desglose por línea coincide con la fila «Línea L1» del cuadro de abajo.*
 
 Sin filtros, las filas son **7,067 de producción**, **26,825 de calidad** y **1,303 de mantenimiento**. En el corte fecha + L1 son 3, 13 y 1, respectivamente. Las cifras corresponden al ZIP del curso con las reglas de A1 y sin exclusiones adicionales. Si tu A1 documenta otra exclusión, concilia su efecto antes de calificar la relación como incorrecta.
 
@@ -168,18 +186,79 @@ Si presentas piezas producidas por tipo de defecto, el total puede repetirse en 
 
 ### Jerarquías
 
-- En `dim_calendario`, crea año → mes → fecha usando `anio`, `nombre_mes` y `fecha`.
-- Ordena `nombre_mes` por `mes`. Los meses se repiten entre años: incluye `anio` al comparar periodos.
-- En `dim_linea`, crea área → nombre de línea con `area` y `nombre_linea`.
-- Prueba expandir niveles en una matriz. Una jerarquía facilita navegación; no crea una relación ni corrige una que esté mal.
+Esto se hace sobre el modelo, en **Vista de informe** (panel **Datos**, a la derecha) o en **Vista Modelo**. Power Query ya no se usa después de A1.
+
+**En `dim_calendario`, año → mes → fecha:**
+
+1. En el panel Datos, expande `dim_calendario`. Clic derecho en **`anio`** → **Crear jerarquía**.
+2. Clic derecho en **`nombre_mes`** → **Agregar a jerarquía existente** → elige la jerarquía que acabas de crear. Repite con **`fecha`**.
+3. Dentro de la jerarquía, ordena los niveles **`anio` → `nombre_mes` → `fecha`**, de lo general a lo específico.
+
+![Panel Datos con clic derecho sobre el campo anio y el menú contextual mostrando Crear jerarquía resaltado; la cinta superior ya muestra las pestañas Herramientas de tablas y Herramientas de columnas](/imagenes/capturas/dia-02/a2-crear-jerarquia-calendario.png)
+
+*Clic derecho sobre el campo, no sobre la tabla. Al seleccionar un campo con clic izquierdo aparecen las pestañas de la cinta; el clic derecho abre el menú con Crear jerarquía.*
+
+**Ordena `nombre_mes` por `mes`** (si no, sale enero después de julio, en orden alfabético):
+
+1. En **Vista Modelo**, abre el panel **Propiedades** (columna derecha; si aparece colapsado como una pestaña vertical, haz clic para expandirlo).
+2. Haz clic izquierdo, una sola vez, sobre el campo `nombre_mes` en su tabla. En Propiedades, abre la sección **Avanzado**.
+3. En **Ordenar por columna**, elige **`mes`**.
+
+El panel Propiedades siempre funciona, esté el campo anidado en una jerarquía o no — es más confiable que buscar la pestaña **Herramientas de columna** en la cinta, que a veces no aparece según dónde hiciste clic.
+
+No selecciones `anio` para este paso: ordenar `anio` por `mes` da un error, porque un mismo año corresponde a varios meses. Los meses se repiten entre años: incluye `anio` al comparar periodos.
+
+**En `dim_linea`, área → nombre de línea**, mismo procedimiento: clic derecho en **`area`** → **Crear jerarquía**, después clic derecho en **`nombre_linea`** → **Agregar a jerarquía existente**.
+
+**Prueba expandir niveles en una matriz:**
+
+1. En un espacio vacío de la página, agrega un visual de **Matriz** (no Tabla).
+2. Arrastra la jerarquía completa de `dim_linea` a **Filas**, y `fact_produccion[piezas_producidas]` a **Valores**.
+3. Debe mostrar solo **Ensamble** y **Empaque**, cada uno con una flecha para expandir. Al expandir, aparecen las líneas de esa área sin que cambie el total del área.
+
+![Matriz expandida: Empaque con Línea 3 y Línea 4, Ensamble con Línea 1 y Línea 2, y un total de 5,822,881 que coincide con el de las tarjetas](/imagenes/capturas/dia-02/a2-matriz-jerarquia-linea-expandida.png)
+
+*Cada área expandida muestra sus líneas sin alterar el subtotal del área ni el total general, 5,822,881 — la misma cifra de conciliación de A1.*
+
+Expandir un nivel es solo navegación visual: no crea una relación ni corrige una que esté mal. Si una relación del modelo estuviera rota, armar esta jerarquía no la arregla.
 
 ### Columnas, formato y organización
 
-- Organiza las dimensiones y los hechos en la vista Modelo y añade descripciones de propósito, granularidad y límites.
-- Oculta claves redundantes de los hechos en la vista de informe para favorecer los campos de las dimensiones. Conserva los datos para las relaciones y la auditoría.
-- Deja disponibles las dimensiones necesarias para segmentar. No ocultes las ocho tablas completas.
-- Usa **No resumir** para identificadores; formato entero para piezas y minutos. En cada visual confirma la agregación intencional.
-- Las horas de producción del generador pueden repetirse por registros de distintas partes en un mismo turno. No se suman hoy como horas únicas de línea ni se usan para calcular disponibilidad.
+**Organiza el diagrama y documenta cada tabla:**
+
+1. Acomoda las cajas de la Vista Modelo con las dimensiones de un lado y los hechos del otro; ayuda a leer el diagrama, no cambia nada del modelo.
+2. Haz clic, una vez, en el **título** de una tabla (no en un campo de adentro) para seleccionarla completa.
+3. En el panel **Propiedades → General**, escribe en **Descripción** qué representa la tabla, su grano y su límite conocido. Por ejemplo, para `fact_produccion`: «Producción por línea, turno y parte. Una fila = un turno de una línea para una parte en una fecha.» Repite al menos en las 3 tablas de hechos y en `dim_calendario`.
+
+**Oculta las claves repetidas, solo en las tablas de hechos:**
+
+Cada hecho tiene columnas que existen únicamente para conectar una relación (`linea_id`, `parte_id`, `turno`…) y que ya tienen su versión más clara en la dimensión correspondiente (`dim_linea[nombre_linea]`). Ocúltalas para que, al construir un visual, se use el campo de la dimensión:
+
+1. Dentro de la caja de un hecho, pasa el mouse sobre el campo a ocultar. Aparece un icono de **ojo** a la derecha de esa fila.
+2. Haz clic en el ojo. El campo queda oculto de la Vista de informe, pero sigue activo para la relación.
+
+| Tabla | Campos a ocultar |
+|---|---|
+| `fact_produccion` | `linea_id`, `parte_id`, `turno`, `fecha` |
+| `fact_calidad` | `linea_id`, `parte_id`, `tipo_defecto`, `fecha` |
+| `fact_mantenimiento` | `linea_id`, `fecha_evento` |
+
+No ocultes columnas de piezas, horas, duración ni las columnas `_original`: esas sí se usan para análisis y auditoría. **No ocultes ninguna tabla de dimensión completa** — ahí viven los segmentadores que armaste en la sección 5.
+
+**Corrige la agregación por defecto de los campos numéricos:**
+
+En el diagrama, un símbolo **Σ** antes del nombre de un campo indica que Power BI le puso **Suma** como agregación automática. Eso está bien para `piezas_producidas` o `duracion_min`, pero no tiene sentido para un año o una capacidad estándar.
+
+![Panel Propiedades en Vista Modelo, sección Avanzado, con el campo anio seleccionado y el menú Resumir por desplegado mostrando la opción Ninguno resaltada](/imagenes/capturas/dia-02/a2-propiedades-resumir-por-ninguno.png)
+
+*Con el campo seleccionado, en Propiedades → Avanzado → **Resumir por**, cambia de Suma a **Ninguno**.*
+
+1. Selecciona `anio` en `dim_calendario` y aplica el cambio de arriba.
+2. Repite con `capacidad_hora` (`dim_linea`) y `estandar_hora` (`dim_parte`).
+
+En cada visual que uses después, confirma la agregación mostrada: si una tarjeta o tabla suma algo que no debería sumarse, revisa este ajuste antes de sospechar del modelo.
+
+**Una limitación que no se corrige aquí:** las horas de producción del generador pueden repetirse cuando varias partes comparten un mismo turno. No las sumes hoy como horas únicas de línea ni las uses para calcular disponibilidad; anótalo como pendiente en tu bitácora.
 
 ### Tabla oculta y consulta sin carga no son lo mismo
 
@@ -195,10 +274,44 @@ Ocultar campos o tablas organiza la autoría; **no es una medida de seguridad**.
 | Una tarjeta ignora la fecha | Revisa relación activa, columna de fecha y tipo compatible | Crear otra relación sin revisar la existente |
 | Categoría en blanco | Busca nulos y claves huérfanas mediante anti unión | Borrar la categoría y dar el modelo por corregido |
 | Mismo total repetido en cada categoría | Comprueba si esa dimensión tiene ruta hacia ese hecho | Sumar manualmente las filas mostradas |
+| Al elegir un valor en un segmentador se borra el de otro segmentador | Mantén presionado **Ctrl** mientras haces clic en el segundo segmentador y los siguientes | Concluir que el modelo o las relaciones están mal |
 | Se propone muchos a muchos | Examina duplicados y significado de la clave del catálogo | Aceptarlo solo para cerrar el cuadro de diálogo |
 | El total creció frente a A1 | Revisa las consultas, combinaciones, duplicados y la misma selección de filtros | Culpar a una medida sin verificar el origen |
 
 **Falla controlada:** guarda una copia de prueba. Desactiva calendario → mantenimiento; aplica una fecha y registra el síntoma. Sigue la ruta, restaura la relación y repite exactamente el filtro. Nunca entregues como A2 la copia que dejaste deliberadamente con la falla.
+
+### Anti-unión: encuentra claves huérfanas
+
+Vuelve a abrir **Power Query** para esto — es la única excepción después de A1, y solo para una consulta auxiliar que no se agrega al modelo.
+
+**Sobre tu modelo real, debe dar 0 filas:**
+
+1. **Inicio → Transformar datos**. En la cinta del editor, **Inicio → Combinar → Combinar consultas para crear una nueva**.
+
+![Cinta de Power Query con el menú Combinar desplegado, flecha sobre Combinar consultas para crear una nueva](/imagenes/capturas/dia-02/a2-combinar-consultas-nueva.png)
+
+2. Primera tabla `fact_produccion`, clic en su columna `linea_id`. Segunda tabla `dim_linea`, clic en su columna `linea_id`. En **Tipo de combinación**, elige **Anti izquierda (solo filas de la primera)**.
+
+![Cuadro Combinar con fact_produccion y dim_linea, linea_id resaltada en ambas, Anti izquierda seleccionado; el aviso confirma que la selección excluye 7,067 de 7,067 filas](/imagenes/capturas/dia-02/a2-anti-izquierda-produccion.png)
+
+*El aviso «la selección excluye 7,067 de 7,067 filas de la primera tabla» confirma cero huérfanas: todas tus líneas de producción existen en `dim_linea`.*
+
+3. Acepta y renombra la consulta nueva, por ejemplo `Diagnostico_LineaHuerfana`. Clic derecho sobre ella → desmarca **Habilitar carga**, para que no se vuelva una novena tabla del modelo.
+
+![Menú contextual de la consulta Diagnostico_LineaHuerfana con una flecha sobre Habilitar carga](/imagenes/capturas/dia-02/a2-deshabilitar-carga.png)
+
+**Prueba con un caso conocido, para confirmar que el método sí detecta un problema** (0 filas arriba solo prueba que tus datos están limpios, no que el método funcione):
+
+1. **Inicio → Introducir datos**. Crea una tabla de 3 filas con columna `linea_id`: `L1`, `L2`, `L9` (`L9` no existe en `dim_linea`).
+2. Repite el anti-unión: esa tabla de prueba contra `dim_linea`, columna `linea_id`, **Anti izquierda**.
+
+![Mismo cuadro Combinar con la tabla de prueba (L1, L2, L9) contra dim_linea; el aviso dice que la selección excluye 2 de 3 filas de la primera tabla](/imagenes/capturas/dia-02/a2-anti-izquierda-prueba-l9.png)
+
+3. Debe quedar **una fila: `L9`**. Deshabilita también su carga antes de aplicar.
+
+![Resultado de la consulta con una sola fila, linea_id = L9, confirmando que el anti-unión detecta la clave huérfana](/imagenes/capturas/dia-02/a2-resultado-l9-detectado.png)
+
+*`L9` es tu prueba de caso límite, la misma lógica de las consultas de prueba con Introducir datos del Día 1.*
 
 Si las relaciones y claves son correctas, revisa filtros del visual, página e informe y sus interacciones. No modifiques varias cosas a la vez: perderías la evidencia de qué corrigió el problema.
 

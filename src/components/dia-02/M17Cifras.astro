@@ -1,11 +1,13 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
 import Notas from '../ui/Notas.astro';
+import Pasos from '../ui/Pasos.astro';
 import ControlesModelo from './ControlesModelo.astro';
 ---
-<EjemploReal diseno="datos" modulo="D2-M17" titulo={"Estos son los controles del caso del curso"}>
+<EjemploReal diseno="datos" modulo="D2-M17" titulo={"Construye tres tarjetas y compáralas con los controles"}>
   <div class="flex flex-col gap-8">
+    <Pasos items={[{"t":"Crea la página Control_A2","d":"Tres tarjetas: suma de piezas_producidas, suma de piezas_rechazadas y suma de duracion_min."},{"t":"Desactiva la abreviación","d":"Formato → Valor → Unidades de visualización → Ninguna, para leer el entero completo."},{"t":"Compara sin filtros","d":"Debes obtener exactamente los controles de esta tabla."}]} />
     <ControlesModelo />
   </div>
-  <Notas slot="notas" minutos={10} dice={"Construir tres tarjetas con suma de piezas_producidas, suma de piezas_rechazadas y suma de duracion_min. Desactivar abreviación automática para leer el entero."} nota={"Valores derivados del ZIP después de A1; los minutos son suma de duracion_min, no horas_paro ni disponibilidad. Si hay exclusiones adicionales documentadas, conciliar la diferencia."} />
+  <Notas slot="notas" minutos={10} dice={"Guiar la construcción de las tres tarjetas antes de mostrar la tabla de control. Confirmar que cada participante ve el mismo total antes de avanzar."} nota={"Valores derivados del ZIP después de A1; los minutos son suma de duracion_min, no horas_paro ni disponibilidad. Si hay exclusiones adicionales documentadas, conciliar la diferencia."} />
 </EjemploReal>
