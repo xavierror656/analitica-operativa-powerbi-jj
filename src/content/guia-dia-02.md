@@ -75,6 +75,10 @@ Referencia: línea tiene 4 claves, parte 5, turno 3, defecto 6 y calendario 549 
 
 En **Vista Modelo → Administrar relaciones → Nueva**, crea una relación a la vez. La ubicación de las opciones puede cambiar entre versiones; comprueba siempre las columnas y propiedades antes de aceptar.
 
+![Cinta de Inicio en Vista Modelo, con dos flechas rojas: una hacia el icono de Vista Modelo en el panel izquierdo y otra hacia Administrar relaciones](/imagenes/capturas/dia-02/a2-vista-modelo-administrar-relaciones.png)
+
+*El icono de **Vista Modelo** está en la barra vertical izquierda (flecha 1). **Administrar relaciones** está en la cinta **Inicio**, dentro del grupo Relaciones (flecha 2).*
+
 | Dimensión: lado 1 | Hecho: lado * |
 |---|---|
 | dim_calendario[fecha] | fact_produccion[fecha] |
@@ -91,6 +95,10 @@ En **Vista Modelo → Administrar relaciones → Nueva**, crea una relación a l
 Para este diseño: **diez relaciones activas, 1:* y dirección única desde dimensión hacia hecho**. Si seleccionas el hecho primero, Desktop puede mostrar *:1: es la misma cardinalidad vista desde el otro extremo. Comprueba las marcas 1 y *.
 
 La lista es la implementación didáctica para estas ocho tablas; el PDF exige un modelo correcto, no un número universal de relaciones. No relaciones directamente los hechos por fecha ni por lote. No actives Ambos para forzar que todas las tarjetas reaccionen.
+
+![Cuadro Nueva relación: dim_linea.linea_id hacia fact_produccion.linea_id, cardinalidad Uno a varios (1:*), dirección de filtro cruzado Única](/imagenes/capturas/dia-02/a2-nueva-relacion-dim-linea.png)
+
+*Ejemplo con `dim_linea` → `fact_produccion`. Comprueba tres cosas antes de Guardar: la columna correcta resaltada en cada tabla, **Uno a varios (1:\*)** y dirección **Única**. El resto de las nueve relaciones se crea igual, cambiando solo las tablas y columnas.*
 
 ### La clave de turno
 
@@ -132,6 +140,10 @@ Antes de cada prueba, **limpia todos los filtros**, incluyendo selecciones de ot
 | Turno 1 | 1,954,605 | 144,882 | 93,298 |
 | Parte P-1001 | 1,189,291 | 29,629 | 93,298 |
 | Defecto D01 | 5,822,881 | 24,235 | 93,298 |
+
+![Tabla con linea_id y Suma de piezas_producidas: L1 1,340,826; L2 1,251,016; L3 1,682,162; L4 1,548,877; Total 5,822,881](/imagenes/capturas/dia-02/a2-tabla-linea-piezas-producidas.png)
+
+*Una tabla con `linea_id` y la suma de `piezas_producidas` es la prueba más simple de que la relación funciona: el total, 5,822,881, coincide con la conciliación de A1, y el desglose por línea coincide con la fila «Línea L1» del cuadro de abajo.*
 
 Sin filtros, las filas son **7,067 de producción**, **26,825 de calidad** y **1,303 de mantenimiento**. En el corte fecha + L1 son 3, 13 y 1, respectivamente. Las cifras corresponden al ZIP del curso con las reglas de A1 y sin exclusiones adicionales. Si tu A1 documenta otra exclusión, concilia su efecto antes de calificar la relación como incorrecta.
 
