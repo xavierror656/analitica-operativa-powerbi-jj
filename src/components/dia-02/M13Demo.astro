@@ -1,11 +1,14 @@
 ---
 import TuTurno from '../slides/TuTurno.astro';
 import Notas from '../ui/Notas.astro';
-import Pasos from '../ui/Pasos.astro';
+import RecetaModelo from './RecetaModelo.astro';
 ---
 <TuTurno diseno="accion" modulo="D2-M13" titulo={"Construye la primera relación conmigo"} minutos={7}>
-  <div class="flex flex-col gap-8">
-    <Pasos items={[{"t":"Vista Modelo → Administrar relaciones → Nueva","d":"Selecciona dim_linea[linea_id] y fact_produccion[linea_id]."},{"t":"Confirma antes de aceptar","d":"Lado 1 en dimensión, lado * en hecho; dirección única; activa."},{"t":"Prueba una tabla","d":"Filas: dim_linea[nombre_linea]. Valores: suma de piezas_producidas."}]} />
-  </div>
+  <RecetaModelo pasos={[
+    {titulo:'Abre una relación nueva', detalle:'Vista Modelo → Administrar relaciones → Nueva. Si ya existe, revísala antes de crear otra.'},
+    {titulo:'Elige las dos columnas', detalle:'dim_linea[linea_id] en el lado 1; fact_produccion[linea_id] en el lado *.'},
+    {titulo:'Confirma y acepta', detalle:'Relación activa y dirección única. Si seleccionaste primero producción, verás *:1.'},
+    {titulo:'Prueba en Vista Informe', detalle:'Agrega una tabla con dim_linea[nombre_linea] y suma de fact_produccion[piezas_producidas].'},
+  ]} control="Las líneas deben repartir el total. Si cada línea repite la cifra completa, revisa la relación y el campo usado para agrupar." resultado="Sin filtros: 5,822,881 piezas. Al filtrar L1 desde dim_linea: 1,340,826 piezas." />
   <Notas slot="notas" minutos={7} dice={"El instructor construye; los participantes repiten. Detenerse antes de aceptar para que lean los cuatro ajustes."} nota={"Comprobar que el total no cambió y que las líneas reparten ese total. Si la interfaz ordena las tablas al revés, leer las marcas 1 y *."} />
 </TuTurno>

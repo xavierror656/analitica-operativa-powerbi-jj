@@ -2,10 +2,16 @@
 import Cierre from '../slides/Cierre.astro';
 import Cita from '../ui/Cita.astro';
 import Notas from '../ui/Notas.astro';
+import Descarga from '../ui/Descarga.astro';
+import { existsSync } from 'node:fs';
+
+const archivoReferencia = 'dia-01-referencia-pbip.zip';
+const referenciaDisponible = existsSync(`public/descargas/referencias/${archivoReferencia}`);
 ---
 
 <Cierre diseno="cierre" titulo="Antes de irse">
   <Cita>Con tu PBIX, bitácora y guía abiertos, muestra qué cambió el total de piezas y un caso donde conservaste el vacío. Explica tu decisión con esa evidencia.</Cita>
+  {referenciaDisponible && <Descarga href={`/descargas/referencias/${archivoReferencia}`} nombre="Descargar proyecto A1 de referencia (.zip)" />}
   <Notas
     slot="notas"
     minutos={2}

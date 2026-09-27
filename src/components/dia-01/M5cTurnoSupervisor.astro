@@ -11,6 +11,6 @@ import RecetaGuiada from './RecetaGuiada.astro';
     minutos={7}
     dice="Alguien, en algún momento, capturó quién estaba a cargo en vez de qué turno era. Tiene sentido para esa persona en ese momento, y rompe cualquier análisis por turno."
     pregunta="¿Cómo sabrían, sin preguntarle a nadie, que 'R. Domínguez' correspondía al turno 1 y no al 2 o al 3?"
-    nota="El generador asigna supervisores al azar: no hay equivalencia supervisor-turno. En este dataset, normalizar hora_inicio y contrastar con dim_turno permite recuperar el turno; conservar turno_original. Si la hora no coincide, registrar una excepción. En datos reales confirmar la regla con el dueño del dato."
+    nota="El generador asigna supervisores al azar: no hay equivalencia supervisor-turno. La fórmula acepta hora_inicio como Texto o Hora y convierte internamente antes de comparar con dim_turno; conservar turno_original. Se ejecuta en Power Query → Agregar columna → Columna personalizada. La conversión interna no cambia el tipo de hora_inicio: completar la receta Horas para tipar esa columna. Si la hora no coincide, registrar una excepción. En datos reales confirmar la regla con el dueño del dato."
   />
 </EjemploReal>

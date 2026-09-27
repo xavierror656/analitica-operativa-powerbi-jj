@@ -5,7 +5,7 @@ import Pasos from '../ui/Pasos.astro';
 ---
 <TuTurno diseno="accion" modulo="D2-M08" titulo={"Abre A1 y guarda una copia A2"} minutos={5}>
   <div class="flex flex-col gap-8">
-    <Pasos items={[{"t":"Guarda como Apellido_Nombre_A2.pbix","d":"Conserva A1 como punto de recuperación."},{"t":"Actualiza y comprueba","d":"Ocho tablas separadas, tipos revisados y conciliación disponible."},{"t":"Revisa relaciones existentes","d":"Inventaría las autodetectadas; compara con el mapa antes de corregirlas en la copia."}]} />
+    <Pasos items={[{"t":"Guarda como Apellido_Nombre_A2.pbix","d":"Abre tu A1 validado; conserva ese archivo. Si cambió la carpeta, ajusta RutaDatos antes de actualizar."},{"t":"Comprueba el punto de partida","d":"Ocho tablas: producción 7,067 filas y 5,822,881 piezas; calidad 26,825 filas; mantenimiento 1,303. Fechas tipo Fecha; claves tipo Texto."},{"t":"Revisa el modelo en la copia","d":"Inventaría las relaciones autodetectadas. El mapa del día 2 debe terminar con diez relaciones; corrige las demás antes de probar filtros."}]} />
   </div>
   <Notas slot="notas" minutos={5} dice={"El instructor hace los mismos pasos en pantalla. Continuamos el mismo archivo, como exige la propuesta."} nota={"Si A1 está incompleta, declarar pendientes y acompañar la corrección. No entregar como validado un PBIX con datos crudos para que alcance al grupo."} />
 </TuTurno>

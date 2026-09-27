@@ -2,30 +2,30 @@
   {
     "id": "2-1",
     "archivo": "actividad-2-1.zip",
-    "sha256": "8819f8f8583d062b1d230a95c550e18603010d61a666cfac18d375fe93ddfe4f",
+    "sha256": "5ab64ba89f194ecede2167afb93b1130c4216c0892ab14fd15206238f1071951",
     "archivos": 69,
-    "bytes": 288850
+    "bytes": 288998
   },
   {
     "id": "2-2",
     "archivo": "actividad-2-2.zip",
-    "sha256": "47c6388e7745fc61abb159d0918c4357dd5efd93f0a26f22529168ed670044c4",
+    "sha256": "5f71fdaa5f2b1185cd40b635267db88a668f215c132890f402902040d7fbabd9",
     "archivos": 69,
-    "bytes": 289164
+    "bytes": 289203
   },
   {
     "id": "2-3",
     "archivo": "actividad-2-3.zip",
-    "sha256": "de25201077f856acd4dd152741afc27d50899be8f5a64af645055d6b220966e2",
+    "sha256": "fd2cd842f4380d46769b1494047b3457ec9b1202246ab35224101d95ce12689f",
     "archivos": 73,
-    "bytes": 291236
+    "bytes": 291275
   },
   {
     "id": "2-4",
     "archivo": "actividad-2-4.zip",
-    "sha256": "16fcd0b0a692656dbd72007db5b14d4b987d29c95634ea812a9b45a7a5568530",
+    "sha256": "907dccd3f958a37be1ce8aff2ee8934db44bd70a7c156f0cccedd0fbcc5acf03",
     "archivos": 68,
-    "bytes": 288303
+    "bytes": 288342
   },
   {
     "id": "3-1",

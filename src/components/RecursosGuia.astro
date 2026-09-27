@@ -7,7 +7,7 @@ const rutaDia = `/dia-0${dia}`;
 ---
 <nav class="course-actions resources" aria-label={actividad ? 'Recursos de la práctica' : `Recursos del día ${dia}`}>
   <Boton href={base+(actividad ? `/practicas/${actividad}/` : `${rutaDia}/`)}>{actividad ? 'Abrir diapositivas' : 'Presentación del día'}</Boton>
-  <Boton href={base+(actividad ? `/descargas/practicas/actividad-${actividad}.zip` : `/descargas/guia-dia-0${dia}.md`)} download>{actividad ? 'Datos crudos y consigna' : 'Descargar guía'}</Boton>
+  <Boton href={base+(actividad ? `/descargas/practicas/actividad-${actividad}.zip` : `/descargas/guia-dia-0${dia}.${dia === 1 ? 'docx' : 'md'}`)} download>{actividad ? 'Datos crudos y consigna' : dia === 1 ? 'Descargar guía Word (.docx)' : 'Descargar guía'}</Boton>
   {dia > 1 && <Boton href={base+`/practicas/#dia-${dia}`}>{actividad ? 'Actividades del día' : `Prácticas del día ${dia}`}</Boton>}
   <Boton id="imprimir">Imprimir / guardar PDF</Boton>
 </nav>

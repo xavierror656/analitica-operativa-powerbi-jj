@@ -1,0 +1,18 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import TablaCurso from '../ui/TablaCurso.astro';
+import Notas from '../ui/Notas.astro';
+---
+<EjemploReal diseno="datos" modulo="D1-M16b · Extra" titulo="Los cuatro indicadores que vamos a obtener">
+  <div class="flex flex-col gap-8">
+    <p>Un KPI es un indicador clave para seguir una pregunta de operación y tomar una decisión.</p>
+    <TablaCurso columnas={['Indicador', 'Pregunta que responde', 'Unidad']} filas={[
+      ['Fallas registradas', '¿Cuántos eventos aparecen para el equipo y periodo?', 'Eventos'],
+      ['MTTR · reparación media', '¿Cuánto tarda una reparación, en promedio?', 'Horas por reparación'],
+      ['MTBF · operación entre fallas', '¿Cuántas horas opera por falla registrada?', 'Horas por falla'],
+      ['Disponibilidad reportada media', '¿Qué promedio muestran los porcentajes del archivo?', '% · escala 0–100'],
+    ]} />
+    <p class="texto-chico">En este ejercicio: una fila = una falla. MTBF será una aproximación didáctica; la disponibilidad usa el valor ya proporcionado.</p>
+  </div>
+  <Notas slot="notas" minutos={3} dice="Primero nombramos la pregunta y la unidad; después construiremos las tarjetas. Comparar por equipo y periodo, sin inventar metas universales." nota="Fuente de datos: Data_Mantenimiento_2025.xlsx, hoja MaintenanceData. Definiciones: https://www.ibm.com/think/topics/mttr y https://www.ibm.com/think/topics/mtbf. El archivo permite practicar agregaciones; no documenta toda la exposición operativa ni la fórmula de Disponibilidad_Porc." />
+</EjemploReal>

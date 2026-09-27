@@ -35,6 +35,19 @@ Son **450 minutos efectivos**, con 90 minutos de pausas. Las actividades núcleo
 
 Si A1 no está validada, informa qué falla y retoma la guía del día anterior con apoyo. Una captura de un modelo conectado no compensa un origen sin depurar.
 
+Antes de construir relaciones, revisa este punto de partida en el **PBIX del caso base**:
+
+| Consulta | Control tras A1 | Revisa antes de relacionar |
+|---|---|---|
+| `fact_produccion` | 7,067 filas; 5,822,881 piezas | `fecha` como Fecha; `linea_id`, `turno`, `parte_id` y `lote` como Texto. `turno` contiene 1, 2 y 3. |
+| `fact_calidad` | 26,825 filas; 144,882 piezas rechazadas | `fecha` como Fecha; `linea_id`, `parte_id` y `tipo_defecto` como Texto; conserva todos los eventos. |
+| `fact_mantenimiento` | 1,303 filas; 93,298 minutos de duración | `fecha_evento` como Fecha; `linea_id` como Texto. |
+| Cinco dimensiones | Línea: 4; parte: 5; turno: 3; defecto: 6; calendario: 549 | Claves únicas, sin vacíos y del mismo tipo que su columna correspondiente en el hecho. |
+
+Si conservaste originales de A1, usa las columnas **limpias con los nombres del mapa**. Por ejemplo, `fact_produccion[turno_original]` puede contener un supervisor: la relación usa `fact_produccion[turno]` ya recuperado por hora. `dim_turno[nombre]` contiene 1/2/3; `dim_turno[turno_id]` contiene T1/T2/T3. Si una relación no acepta el lado 1, revisa primero duplicados, vacíos y tipos de la clave. Si la relación se crea pero el filtro no cambia la tarjeta, revisa la correspondencia de valores y el origen del segmentador.
+
+La **práctica 2.1 del catálogo** cambia al caso de diez tablas y 16 relaciones. Su paquete incluye `montaje.md`: prepara esa transición antes de iniciar los 90 minutos de 2.1. Los controles de esta guía pertenecen al caso base de ocho tablas; conserva ambos PBIX por separado.
+
 ## 2. Define qué representa cada fila
 
 | Tabla | Granularidad del caso | Precaución |

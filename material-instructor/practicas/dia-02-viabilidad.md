@@ -57,4 +57,6 @@ Usar el A2 íntegro de Prácticas, no una muestra de 36 filas. El autor y reviso
 
 Antes de impartir, pilotear en Desktop: apertura sin errores, actualización en otra ruta, microcaso 600→1,200, diez preguntas de 2.2, las cuatro copias de 2.3 y restauración de las 16 relaciones. Medir duración real de transición, conexiones, cambios de archivo y revisión. La comprobación de CSV prueba que los resultados son alcanzables desde los datos; no sustituye ese ensayo de interfaz ni mide el ritmo de aprendizaje.
 
+**Puerta de inicio de 2.1:** entrega a cada participante una copia propia que cargue las diez consultas del paquete y actualice sin errores. Comprueba sus 5,544 / 11,088 / 708 / 11,088 filas y las dos sumas de control antes de activar el cronómetro de 90 minutos. El primer bloque del aula se dedica a repetir esa comprobación, no a importar y depurar los 54 CSV desde cero. Si el archivo no está preparado, usa una sesión de transición y registra su duración; no recortes las pruebas de relaciones para compensarlo.
+
 Soporte técnico: [relaciones, tipos y unicidad en Power BI](https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-relationships-understand) y [combinación de CSV](https://learn.microsoft.com/en-us/power-query/combine-files-csv).

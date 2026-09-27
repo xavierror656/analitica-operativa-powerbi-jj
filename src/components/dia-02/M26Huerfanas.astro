@@ -1,11 +1,14 @@
 ---
 import EjemploReal from '../slides/EjemploReal.astro';
 import Notas from '../ui/Notas.astro';
-import Pasos from '../ui/Pasos.astro';
+import RecetaModelo from './RecetaModelo.astro';
 ---
-<EjemploReal diseno="secuencia" modulo="D2-M26" titulo={"Una categoría en blanco merece investigación"}>
-  <div class="flex flex-col gap-8">
-    <Pasos items={[{"t":"Ubica la clave","d":"Identifica el hecho y la dimensión que alimentan el visual."},{"t":"Compara contra el catálogo","d":"Una anti unión izquierda en Power Query muestra claves sin correspondencia."},{"t":"Corrige la causa y repite","d":"Tipo, espacios, código desconocido o catálogo incompleto; registra la decisión."}]} />
-  </div>
+<EjemploReal diseno="receta" modulo="D2-M26" titulo={"Busca claves que no están en el catálogo"}>
+  <RecetaModelo pasos={[
+    {titulo:'Crea una consulta de diagnóstico', detalle:'En Power Query, parte de fact_produccion y usa Combinar consultas como nuevas.'},
+    {titulo:'Compara linea_id en ambas tablas', detalle:'Primera tabla: fact_produccion. Segunda: dim_linea. Selecciona linea_id en las dos.'},
+    {titulo:'Elige anti izquierda', detalle:'Conserva solo filas de la primera tabla sin correspondencia en la segunda. Deshabilita la carga de esta consulta auxiliar.'},
+    {titulo:'Investiga y repite', detalle:'Revisa tipo, espacios y catálogo. Documenta la causa antes de corregir el origen.'},
+  ]} control="En una copia pequeña, una fila con L9 debe aparecer si L9 no existe en dim_linea. No la borres solo para ocultar el síntoma." resultado="En el modelo base depurado: cero filas sin correspondencia. Conserva el diagnóstico sin añadir una novena tabla al modelo." />
   <Notas slot="notas" minutos={8} dice={"Usar el ejemplo L9 ausente del catálogo en una copia pequeña de prueba. Mostrar cómo aparece un registro sin correspondencia."} nota={"No agregar automáticamente L9 ni borrar el registro para quitar el blanco. Distinguir dato nuevo válido, error de captura y registro pendiente."} />
 </EjemploReal>

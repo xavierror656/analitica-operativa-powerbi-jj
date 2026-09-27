@@ -4,18 +4,19 @@ import Pasos from '../ui/Pasos.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
-<TuTurno diseno="accion" modulo="D1-M19 · Extra" titulo="Arma las primeras tres visualizaciones" minutos={20}>
+<TuTurno diseno="accion" modulo="D1-M19 · Extra" titulo="Construye el panel de mantenimiento" minutos={20}>
   <Pasos
     items={[
-      { t: 'Una tarjeta', d: 'Suma de Ordenes_Pendientes: valores registrados; no representa el pendiente actual.' },
-      { t: 'Un gráfico de líneas', d: 'Promedio de Disponibilidad_Porc por Fecha, escala 0–100; conserva formato decimal.' },
-      { t: 'Una segmentación', d: 'Por Equipo: que cualquiera pueda filtrar a "solo Extrusora 2".' },
+      { t: 'Crea cuatro tarjetas', d: 'En Vista Informe, clic en un espacio vacío → Tarjeta → arrastra una medida a Valores. Repite para Fallas registradas, MTTR (h), MTBF didactico (h) y Disponibilidad reportada %.' },
+      { t: 'Asigna los formatos', d: 'Fallas: entero. MTTR y MTBF: decimal, dos posiciones. Disponibilidad: porcentaje, dos posiciones. Unidades de visualización: Ninguna.' },
+      { t: 'Agrega la evolución por fecha', d: 'Clic en espacio vacío → Gráfico de líneas. Eje X: Fecha; en su menú elige Fecha, no Jerarquía de fecha. Eje Y: la medida Disponibilidad reportada %.' },
+      { t: 'Filtra y guarda', d: 'Clic en espacio vacío → Segmentación de datos → campo Equipo → Extrusora 2. Comprueba la siguiente diapositiva y guarda Apellido_Nombre_Extra_Mantenimiento.pbix.' },
     ]}
   />
   <Notas
     slot="notas"
     minutos={20}
-    dice="Tres visuales, no diez. La instrucción de hoy es que cada uno conteste una pregunta concreta, no llenar la página."
-    nota="Es un promedio aritmético didáctico, no disponibilidad operacional ponderada. No aplicar formato porcentaje a valores como 76.36: se mostrarían como 7636 %. Si terminan antes, filtrar equipo y fecha y comparar con la fila original del Excel."
+    dice="Todos los cálculos se crean como medidas DAX en Power BI. Construir cuatro tarjetas, una línea por fecha y un segmentador por Equipo. No editar ni calcular columnas en el archivo de origen."
+    nota="La medida de disponibilidad devuelve una fracción porque divide entre 100: aplicarle formato porcentaje. No arrastrar la columna cruda en su lugar. MTBF conserva el alcance didáctico indicado. El día 3 profundiza en medidas y contexto de filtro."
   />
 </TuTurno>

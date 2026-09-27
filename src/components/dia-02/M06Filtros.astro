@@ -3,7 +3,7 @@ import Mecanismo from '../slides/Mecanismo.astro';
 import Notas from '../ui/Notas.astro';
 import Pasos from '../ui/Pasos.astro';
 ---
-<Mecanismo diseno="secuencia" modulo="D2-M06" titulo={"1, asterisco y flecha cuentan historias distintas"}>
+<Mecanismo diseno="secuencia" modulo="D2-M06" titulo={"Cardinalidad y dirección del filtro"}>
   <div class="flex flex-col gap-8">
     <Pasos items={[{"t":"1 → clave única","d":"En dim_linea hay una fila por linea_id; en producción la misma línea aparece muchas veces."},{"t":"* → múltiples registros","d":"Que la clave se repita en el hecho es normal. Su grano debe seguir siendo consistente."},{"t":"Flecha → dirección del filtro","d":"Para este modelo, filtro único desde dimensión hacia hecho. Relación activa, línea continua."}]} />
   </div>
