@@ -4,11 +4,12 @@ import Notas from '../ui/Notas.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const bloques = [
   ['08:00', 'Entender', 'Reconocer una fuente confiable'],
-  ['09:00', 'Conectar', '8 consultas y un inventario de anomalías'],
-  ['10:45', 'Limpiar', 'Reglas para líneas, turnos y lotes'],
-  ['13:15', 'Repetir', 'Parámetros, condiciones y excepciones'],
-  ['15:00', 'Demostrar', 'Archivo A1 + bitácora + conciliación'],
-  ['16:30', 'Validar', 'Revisión cruzada y actualización'],
+  ['09:00', 'Diagnosticar', 'Bonus: conectar un Excel y comprobar indicadores'],
+  ['10:10', 'Conectar', '8 consultas y un inventario de anomalías'],
+  ['11:55', 'Limpiar', 'Reglas para líneas, turnos y lotes'],
+  ['14:25', 'Repetir', 'Parámetros, condiciones y excepciones'],
+  ['16:10', 'Demostrar', 'Archivo A1 + bitácora + conciliación'],
+  ['17:40', 'Validar', 'Revisión cruzada y actualización'],
 ];
 ---
 <Mecanismo diseno="ruta" modulo="D1-M0" titulo="Hoy vas a dejar datos que puedas defender">
@@ -17,10 +18,17 @@ const bloques = [
       <span class="day-time">{hora}</span><strong>{verbo}</strong><p>{resultado}</p>
     </div>)}
   </div>
-  <p class="texto-chico text-dim mt-8">Recesos: 10:30 y 14:45 · Comida: 12:15–13:15 · Fin: 17:00</p>
+  <p class="texto-chico text-dim mt-8">Con bonus: recesos 11:40 y 15:55 · Comida 13:25–14:25 · Fin 18:10</p>
   <a class="day-guide-link" href={`${base}/dia-01/guia/#instrucciones-dia-1`} target="_blank" rel="noopener">Abre los pasos y la bitácora ↗ · Puedes consultar la guía durante todo el día</a>
   <Notas slot="notas" minutos={4}
-    dice="Al terminar podrás conectar ocho tablas sin mezclarlas, justificar cada corrección y explicar cualquier cambio en filas o piezas. La guía se queda abierta junto a Power BI."
+    dice="Tras el fundamento haremos una práctica bonus para diagnosticar el punto de partida; luego comenzará A1. Al terminar podrás conectar ocho tablas sin mezclarlas, justificar cada corrección y explicar cualquier cambio en filas o piezas. La guía se queda abierta junto a Power BI."
     pregunta="Del 1 al 3: ¿nunca has abierto Power Query, ya conectas archivos o ya limpias datos?"
     nota="Usar esta pregunta solo para distribuir apoyo, no para calificar. Confirmar Power BI Desktop abierto y carpeta local disponible. No se requiere acceso a sistemas de planta. La portada no añade tiempo; estos cuatro minutos pertenecen al fundamento." />
 </Mecanismo>
+
+<style>
+  .day-roadmap { grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+  .day-roadmap-item { padding:14px 18px; }
+  .day-roadmap-item strong { font-size:30px; margin:6px 0; }
+  .day-roadmap-item p { font-size:24px; line-height:1.25; }
+</style>

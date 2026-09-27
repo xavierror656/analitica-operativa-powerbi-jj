@@ -1,0 +1,28 @@
+---
+import EjemploReal from '../slides/EjemploReal.astro';
+import Notas from '../ui/Notas.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<EjemploReal diseno="visual" modulo="D1-M2b" titulo="Power BI reúne varias etapas del análisis">
+  <figure class="metafora-power-bi">
+    <img
+      src={`${base}/imagenes/curso/power-bi-tetera.jpg`}
+      alt="Una tetera etiquetada Power BI sirve café en tazas etiquetadas Power Query y ETL, modelado de datos, cálculos DAX, visualización y servicio para compartir."
+      decoding="async"
+    />
+    <figcaption>Hoy trabajamos en la preparación de datos; las otras etapas se desarrollan durante el curso.</figcaption>
+  </figure>
+  <Notas
+    slot="notas"
+    minutos={0}
+    dice="Usar la imagen como repaso del mapa anterior. Power Query prepara, el modelo organiza, DAX calcula, las visualizaciones presentan y el servicio permite compartir. Continuar dentro de los seis minutos de arquitectura."
+  />
+</EjemploReal>
+
+<style>
+  .metafora-power-bi { width:100%; margin:0; display:flex; flex-direction:column; align-items:center; gap:16px; }
+  .metafora-power-bi img { display:block; width:100%; height:680px; object-fit:contain; border-radius:18px; }
+  .metafora-power-bi figcaption { font-size:27px; line-height:1.3; text-align:center; color:var(--color-text-on-paper); }
+</style>

@@ -1,5 +1,18 @@
 # Congruencia entre diapositivas, guías y materiales
 
+## Día 1 — ajuste del 27 de septiembre de 2026
+
+La presentación actual tiene 72 diapositivas: portada, 60 módulos del programa y
+11 de la práctica bonus de diagnóstico. El bonus de mantenimiento en Excel va
+después del fundamento y antes de A1. Permite observar conexión, tipos, medidas
+y filtros; no se califica y se guarda en un PBIX separado.
+
+Con el bonus completo (70 minutos), el caso A1 comienza a las 10:10 y el cierre
+termina a las 18:10. Los seis bloques del programa mantienen 450 minutos; sin
+bonus conservan el horario base de 09:00 a 17:00. La guía, la ruta de diapositivas,
+el README del día y el verificador reflejan este orden. La revisión fechada el
+24 de septiembre documenta la versión anterior de la secuencia.
+
 ## Día 1 — revisión del 24 de septiembre de 2026
 
 Alcance: 57 diapositivas (incluida portada y cinco extras), notas del facilitador, guía web y Markdown, 17 recetas compartidas, README del día, criterios de A1, catálogo de entregas y archivos distribuidos. La comprobación de los datos es independiente de Power BI Desktop; no certifica la ejecución del motor M ni un PBIX terminado.

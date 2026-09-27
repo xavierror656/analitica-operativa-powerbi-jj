@@ -103,8 +103,12 @@ def verificar():
             if actividad:
                 assert actividad[1] == notas[0], f"Cronómetro y notas difieren en {nombre}"
         bloques.append({"bloque": etiqueta, "modulos": len(componentes), "minutos": duracion})
-    assert [b["minutos"] for b in bloques[:6]] == esperados
-    assert sum(b["minutos"] for b in bloques[:6]) == 450
+    bloques_oficiales = [b for b in bloques if "bonus de diagnóstico" not in b["bloque"].lower()]
+    bloques_bonus = [b for b in bloques if "bonus de diagnóstico" in b["bloque"].lower()]
+    assert [b["minutos"] for b in bloques_oficiales] == esperados
+    assert sum(b["minutos"] for b in bloques_oficiales) == 450
+    assert len(bloques_bonus) == 1 and bloques_bonus[0]["minutos"] == 70
+    assert bloques.index(bloques_bonus[0]) == 1, "El diagnóstico debe seguir al fundamento"
     return {
         "zip_sha256": hashlib.sha256(dataset.read_bytes()).hexdigest(),
         "filas_por_tabla": {n: len(f) for n, f in tablas.items()},

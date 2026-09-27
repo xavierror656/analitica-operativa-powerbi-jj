@@ -1,9 +1,13 @@
 ---
+import { existsSync } from 'node:fs';
 import EjemploReal from '../slides/EjemploReal.astro';
+import Descarga from '../ui/Descarga.astro';
 import TablaCurso from '../ui/TablaCurso.astro';
 import Notas from '../ui/Notas.astro';
+const archivoReferencia = 'dia-01-extra-mantenimiento-referencia.pbix';
+const referenciaDisponible = existsSync(`public/descargas/referencias/${archivoReferencia}`);
 ---
-<EjemploReal diseno="datos" modulo="D1-M20 · Extra" titulo="Comprueba tus indicadores al filtrar">
+<EjemploReal diseno="datos" modulo="D1-M20 · Bonus" titulo="Comprueba tus indicadores al filtrar">
   <div class="flex flex-col gap-8">
     <TablaCurso columnas={['Selección', 'Fallas', 'MTTR · h', 'MTBF didáctico · h', 'Disponibilidad reportada media · %']} filas={[
       ['Sin filtros', '150', '2.98', '20.04', '83.56'],
@@ -11,7 +15,8 @@ import Notas from '../ui/Notas.astro';
     ]} />
     <p><strong>Primero limpia todos los filtros.</strong> Después selecciona Extrusora 2, sin restringir Fecha ni Tipo_Falla. Las cuatro tarjetas deben responder.</p>
     <p>Si no coincide: revisa <strong>150 filas</strong>, horas como decimal y medidas con icono de calculadora. <strong>8,355.95 %</strong> indica que falta dividir entre 100; <strong>0.84 %</strong>, que dividiste dos veces.</p>
-    <p class="texto-chico">Quita la selección de Equipo: deben volver los totales. Guarda el PBIX y una captura con cada selección. Ordenes_Pendientes queda como apoyo; su suma no demuestra cuántas órdenes siguen abiertas hoy.</p>
+    <p class="texto-chico">Quita la selección de Equipo: deben volver los totales. Guarda el PBIX y una captura con cada selección. Para A1 abre otro PBIX; no mezcles este Excel con los ocho CSV. Ordenes_Pendientes queda como apoyo; su suma no demuestra cuántas órdenes siguen abiertas hoy.</p>
+    {referenciaDisponible && <Descarga href={`/descargas/referencias/${archivoReferencia}`} nombre="Descargar PBIX de referencia para comparar" />}
   </div>
-  <Notas slot="notas" minutos={5} dice="Pedir que expliquen cuál indicador habla de reparación y cuál de operación. El filtro cambia la población; no debe usarse para escoger solo el resultado más favorable." nota="Controles calculados desde el Excel del ejercicio. Extrusora 2: 32 registros, 88.26 horas de reparación, 646.14 horas operativas y suma de porcentajes 2,666.73. Estos controles aritméticos no sustituyen la validación de las definiciones para uso operacional." />
+  <Notas slot="notas" minutos={5} dice="Pedir que expliquen cuál indicador habla de reparación y cuál de operación. Registrar quién conectó, creó medidas y comprobó filtros sin apoyo, con guía o con apoyo directo. Después abrir el caso A1 en un PBIX nuevo." nota="El filtro cambia la población; no debe usarse para escoger solo el resultado más favorable. Controles calculados desde el Excel del ejercicio. Extrusora 2: 32 registros, 88.26 horas de reparación, 646.14 horas operativas y suma de porcentajes 2,666.73. Estos controles aritméticos no sustituyen la validación de las definiciones para uso operacional." />
 </EjemploReal>

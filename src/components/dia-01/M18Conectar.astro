@@ -4,10 +4,10 @@ import Pasos from '../ui/Pasos.astro';
 import Notas from '../ui/Notas.astro';
 ---
 
-<TuTurno diseno="accion" modulo="D1-M18 · Extra" titulo="Conecta el archivo" minutos={15}>
+<TuTurno diseno="accion" modulo="D1-M18 · Bonus" titulo="Conecta el archivo" minutos={15}>
   <Pasos
     items={[
-      { t: 'Abre un PBIX nuevo', d: 'Guarda A1. En otro archivo: Obtener datos → Excel → selecciona el archivo descargado.' },
+      { t: 'Abre un PBIX nuevo', d: 'En un archivo vacío: Obtener datos → Excel → selecciona el archivo descargado. El caso A1 se abrirá después en otro PBIX.' },
       { t: 'Selecciona la hoja MaintenanceData', d: 'En el Navegador, marca la única hoja y pulsa Transformar datos.' },
       { t: 'Comprueba nombre y encabezados', d: 'La consulta debe llamarse MaintenanceData. Si ves Column1, Column2… usa Transformar → Usar la primera fila como encabezados. Si ya ves Fecha y Equipo, no repitas ese paso.' },
       { t: 'Revisa tipos y carga', d: 'Fecha: fecha; horas y Disponibilidad_Porc: decimal; Ordenes_Pendientes: entero. Deben quedar 150 filas. Cerrar y aplicar.' },
@@ -16,7 +16,7 @@ import Notas from '../ui/Notas.astro';
   <Notas
     slot="notas"
     minutos={15}
-    dice="Es el mismo patrón que usaron con Texto/CSV, solo que aquí el origen es Excel. Trabajen en un PBIX separado para conservar las ocho tablas de A1."
-    nota="El objetivo de este extra es que reconozcan el patrón con un archivo que no es el del curso: Obtener datos, perfilar, cargar, sin importar la fuente."
+    dice="Observar cómo conectan y revisan un Excel antes de enseñar la conexión de los ocho CSV de A1. Trabajar en un PBIX aparte."
+    nota="Usar este intento como diagnóstico de conexión, encabezados y tipos. Si aparece un bloqueo, anotar en qué paso ocurrió; después acompañar con la guía."
   />
 </TuTurno>
