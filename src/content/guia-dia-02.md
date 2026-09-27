@@ -130,6 +130,8 @@ Configura las unidades de visualización para ver el entero completo, sin abrevi
 
 Agrega segmentadores desde **dim_linea**, **dim_calendario**, **dim_turno**, **dim_parte** y **dim_defecto**. Usa nombres legibles de las dimensiones; conserva el código en la bitácora para identificar el filtro sin ambigüedad.
 
+Para combinar una selección de un segmentador con la de otro distinto, mantén presionado **Ctrl** mientras haces clic en el segundo. Sin Ctrl, algunas instalaciones de Power BI Desktop reemplazan la selección anterior en lugar de sumarla.
+
 Antes de cada prueba, **limpia todos los filtros**, incluyendo selecciones de otros visuales y filtros de página o informe. Predice el resultado, aplica la selección y compáralo con un filtro directo sobre la consulta A1 depurada. Las cifras del cuadro son controles adicionales, no sustituyen ese contraste.
 
 | Prueba independiente | Producidas: piezas | Rechazadas: piezas | Mantenimiento: min |
@@ -138,6 +140,10 @@ Antes de cada prueba, **limpia todos los filtros**, incluyendo selecciones de ot
 | Línea L1 | 1,340,826 | 33,170 | 23,409 |
 | Fecha 01/03/2025 + línea L1 | 2,301 | 77 | 21 |
 | Turno 1 | 1,954,605 | 144,882 | 93,298 |
+
+![Página Control_A2 con las tarjetas mostrando 2,301, 77 y 21; los segmentadores Línea (L1) y Fecha (2025 marzo 1) aparecen resaltados al mismo tiempo, ambos con el borde de selección activo](/imagenes/capturas/dia-02/a2-segmentadores-linea-fecha-combinados.png)
+
+*L1 y 01/03/2025 seleccionados a la vez, con Ctrl, en dos segmentadores distintos. Así se ve el checkpoint «Fecha 01/03/2025 + línea L1» cumplido: ambos bordes de selección visibles y las tres tarjetas coinciden con la fila de arriba.*
 | Parte P-1001 | 1,189,291 | 29,629 | 93,298 |
 | Defecto D01 | 5,822,881 | 24,235 | 93,298 |
 
@@ -194,6 +200,7 @@ Ocultar campos o tablas organiza la autoría; **no es una medida de seguridad**.
 | Una tarjeta ignora la fecha | Revisa relación activa, columna de fecha y tipo compatible | Crear otra relación sin revisar la existente |
 | Categoría en blanco | Busca nulos y claves huérfanas mediante anti unión | Borrar la categoría y dar el modelo por corregido |
 | Mismo total repetido en cada categoría | Comprueba si esa dimensión tiene ruta hacia ese hecho | Sumar manualmente las filas mostradas |
+| Al elegir un valor en un segmentador se borra el de otro segmentador | Mantén presionado **Ctrl** mientras haces clic en el segundo segmentador y los siguientes | Concluir que el modelo o las relaciones están mal |
 | Se propone muchos a muchos | Examina duplicados y significado de la clave del catálogo | Aceptarlo solo para cerrar el cuadro de diálogo |
 | El total creció frente a A1 | Revisa las consultas, combinaciones, duplicados y la misma selección de filtros | Culpar a una medida sin verificar el origen |
 
