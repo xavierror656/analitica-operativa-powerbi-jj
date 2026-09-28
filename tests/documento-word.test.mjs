@@ -48,7 +48,6 @@ test('descarga Word del día 1 contiene todas las recetas, tablas y fórmulas de
     if (anchor) assert.ok(bookmarks.has(anchor), `Destino interno: ${anchor}`);
   }
   const deck = new JSDOM(readFileSync('dist/dia-01/index.html', 'utf8'));
-  const slide = deck.window.document.querySelectorAll('.slides > section')[18];
-  assert.ok(slide.querySelector('a[download][href="/descargas/guia-dia-01.docx"]'));
+  assert.ok(deck.window.document.querySelector('.slides section a[download][href="/descargas/guia-dia-01.docx"]'));
   deck.window.close();
 });

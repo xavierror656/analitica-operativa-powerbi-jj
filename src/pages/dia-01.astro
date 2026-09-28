@@ -3,8 +3,9 @@ import RevealDeck from '../components/RevealDeck.astro';
 import Acto from '../components/ui/Acto.astro';
 import Notas from '../components/ui/Notas.astro';
 import M0Ruta from '../components/dia-01/M0Ruta.astro';
+import M0Horario from '../components/dia-01/M0Horario.astro';
 
-// 08:00 Fundamento
+// Fundamento del primer bloque de capacitación
 import M1Gancho from '../components/dia-01/M1Gancho.astro';
 import M1bQueNoEs from '../components/dia-01/M1bQueNoEs.astro';
 import M1cTresAreas from '../components/dia-01/M1cTresAreas.astro';
@@ -22,7 +23,7 @@ import M3dQuizFuente from '../components/dia-01/M3dQuizFuente.astro';
 import M3eCita from '../components/dia-01/M3eCita.astro';
 import M3fTransicion from '../components/dia-01/M3fTransicion.astro';
 
-// 10:10 Núcleo 1 con la práctica bonus completa
+// Núcleo 1: conexión de fuentes
 import M4aContexto from '../components/dia-01/M4aContexto.astro';
 import M4a2Descarga from '../components/dia-01/M4a2Descarga.astro';
 import M4bArchivos from '../components/dia-01/M4bArchivos.astro';
@@ -34,7 +35,7 @@ import M4TuTurno2Documenta from '../components/dia-01/M4TuTurno2Documenta.astro'
 import M4eResultadoEsperado from '../components/dia-01/M4eResultadoEsperado.astro';
 import M4fTransicion from '../components/dia-01/M4fTransicion.astro';
 
-// 11:55 Núcleo 2 con la práctica bonus completa
+// Núcleo 2: limpieza de datos
 import M5aContexto from '../components/dia-01/M5aContexto.astro';
 import M5bLineaInconsistente from '../components/dia-01/M5bLineaInconsistente.astro';
 import M5cTurnoSupervisor from '../components/dia-01/M5cTurnoSupervisor.astro';
@@ -44,7 +45,7 @@ import M5TurnosLineas from '../components/dia-01/M5TurnosLineas.astro';
 import M5fChecklistCierre from '../components/dia-01/M5fChecklistCierre.astro';
 import M6Transicion from '../components/dia-01/M6Transicion.astro';
 
-// 14:25 Laboratorio: Power Query a fondo con la práctica bonus completa
+// Laboratorio: Power Query a fondo
 import M7CadaPasoQueda from '../components/dia-01/M7CadaPasoQueda.astro';
 import M8PowerQueryAFondo from '../components/dia-01/M8PowerQueryAFondo.astro';
 import M8cPerfilado from '../components/dia-01/M8cPerfilado.astro';
@@ -57,7 +58,7 @@ import M10bQuizErrores from '../components/dia-01/M10bQuizErrores.astro';
 import M11LaboratorioAplicado from '../components/dia-01/M11LaboratorioAplicado.astro';
 import M12Transicion from '../components/dia-01/M12Transicion.astro';
 
-// 16:10 Taller de evidencia con la práctica bonus completa
+// Taller de evidencia A1
 import M13aContexto from '../components/dia-01/M13aContexto.astro';
 import M13bRubrica from '../components/dia-01/M13bRubrica.astro';
 import M13cDocumentacion from '../components/dia-01/M13cDocumentacion.astro';
@@ -65,7 +66,7 @@ import M13TallerEvidencia from '../components/dia-01/M13TallerEvidencia.astro';
 import M13dAuditoria from '../components/dia-01/M13dAuditoria.astro';
 import M13eChecklistFinal from '../components/dia-01/M13eChecklistFinal.astro';
 
-// 17:40 Validación y cierre con la práctica bonus completa
+// Validación y cierre
 import M14Cierre from '../components/dia-01/M14Cierre.astro';
 import M14bRecap from '../components/dia-01/M14bRecap.astro';
 import M14cPreview from '../components/dia-01/M14cPreview.astro';
@@ -90,8 +91,9 @@ import M20ControlKpis from '../components/dia-01/M20ControlKpis.astro';
     <Notas slot="notas" minutos={0} dice="Portada de espera. Iniciar la jornada en la siguiente diapositiva." />
   </Acto>
 
-  <!-- 08:00 Fundamento (60 min) -->
+  <!-- Fundamento del primer bloque -->
   <M0Ruta />
+  <M0Horario />
   <M1Gancho />
   <M1bQueNoEs />
   <M1dCuandoNoUsar />
@@ -109,7 +111,7 @@ import M20ControlKpis from '../components/dia-01/M20ControlKpis.astro';
   <M3eCita />
   <M3fTransicion />
 
-  <!-- Práctica bonus de diagnóstico (70 min), después del fundamento -->
+  <!-- Práctica bonus de diagnóstico (70 min), después del fundamento y desayuno -->
   <M15Gancho />
   <M16Descarga />
   <M16bKpis />
@@ -122,7 +124,7 @@ import M20ControlKpis from '../components/dia-01/M20ControlKpis.astro';
   <M19PrimerasVisualizaciones />
   <M20ControlKpis />
 
-  <!-- 10:10 Núcleo 1: Conectar las fuentes de piso (90 min) -->
+  <!-- Núcleo 1: conectar las fuentes de piso -->
   <M4aContexto />
   <M4a2Descarga />
   <M4bArchivos />
@@ -147,7 +149,7 @@ import M20ControlKpis from '../components/dia-01/M20ControlKpis.astro';
   <M4eResultadoEsperado />
   <M4fTransicion />
 
-  <!-- 11:55 Núcleo 2: Turnos, líneas y lotes en orden (90 min) -->
+  <!-- Núcleo 2: turnos, líneas y lotes en orden -->
   <M5aContexto />
   <M5eDuplicados />
   <CapturaPowerQuery
@@ -171,7 +173,7 @@ import M20ControlKpis from '../components/dia-01/M20ControlKpis.astro';
   <M5fChecklistCierre />
   <M6Transicion />
 
-  <!-- 14:25 Laboratorio: Power Query a fondo (90 min) -->
+  <!-- Laboratorio: Power Query a fondo -->
   <M7CadaPasoQueda />
   <M8PowerQueryAFondo />
   <M8cPerfilado />
@@ -191,7 +193,7 @@ import M20ControlKpis from '../components/dia-01/M20ControlKpis.astro';
   <M11LaboratorioAplicado />
   <M12Transicion />
 
-  <!-- 16:10 Taller de evidencia: A1 (90 min) -->
+  <!-- Taller de evidencia A1 -->
   <M13aContexto />
   <M13bRubrica />
   <M13cDocumentacion />
@@ -199,7 +201,7 @@ import M20ControlKpis from '../components/dia-01/M20ControlKpis.astro';
   <M13dAuditoria />
   <M13eChecklistFinal />
 
-  <!-- 17:40 Validación y cierre (30 min) -->
+  <!-- Validación y cierre -->
   <M14Cierre />
   <M14bRecap />
   <M14cPreview />

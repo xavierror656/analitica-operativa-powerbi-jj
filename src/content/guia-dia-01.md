@@ -39,20 +39,19 @@ Confirma también cuánto retraso admite la decisión. Publicar no garantiza dat
 
 ## Ruta del día
 
-| Horario | Trabajo | Comprobación al terminar |
+| Horario | Actividad | Enfoque de la capacitación |
 |---|---|---|
-| 08:00–09:00 | Fundamento | Explicas origen, responsable, granularidad y actualización |
-| 09:00–10:10 | Práctica bonus de diagnóstico | Conexión, tipos, medidas y filtros observados; PBIX separado de A1 |
-| 10:10–11:40 | Conexión y perfilado | Ocho consultas separadas e inventario de anomalías |
-| 11:40–11:55 | Receso | Guarda tu avance |
-| 11:55–13:25 | Limpieza en pareja | Líneas, horas, turnos y lotes consistentes |
-| 13:25–14:25 | Comida | Guarda una copia del PBIX |
-| 14:25–15:55 | Laboratorio | Parámetro, clasificación y excepciones verificadas |
-| 15:55–16:10 | Receso | Guarda tu avance |
-| 16:10–17:40 | Evidencia A1 | PBIX, bitácora y revisión cruzada |
-| 17:40–18:10 | Validación y cierre | Conciliación y dos actualizaciones estables |
+| 8:00 a.m.–9:00 a.m. | Capacitación | Fundamentos: origen, responsable, granularidad y actualización |
+| 9:00 a.m.–9:30 a.m. | Desayuno | Pausa |
+| 9:30 a.m.–11:00 a.m. | Capacitación | Práctica bonus de diagnóstico y comienzo de la conexión de A1 |
+| 11:00 a.m.–11:15 a.m. | Break | Guarda tu avance |
+| 11:15 a.m.–1:00 p.m. | Capacitación | Conexión, perfilado y limpieza de fuentes |
+| 1:00 p.m.–1:30 p.m. | Comida | Guarda una copia del PBIX |
+| 1:30 p.m.–3:00 p.m. | Capacitación | Limpieza y laboratorio de Power Query |
+| 3:00 p.m.–3:15 p.m. | Break | Guarda tu avance |
+| 3:15 p.m.–5:00 p.m. | Capacitación | Evidencia A1, validación y cierre |
 
-Esta ruta suma 450 minutos del programa, 70 minutos de práctica bonus y 90 minutos de pausas. La práctica bonus no forma parte de A1. Si se omite, se conserva el horario base de 09:00 a 17:00 para los bloques restantes.
+El horario contiene 7 horas y 30 minutos de capacitación. La práctica bonus dura 70 minutos y comienza después del fundamento y del desayuno; se realiza en un PBIX separado y no forma parte de A1. El facilitador ajusta el ritmo de los ejercicios para cerrar a las 5:00 p.m.
 
 ## Práctica bonus de diagnóstico: mantenimiento en Excel
 

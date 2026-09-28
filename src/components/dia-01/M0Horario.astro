@@ -1,0 +1,38 @@
+---
+import Mecanismo from '../slides/Mecanismo.astro';
+import Notas from '../ui/Notas.astro';
+
+const horario = [
+  ['8:00 a.m. – 9:00 a.m.', 'Capacitación'],
+  ['9:00 a.m. – 9:30 a.m.', 'Desayuno'],
+  ['9:30 a.m. – 11:00 a.m.', 'Capacitación'],
+  ['11:00 a.m. – 11:15 a.m.', 'Break'],
+  ['11:15 a.m. – 1:00 p.m.', 'Capacitación'],
+  ['1:00 p.m. – 1:30 p.m.', 'Comida'],
+  ['1:30 p.m. – 3:00 p.m.', 'Capacitación'],
+  ['3:00 p.m. – 3:15 p.m.', 'Break'],
+  ['3:15 p.m. – 5:00 p.m.', 'Capacitación'],
+];
+---
+
+<Mecanismo diseno="horario" modulo="D1 · AGENDA" titulo="Horario del primer día" icono="clock-3">
+  <table class="horario-dia">
+    <thead><tr><th scope="col">Horario</th><th scope="col">Actividad</th></tr></thead>
+    <tbody>{horario.map(([hora, actividad]) => <tr class:list={{ pausa: actividad !== 'Capacitación' }}><th scope="row">{hora}</th><td>{actividad}</td></tr>)}</tbody>
+  </table>
+  <p class="horario-resumen">7 h 30 min de capacitación · Cierre a las 5:00 p.m.</p>
+  <Notas slot="notas" minutos={1}
+    dice="Este es el horario de hoy. Empezamos con los fundamentos; después del desayuno haremos una práctica bonus de diagnóstico antes de trabajar el caso A1. Respetaremos los dos breaks y la comida."
+    nota="El horario es el compartido para el curso: desayuno 9:00–9:30, breaks 11:00–11:15 y 15:00–15:15, comida 13:00–13:30 y cierre a las 17:00. Ajustar el ritmo de los ejercicios para llegar al cierre." />
+</Mecanismo>
+
+<style>
+  .horario-dia { width:100%; border-collapse:collapse; color:#123a34; background:#fff; font-size:24px; line-height:1.15; }
+  .horario-dia th, .horario-dia td { padding:11px 24px; border-bottom:1px solid #d5e2de; text-align:left; }
+  .horario-dia thead { background:#123a34; color:#fff; }
+  .horario-dia tbody th { width:55%; font-weight:600; }
+  .horario-dia tbody tr:nth-child(odd) { background:#f0f6f3; }
+  .horario-dia tbody tr.pausa { color:#52655e; }
+  .horario-dia tbody tr.pausa td { font-weight:600; }
+  .horario-resumen { margin:14px 0 0; color:#41665d; font-size:22px; font-weight:700; }
+</style>
