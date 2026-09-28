@@ -25,6 +25,15 @@ test('continuar utiliza ruta e índices explícitos de la última práctica', ()
   dom.window.close();
 });
 
+test('continuar no abre un día posterior al publicado', () => {
+  const dom = new JSDOM('<a data-continuar hidden></a><p data-sin-avance></p>', {url:'https://curso.example'});
+  dom.window.document.body.dataset.diaAbierto = '1';
+  dom.window.localStorage.setItem('powerbi:ultima:v1', JSON.stringify({version:1,pathname:'/dia-02/',h:4,v:0}));
+  conectarCurso(dom.window.document, dom.window);
+  assert.equal(dom.window.document.querySelector('a').hidden, true);
+  dom.window.close();
+});
+
 test('JSON dañado y estados desconocidos no impiden marcar una práctica', () => {
   const dom = new JSDOM('<div><select data-actividad-estado="2-1"><option value="pendiente">Pendiente</option><option value="terminada">Terminada</option></select><p role="status"></p></div><p data-resumen-avance></p>', {url:'https://curso.example'});
   dom.window.localStorage.setItem('powerbi:ultima:v1', '{');

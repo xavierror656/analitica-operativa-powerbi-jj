@@ -21,9 +21,13 @@ export function conectarCurso(document, window) {
   const storage = () => window.localStorage;
   const ultimo = leer(storage, 'powerbi:ultima:v1', null);
   const enlace = document.querySelector('[data-continuar]');
+  const diaAbierto = Number(document.body.dataset.diaAbierto || 5);
+  const rutaUltima = typeof ultimo?.pathname === 'string' ? ultimo.pathname : '';
+  const diaUltimo = Number(rutaUltima.match(/^\/dia-0([1-5])/)?.[1] || rutaUltima.match(/^\/practicas\/([2-5])-/)?.[1]);
   if (enlace && ultimo?.version === 1 && Number.isInteger(ultimo.h) && ultimo.h >= 0 &&
       Number.isInteger(ultimo.v) && ultimo.v >= 0 &&
       typeof ultimo.pathname === 'string' &&
+      diaUltimo <= diaAbierto &&
       /^\/(?:dia-0[1-5]|practicas\/[2-5]-[1-4])\/?$/.test(ultimo.pathname)) {
     enlace.href = ultimo.pathname.replace(/\/$/, '') + '/#/' + ultimo.h + '/' + ultimo.v;
     enlace.textContent = `Continuar ${ultimo.pathname.includes('practicas') ? 'práctica ' + ultimo.pathname.match(/[2-5]-[1-4]/)[0].replace('-', '.') : 'día ' + ultimo.pathname.match(/0([1-5])/)[1]} · diapositiva ${ultimo.h + 1}`;

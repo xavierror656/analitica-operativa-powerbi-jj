@@ -6,6 +6,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
+const diaAbierto = JSON.parse(fs.readFileSync(path.join(dist, 'apertura-curso.json'), 'utf8')).diaAbierto;
+assert.ok(Number.isInteger(diaAbierto) && diaAbierto >= 1 && diaAbierto <= 5);
 const origin = 'https://powerbi.floresjavier.com';
 const files = fs.readdirSync(dist, { recursive: true }).filter(name => fs.statSync(path.join(dist, name)).isFile());
 const pages = files.filter(name => name.endsWith('.html'));
@@ -48,6 +50,12 @@ assert.equal(Object.keys(fichas).length, 16);
 for (const [id, ficha] of Object.entries(fichas)) {
   const guide = fs.readFileSync(path.join(dist, `practicas/${id}/guia/index.html`), 'utf8');
   const deck = fs.readFileSync(path.join(dist, `practicas/${id}/index.html`), 'utf8');
+  if (Number(id[0]) > diaAbierto) {
+    assert.match(guide, /data-curso-bloqueado="true"/, `${id}: guía futura abierta`);
+    assert.match(deck, /data-curso-bloqueado="true"/, `${id}: práctica futura abierta`);
+    assert.ok(!fs.existsSync(path.join(dist, `descargas/practicas/actividad-${id}.zip`)), `${id}: ZIP futuro publicado`);
+    continue;
+  }
   assert.ok(guide.includes(`data-ficha="${id}"`) && guide.includes('data-caso="practicas"'));
   for (const key of ['objetivo', 'abre', 'construye', 'comprueba', 'entrega']) {
     assert.ok(ficha[key]?.length > 20, `${id}: falta ${key}`);
@@ -57,6 +65,19 @@ for (const [id, ficha] of Object.entries(fichas)) {
   }
   if (!id.startsWith('5')) assert.doesNotMatch(guide + deck, /\bpython\b/i);
   assert.ok(!guide.includes('id="tu-entrega-paso-a-paso"'), `${id}: ficha duplicada`);
+}
+for (let dia = diaAbierto + 1; dia <= 5; dia++) {
+  for (const ruta of [`dia-0${dia}/index.html`, `dia-0${dia}/guia/index.html`]) {
+    assert.match(fs.readFileSync(path.join(dist, ruta), 'utf8'), /data-curso-bloqueado="true"/, `${ruta}: día futuro abierto`);
+  }
+  assert.ok(!files.some(file => new RegExp(`^descargas/(?:guia-dia-0${dia}\\.|referencias/dia-0${dia}-)`).test(file.replaceAll(path.sep, '/'))), `Descarga futura del día ${dia}`);
+  const portada = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
+  assert.ok(!portada.includes(`href="/dia-0${dia}/`), `Portada enlaza al día ${dia} cerrado`);
+}
+if (diaAbierto === 1) {
+  assert.match(fs.readFileSync(path.join(dist, 'practicas/index.html'), 'utf8'), /data-curso-bloqueado="true"/);
+  assert.ok(!files.some(file => file.replaceAll(path.sep, '/').startsWith('descargas/practicas/')), 'Paquetes de prácticas publicados antes del día 2');
+  assert.ok(!fs.readFileSync(path.join(dist, 'entregas/index.html'), 'utf8').includes('data-evidencia="A2"'), 'A2 visible antes del día 2');
 }
 
 const cssFiles = files.filter(name => name.endsWith('.css'));

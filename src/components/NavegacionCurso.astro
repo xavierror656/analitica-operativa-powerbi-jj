@@ -1,9 +1,10 @@
 ---
+import { diaAbierto } from '../lib/disponibilidad-curso.mjs';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const ruta = Astro.url.pathname;
 const enlaces = [
   ['/#programa', 'Los cinco días'],
-  ['/practicas/', 'Prácticas y materiales'],
+  ...(diaAbierto >= 2 ? [['/practicas/', 'Prácticas y materiales']] : []),
   ['/buscar/', 'Buscar'],
   ['/entregas/', 'Mis entregas'],
   ['/referencias/', 'Modelos de referencia'],

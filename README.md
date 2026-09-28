@@ -61,6 +61,12 @@ npm run dev      # http://localhost:4321
 `npm run build` genera `dist/` estático.
 
 Producción: **https://powerbi.floresjavier.com/** (GitHub Pages con dominio propio).
+La publicación abre solo el día indicado por `CURSO_DIA_ABIERTO` en
+`.github/workflows/deploy-pages.yml` (actualmente `1`). Los días posteriores
+se muestran como próximos en la portada; sus URL directas llevan a una página
+de espera y sus descargas se retiran del artefacto `dist/`. Para abrir el día
+siguiente, cambia ese valor y vuelve a publicar. Un build local sin esa variable
+conserva los cinco días para revisión y pruebas.
 `astro.config.mjs` usa `base: '/'`; no anteponer el nombre del repositorio a las
 rutas. `public/CNAME` conserva el dominio en la salida. Después del build, ejecutar
 `node scripts/verificar_sitio.mjs` para comprobar los enlaces y recursos de todas

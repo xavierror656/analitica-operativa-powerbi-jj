@@ -31,6 +31,8 @@ jobs:
         run: npm ci
 
       - name: Build (Astro)
+        env:
+          CURSO_DIA_ABIERTO: '1'
         run: npm run build
 
       - name: Verify production domain and assets

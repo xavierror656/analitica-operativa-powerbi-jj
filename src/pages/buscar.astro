@@ -2,22 +2,23 @@
 import Boton from '../components/ui/Boton.astro';
 import CursoLayout from '../components/CursoLayout.astro';
 import plan from '../data/practicas-plan.json';
+import { diaAbierto } from '../lib/disponibilidad-curso.mjs';
 const fuentes = import.meta.glob('../content/**/*.md', {query:'?raw', import:'default', eager:true});
 const indice = Object.entries(fuentes).flatMap(([ruta, raw]) => {
   const dia = ruta.match(/guia-dia-0([1-5])\.md$/)?.[1];
   const actividad = ruta.match(/practicas\/([2-5]-[1-4])\.md$/)?.[1];
-  if (!dia && !actividad) return [];
+  if ((!dia && !actividad) || Number(dia || actividad?.[0]) > diaAbierto) return [];
   const ficha = plan.find(a => a.id === actividad);
   const texto = String(raw).replace(/^---[\s\S]*?---/, '').replace(/```[^\n]*\n/g, '').replace(/[#*`>|]/g, '').replace(/\s+/g, ' ').trim();
   return [{titulo: dia ? `Día ${dia} · Guía del participante` : `Práctica ${actividad?.replace('-', '.')} · ${ficha?.titulo}`, dia: dia || actividad?.[0], texto, url: dia ? `/dia-0${dia}/guia/` : `/practicas/${actividad}/guia/`}];
 });
 ---
-<CursoLayout titulo="Buscar materiales" descripcion="Encuentra conceptos, fórmulas y actividades en las cinco guías y las 16 prácticas.">
+<CursoLayout titulo="Buscar materiales" descripcion={diaAbierto === 1 ? 'Busca los materiales disponibles del día 1.' : 'Encuentra conceptos, fórmulas y actividades en las guías y prácticas disponibles.'}>
   <form id="buscador" class="card personal-panel" role="search">
     <label for="consulta">Concepto o fórmula</label>
     <input class="input input-bordered" id="consulta" name="q" type="search" placeholder="Por ejemplo: OEE, relaciones, CALCULATE" maxlength="200" />
     <label for="dia-busqueda">Día</label>
-    <select class="select select-bordered" id="dia-busqueda" name="dia"><option value="">Todos los días</option>{[1,2,3,4,5].map(d=><option value={d}>Día {d}</option>)}</select>
+    <select class="select select-bordered" id="dia-busqueda" name="dia"><option value="">Días disponibles</option>{[1,2,3,4,5].filter(d=>d<=diaAbierto).map(d=><option value={d}>Día {d}</option>)}</select>
     <Boton variante="principal" type="submit">Buscar</Boton>
   </form>
   <p id="resultado-estado" role="status" aria-live="polite">Escribe un término para buscar.</p>

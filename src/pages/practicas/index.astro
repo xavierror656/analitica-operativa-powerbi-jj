@@ -7,19 +7,21 @@ import EstadoPractica from '../../components/EstadoPractica.astro';
 import DistintivoDia from '../../components/DistintivoDia.astro';
 import actividades from '../../data/practicas-plan.json';
 import fichas from '../../data/practicas-aula.json';
+import { diaAbierto } from '../../lib/disponibilidad-curso.mjs';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const temas = {2:'Modelo de datos',3:'Indicadores en DAX',4:'Reporte operativo',5:'Análisis y proyecto final'};
+const diasVisibles = [2,3,4,5].filter(dia=>dia<=diaAbierto);
 ---
-<CursoLayout titulo="Prácticas de los días 2–5" descripcion="Abre la actividad, prepara sus materiales y conserva la evidencia en tu reporte acumulativo." etiqueta="16 ACTIVIDADES · 90 MINUTOS CADA UNA">
+<CursoLayout titulo="Prácticas disponibles" descripcion="Abre la actividad, prepara sus materiales y conserva la evidencia en tu reporte acumulativo." etiqueta="ACTIVIDADES · 90 MINUTOS CADA UNA">
   <nav slot="cabecera" class="course-actions resources" aria-label="Ir al día">
-    {[2,3,4,5].map(dia=><Boton href={'#dia-'+dia}>Día {dia}</Boton>)}
-    <Boton href={base+'/descargas/practicas/todas-las-actividades.zip'} download>Descargar los 16 paquetes</Boton>
+    {diasVisibles.map(dia=><Boton href={'#dia-'+dia}>Día {dia}</Boton>)}
+    {diaAbierto === 5 && <Boton href={base+'/descargas/practicas/todas-las-actividades.zip'} download>Descargar los 16 paquetes</Boton>}
   </nav>
   <p data-resumen-avance role="status" aria-live="polite"></p>
   <noscript>Activa JavaScript para guardar el avance de tus prácticas.</noscript>
   <CasoDatos caso="practicas"/>
   <p>Estos cuatro bloques de cada día sustituyen las prácticas de la presentación general. Se conservan fundamentos, pausas y cierre de la jornada.</p>
-  {[2,3,4,5].map(dia=><section class="course-section" data-dia={dia} id={'dia-'+dia} aria-labelledby={'titulo-dia-'+dia}>
+  {diasVisibles.map(dia=><section class="course-section" data-dia={dia} id={'dia-'+dia} aria-labelledby={'titulo-dia-'+dia}>
     <div class="section-heading"><h2 class="day-section-title" id={'titulo-dia-'+dia}><DistintivoDia dia={dia} compacto/>{temas[dia as keyof typeof temas]}</h2><a href={base+'/dia-0'+dia+'/'}>Presentación del día</a></div>
     <div class="activity-grid">{actividades.filter(a=>a.dia===dia).map(a=><article class="card activity-card">
       <p class="eyebrow">ACTIVIDAD {a.numero} · 90 MINUTOS</p>
