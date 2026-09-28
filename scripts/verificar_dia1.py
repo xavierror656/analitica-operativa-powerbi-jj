@@ -89,7 +89,7 @@ def verificar():
     texto = pagina.read_text(encoding="utf-8")
     imports = dict(re.findall(r"import (\w+) from '(.*?)';", texto))
     bloques = []
-    esperados = [60, 90, 90, 90, 90, 30]
+    esperados = [60, 75, 75, 75, 65, 30]
     for bloque in texto.split("<!--")[1:]:
         etiqueta = bloque.split("-->")[0].strip()
         componentes = re.findall(r"<(M\w+)\s*/>", bloque)
@@ -106,9 +106,17 @@ def verificar():
     bloques_oficiales = [b for b in bloques if "bonus de diagnóstico" not in b["bloque"].lower()]
     bloques_bonus = [b for b in bloques if "bonus de diagnóstico" in b["bloque"].lower()]
     assert [b["minutos"] for b in bloques_oficiales] == esperados
-    assert sum(b["minutos"] for b in bloques_oficiales) == 450
+    assert sum(b["minutos"] for b in bloques_oficiales) == 380
     assert len(bloques_bonus) == 1 and bloques_bonus[0]["minutos"] == 70
     assert bloques.index(bloques_bonus[0]) == 1, "El diagnóstico debe seguir al fundamento"
+    assert sum(b["minutos"] for b in bloques) == 450, "La jornada de capacitación debe durar 7 h 30 min"
+    horario = (ROOT / "src/components/dia-01/M0Horario.astro").read_text(encoding="utf-8")
+    for inicio, fin in [("8:00 a.m.", "9:00 a.m."), ("9:00 a.m.", "9:30 a.m."),
+                        ("9:30 a.m.", "11:00 a.m."), ("11:00 a.m.", "11:15 a.m."),
+                        ("11:15 a.m.", "1:00 p.m."), ("1:00 p.m.", "1:30 p.m."),
+                        ("1:30 p.m.", "3:00 p.m."), ("3:00 p.m.", "3:15 p.m."),
+                        ("3:15 p.m.", "5:00 p.m.")]:
+        assert f"'{inicio} – {fin}'" in horario, f"Falta el tramo {inicio}–{fin}"
     return {
         "zip_sha256": hashlib.sha256(dataset.read_bytes()).hexdigest(),
         "filas_por_tabla": {n: len(f) for n, f in tablas.items()},

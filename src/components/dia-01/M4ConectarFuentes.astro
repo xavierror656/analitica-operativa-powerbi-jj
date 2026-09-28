@@ -4,12 +4,12 @@ import Notas from '../ui/Notas.astro';
 import RecetaGuiada from './RecetaGuiada.astro';
 ---
 
-<TuTurno diseno="receta" modulo="D1-M4" titulo="Conecta y perfila" minutos={40}>
+<TuTurno diseno="receta" modulo="D1-M4" titulo="Conecta y perfila" minutos={30}>
   <RecetaGuiada id="conectar" />
   <Notas
     slot="notas"
-    minutos={40}
+    minutos={30}
     dice="Van a abrir el dataset del programa. No lo limpien todavía, primero perfílenlo: quiero que vean los problemas antes de resolverlos."
-    nota="Mostrar una conexión completa y mantener los pasos y la guía visibles durante toda la actividad. No combinar los ocho CSV: tienen esquemas diferentes. Checkpoint al minuto 25: ocho consultas con los nombres de archivo. Si alguien se atrasa, acompañar primero producción y después completar las siete restantes."
+    nota="Mostrar una conexión completa y mantener los pasos y la guía visibles durante toda la actividad. No combinar los ocho CSV: tienen esquemas diferentes. Checkpoint al minuto 20: ocho consultas con los nombres de archivo. Si alguien se atrasa, acompañar primero producción y después completar las siete restantes."
   />
 </TuTurno>
