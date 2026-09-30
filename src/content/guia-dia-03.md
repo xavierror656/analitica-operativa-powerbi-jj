@@ -376,18 +376,54 @@ La fórmula de promedio móvil quita los filtros del calendario para recuperar t
 
 ## 5. Fichas, revisión y entrega A3
 
-Copia esta ficha **para cada uno de los seis indicadores principales**:
+Una **ficha** es la tarjeta de identidad de un indicador: permite que otra persona lo entienda y lo compruebe sin preguntarte. Hazla en un documento aparte (Word, Excel o la plantilla que indique el instructor) y copia esta tabla **para cada uno de los seis indicadores principales**:
 
 | Campo | Registro del participante |
 |---|---|
 | Nombre, pregunta operativa y responsable | |
-| Fórmula y unidad | |
+| Fórmula DAX exacta, unidad y formato | |
 | Numerador y denominador, si aplica | |
 | Tabla, granularidad y cobertura temporal | |
 | Filtros que sí lo afectan / filtros que no | |
 | Vacíos, ceros y limitaciones | |
-| Valor sin filtros y al menos dos cortes comprobados | |
+| Valor sin filtros y al menos dos cortes: esperado, observado y diferencia | |
 | Hallazgo del revisor y corrección realizada | |
+
+### Ejemplo resuelto: % Cumplimiento
+
+Úsalo como modelo; las otras cinco fichas se llenan igual con tus propias cifras.
+
+| Campo | Registro |
+|---|---|
+| Nombre, pregunta operativa y responsable | **% Cumplimiento.** ¿Qué proporción del plan se produjo? Responsable: supervisión de producción. |
+| Fórmula DAX exacta, unidad y formato | `% Cumplimiento = DIVIDE([Piezas], [Plan])`. Porcentaje, 2 decimales. |
+| Numerador y denominador | `[Piezas]` = suma de `fact_produccion[piezas_producidas]`. `[Plan]` = suma de `fact_produccion[piezas_plan]`. |
+| Tabla, granularidad y cobertura temporal | `fact_produccion`: día · línea · turno · parte. Datos del 01/03/2025 al 31/08/2026. |
+| Filtros que sí lo afectan / filtros que no | Sí: fecha, línea, área, turno y parte. No: defecto (no se relaciona con producción). |
+| Vacíos, ceros y limitaciones | Sin plan en el periodo → **blanco**, no 0 % ni 100 %. Enero de 2025 queda en blanco: hay fechas, no hay registros. |
+| Valor sin filtros y dos cortes | Sin filtros: esperado 89.19 %, observado 89.19 %, diferencia 0. L1: 89.26 % / 89.26 % / 0. 01/03/2025 + L1: 84.75 % / 84.75 % / 0. |
+| Hallazgo del revisor y corrección | *(lo llena el revisor en la revisión cruzada)* |
+
+### Matriz de pruebas
+
+Una fila por prueba. Es la «matriz de validación por fecha, turno y área» de la entrega; empieza con las pruebas que ya hiciste en las secciones 2 a 4:
+
+| Prueba (filtros exactos) | Indicador | Esperado | Observado | ¿Coincide? | Corrección y segunda prueba |
+|---|---|---:|---:|---|---|
+| Sin filtros | Piezas | 5,822,881 | | | |
+| Área = Ensamble | Eventos correctivos | 276 | | | |
+| Fecha 01/03/2025 + Línea 1 | % Cumplimiento | 84.75 % | | | |
+| Fecha 01/03/2025 + Línea 1 | Eventos correctivos | *(blanco)* | | | |
+| Turno 1 | Minutos correctivos | 71,248 (no aplica turno) | | | |
+| Enero 2025 | % Cumplimiento | *(blanco)* | | | |
+| Corte 07/05/2025 | Piezas MTD | 77,234 | | | |
+| Mayo 2025 vs. abril | % Variación mensual | −1.86 % | | | |
+
+Escribe los filtros con tabla, columna y valor (por ejemplo, `dim_linea[area] = Ensamble`), no «filtré Ensamble». Así otra persona puede repetir la prueba exactamente.
+
+### Revisión cruzada
+
+El revisor abre **una copia** del PBIX de otra persona. Si al actualizar aparece un error de archivo no encontrado, las rutas apuntan a la carpeta del autor: **Transformar datos → Configuración de origen de datos → Cambiar origen** y selecciona la carpeta del dataset en su propio equipo. Después repite una prueba de la matriz, revisa denominador, fuente, formato y tratamiento del blanco, y anota su hallazgo en la ficha.
 
 En el taller: 8 min de rúbrica, 7 de ficha, 50 de trabajo autónomo, 20 de revisión entre áreas y 5 de entrega. El revisor elige una fecha, un turno y un área; solicita explicar qué cambió y qué debía permanecer constante. Registra cifra esperada, observada, resultado, corrección y segunda prueba. Las capturas deben mostrar los filtros, no solo una tarjeta aislada.
 
