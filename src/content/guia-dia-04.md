@@ -22,11 +22,45 @@ Convertirás A3 en un reporte de dos niveles: **Resumen** para detectar una situ
 
 ## 1. Preparar el archivo y decidir qué debe entender el lector
 
-Abre A3 y guarda una copia `A4_Apellido.pbix`. Comprueba primero los seis indicadores y sus filtros con la [guía del Día 3](../../dia-03/guia/). El diseño no corrige una cifra equivocada.
+Hoy no se crean medidas nuevas: se **presentan** las de A3 para que otra persona las entienda sin ti. Por eso esta sección empieza comprobando cifras y termina en papel, antes de tocar el lienzo.
 
-Escribe: «Una persona de ___ necesita decidir ___; primero necesita saber ___ y después comprobar ___». Para el caso de clase, usa **¿cómo cambió el volumen producido y en qué líneas se concentra?** El alcance es volumen registrado, no productividad por hora ni causalidad.
+### Guarda A4 y comprueba que A3 sigue bien
 
-Dibuja en papel dos páginas. Usa un orden visual consistente: pregunta y periodo, indicadores, comparación, acceso al detalle. Reserva el color de énfasis para una condición explicada. No dependas solo de rojo/verde: añade texto, símbolo o etiqueta. Emplea el mismo color para la misma categoría en todo el reporte.
+1. Abre `Apellido_Nombre_A3.pbix` y usa **Archivo → Guardar como** para crear `Apellido_Nombre_A4.pbix`. Desde aquí trabajas en A4; A3 queda intacto como evidencia del día anterior.
+2. Ve a **Control_A3** y borra todas las selecciones de los segmentadores. La fila **Total** de la matriz de indicadores debe mostrar **5,822,881** piezas, **89.19 %** de cumplimiento, **97.51 %** buenas, **2.49 %** de rechazo, **560** eventos y **71,248** minutos correctivos. En la matriz por mes, **2025-05** muestra 337,491 frente a 343,875. Si algo no coincide, corrígelo con la [guía del Día 3](../../dia-03/guia/) antes de seguir: el diseño no corrige una cifra equivocada.
+3. **Conserva Control_A3.** No la borres ni la conviertas en la página de diseño: es tu página de auditoría y la usarás hoy para comprobar cada cifra del reporte. Ocultarla de la navegación más adelante no la vuelve segura ni la elimina.
+
+### Decide para quién es el reporte
+
+Completa esta frase antes de abrir un visual: «Una persona de ___ necesita decidir ___; primero necesita saber ___ y después comprobar ___».
+
+Para el caso de clase, la pregunta es **¿cómo cambió el volumen producido y en qué líneas se concentra?** Una frase completa sería: «Una persona de **Operaciones** necesita decidir **qué línea revisar primero**; primero necesita saber **cuánto se produjo y cómo cambió frente al mes anterior**, y después comprobar **en qué líneas y registros se concentra**». El alcance es volumen registrado, no productividad por hora ni causalidad.
+
+Otros lectores posibles, por si tu área es distinta:
+
+| Lector | Pregunta | Qué debe encontrar |
+|---|---|---|
+| Business Excellence | ¿Qué cambió frente al periodo previo? | Tendencia y comparación válida |
+| Operaciones | ¿Qué línea y turno requieren revisión? | Detalle de producción filtrado |
+| Ingeniería | ¿Dónde se registraron rechazos? | Eventos por defecto y parte |
+
+Una página no necesita responder todas las preguntas con todos los campos visibles.
+
+### Dibuja las dos páginas en papel
+
+Dibuja con cajas, sin detalles, dónde irá cada cosa. La página **Resumen** sigue este orden de lectura, de arriba abajo:
+
+| Zona | Contenido | Pregunta que responde |
+|---|---|---|
+| Encabezado | Pregunta, periodo y alcance del dato | ¿Qué estoy leyendo? |
+| Fila de tarjetas | Piezas · % Cumplimiento · % Rechazo producción | ¿Cuánto? |
+| Izquierda | Tendencia por mes (línea) | ¿Qué cambió? |
+| Derecha | Comparación por línea (barras) | ¿Dónde se concentra? |
+| Pie | Segmentadores de fecha y línea/área · fuente · botón **Ir al detalle →** | ¿Cómo filtro y dónde compruebo? |
+
+La página **Detalle** lleva los mismos segmentadores, una tabla con los registros que sustentan el total y un botón para volver a Resumen. Máximo una pregunta principal por zona; guarda el boceto y compáralo con la frase del lector antes de insertar visuales.
+
+Usa un orden visual consistente: pregunta y periodo, indicadores, comparación, acceso al detalle. Reserva el color de énfasis para una condición explicada. No dependas solo de rojo/verde: añade texto, símbolo o etiqueta. Emplea el mismo color para la misma categoría en todo el reporte.
 
 | Pregunta | Visual útil | Evita |
 |---|---|---|
@@ -37,22 +71,111 @@ Dibuja en papel dos páginas. Usa un orden visual consistente: pregunta y period
 
 ## 2. Construir Resumen, paso a paso
 
-1. Renombra la página **Resumen**. Define tamaño de página y márgenes consistentes. Añade un cuadro de texto con la pregunta y el alcance.
-2. Agrega segmentadores de `dim_calendario[fecha]`, `dim_linea[area]`, `dim_linea[nombre_linea]` y, donde corresponda a producción, `dim_turno[nombre]`. Configura un estado inicial explícito.
-3. Coloca tarjetas de `[Piezas]`, `[% Cumplimiento]` y `[% Rechazo producción]`. Muestra unidades y precisión útil; no confundas razón 0.025 con 0.025 %.
-4. Crea una línea con `dim_calendario[anio_mes]` y `[Piezas]`, ordenada cronológicamente. Crea barras con `dim_linea[nombre_linea]` y `[Piezas]`.
-5. Añade acceso visible a Detalle y un texto que explique cómo filtrar. Configura texto alternativo y orden de tabulación de los elementos significativos; prueba navegación con teclado.
-6. Comprueba que un cambio de fecha o línea produzca las cifras de A3. Una tarjeta de mantenimiento debe advertir que turno no la filtra.
+Trabajas en una **página nueva**; Control_A3 no se toca. Construye primero la estructura y las cifras, y deja colores y detalles para el final.
+
+### Página y encabezado
+
+1. Pulsa **+** junto a las pestañas de página para crear una página nueva. Doble clic en su pestaña y renómbrala **Resumen**. Crea también otra página vacía llamada **Detalle**; la necesitarás en el paso 5 y la llenarás en la sección 3.
+2. En Resumen, haz clic en una zona vacía del lienzo. En el panel **Formato** → **Configuración del lienzo**, elige **16:9**. Deja un margen igual en los cuatro bordes y alinea los visuales a él.
+3. **Insertar → Cuadro de texto**. Arriba, a todo lo ancho, escribe la pregunta y el alcance, por ejemplo: «¿Cómo cambió el volumen producido y en qué líneas se concentra? Piezas registradas, marzo de 2025 a agosto de 2026, datos sintéticos del curso».
+
+### Segmentadores
+
+4. Inserta segmentadores (**Segmentación de datos**, igual que en el Día 3) de `dim_calendario[fecha]`, `dim_linea[area]` y `dim_linea[nombre_linea]`. Agrega `dim_turno[nombre]` solo si el resumen muestra medidas de producción, porque turno no filtra mantenimiento. Si copias los segmentadores desde Control_A3 y Power BI pregunta si quieres sincronizarlos, elige **No sincronizar**: así Control_A3 sigue funcionando por su cuenta.
+5. **Estado inicial explícito:** Power BI guarda la selección de cada segmentador con el archivo. Antes de guardar, decide cómo debe abrir el lector la página (lo recomendable: todo el periodo y ninguna línea marcada) y déjalo así. El cuadro de texto del encabezado debe describir ese estado.
+
+### Tarjetas
+
+6. Inserta tres **Tarjetas**: `Piezas`, `% Cumplimiento` y `% Rechazo producción`. Usa las medidas de A3, no columnas sumadas automáticamente.
+7. Con cada tarjeta seleccionada, en **Formato** → **Objeto visual** → **Valor de globo** (en otras versiones, **Valor de llamada**), pon **Mostrar unidades: Ninguno**. Sin eso Power BI muestra «5.82 mill.» y el lector no puede comprobar la cifra exacta. Los porcentajes ya traen formato de A3: deben verse como **89.19 %** y **2.49 %**, no como 0.89 ni 0.025.
+
+   ![Página Resumen con el encabezado de la pregunta, los segmentadores y tres tarjetas (2,591,842 piezas, 89.27 % de cumplimiento y 2.48 % de rechazo con Ensamble marcado); la tarjeta de Piezas está seleccionada y en el panel Formato, sección Valor de globo, el menú Mostrar unidades está abierto con una flecha roja en Ninguno](/imagenes/capturas/dia-04/a4-tarjetas-sin-abreviar.png)
+
+   *Formato → Valor de globo → **Mostrar unidades: Ninguno** (flecha). Con Ensamble marcado, las tres tarjetas repiten los controles de A3: 2,591,842, 89.27 % y 2.48 %.*
+8. Cambia el título de cada tarjeta para que diga unidad y alcance, por ejemplo «Piezas producidas (pzas)» o «% Rechazo producción (no buenas / producidas)».
+
+### Tendencia y comparación
+
+9. **Tendencia:** inserta un **Gráfico de líneas** con `dim_calendario[anio_mes]` en el **Eje X** y `Piezas` en el **Eje Y**. Usa `anio_mes`, no `nombre_mes`: el nombre del mes solo junta enero de 2025 con enero de 2026. Comprueba el orden: **…** (más opciones) del visual → **Ordenar por** (en otras versiones, **Ordenar eje**) → `anio_mes` y luego **Orden ascendente**. Debe ir de 2025-03 a 2026-08.
+
+    ![Gráfico de líneas Piezas por anio_mes con el menú Más opciones abierto: Ordenar por muestra anio_mes marcado y, abajo, Orden ascendente marcado y señalado con una flecha roja; el eje va de 2025-03 a 2026-08](/imagenes/capturas/dia-04/a4-ordenar-eje-anio-mes.png)
+
+    *Ordenar por → `anio_mes` + **Orden ascendente** (flecha): el eje queda cronológico, de 2025-03 a 2026-08.*
+
+10. **Comparación:** inserta un **Gráfico de barras agrupadas** con `dim_linea[nombre_linea]` en el **Eje Y** y `Piezas` en el **Eje X**. Ordena por `Piezas`, **descendente**, para que la línea con más volumen quede arriba. Deja que el eje empiece en cero.
+
+    ![Gráfico de barras Piezas por nombre_linea con el menú Ordenar por abierto: Piezas marcado y Orden descendente señalado con una flecha roja; las barras quedan Línea 3, Línea 4, Línea 1 y Línea 2](/imagenes/capturas/dia-04/a4-ordenar-barras-piezas.png)
+
+    *Ordenar por → `Piezas` + **Orden descendente** (flecha): la línea con más volumen, Línea 3, queda arriba.*
+
+11. No mezcles piezas y porcentajes en el mismo eje. Si quieres una tasa en el tiempo, haz otro gráfico.
+
+### Acceso al detalle y accesibilidad
+
+12. **Insertar → Botones → Flecha derecha** (o **En blanco**). En **Formato del botón** → **Estilo** → **Texto**, escribe «Ir al detalle →». En **Acción**, activa la acción con **Tipo: Navegación de páginas** y **Destino: Detalle**. En Desktop se prueba con **Ctrl + clic**.
+
+    ![Panel Formato del botón con Acción activada, Tipo Navegación de páginas y la lista Destino abierta; una flecha roja señala Detalle entre Ninguno, Página 1, Control_A2, Control_A3 y Detalle](/imagenes/capturas/dia-04/a4-boton-navegacion-detalle.png)
+
+    *Acción → Tipo **Navegación de páginas** → Destino **Detalle** (flecha).*
+
+13. Junto al botón, un cuadro de texto breve: «Filtra por fecha o línea; el botón abre los registros de detalle». No escribas que el detalle «conserva la selección» todavía: un botón de navegación normal **no transmite** los filtros. Eso se resuelve en la sección 3 sincronizando segmentadores o con **Obtener detalles**.
+14. **Texto alternativo:** en cada tarjeta y gráfico, **Formato** → **General** → **Texto alternativo**: describe qué muestra, por ejemplo «Piezas producidas por mes, de marzo de 2025 a agosto de 2026».
+15. **Orden de tabulación:** **Ver → Selección** → pestaña **Orden de tabulación**. Ordena: encabezado, segmentadores, tarjetas, tendencia, comparación, botón. Prueba recorrer la página con **Tab**.
+
+### Comprobar contra A3
+
+16. Repite dos cortes y compara con Control_A3:
+
+| Corte | Piezas | % Cumplimiento | % Rechazo producción |
+|---|---:|---:|---:|
+| Sin filtros | 5,822,881 | 89.19 % | 2.49 % |
+| 01/03/2025 + Línea 1 | 2,301 | 84.75 % | 3.35 % |
+
+En la tendencia, el punto de **2025-05** debe valer **337,491** (pasa el mouse para ver el valor). Si agregas una tarjeta de mantenimiento, su título debe advertir que el turno no la filtra.
+
+![Página Resumen terminada y sin filtros: encabezado con la pregunta y el alcance; segmentadores de fecha (01/01/2025 a 31/12/2026), área, área y línea, y turno; tarjetas 5,822,881 piezas, 89.19 % de cumplimiento y 2.49 % de rechazo; gráfico de líneas de piezas por anio_mes de 2025-03 a 2026-08; barras de piezas por línea ordenadas Línea 3, Línea 4, Línea 1, Línea 2; texto de ayuda y botón Ir a detalle](/imagenes/capturas/dia-04/a4-resumen-completo.png)
+
+*Resumen sin filtros, en el orden de lectura del boceto: pregunta, filtros, cifras, tendencia, comparación y acceso al detalle. Las tarjetas repiten el control de A3: 5,822,881 · 89.19 % · 2.49 %.*
 
 Un título de hallazgo válido para una vista fijada en mayo frente a abril es «Mayo registra 1.86 % menos piezas que abril». Si dejas libre el periodo, ese título fijo se vuelve engañoso: usa una pregunta estable o una medida de título que responda al contexto y valida los casos vacíos. No mantengas una conclusión que ya no describe los filtros.
 
 ## 3. Construir Detalle y conservar el contexto
 
-1. Crea **Detalle** con una tabla de producción: fecha, línea, turno, parte, lote y medidas apropiadas. Muestra los filtros activos y la unidad.
-2. Para el ejercicio de **drillthrough**, coloca exactamente `dim_linea[nombre_linea]` en el área de campos de drillthrough del destino. Usa esa misma columna en las barras de Resumen.
-3. Configura **Mantener todos los filtros** si necesitas trasladar el resto del contexto. Desde una barra, usa clic derecho → Drillthrough → Detalle. Comprueba línea, fecha y turno; no asumas que se transfirieron solo porque cambió la página.
-4. Incluye botón **Atrás** con acción Volver y prueba el retorno. En Desktop, usa Ctrl + clic cuando sea necesario para probar acciones en modo edición.
-5. Para navegación normal entre páginas, añade botones con acción **Navegación de página**. Esta acción no transfiere automáticamente la selección de una barra; si quieres mantener segmentadores, configura **Sincronizar segmentadores** y verifica el alcance por página.
+Detalle responde «¿qué registros sustentan la cifra del Resumen?». Cada hecho va en **su propia tabla**, porque tienen granularidad y filtros distintos; no juntes columnas de producción, calidad y mantenimiento en una sola tabla plana.
+
+### Encabezado y tres zonas
+
+1. Ve a la página **Detalle**. Arriba, un cuadro de texto: «Registros que sustentan el Resumen. Producción admite filtro de turno; calidad y mantenimiento no».
+2. **Zona Producción.** Inserta una **Tabla** con, en este orden: `dim_calendario[fecha]`, `dim_linea[nombre_linea]`, `dim_turno[nombre]`, `dim_parte[parte_id]`, `fact_produccion[lote]`, `Piezas`, `Buenas` y `No conformes producción`. Usa las columnas de las **dimensiones** para fecha, línea, turno y parte, no las claves ocultas del hecho. En **Formato → Título** escribe «Producción (piezas)».
+3. **Zona Calidad.** Otra **Tabla** con `dim_calendario[fecha]`, `dim_linea[nombre_linea]`, `dim_parte[parte_id]`, `fact_calidad[lote]`, `dim_defecto[descripcion]` y `fact_calidad[piezas_rechazadas]` (con **Suma**). Título: «Calidad: piezas rechazadas (sin filtro de turno)».
+4. **Zona Mantenimiento.** Otra **Tabla** con `dim_calendario[fecha]`, `dim_linea[nombre_linea]`, `fact_mantenimiento[equipo_id]`, `fact_mantenimiento[tipo]` y `fact_mantenimiento[duracion_min]` (con **Suma**). Título: «Mantenimiento: minutos, todos los tipos (sin filtro de turno, parte ni lote)».
+
+### Obtener detalles (drillthrough): llevar una línea del Resumen al Detalle
+
+5. En Detalle, haz clic en una zona vacía del lienzo (ningún visual seleccionado). En el panel **Compilar**, baja hasta **Obtener detalles** (en otras versiones, **Obtención de detalles** o *Drill through*) y arrastra `dim_linea[nombre_linea]` a **Agregar campos de obtención de detalles aquí**. Usa exactamente la misma columna que tienen las barras del Resumen.
+6. En esa misma sección, activa **Mantener todos los filtros**: así viajan también la fecha y los demás segmentadores del Resumen, no solo la línea. Power BI agrega solo un botón **← Atrás** arriba a la izquierda; déjalo, es el regreso.
+7. Vuelve a **Resumen**. Pon el segmentador de fecha del 01/03/2025 al 01/03/2025. Haz **clic derecho sobre la barra de Línea 1** → **Obtener detalles** → **Detalle**.
+8. Comprueba en Detalle:
+
+   | Zona | Total esperado | Por qué |
+   |---|---:|---|
+   | Producción | 2,301 piezas · 77 no conformes | El mismo corte que el Resumen |
+   | Calidad | 77 piezas rechazadas | Coincide en este corte; en otros puede diferir |
+   | Mantenimiento | 21 minutos, tipo **preventivo** | Es mantenimiento total; los correctivos de A3 quedan en blanco |
+
+   Abre el panel **Filtros**: debe mostrar `nombre_linea` = Línea 1 y el filtro de fecha. No asumas que se transfirieron solo porque cambió la página.
+9. Prueba el regreso con **Ctrl + clic** sobre **← Atrás** (en modo edición de Desktop; en lectura basta un clic). Repite con otra línea, por ejemplo Línea 3.
+
+### Navegación normal frente a Obtener detalles
+
+| Acción | Cómo se configura | Qué lleva a la otra página |
+|---|---|---|
+| Botón «Ir a detalle» | Acción **Navegación de páginas** | Nada: abre Detalle sin la selección de la barra |
+| Clic derecho → Obtener detalles | Campo de obtención de detalles en Detalle | La línea elegida y, con **Mantener todos los filtros**, el resto del contexto |
+| ← Atrás | Botón de regreso automático | Vuelve a la página anterior |
+| Segmentadores compartidos | **Ver → Sincronización de segmentaciones** | La selección de los segmentadores marcados en ambas páginas |
+
+10. Para que el botón «Ir a detalle» también respete la fecha y la línea, sincroniza esos segmentadores: selecciona el de fecha en Resumen, abre **Ver → Sincronización de segmentaciones** y marca **Detalle** en las columnas de sincronizar y visible. Repite con el de línea. Déjalos **visibles** en Detalle: un filtro sincronizado pero oculto es una «selección invisible» que confunde al lector.
 
 ### Trazabilidad entre hechos
 
@@ -106,7 +229,7 @@ No inventes una cifra esperada nueva: compruébala en una tabla de control de A3
 
 ## 6. Evidencia A4 y evaluación
 
-Entrega `A4_Apellido.pbix`, capturas de Resumen y Detalle con filtros visibles, registro de controles numéricos, tabla de interacciones, prueba del lector y al menos una corrección comprobada. Conserva la versión A3.
+Entrega `Apellido_Nombre_A4.pbix`, capturas de Resumen y Detalle con filtros visibles, registro de controles numéricos, tabla de interacciones, prueba del lector y al menos una corrección comprobada. Conserva la versión A3.
 
 | Control funcional | Esperado | Observado / corrección |
 |---|---|---|
