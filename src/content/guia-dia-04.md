@@ -87,7 +87,7 @@ Trabajas en una **página nueva**; Control_A3 no se toca. Construye primero la e
 ### Tarjetas
 
 6. Inserta tres **Tarjetas**: `Piezas`, `% Cumplimiento` y `% Rechazo producción`. Usa las medidas de A3, no columnas sumadas automáticamente.
-7. Con cada tarjeta seleccionada, en **Formato** → **Objeto visual** → **Valor de globo** (en otras versiones, **Valor de llamada**), pon **Mostrar unidades: Ninguno**. Sin eso Power BI muestra «5.82 mill.» y el lector no puede comprobar la cifra exacta. Los porcentajes ya traen formato de A3: deben verse como **89.19 %** y **2.49 %**, no como 0.89 ni 0.025.
+7. Con cada tarjeta seleccionada, en **Formato** → **Objeto visual** → **Valor de globo** (en otras versiones, **Valor de llamada**), pon **Mostrar unidades: Ninguno**. Si insertaste la **tarjeta nueva** (la que muestra varias tarjetas y opciones como *Diseño de múltiples tarjetas*), la ruta es **Formato → Objeto visual → Llamada → Valor → Mostrar unidades: Ninguno**. Sin eso Power BI muestra «5.82 mill.» y el lector no puede comprobar la cifra exacta. Los porcentajes ya traen formato de A3: deben verse como **89.19 %** y **2.49 %**, no como 0.89 ni 0.025.
 
    ![Página Resumen con el encabezado de la pregunta, los segmentadores y tres tarjetas (2,591,842 piezas, 89.27 % de cumplimiento y 2.48 % de rechazo con Ensamble marcado); la tarjeta de Piezas está seleccionada y en el panel Formato, sección Valor de globo, el menú Mostrar unidades está abierto con una flecha roja en Ninguno](/imagenes/capturas/dia-04/a4-tarjetas-sin-abreviar.png)
 
@@ -202,25 +202,97 @@ Calidad no tiene turno; mantenimiento no tiene turno, parte ni lote. Separa y et
 
 ## 4. Laboratorio funcional
 
+Cuatro técnicas, todas sobre el mismo A4. Cada una debe resolver una tarea del lector; no las agregues solo para completar la lista. Registra para cada una qué esperabas y qué observaste.
+
 ### Interacciones
 
-Selecciona cada segmentador o visual y usa **Editar interacciones**. Decide por cada destino si filtra, resalta o no actúa. Registra la intención y pruébala. Cuando una selección de turno no cambia mantenimiento, explica la ausencia de relación; desactivar una interacción no añade una clave inexistente.
+Cuando haces clic en un visual, los demás reaccionan. Hay tres reacciones posibles: **filtrar** (solo quedan los datos elegidos), **resaltar** (se ven todos, con lo elegido más oscuro) o **ninguna**.
+
+1. En **Resumen**, selecciona las **barras de piezas por línea**. En la **cinta superior**, abre la pestaña verde **Formato** (aparece junto a *Datos y detalles* solo cuando hay un visual seleccionado) y pulsa **Editar interacciones**, el primer botón de la izquierda. No es el panel **Formato** de la derecha: ese tiene el mismo nombre pero no incluye esta opción.
+2. Sobre cada uno de los demás visuales aparecen iconos pequeños: embudo (**filtrar**), gráfico (**resaltar**) y círculo tachado (**ninguna**). Para las tres tarjetas y el gráfico de tendencia elige **filtrar**: el lector quiere ver la tendencia de la línea elegida, no la de toda la planta resaltada.
+3. Vuelve a pulsar **Editar interacciones** para salir. Haz clic en la barra de **Línea 1** sin filtros: las tarjetas deben mostrar **1,340,826 · 89.26 % · 2.47 %** y la tendencia solo Línea 1. Clic otra vez en la barra para quitar la selección.
+
+   ![Resumen con Editar interacciones activo en la pestaña Formato de la cinta: sobre cada visual aparecen los iconos de filtrar y de ninguna; la barra de Línea 1 está seleccionada, las tarjetas muestran 1,340,826 piezas, 89.26 % y 2.47 %, y la tendencia muestra solo la curva de Línea 1](/imagenes/capturas/dia-04/a4-editar-interacciones.png)
+
+   *Pestaña **Formato** de la cinta → **Editar interacciones**. Con Línea 1 seleccionada, las tarjetas y la tendencia se **filtran**: 1,340,826 · 89.26 % · 2.47 %, y la curva baja a la escala de una sola línea. Las tarjetas solo ofrecen filtrar o ninguna; resaltar no aplica a un número.*
+4. Registra la decisión:
+
+   | Origen | Destino | Interacción | Por qué |
+   |---|---|---|---|
+   | Barras por línea | Tarjetas | Filtrar | Las cifras deben ser de la línea elegida |
+   | Barras por línea | Tendencia | Filtrar | Ver cómo cambió esa línea en el tiempo |
+
+Cuando una selección de turno no cambia mantenimiento, explica la ausencia de relación; desactivar una interacción no añade una clave inexistente, y no la anules para esconder un error de modelo.
 
 ### Formato condicional
 
-En una tabla de cumplimiento, aplica reglas al valor numérico de la medida. Por ejemplo, una meta **didáctica** de 95 % se expresa como 0.95; una regla sobre «porcentaje del rango» no es lo mismo que el porcentaje del indicador. Escribe el umbral y aclara que no es una meta aprobada por la empresa. Prueba valores a ambos lados del umbral y vacíos. Evita que un vacío se vea como cumplimiento cero.
+El color debe tener una regla que puedas explicar con un número. Aquí se usa una **meta didáctica de 90 %**: no es una meta aprobada por la empresa, solo un umbral para practicar. Se eligió 90 % y no 95 % porque los días del caso rondan 86–91 %; con 95 % ningún valor quedaría por encima y no podrías probar ambos lados.
+
+1. En **Detalle**, agrega una **Tabla** «Cumplimiento por día (meta didáctica 90 %)» con `dim_calendario[fecha]`, `Piezas`, `Plan` y `% Cumplimiento`.
+2. En el panel **Compilar**, cuadro **Columnas** (en una tabla no se llama Valores), haz clic derecho sobre `% Cumplimiento` o pulsa la flecha **›** a su derecha → **Formato condicional** → **Iconos**. Ruta alternativa: panel **Formato → Objeto visual → Elementos de celda**, serie `% Cumplimiento`, activa **Iconos** y pulsa **fx**.
+3. **Estilo de formato: Reglas.** Power BI propone tres reglas en **Porcentaje**; esa es la trampa: «Porcentaje» es la posición dentro del rango de valores, no el % del indicador (con un solo valor en la tabla, cualquier cifra queda «al 100 % del rango» y sale en verde aunque esté debajo de la meta). Borra la tercera regla con la **X** y deja dos, cambiando cada lista a **Número**: *si el valor* **>=** `0` y **<** `0.9` → **triángulo ámbar**; *si el valor* **>=** `0.9` y **<=** `1` → **círculo verde**. Por eso el umbral se escribe `0.9`.
+
+   ![Ventana Iconos con Estilo de formato Reglas sobre % Cumplimiento y dos reglas en Número: si el valor es mayor o igual que 0 y menor que 0.9, triángulo ámbar; si es mayor o igual que 0.9 y menor o igual que 1, círculo verde](/imagenes/capturas/dia-04/a4-formato-condicional-reglas.png)
+
+   *Dos reglas, ambas en **Número**: `0`–`0.9` → triángulo; `0.9`–`1` → círculo. Revisa las cuatro listas antes de **Aceptar**: basta una en «Porcentaje» para que la regla mida otra cosa.*
+4. Cambia el título de la tabla para que la leyenda esté en texto: «● ≥ 90 % · ▲ < 90 % (meta didáctica)». El color o el icono complementan el texto, no lo sustituyen.
+5. **Prueba ambos lados y el blanco.** Lleva a Detalle la fecha del 01/05/2025 al 07/05/2025. El botón **Ir a detalle** solo la lleva si ya **sincronizaste el segmentador de fecha** (paso 10 de la sección 3); si no, Detalle se abre sin ese filtro. Si quedó un filtro viejo de Obtener detalles (por ejemplo 01/03/2025 + Línea 1), quítalo en el panel **Filtros** de Detalle. Debe haber días con círculo y días con triángulo.
+6. **El domingo 04/05 no aparece**: una tabla oculta las filas en que todas las medidas están vacías, y ese día no tiene producción ni plan. Que no aparezca es la comprobación: el vacío no recibe icono ni se presenta como 0 %. Si tu versión ofrece **Mostrar elementos sin datos** (clic derecho o flecha **›** sobre `fecha` en **Columnas**), puedes activarlo para ver la fila vacía; no es obligatorio.
+
+   ![Tabla Cumplimiento por día (meta didáctica 90 %) del 01/05/2025 al 07/05/2025: círculo verde en 01/05 (90.72 %), 03/05 (90.60 %) y 07/05 (90.09 %); triángulo ámbar en 02/05 (89.05 %), 05/05 (88.06 %) y 06/05 (89.05 %); el domingo 04/05 no aparece; total 77,234 piezas, 86,230 de plan y 89.57 %](/imagenes/capturas/dia-04/a4-formato-condicional-mayo.png)
+
+   *Valores a ambos lados de la meta didáctica: círculo en tres días (≥ 90 %) y triángulo en otros tres (< 90 %). El domingo sin producción no aparece, y el total de 77,234 piezas coincide con el MTD del 07/05 del Día 3.*
 
 ### Tooltip de página
 
-Crea una página con tamaño de información sobre herramientas y habilítala como tooltip. Añade las medidas y dimensiones pertinentes, asígnala al visual origen y verifica que cambie al pasar sobre dos líneas. No escondas en ella la única explicación del periodo, unidad o restricción: debe seguir siendo comprensible sin ratón y en una exportación.
+Un tooltip de página es una mini página que aparece al pasar el mouse sobre un visual y hereda el punto señalado.
+
+1. Crea una página nueva y llámala **Tooltip línea**.
+2. Con el lienzo seleccionado, en **Formato** → **Información de la página** → **Tipo de página**, elige **Información sobre herramientas**. En **Configuración del lienzo**, el tipo cambia a tamaño de información sobre herramientas (pequeño).
+3. Agrega una **Tarjeta** con `dim_linea[nombre_linea]` y dos más con `Piezas` y `% Cumplimiento` (con **Mostrar unidades: Ninguno**: en la tarjeta nueva está en **Llamada → Valor**). La tarjeta de texto antepone «Primera» al nombre del campo; en **Compilar** haz doble clic sobre el campo y renómbralo «Línea». Nada de tablas diminutas.
+4. Vuelve a **Resumen**, selecciona las **barras por línea** → **Formato** → **General** → **Información sobre herramientas** → **Tipo: Página de informe** → **Página: Tooltip línea**.
+5. Pasa el mouse, sin filtros, sobre **Línea 1**: debe mostrar Línea 1, **1,340,826** piezas y **89.26 %**. Sobre **Línea 3**: **1,682,162** piezas. Si muestra la planta completa, el tooltip no está heredando el punto.
+
+   ![Resumen con la fecha del 01/05/2025 al 07/05/2025 y el mouse sobre la barra de Línea 3: aparece el tooltip de página con tres tarjetas, Línea 3, 22,237 piezas y 89.85 % de cumplimiento](/imagenes/capturas/dia-04/a4-tooltip-linea.png)
+
+   *Con la fecha del 01/05 al 07/05 y el mouse sobre Línea 3, el tooltip hereda **las dos cosas**: la línea señalada y el periodo del segmentador. No muestra la planta completa ni todo el año.*
+6. Clic derecho en la pestaña **Tooltip línea** → **Ocultar página**, para que el lector no la vea como una página más.
+
+No escondas en el tooltip la única explicación del periodo, la unidad o una restricción: debe seguir siendo comprensible sin mouse y en una exportación.
 
 ### Marcadores y botones
 
-1. Abre los paneles **Selección** y **Marcadores**. Para alternar dos vistas, configura su visibilidad y crea un marcador por estado.
-2. Si el marcador solo cambia la presentación, desactiva **Datos** para que no restaure los filtros guardados. Revisa también página actual y visuales seleccionados según su finalidad.
-3. Añade botones con acción Marcador y prueba que alternar una vista conserve una fecha elegida por el lector.
-4. Crea un marcador separado **Restablecer filtros** con Datos activado y el estado inicial deliberadamente guardado. Ponle un nombre que anuncie que cambiará filtros.
-5. Cambia dos filtros, alterna vistas, restablece y vuelve al detalle. Registra lo esperado y lo observado en cada paso.
+Un marcador guarda un **estado** de la página. El riesgo es guardar más de lo que querías, sobre todo los filtros (opción **Datos**).
+
+Vas a alternar la tendencia entre **gráfico** y **tabla**, y a crear un botón para **restablecer filtros**.
+
+1. En **Resumen**, inserta una **Tabla** con `dim_calendario[anio_mes]`, `Piezas`, `Piezas mes anterior` y `% Variación mensual`. Colócala exactamente encima del gráfico de tendencia, del mismo tamaño.
+2. **Ver → Selección** y **Ver → Marcadores**. En Selección, oculta la tabla con el ojo (solo se ve el gráfico).
+
+   ![Pestaña Ver con los paneles Marcadores y Selección abiertos; en Selección, la Tabla aparece primera con el ojo tachado (oculta) y el resto de visuales visibles; en el lienzo solo se ve el gráfico de líneas de tendencia](/imagenes/capturas/dia-04/a4-paneles-seleccion-marcadores.png)
+
+   *Panel **Selección**: la Tabla queda oculta (ojo tachado) y en su lugar se ve el gráfico. El panel **Marcadores** todavía está vacío; su botón **Agregar** guarda el estado actual.*
+3. En Marcadores, **Agregar** y renómbralo **Vista gráfico**. En sus **…** desmarca **Datos**; deja **Mostrar** y **Página actual**. Sin Datos, el marcador no toca los filtros del lector.
+4. En Selección, oculta el gráfico y muestra la tabla, y **comprueba en el lienzo que se ve la tabla**: **Agregar** guarda lo que está visible en ese momento. Luego **Agregar** → **Vista tabla**, también sin **Datos**. Prueba clic en cada marcador: si los dos muestran lo mismo, guardaron el mismo estado; elimínalos y créalos de nuevo en este orden.
+
+   ![Panel Marcadores con Vista gráfico y Vista tabla; el menú de opciones de Vista tabla está abierto con Datos sin marcar y Mostrar, Página actual y Todos los objetos visuales marcados; arriba aparece la opción Actualizar](/imagenes/capturas/dia-04/a4-marcador-sin-datos.png)
+
+   *Menú **…** del marcador: **Datos** sin marcar, **Mostrar** y **Página actual** marcados. Si guardaste un marcador con el estado equivocado (por ejemplo, la tabla todavía oculta), corrige la visibilidad en Selección y usa **Actualizar** en ese mismo menú: sobrescribe el estado sin crear otro marcador.*
+5. Inserta dos botones (**Insertar → Botones → En blanco**) con texto «Ver gráfico» y «Ver tabla»; en **Acción**, **Tipo: Marcador** y el marcador correspondiente.
+6. **Restablecer:** quita todas las selecciones de los segmentadores y deja visible el gráfico. **Agregar** → **Restablecer filtros**, esta vez **con Datos activado**: es el único marcador que debe cambiar filtros, y su nombre lo anuncia. Crea un botón «Restablecer filtros» con esa acción.
+   ![Resumen sin filtros con tres botones bajo el gráfico de tendencia: Ver gráfico, Restablecer filtros y Ver tabla; las tarjetas muestran 5,822,881 piezas, 89.19 % de cumplimiento y 2.49 % de rechazo](/imagenes/capturas/dia-04/a4-botones-marcadores.png)
+
+   *Los tres botones con verbo, junto a la zona que controlan. «Ver gráfico» y «Ver tabla» solo cambian visibilidad; «Restablecer filtros» es el único que limpia selecciones.*
+7. **Prueba con Ctrl + clic:**
+
+   | Acción | Esperado |
+   |---|---|
+   | Fecha en mayo de 2025 y Línea 1 | Las tarjetas cambian |
+   | Ver tabla | Aparece la tabla; **la fecha y la línea no cambian** |
+   | Ver gráfico | Vuelve el gráfico; filtros intactos |
+   | Restablecer filtros | Segmentadores limpios, tarjetas en **5,822,881 · 89.19 % · 2.49 %** |
+
+Los botones llevan verbos («Ver detalle», «Volver al resumen», «Restablecer filtros») y su acción explícita; un icono sin etiqueta puede ser ambiguo para otra área.
 
 Si un botón «borra» selecciones de forma inesperada, revisa Datos en su marcador antes de cambiar medidas o relaciones.
 
