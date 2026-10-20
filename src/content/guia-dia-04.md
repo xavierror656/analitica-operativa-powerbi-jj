@@ -152,9 +152,22 @@ Detalle responde «¿qué registros sustentan la cifra del Resumen?». Cada hech
 
 ### Obtener detalles (drillthrough): llevar una línea del Resumen al Detalle
 
-5. En Detalle, haz clic en una zona vacía del lienzo (ningún visual seleccionado). En el panel **Compilar**, baja hasta **Obtener detalles** (en otras versiones, **Obtención de detalles** o *Drill through*) y arrastra `dim_linea[nombre_linea]` a **Agregar campos de obtención de detalles aquí**. Usa exactamente la misma columna que tienen las barras del Resumen.
-6. En esa misma sección, activa **Mantener todos los filtros**: así viajan también la fecha y los demás segmentadores del Resumen, no solo la línea. Power BI agrega solo un botón **← Atrás** arriba a la izquierda; déjalo, es el regreso.
+5. En Detalle, haz clic en una zona vacía del lienzo (ningún visual seleccionado). Abre el panel **Formato** (icono de pincel, que ahora dice formato de **página**) → **Información de la página** → **Tipo de página: Obtención de detalles**. En versiones anteriores este campo estaba en el panel **Compilar**, sección *Obtener detalles*; si no lo encuentras, escribe «detalles» en **Buscar**.
+6. Debajo aparecen tres opciones:
+    - **Mantener todos los filtros:** actívalo. Así viajan también la fecha y los demás segmentadores del Resumen, no solo la línea.
+    - **Obtener detalles desde:** pulsa **Agregar datos** y elige `dim_linea[nombre_linea]`, exactamente la misma columna que tienen las barras del Resumen.
+    - **Entre varios informes:** déjalo apagado.
+
+    Power BI agrega solo un botón **←** (Atrás) arriba a la izquierda; déjalo, es el regreso.
+
+    ![Página Detalle con el panel Formato abierto en Información de la página: Tipo de página Obtención de detalles, Mantener todos los filtros activado, Entre varios informes apagado y Obtener detalles desde con nombre_linea; arriba a la izquierda del lienzo aparece el botón azul con flecha de regreso](/imagenes/capturas/dia-04/a4-campo-obtener-detalles.png)
+
+    *Formato de página → Información de la página: **Tipo de página = Obtención de detalles**, **Mantener todos los filtros** activado y `nombre_linea` en **Obtener detalles desde**. El botón ← apareció solo en la esquina superior izquierda.*
 7. Vuelve a **Resumen**. Pon el segmentador de fecha del 01/03/2025 al 01/03/2025. Haz **clic derecho sobre la barra de Línea 1** → **Obtener detalles** → **Detalle**.
+
+    ![Página Resumen con la fecha 01/03/2025 y la barra de Línea 1 seleccionada; el menú contextual muestra nombre_linea Línea 1, Piezas 2,301 y la opción Obtener detalles con el submenú Detalle; las tarjetas muestran 2,301 piezas, 84.75 % de cumplimiento y 3.35 % de rechazo](/imagenes/capturas/dia-04/a4-clic-derecho-obtener-detalles.png)
+
+    *Clic derecho sobre la barra de Línea 1 → **Obtener detalles** → **Detalle**. Al hacer clic en la barra, las tarjetas también se filtran a Línea 1: 2,301 · 84.75 % · 3.35 %.*
 8. Comprueba en Detalle:
 
    | Zona | Total esperado | Por qué |
@@ -164,6 +177,10 @@ Detalle responde «¿qué registros sustentan la cifra del Resumen?». Cada hech
    | Mantenimiento | 21 minutos, tipo **preventivo** | Es mantenimiento total; los correctivos de A3 quedan en blanco |
 
    Abre el panel **Filtros**: debe mostrar `nombre_linea` = Línea 1 y el filtro de fecha. No asumas que se transfirieron solo porque cambió la página.
+
+   ![Página Detalle tras Obtener detalles desde Línea 1 el 01/03/2025: Producción con dos registros (turnos 1 y 2, partes P-1001 y P-3001) y total 2,301 piezas, 2,224 buenas y 77 no conformes; Calidad con dos eventos de la parte P-1001 y total 77 rechazadas; Mantenimiento con un evento preventivo de L1-EQ2 de 21 minutos; botón de regreso arriba a la izquierda](/imagenes/capturas/dia-04/a4-detalle-01-03-l1.png)
+
+   *El mismo corte del Resumen, ahora registro por registro: producción 2,301 · 2,224 · 77, calidad 77 rechazadas y mantenimiento 21 minutos preventivos. La fila correctiva de Línea 3 desapareció porque el filtro de línea sí llegó.*
 9. Prueba el regreso con **Ctrl + clic** sobre **← Atrás** (en modo edición de Desktop; en lectura basta un clic). Repite con otra línea, por ejemplo Línea 3.
 
 ### Navegación normal frente a Obtener detalles
