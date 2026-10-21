@@ -20,7 +20,7 @@ Integrarás el proyecto, defenderás un hallazgo y presentarás una recomendaci�
 | 15:00–16:30 | Proyecto y presentación | A5, presentación de equipos y rúbrica |
 | 16:30–17:00 | Validación y cierre | Entrega, evaluación individual y seguimiento |
 
-Abre A4, conserva una copia y guarda `A5_Equipo.pbix`. Mantén los datos sintéticos. Solo se contempla sustituirlos por datos de empresa anonimizados si existe autorización formal y están preparados; la sesión puede concluir plenamente con el caso sintético.
+El equipo elige como base el A4 de **un** integrante (el que pasó mejor la prueba del lector). Ábrelo, conserva una copia y guárdalo como `A5_Equipo.pbix`, sustituyendo «Equipo» por el nombre o número del equipo. Mantén los datos sintéticos. Solo se contempla sustituirlos por datos de empresa anonimizados si existe autorización formal y están preparados; la sesión puede concluir plenamente con el caso sintético.
 
 ## 1. Publicación y gobierno del reporte
 
@@ -44,13 +44,20 @@ El instructor demuestra el flujo autorizado o su configuración prevista: fuente
 
 ### RLS: demostrar y comprobar
 
-En Desktop, crea un rol didáctico de área sobre `dim_linea` con la regla:
+Guarda una copia antes de configurar el rol. En Desktop:
 
-```dax
-[area] = "Ensamble"
-```
+1. **Modelado → Administrar roles → Nuevo**. Nombra el rol **Ensamble**.
+2. Elige la tabla `dim_linea` y escribe la regla. Si aparece un generador de filtros, cambia al **editor DAX**:
 
-Usa **Ver como** para comprobar que restringe líneas y hechos relacionados. Después de publicar, la asignación del rol y la prueba con usuario autorizado deben realizarse en el servicio. RLS restringe a usuarios con rol Viewer; no restringe del mismo modo a administradores, miembros o colaboradores del workspace. Un segmentador no es seguridad. Esta regla estática es una demostración; no da acceso real a nadie.
+   ```dax
+   [area] = "Ensamble"
+   ```
+
+3. **Guardar**. Luego **Modelado → Ver como**, marca **Ensamble** y acepta.
+4. Comprueba en Control_A3, sin otros filtros, que solo aparezcan Línea 1 y Línea 2 y que el total sea el de Ensamble: **2,591,842** piezas, **276** eventos correctivos y **35,261** minutos correctivos. Producción, calidad y mantenimiento se restringen porque `dim_linea` filtra los tres hechos.
+5. Pulsa **Detener visualización** (barra superior) para volver a ver todo.
+
+Así compruebas que restringe líneas y hechos relacionados. Después de publicar, la asignación del rol y la prueba con usuario autorizado deben realizarse en el servicio. RLS restringe a usuarios con rol Viewer; no restringe del mismo modo a administradores, miembros o colaboradores del workspace. Un segmentador no es seguridad. Esta regla estática es una demostración; no da acceso real a nadie.
 
 ### Si no hay acceso al servicio
 
@@ -66,11 +73,20 @@ Ejemplo del dataset, todas las líneas y turnos:
 |---|---:|---:|
 | Piezas | 343,875 | 337,491 |
 | Plan | 383,895 | 377,764 |
+| % Cumplimiento | 89.58 % | 89.34 % |
 | Minutos correctivos | 3,930 | 3,298 |
 
 Hallazgo: «En mayo se registraron 6,384 piezas menos que en abril, una variación de −1.86 %, con ambos meses completos». El plan también cambia. Estos totales no prueban una caída de productividad por hora ni que mantenimiento causara el cambio. Los minutos correctivos disminuyeron; aun si ambas series se movieran juntas, la coincidencia no demostraría causa.
 
 Recomendación defendible: «Operaciones revisará por línea el cambio de volumen y plan y documentará capacidad y días disponibles antes de decidir ajustes». Completa responsable, fecha acordada, dato adicional y criterio de éxito. No presentes una hipótesis como hecho ni una fecha propuesta como compromiso ya autorizado.
+
+**Tu turno (40 min): encuentra y comprueba dos hallazgos.**
+
+1. **Pregunta (0–12 min):** elige periodo y área; registra la selección exacta de los segmentadores.
+2. **Contraste (12–28 min):** una **tendencia** (cómo cambió en el tiempo) y una **comparación** por línea o por defecto, cada una con medida, filtros y fuente. Para defectos usa cantidades de calidad; no construyas una tasa por turno con un numerador que no tiene turno.
+3. **Límites (28–40 min):** busca el dato que podría contradecirte: ¿se comparan cargas de plan similares?, ¿son meses completos con el mismo criterio?, ¿cambió la mezcla de líneas, partes o turnos? Anota una explicación alternativa y una afirmación que debes descartar.
+
+Cada hallazgo debe poder reconstruirse desde el reporte y la bitácora: pregunta, valor, periodo, filtros, fuente y límite.
 
 | Tipo de enunciado | Ejemplo | Tratamiento |
 |---|---|---|
@@ -102,13 +118,13 @@ El instructor muestra una verificación externa de la misma cifra. No se requier
 **Minutos 0–3:** calcula una razón ponderada:
 
 ```python
-piezas = [100, 900]
-rechazos = [5, 9]
-tasa = sum(rechazos) / sum(piezas)
+producidas = [100, 900]
+rechazadas = [5, 9]
+tasa = sum(rechazadas) / sum(producidas)
 print(f"Rechazo conjunto: {tasa:.2%}")  # 1.40 %
 ```
 
-**Minutos 3–7:** descarga [verificar_cifras_dia05.py](../../descargas/verificar_cifras_dia05.py) y el [ZIP del curso](../../descargas/dataset-planta-sintetico.zip) en la misma carpeta. En una terminal situada allí, con Python 3 autorizado, ejecuta:
+**Minutos 3–7:** descarga [verificar_cifras_dia05.py](../../descargas/verificar_cifras_dia05.py) y el [ZIP del curso](../../descargas/dataset-planta-sintetico.zip) en la misma carpeta. En una terminal situada allí, con Python 3 autorizado, ejecuta (en Windows, si `python` no responde, usa `py`):
 
 ```text
 python verificar_cifras_dia05.py dataset-planta-sintetico.zip --desde 2025-05-01 --hasta 2025-05-31
