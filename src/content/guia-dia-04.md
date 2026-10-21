@@ -314,6 +314,22 @@ No se evalúa memorizar una ruta. Registra tiempo, respuesta, duda o bloqueo y e
 | 2 | | | | | |
 | 3 | | | | | |
 
+### Respuestas modelo para quien aplica la prueba
+
+Ten esta tabla a mano, pero **no se la muestres al lector**. Las cifras salen del reporte con los segmentadores indicados.
+
+| Tarea | Respuesta esperada | Filtros que debe nombrar |
+|---|---|---|
+| 1. Piezas de L1 en mayo de 2025 | **80,001** piezas · 89.21 % de cumplimiento · 2.40 % de rechazo | Fecha 01/05/2025–31/05/2025 y Línea 1 (la jerarquía la ubica dentro de Ensamble) |
+| 2. Detalle y regreso | Clic derecho en la barra de Línea 1 → **Obtener detalles** → Detalle. El total de producción vuelve a sumar 80,001; con **←** regresa a Resumen con la fecha y la línea intactas | Los mismos de la tarea 1, visibles en el panel Filtros de Detalle |
+| 3. Turno 1 y restablecer | Las tarjetas de producción cambian; la tabla de mantenimiento de Detalle **no**, porque no tiene turno. **Restablecer filtros** vuelve a 5,822,881 · 89.19 % · 2.49 % | Turno 1 aplica solo a producción |
+
+Error frecuente: marcar **1** en el segmentador de **turno** en lugar de **Línea 1**. Con mayo de 2025 y turno 1 las tarjetas muestran **107,592** piezas: es una cifra correcta, pero responde otra pregunta. Si el lector la da, registra la duda y revisa si las etiquetas de los segmentadores («nombre», «area, nombre_linea») se entienden sin el autor; renombrarlas a «Turno» y «Área y línea» suele ser la corrección.
+
+![Resumen con la fecha del 01/05/2025 al 31/05/2025 y Línea 1 marcada dentro de Ensamble en el segmentador de área y línea: tarjetas 80,001 piezas, 89.21 % de cumplimiento y 2.40 % de rechazo; la barra muestra solo Línea 1](/imagenes/capturas/dia-04/a4-lector-tarea1-l1-mayo.png)
+
+*Respuesta de la tarea 1: 80,001 piezas de Línea 1 en mayo de 2025, con los dos filtros visibles en sus segmentadores.*
+
 No inventes una cifra esperada nueva: compruébala en una tabla de control de A3 usando el mismo corte antes de probar al lector. El reporte pasa si puede localizar la cifra correcta, reconocer su alcance y recorrer la navegación sin instrucciones del autor. El tiempo se usa para mejorar, no como umbral de acreditación añadido al PDF.
 
 ## 6. Evidencia A4 y evaluación
@@ -329,6 +345,14 @@ Entrega `Apellido_Nombre_A4.pbix`, capturas de Resumen y Detalle con filtros vis
 | Restablecer | Recupera estado inicial anunciado | |
 | Tooltip y formato condicional | Contexto y reglas correctos | |
 | Lectura y acceso | Títulos, unidades, contraste, teclado y texto alternativo | |
+
+### Antes de entregar
+
+- [ ] Pulsa **Restablecer filtros**: el archivo debe abrir en el estado inicial que anuncia el encabezado.
+- [ ] La página **Tooltip línea** está oculta (clic derecho en la pestaña → **Ocultar página**).
+- [ ] **Control_A3** sigue en el archivo, sin cambios.
+- [ ] Los segmentadores tienen nombres que un lector entiende (por ejemplo «Turno», no «nombre»).
+- [ ] Guardaste como `Apellido_Nombre_A4.pbix` y conservas A3 aparte.
 
 C4 evalúa un reporte legible de dos niveles, elección de visuales y navegación comprensible. Mantén la escala del PDF: **1**, necesita ayuda en pasos críticos; **2**, resuelve autónomamente el caso practicado; **3**, transfiere a una variante no vista y justifica; **4**, detecta y corrige un error ajeno y lo justifica. La prueba de lector no acredita automáticamente nivel 4: debe existir diagnóstico, corrección y explicación.
 
